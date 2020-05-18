@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="9b6a6192-f3ec-4fc1-a121-c3b3bc04363a" Title="MPT.Math Namespace" Url="html/N-MPT.Math.htm">
+    <HelpTOCNode Id="d336ae5b-bd3a-48dd-aa9f-23cdb8f6a35b" Title="Numbers Class" Url="html/T-MPT.Math.Numbers.htm">
+      <HelpTOCNode Title="Numbers Members" Url="html/AllMembers.T-MPT.Math.Numbers.htm" />
+      <HelpTOCNode Id="96045cca-0460-49fc-86d2-5337e1660c37" Title="Numbers Fields" Url="html/Fields.T-MPT.Math.Numbers.htm">
+        <HelpTOCNode Title="E Field" Url="html/F-MPT.Math.Numbers.E.htm" />
+        <HelpTOCNode Title="Pi Field" Url="html/F-MPT.Math.Numbers.Pi.htm" />
+        <HelpTOCNode Title="PiOver2 Field" Url="html/F-MPT.Math.Numbers.PiOver2.htm" />
+        <HelpTOCNode Title="PiOver4 Field" Url="html/F-MPT.Math.Numbers.PiOver4.htm" />
+        <HelpTOCNode Title="TwoPi Field" Url="html/F-MPT.Math.Numbers.TwoPi.htm" />
+        <HelpTOCNode Title="ZeroTolerance Field" Url="html/F-MPT.Math.Numbers.ZeroTolerance.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="5674703c-7c61-4a48-b1c5-66b4348cb7e1" Title="Numbers Methods" Url="html/Methods.T-MPT.Math.Numbers.htm">
+        <HelpTOCNode Title="AreEqual Method " Url="html/M-MPT.Math.Numbers.AreEqual.htm" />
+        <HelpTOCNode Id="8b2b09f5-b412-4d64-ab55-2f618db4295f" Title="Cubed Method " Url="html/Overload-MPT.Math.Numbers.Cubed.htm">
+          <HelpTOCNode Title="Cubed Method (Int32)" Url="html/M-MPT.Math.Numbers.Cubed.htm" />
+          <HelpTOCNode Title="Cubed Method (Double)" Url="html/M-MPT.Math.Numbers.Cubed_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="52389107-29c1-46c6-94f1-43184c04bf56" Title="CubeRoot Method " Url="html/Overload-MPT.Math.Numbers.CubeRoot.htm">
+          <HelpTOCNode Title="CubeRoot Method (Double)" Url="html/M-MPT.Math.Numbers.CubeRoot.htm" />
+          <HelpTOCNode Title="CubeRoot Method (Int32)" Url="html/M-MPT.Math.Numbers.CubeRoot_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Factorial Method " Url="html/M-MPT.Math.Numbers.Factorial.htm" />
+        <HelpTOCNode Title="GoldenRatio Method " Url="html/M-MPT.Math.Numbers.GoldenRatio.htm" />
+        <HelpTOCNode Title="IsComposite Method " Url="html/M-MPT.Math.Numbers.IsComposite.htm" />
+        <HelpTOCNode Title="IsEqualTo Method " Url="html/M-MPT.Math.Numbers.IsEqualTo.htm" />
+        <HelpTOCNode Title="IsEven Method " Url="html/M-MPT.Math.Numbers.IsEven.htm" />
+        <HelpTOCNode Title="IsGreaterThan Method " Url="html/M-MPT.Math.Numbers.IsGreaterThan.htm" />
+        <HelpTOCNode Title="IsGreaterThanOrEqualTo Method " Url="html/M-MPT.Math.Numbers.IsGreaterThanOrEqualTo.htm" />
+        <HelpTOCNode Title="IsLessThan Method " Url="html/M-MPT.Math.Numbers.IsLessThan.htm" />
+        <HelpTOCNode Title="IsLessThanOrEqualTo Method " Url="html/M-MPT.Math.Numbers.IsLessThanOrEqualTo.htm" />
+        <HelpTOCNode Id="69bd029c-f6e2-40c5-8963-d300f1da1fc6" Title="IsNegative Method " Url="html/Overload-MPT.Math.Numbers.IsNegative.htm">
+          <HelpTOCNode Title="IsNegative Method (Int32)" Url="html/M-MPT.Math.Numbers.IsNegative.htm" />
+          <HelpTOCNode Title="IsNegative Method (Double, Double)" Url="html/M-MPT.Math.Numbers.IsNegative_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="IsOdd Method " Url="html/M-MPT.Math.Numbers.IsOdd.htm" />
+        <HelpTOCNode Id="6f6e3a40-4c63-4623-9525-594c603d4d41" Title="IsPositive Method " Url="html/Overload-MPT.Math.Numbers.IsPositive.htm">
+          <HelpTOCNode Title="IsPositive Method (Int32)" Url="html/M-MPT.Math.Numbers.IsPositive.htm" />
+          <HelpTOCNode Title="IsPositive Method (Double, Double)" Url="html/M-MPT.Math.Numbers.IsPositive_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="IsPrime Method " Url="html/M-MPT.Math.Numbers.IsPrime.htm" />
+        <HelpTOCNode Title="IsZero Method " Url="html/M-MPT.Math.Numbers.IsZero.htm" />
+        <HelpTOCNode Title="LastDigit Method " Url="html/M-MPT.Math.Numbers.LastDigit.htm" />
+        <HelpTOCNode Id="666833f8-b895-4fb9-ab88-a33494ed9364" Title="Limit Method " Url="html/Overload-MPT.Math.Numbers.Limit.htm">
+          <HelpTOCNode Title="Limit Method (Double, Double, Double)" Url="html/M-MPT.Math.Numbers.Limit.htm" />
+          <HelpTOCNode Title="Limit Method (Int32, Int32, Int32)" Url="html/M-MPT.Math.Numbers.Limit_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Log10E Method " Url="html/M-MPT.Math.Numbers.Log10E.htm" />
+        <HelpTOCNode Title="Log2E Method " Url="html/M-MPT.Math.Numbers.Log2E.htm" />
+        <HelpTOCNode Id="a7197072-63c5-4e88-9b02-d2458a194650" Title="PlusMinus Method " Url="html/Overload-MPT.Math.Numbers.PlusMinus.htm">
+          <HelpTOCNode Title="PlusMinus Method (Double, Double)" Url="html/M-MPT.Math.Numbers.PlusMinus.htm" />
+          <HelpTOCNode Title="PlusMinus Method (Int32, Int32)" Url="html/M-MPT.Math.Numbers.PlusMinus_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="c40b3bb9-74e8-40ee-9527-36ccdb9f2984" Title="Pow Method " Url="html/Overload-MPT.Math.Numbers.Pow.htm">
+          <HelpTOCNode Title="Pow Method (Int32, Int32)" Url="html/M-MPT.Math.Numbers.Pow.htm" />
+          <HelpTOCNode Title="Pow Method (Double, Double)" Url="html/M-MPT.Math.Numbers.Pow_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="2abe33f1-666a-4c78-b6cd-8b09fd03ec2a" Title="Sqrt Method " Url="html/Overload-MPT.Math.Numbers.Sqrt.htm">
+          <HelpTOCNode Title="Sqrt Method (Double)" Url="html/M-MPT.Math.Numbers.Sqrt.htm" />
+          <HelpTOCNode Title="Sqrt Method (Int32)" Url="html/M-MPT.Math.Numbers.Sqrt_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="db3fe21b-39b1-45f2-b9ee-19a314c3bc1a" Title="Squared Method " Url="html/Overload-MPT.Math.Numbers.Squared.htm">
+          <HelpTOCNode Title="Squared Method (Int32)" Url="html/M-MPT.Math.Numbers.Squared.htm" />
+          <HelpTOCNode Title="Squared Method (Double)" Url="html/M-MPT.Math.Numbers.Squared_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="0acacf30-b721-4e48-bb9e-4bcc66b6578f" Title="MPT.Math.Algebra Namespace" Url="html/N-MPT.Math.Algebra.htm">
+    <HelpTOCNode Id="fbefa0ca-786d-4188-a070-0c596388ea74" Title="AlgebraLibrary Class" Url="html/T-MPT.Math.Algebra.AlgebraLibrary.htm">
+      <HelpTOCNode Title="AlgebraLibrary Members" Url="html/AllMembers.T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+      <HelpTOCNode Id="2dcccf28-7a55-489a-994e-4ed27069da1d" Title="AlgebraLibrary Methods" Url="html/Methods.T-MPT.Math.Algebra.AlgebraLibrary.htm">
+        <HelpTOCNode Title="CubicCurveLowestRoot Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveLowestRoot.htm" />
+        <HelpTOCNode Title="CubicCurveRoots Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveRoots.htm" />
+        <HelpTOCNode Id="573fa43a-9e11-492a-b826-270a5fe2c221" Title="InterpolationLinear Method " Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear.htm">
+          <HelpTOCNode Title="InterpolationLinear Method (Double, Double, Double)" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear.htm" />
+          <HelpTOCNode Title="InterpolationLinear Method (CartesianCoordinate, CartesianCoordinate, Double)" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="InterpolationLinear2D Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear2D.htm" />
+        <HelpTOCNode Title="InterpolationPolynomial Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationPolynomial.htm" />
+        <HelpTOCNode Id="b8b94909-c359-46c8-9dcb-7ba19a579336" Title="IntersectionX Method " Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.IntersectionX.htm">
+          <HelpTOCNode Title="IntersectionX Method (Double, Double, Double, Double, Double)" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.IntersectionX.htm" />
+          <HelpTOCNode Title="IntersectionX Method (Double, CartesianCoordinate, CartesianCoordinate)" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.IntersectionX_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="QuadraticFormula Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.QuadraticFormula.htm" />
+        <HelpTOCNode Title="SRSS Method " Url="html/M-MPT.Math.Algebra.AlgebraLibrary.SRSS.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="cbd1b1b4-a3f3-4e05-9a39-09132595ee0d" Title="MPT.Math.Coordinates Namespace" Url="html/N-MPT.Math.Coordinates.htm">
+    <HelpTOCNode Id="3a832613-27b4-4280-80cc-789856cdf3ea" Title="Angle Structure" Url="html/T-MPT.Math.Coordinates.Angle.htm">
+      <HelpTOCNode Title="Angle Members" Url="html/AllMembers.T-MPT.Math.Coordinates.Angle.htm" />
+      <HelpTOCNode Title="Angle Constructor " Url="html/M-MPT.Math.Coordinates.Angle.-ctor.htm" />
+      <HelpTOCNode Id="f4659731-3bdd-4567-aaec-7c75c5c9c117" Title="Angle Methods" Url="html/Methods.T-MPT.Math.Coordinates.Angle.htm">
+        <HelpTOCNode Title="CreateFromDegree Method " Url="html/M-MPT.Math.Coordinates.Angle.CreateFromDegree.htm" />
+        <HelpTOCNode Title="CreateFromRadian Method " Url="html/M-MPT.Math.Coordinates.Angle.CreateFromRadian.htm" />
+        <HelpTOCNode Title="CreateFromVector Method " Url="html/M-MPT.Math.Coordinates.Angle.CreateFromVector.htm" />
+        <HelpTOCNode Id="bcaf23d9-a115-4159-8f2f-ec90c423eb27" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.Angle.Equals.htm">
+          <HelpTOCNode Title="Equals Method (Angle)" Url="html/M-MPT.Math.Coordinates.Angle.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.Angle.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetDirectionVector Method " Url="html/M-MPT.Math.Coordinates.Angle.GetDirectionVector.htm" />
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.Angle.GetHashCode.htm" />
+        <HelpTOCNode Title="RotateVector Method " Url="html/M-MPT.Math.Coordinates.Angle.RotateVector.htm" />
+        <HelpTOCNode Title="SetDirectionVector Method " Url="html/M-MPT.Math.Coordinates.Angle.SetDirectionVector.htm" />
+        <HelpTOCNode Title="ToDegrees Method " Url="html/M-MPT.Math.Coordinates.Angle.ToDegrees.htm" />
+        <HelpTOCNode Title="ToRadians Method " Url="html/M-MPT.Math.Coordinates.Angle.ToRadians.htm" />
+        <HelpTOCNode Title="WrapAngle Method " Url="html/M-MPT.Math.Coordinates.Angle.WrapAngle.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="deae44b9-5cbd-4ed0-847b-5b0dd5c173c4" Title="Angle Operators and Type Conversions" Url="html/Operators.T-MPT.Math.Coordinates.Angle.htm">
+        <HelpTOCNode Id="07d0702c-08cb-4291-b153-29a072709d2a" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (Angle, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (Double, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Addition_1.htm" />
+          <HelpTOCNode Title="Addition Operator (Angle, Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Addition_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.Angle.op_Division.htm" />
+        <HelpTOCNode Id="a6b8010a-a4a4-49e1-af36-e7054e10470d" Title="Equality Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Equality.htm">
+          <HelpTOCNode Title="Equality Operator (Angle, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Equality.htm" />
+          <HelpTOCNode Title="Equality Operator (Angle, Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Equality_1.htm" />
+          <HelpTOCNode Title="Equality Operator (Double, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Equality_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Explicit Conversion (Angle to Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Explicit.htm" />
+        <HelpTOCNode Title="Implicit Conversion (Double to Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Implicit.htm" />
+        <HelpTOCNode Id="19c024fc-0f32-4f2f-b623-31f6c2d3914d" Title="Inequality Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Inequality.htm">
+          <HelpTOCNode Title="Inequality Operator (Angle, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Inequality.htm" />
+          <HelpTOCNode Title="Inequality Operator (Angle, Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Inequality_1.htm" />
+          <HelpTOCNode Title="Inequality Operator (Double, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Inequality_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ebc52836-09ae-4d60-85ec-8082d95c82b5" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (Double, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Angle, Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b5fa0d85-8535-40bf-b0b5-fe56db3ef58e" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (Angle, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (Double, Angle)" Url="html/M-MPT.Math.Coordinates.Angle.op_Subtraction_1.htm" />
+          <HelpTOCNode Title="Subtraction Operator (Angle, Double)" Url="html/M-MPT.Math.Coordinates.Angle.op_Subtraction_2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="4b0d7d68-49ea-4276-b167-4131a4461cc9" Title="Angle Properties" Url="html/Properties.T-MPT.Math.Coordinates.Angle.htm">
+        <HelpTOCNode Title="ClockwiseDegrees Property " Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseDegrees.htm" />
+        <HelpTOCNode Title="ClockwiseRadians Property " Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseRadians.htm" />
+        <HelpTOCNode Title="Degrees Property " Url="html/P-MPT.Math.Coordinates.Angle.Degrees.htm" />
+        <HelpTOCNode Title="Radians Property " Url="html/P-MPT.Math.Coordinates.Angle.Radians.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.Angle.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a7789d2b-2c33-4869-99fc-26577d0b14b0" Title="AngularOffset Structure" Url="html/T-MPT.Math.Coordinates.AngularOffset.htm">
+      <HelpTOCNode Title="AngularOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.AngularOffset.htm" />
+      <HelpTOCNode Title="AngularOffset Constructor " Url="html/M-MPT.Math.Coordinates.AngularOffset.-ctor.htm" />
+      <HelpTOCNode Id="139c5a3f-e693-4574-8955-9924d29519c5" Title="AngularOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates.AngularOffset.htm">
+        <HelpTOCNode Title="Delta Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.Delta.htm" />
+        <HelpTOCNode Id="2d023f5c-0729-478d-ad1f-c62fdeba21ee" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.AngularOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="LengthArc Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthArc.htm" />
+        <HelpTOCNode Title="LengthChord Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthChord.htm" />
+        <HelpTOCNode Title="ToAngle Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.ToAngle.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9d6c73a4-4d7e-42f1-b156-61f29c6aad50" Title="AngularOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates.AngularOffset.htm">
+        <HelpTOCNode Id="3cfdb8bf-8d92-4fb2-bc90-bfea92e5d015" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (AngularOffset, AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (Double, AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Addition_1.htm" />
+          <HelpTOCNode Title="Addition Operator (AngularOffset, Double)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Addition_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="90c5d8d3-a1a9-4f2b-a67c-d4b64abc025c" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (AngularOffset, Double)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="1870838c-60e8-4ed0-a1ef-093188057ddd" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (AngularOffset, AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (Double, AngularOffset)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Subtraction_1.htm" />
+          <HelpTOCNode Title="Subtraction Operator (AngularOffset, Double)" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Subtraction_2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="14e1e9b4-e6b4-4553-9e53-0d9d2aa97346" Title="AngularOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates.AngularOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="be692887-82bb-430e-b644-f00dffa21dc1" Title="BarycentricCoordinate Structure" Url="html/T-MPT.Math.Coordinates.BarycentricCoordinate.htm">
+      <HelpTOCNode Title="BarycentricCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+      <HelpTOCNode Title="BarycentricCoordinate Constructor " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.-ctor.htm" />
+      <HelpTOCNode Id="6f2acd95-2262-41be-a415-8511f29a726f" Title="BarycentricCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates.BarycentricCoordinate.htm">
+        <HelpTOCNode Id="c8f81047-8c90-4332-8158-c5ef761bf216" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.BarycentricCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (BarycentricCoordinate)" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToCartesian.htm" />
+        <HelpTOCNode Title="ToTrilinear Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToTrilinear.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="5db2b44d-15c8-4e9d-a7b6-56d091625a48" Title="BarycentricCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates.BarycentricCoordinate.htm">
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Inequality.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="939c161e-457d-4171-b598-537bbde91bdd" Title="BarycentricCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates.BarycentricCoordinate.htm">
+        <HelpTOCNode Title="Alpha Property " Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Alpha.htm" />
+        <HelpTOCNode Title="Beta Property " Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Beta.htm" />
+        <HelpTOCNode Title="Gamma Property " Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Gamma.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3ad09570-fb44-4ba8-9432-b2925bb08d6e" Title="CartesianCoordinate Structure" Url="html/T-MPT.Math.Coordinates.CartesianCoordinate.htm">
+      <HelpTOCNode Title="CartesianCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+      <HelpTOCNode Title="CartesianCoordinate Constructor " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.-ctor.htm" />
+      <HelpTOCNode Id="d66a0aae-5f3c-4b8a-b797-d45018b6ac8c" Title="CartesianCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates.CartesianCoordinate.htm">
+        <HelpTOCNode Title="CrossProduct Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.CrossProduct.htm" />
+        <HelpTOCNode Title="DotProduct Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.DotProduct.htm" />
+        <HelpTOCNode Id="c93bd6fb-71a7-44b9-a98c-274d57764f0a" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CartesianCoordinate)" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="ToBarycentric Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToBarycentric.htm" />
+        <HelpTOCNode Title="ToPolar Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToPolar.htm" />
+        <HelpTOCNode Title="ToTrilinear Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToTrilinear.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a1e945f7-598a-4d06-907b-69bf0de5da9c" Title="CartesianCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates.CartesianCoordinate.htm">
+        <HelpTOCNode Title="Addition Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Addition.htm" />
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Inequality.htm" />
+        <HelpTOCNode Id="0a9f5f5e-0f3b-40ad-a26b-ec703a5fb61f" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (CartesianCoordinate, Double)" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, CartesianCoordinate)" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Subtraction Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Subtraction.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="22d740ef-5bfb-4318-b08c-37808f3df4c4" Title="CartesianCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates.CartesianCoordinate.htm">
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Tolerance.htm" />
+        <HelpTOCNode Title="X Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.X.htm" />
+        <HelpTOCNode Title="Y Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Y.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c06da2f9-87e6-4163-88a6-c802bb3a17c0" Title="CartesianOffset Structure" Url="html/T-MPT.Math.Coordinates.CartesianOffset.htm">
+      <HelpTOCNode Title="CartesianOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+      <HelpTOCNode Title="CartesianOffset Constructor " Url="html/M-MPT.Math.Coordinates.CartesianOffset.-ctor.htm" />
+      <HelpTOCNode Id="3ec40d6e-9c36-401b-af4f-b1cd31ad3e5c" Title="CartesianOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates.CartesianOffset.htm">
+        <HelpTOCNode Id="56bf1b30-8ddf-49ef-b3fe-594f3a61a754" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.Length.htm" />
+        <HelpTOCNode Title="ToCartesianCoordinate Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.ToCartesianCoordinate.htm" />
+        <HelpTOCNode Title="X Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.X.htm" />
+        <HelpTOCNode Title="Y Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.Y.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="5e6a1ae1-b8f8-4ec9-962c-43bdeaea0d59" Title="CartesianOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates.CartesianOffset.htm">
+        <HelpTOCNode Id="8a6b965f-4db3-4da0-bb15-1378ef23ec82" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (CartesianOffset, CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (CartesianCoordinate, CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Addition_1.htm" />
+          <HelpTOCNode Title="Addition Operator (CartesianOffset, CartesianCoordinate)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Addition_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="25b5ce84-0ae3-4891-b41f-1b4b0168ead5" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (CartesianOffset, Double)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="9cefb931-5ddf-471a-8f8f-dac5f55f8e6d" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (CartesianOffset, CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (CartesianCoordinate, CartesianOffset)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Subtraction_1.htm" />
+          <HelpTOCNode Title="Subtraction Operator (CartesianOffset, CartesianCoordinate)" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Subtraction_2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="279f5e62-48d0-4308-905c-8792f3d15e41" Title="CartesianOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates.CartesianOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5d205550-51e8-4130-83ff-90c9e4646475" Title="LinearOffset Structure" Url="html/T-MPT.Math.Coordinates.LinearOffset.htm">
+      <HelpTOCNode Title="LinearOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.LinearOffset.htm" />
+      <HelpTOCNode Title="LinearOffset Constructor " Url="html/M-MPT.Math.Coordinates.LinearOffset.-ctor.htm" />
+      <HelpTOCNode Id="56fa881f-753a-432d-8174-4c18f17b66f7" Title="LinearOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates.LinearOffset.htm">
+        <HelpTOCNode Title="Delta Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.Delta.htm" />
+        <HelpTOCNode Id="2365a735-17a9-4c78-b981-cd36882a72dc" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.LinearOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.Length.htm" />
+        <HelpTOCNode Title="ToValue Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.ToValue.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="cb0d4f71-d5ed-4f47-9d6f-1f62916c06c8" Title="LinearOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates.LinearOffset.htm">
+        <HelpTOCNode Id="baca380f-15f8-4fb5-90f9-7b79f739a4e7" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (LinearOffset, LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (Double, LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Addition_1.htm" />
+          <HelpTOCNode Title="Addition Operator (LinearOffset, Double)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Addition_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="14d22693-42ca-45ae-ae03-dd206a142718" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (LinearOffset, Double)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="f5339d62-cafc-4f95-a79c-777d7e14a26b" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (LinearOffset, LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (Double, LinearOffset)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Subtraction_1.htm" />
+          <HelpTOCNode Title="Subtraction Operator (LinearOffset, Double)" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Subtraction_2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="1e6a5d4e-52ed-476c-b097-60172b7bbcda" Title="LinearOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates.LinearOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="98b177da-89e5-421c-ba79-f26f594bbfb0" Title="PolarCoordinate Structure" Url="html/T-MPT.Math.Coordinates.PolarCoordinate.htm">
+      <HelpTOCNode Title="PolarCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+      <HelpTOCNode Id="e4423d90-aa68-4969-bda8-34923b1ab4f7" Title="PolarCoordinate Constructor " Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.-ctor.htm">
+        <HelpTOCNode Title="PolarCoordinate Constructor (Double, Angle, Double)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.-ctor.htm" />
+        <HelpTOCNode Title="PolarCoordinate Constructor (Double, Double, Double)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="06fb6305-7372-4910-9606-78ea67fe67cd" Title="PolarCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates.PolarCoordinate.htm">
+        <HelpTOCNode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="AddToRadius Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddToRadius.htm" />
+        <HelpTOCNode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="DivideRadiusBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideRadiusBy.htm" />
+        <HelpTOCNode Id="12198a8d-bbc8-4bf4-8559-8183e55d7cc4" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (PolarCoordinate)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="MultiplyRadiusBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyRadiusBy.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="SubtractFromRadius Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractFromRadius.htm" />
+        <HelpTOCNode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.ToCartesian.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="68ce5a69-1a7b-423f-821e-726b7eaac64a" Title="PolarCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates.PolarCoordinate.htm">
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Inequality.htm" />
+        <HelpTOCNode Id="e2621a4b-c252-49a0-bb9a-7b9aeafb0fa1" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (PolarCoordinate, Double)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, PolarCoordinate)" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Multiply_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="2345d225-2528-4308-9828-09a951beb184" Title="PolarCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates.PolarCoordinate.htm">
+        <HelpTOCNode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Azimuth.htm" />
+        <HelpTOCNode Title="Radius Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Radius.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e5458efb-7201-4ed0-8edf-de5f4cb312ef" Title="PolarOffset Structure" Url="html/T-MPT.Math.Coordinates.PolarOffset.htm">
+      <HelpTOCNode Title="PolarOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarOffset.htm" />
+      <HelpTOCNode Title="PolarOffset Constructor " Url="html/M-MPT.Math.Coordinates.PolarOffset.-ctor.htm" />
+      <HelpTOCNode Id="2e608041-b5ec-43bd-ad9b-c6e355b0d213" Title="PolarOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates.PolarOffset.htm">
+        <HelpTOCNode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Azimuth.htm" />
+        <HelpTOCNode Id="051c8e8c-77a8-4994-a390-17728b50811b" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (PolarOffset)" Url="html/M-MPT.Math.Coordinates.PolarOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.PolarOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Length.htm" />
+        <HelpTOCNode Title="Radius Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Radius.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f6a227db-a9bf-460f-a84e-083b1f7f38ec" Title="PolarOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates.PolarOffset.htm">
+        <HelpTOCNode Id="98e3ac2b-7c4f-4468-9778-d1e3037a4f59" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (PolarCoordinate, PolarOffset)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (PolarOffset, PolarCoordinate)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Addition_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="438a740d-e6f6-42f5-96b4-4fb617af4cf7" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (PolarOffset, Double)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, PolarOffset)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ec0af708-d5a9-42ee-88ab-3380af8ca683" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (PolarCoordinate, PolarOffset)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (PolarOffset, PolarCoordinate)" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Subtraction_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="c7b609fd-804e-4b7c-83f3-f7fe0a97f38f" Title="PolarOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates.PolarOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="cf948857-f606-48d9-afd2-0ec85d43b3cf" Title="TrilinearCoordinate Structure" Url="html/T-MPT.Math.Coordinates.TrilinearCoordinate.htm">
+      <HelpTOCNode Title="TrilinearCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+      <HelpTOCNode Title="TrilinearCoordinate Constructor " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.-ctor.htm" />
+      <HelpTOCNode Id="9ad069a9-a9b6-42d0-8508-97ec9ad0bd66" Title="TrilinearCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates.TrilinearCoordinate.htm">
+        <HelpTOCNode Id="9dde630c-0612-40d0-8423-1ef64c2923b9" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.TrilinearCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (TrilinearCoordinate)" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="ToBarycentric Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToBarycentric.htm" />
+        <HelpTOCNode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToCartesian.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3e8b5290-1a1c-41ca-b9c1-6af34ab7b89b" Title="TrilinearCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates.TrilinearCoordinate.htm">
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Inequality.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="2d2f5948-f976-4d77-920c-5fc17bf0bca8" Title="TrilinearCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates.TrilinearCoordinate.htm">
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Tolerance.htm" />
+        <HelpTOCNode Title="X Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.X.htm" />
+        <HelpTOCNode Title="Y Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Y.htm" />
+        <HelpTOCNode Title="Z Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Z.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="f775253c-8ff5-4205-bc81-38bfc006e354" Title="MPT.Math.Coordinates3D Namespace" Url="html/N-MPT.Math.Coordinates3D.htm">
+    <HelpTOCNode Id="da2a3762-f048-4320-a6ea-6b55d8fd62c4" Title="CartesianCoordinate3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm">
+      <HelpTOCNode Title="CartesianCoordinate3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+      <HelpTOCNode Title="CartesianCoordinate3D Constructor " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.-ctor.htm" />
+      <HelpTOCNode Id="31808d8c-5f12-4b0f-90f3-3ff35af05b3a" Title="CartesianCoordinate3D Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm">
+        <HelpTOCNode Title="CrossProduct Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.CrossProduct.htm" />
+        <HelpTOCNode Title="DotProduct Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.DotProduct.htm" />
+        <HelpTOCNode Id="429f2e12-f5f1-43b6-b298-435a9f117c5c" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CartesianCoordinate3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.GetHashCode.htm" />
+        <HelpTOCNode Title="ToCylindrical Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToCylindrical.htm" />
+        <HelpTOCNode Title="ToSpherical Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToSpherical.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="bb1d2415-7118-4035-b145-e117f93ef2ed" Title="CartesianCoordinate3D Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm">
+        <HelpTOCNode Title="Addition Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Addition.htm" />
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Inequality.htm" />
+        <HelpTOCNode Title="Multiply Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Multiply.htm" />
+        <HelpTOCNode Title="Subtraction Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Subtraction.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="662d1025-e18a-48ea-a41e-a4e9eba9464f" Title="CartesianCoordinate3D Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm">
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Tolerance.htm" />
+        <HelpTOCNode Title="X Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.X.htm" />
+        <HelpTOCNode Title="Y Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Y.htm" />
+        <HelpTOCNode Title="Z Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Z.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="79890fb5-a983-49bc-9396-c1fa62bb0ead" Title="CartesianOffset3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianOffset3D.htm">
+      <HelpTOCNode Title="CartesianOffset3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+      <HelpTOCNode Title="CartesianOffset3D Constructor " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.-ctor.htm" />
+      <HelpTOCNode Id="91c05567-6437-4838-8642-936e7a7faed0" Title="CartesianOffset3D Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm">
+        <HelpTOCNode Id="25d6d995-afe3-41ea-87ff-3cc7a6a6de89" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.GetHashCode.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Length.htm" />
+        <HelpTOCNode Title="ToCartesianCoordinate3D Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.ToCartesianCoordinate3D.htm" />
+        <HelpTOCNode Title="X Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.X.htm" />
+        <HelpTOCNode Title="Y Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Y.htm" />
+        <HelpTOCNode Title="Z Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Z.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="50d12b18-04c3-4a5f-9e2e-9d010ed8d8b4" Title="CartesianOffset3D Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm">
+        <HelpTOCNode Id="05d0e8d3-87f9-4dde-8d2e-a0cd6509ce4f" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (CartesianOffset3D, CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (CartesianCoordinate3D, CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition_1.htm" />
+          <HelpTOCNode Title="Addition Operator (CartesianOffset3D, CartesianCoordinate3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition_2.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Inequality.htm" />
+        <HelpTOCNode Id="98740f68-eb72-4990-b7a9-7aba98f4dd6b" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (CartesianOffset3D, Double)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="f518a1ba-cbd3-4418-b608-6630d557a242" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (CartesianOffset3D, CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (CartesianCoordinate3D, CartesianOffset3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction_1.htm" />
+          <HelpTOCNode Title="Subtraction Operator (CartesianOffset3D, CartesianCoordinate3D)" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction_2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="04d31d4d-3f3a-4ab9-9df1-18afa229a3bb" Title="CartesianOffset3D Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0a53ac39-6c95-4fbe-936b-9ff246d1a9e2" Title="CylindricalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm">
+      <HelpTOCNode Title="CylindricalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+      <HelpTOCNode Id="c6dedb71-ce27-41d7-a5e8-71601b2dd877" Title="CylindricalCoordinate Constructor " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.-ctor.htm">
+        <HelpTOCNode Title="CylindricalCoordinate Constructor (Double, Double, Double, Double)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.-ctor.htm" />
+        <HelpTOCNode Title="CylindricalCoordinate Constructor (Double, Double, Angle, Double)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9e071679-9f34-4f45-8688-eece1a13bbe6" Title="CylindricalCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm">
+        <HelpTOCNode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="AddToHeight Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToHeight.htm" />
+        <HelpTOCNode Title="AddToRadius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToRadius.htm" />
+        <HelpTOCNode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="DivideHeightBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideHeightBy.htm" />
+        <HelpTOCNode Title="DivideRadiusBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideRadiusBy.htm" />
+        <HelpTOCNode Id="1042c53a-5091-4d74-8631-05a73389f40c" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CylindricalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="MultiplyHeightBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyHeightBy.htm" />
+        <HelpTOCNode Title="MultiplyRadiusBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyRadiusBy.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="SubtractFromHeight Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromHeight.htm" />
+        <HelpTOCNode Title="SubtractFromRadius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromRadius.htm" />
+        <HelpTOCNode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToCartesian.htm" />
+        <HelpTOCNode Title="ToSpherical Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToSpherical.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="7ecc76d5-e310-46ad-b5a6-7457bd20fe18" Title="CylindricalCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm">
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Inequality.htm" />
+        <HelpTOCNode Id="46196437-0dc4-46e4-84ba-1ebfe0ed49d8" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (Double, CylindricalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (CylindricalCoordinate, Double)" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="6fd89687-2c2d-42b0-a3bd-826eac20e4e1" Title="CylindricalCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm">
+        <HelpTOCNode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Azimuth.htm" />
+        <HelpTOCNode Title="Height Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Height.htm" />
+        <HelpTOCNode Title="Radius Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Radius.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a7381691-ab08-4381-a93c-ed6787cc7b0d" Title="CylindricalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalOffset.htm">
+      <HelpTOCNode Title="CylindricalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+      <HelpTOCNode Title="CylindricalOffset Constructor " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.-ctor.htm" />
+      <HelpTOCNode Id="e84aaa20-d8cd-40c9-8489-8d150ac90939" Title="CylindricalOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CylindricalOffset.htm">
+        <HelpTOCNode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Azimuth.htm" />
+        <HelpTOCNode Id="4bee4e94-2490-4e4a-ab9a-0d78f9448f62" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (CylindricalOffset)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="Height Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Height.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Length.htm" />
+        <HelpTOCNode Title="Radius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Radius.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="34479a64-9fb5-4dcf-84e9-cfab20321457" Title="CylindricalOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CylindricalOffset.htm">
+        <HelpTOCNode Id="c342f1ff-0643-462d-a515-eff6b0e5fb7d" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (CylindricalCoordinate, CylindricalOffset)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (CylindricalOffset, CylindricalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Addition_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="75963d34-45a8-42d1-b235-2887f59b2bd3" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (CylindricalOffset, Double)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, CylindricalOffset)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="43033c33-5a13-4013-9b21-7f1a12b893d7" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (CylindricalCoordinate, CylindricalOffset)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (CylindricalOffset, CylindricalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="fe341c6b-b86e-4ebe-9d36-fa28907044cd" Title="CylindricalOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CylindricalOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="046cd5c2-e8a7-473f-ba30-ad292c548aae" Title="SphericalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalCoordinate.htm">
+      <HelpTOCNode Title="SphericalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+      <HelpTOCNode Id="e0b22eeb-7269-4d2a-90d9-d868ad4736fc" Title="SphericalCoordinate Constructor " Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.-ctor.htm">
+        <HelpTOCNode Title="SphericalCoordinate Constructor (Double, Double, Double, Double)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.-ctor.htm" />
+        <HelpTOCNode Title="SphericalCoordinate Constructor (Double, Angle, Angle, Double)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="7ac3824c-8191-4bf8-9bf6-41a13b80672c" Title="SphericalCoordinate Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm">
+        <HelpTOCNode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="AddAngleInclinationDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationDegrees.htm" />
+        <HelpTOCNode Title="AddAngleInclinationRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationRadians.htm" />
+        <HelpTOCNode Title="AddToRadialLength Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddToRadialLength.htm" />
+        <HelpTOCNode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="DivideAngleInclinationBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleInclinationBy.htm" />
+        <HelpTOCNode Title="DivideRadialLengthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideRadialLengthBy.htm" />
+        <HelpTOCNode Id="d3b4565d-08e6-4ba1-8dfe-f18930e0a6e8" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.Equals.htm">
+          <HelpTOCNode Title="Equals Method (SphericalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.GetHashCode.htm" />
+        <HelpTOCNode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleAzimuthBy.htm" />
+        <HelpTOCNode Title="MultiplyAngleInclinationBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleInclinationBy.htm" />
+        <HelpTOCNode Title="MultiplyRadialLengthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyRadialLengthBy.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+        <HelpTOCNode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthRadians.htm" />
+        <HelpTOCNode Title="SubtractAngleInclinationDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationDegrees.htm" />
+        <HelpTOCNode Title="SubtractAngleInclinationRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationRadians.htm" />
+        <HelpTOCNode Title="SubtractFromRadialLength Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractFromRadialLength.htm" />
+        <HelpTOCNode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCartesian.htm" />
+        <HelpTOCNode Title="ToCylindrical Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCylindrical.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e6f5d4d7-73c9-4fbf-9b7c-0b6466aa44aa" Title="SphericalCoordinate Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm">
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Inequality.htm" />
+        <HelpTOCNode Id="f4c87c13-f8ac-465b-85c0-a8059432dc7b" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (Double, SphericalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (SphericalCoordinate, Double)" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="b1a53d79-263e-4dd5-9c29-bf18f9687ba7" Title="SphericalCoordinate Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm">
+        <HelpTOCNode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Azimuth.htm" />
+        <HelpTOCNode Title="Inclination Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Inclination.htm" />
+        <HelpTOCNode Title="Radius Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Radius.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="bc955068-5d0b-4402-9d4d-309f4b574a7a" Title="SphericalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalOffset.htm">
+      <HelpTOCNode Title="SphericalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+      <HelpTOCNode Title="SphericalOffset Constructor " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.-ctor.htm" />
+      <HelpTOCNode Id="5903d13f-ae1b-4438-a9d7-a82251e635cb" Title="SphericalOffset Methods" Url="html/Methods.T-MPT.Math.Coordinates3D.SphericalOffset.htm">
+        <HelpTOCNode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Azimuth.htm" />
+        <HelpTOCNode Id="edbd8cbf-28fd-4f75-9c1b-d0468e4e88bb" Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.Equals.htm">
+          <HelpTOCNode Title="Equals Method (SphericalOffset)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.GetHashCode.htm" />
+        <HelpTOCNode Title="Inclination Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Inclination.htm" />
+        <HelpTOCNode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Length.htm" />
+        <HelpTOCNode Title="Radius Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Radius.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e8e27feb-26f9-4893-875d-ef47cb47aef9" Title="SphericalOffset Operators" Url="html/Operators.T-MPT.Math.Coordinates3D.SphericalOffset.htm">
+        <HelpTOCNode Id="547e6da3-8893-4b24-abf1-800380dbf79f" Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Addition.htm">
+          <HelpTOCNode Title="Addition Operator (SphericalCoordinate, SphericalOffset)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Addition.htm" />
+          <HelpTOCNode Title="Addition Operator (SphericalOffset, SphericalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Addition_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Inequality.htm" />
+        <HelpTOCNode Id="f8e51274-ac0a-43b7-bae5-0c8774d05a73" Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (SphericalOffset, Double)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Double, SphericalOffset)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b996ca5c-7460-4ffe-beb0-b056a43f3d6c" Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction.htm">
+          <HelpTOCNode Title="Subtraction Operator (SphericalCoordinate, SphericalOffset)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction.htm" />
+          <HelpTOCNode Title="Subtraction Operator (SphericalOffset, SphericalCoordinate)" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="c3c72204-2541-4cdf-8182-a5440597dcec" Title="SphericalOffset Properties" Url="html/Properties.T-MPT.Math.Coordinates3D.SphericalOffset.htm">
+        <HelpTOCNode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.I.htm" />
+        <HelpTOCNode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.J.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="099ac633-1958-4f8d-8387-be9b8727ad9e" Title="MPT.Math.Matrices Namespace" Url="html/N-MPT.Math.Matrices.htm">
+    <HelpTOCNode Id="b1d41771-fe72-4798-a478-583470083b0b" Title="Matrix Structure" Url="html/T-MPT.Math.Matrices.Matrix.htm">
+      <HelpTOCNode Title="Matrix Members" Url="html/AllMembers.T-MPT.Math.Matrices.Matrix.htm" />
+      <HelpTOCNode Title="Matrix Constructor " Url="html/M-MPT.Math.Matrices.Matrix.-ctor.htm" />
+      <HelpTOCNode Id="19e5c2a4-f499-4e78-bb78-34d76b63ddf3" Title="Matrix Methods" Url="html/Methods.T-MPT.Math.Matrices.Matrix.htm">
+        <HelpTOCNode Id="0d4c6098-d3a4-4499-bd42-67a4bf1e57cf" Title="Equals Method " Url="html/Overload-MPT.Math.Matrices.Matrix.Equals.htm">
+          <HelpTOCNode Title="Equals Method (Matrix)" Url="html/M-MPT.Math.Matrices.Matrix.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Matrices.Matrix.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetDeterminant Method " Url="html/M-MPT.Math.Matrices.Matrix.GetDeterminant.htm" />
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Matrices.Matrix.GetHashCode.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1a76d852-3f44-4e1b-a491-bd616cdf829d" Title="Matrix Operators" Url="html/Operators.T-MPT.Math.Matrices.Matrix.htm">
+        <HelpTOCNode Title="Addition Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Addition.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Inequality.htm" />
+        <HelpTOCNode Title="Subtraction Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Subtraction.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b10e520f-92f7-4ef1-8ac9-548af0e44dd7" Title="Matrix Properties" Url="html/Properties.T-MPT.Math.Matrices.Matrix.htm">
+        <HelpTOCNode Title="DimensionSize Property " Url="html/P-MPT.Math.Matrices.Matrix.DimensionSize.htm" />
+        <HelpTOCNode Title="Item Property " Url="html/P-MPT.Math.Matrices.Matrix.Item-System.Int32,System.Int32-.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Matrices.Matrix.Tolerance.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="c9ee364e-964a-42e0-82bf-1ade4c330806" Title="MPT.Math.Vectors Namespace" Url="html/N-MPT.Math.Vectors.htm">
+    <HelpTOCNode Id="d220880f-a4a6-4e37-9b59-204365e7f871" Title="Vector Structure" Url="html/T-MPT.Math.Vectors.Vector.htm">
+      <HelpTOCNode Title="Vector Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector.htm" />
+      <HelpTOCNode Id="9fe06a33-05d3-473c-960d-3e9eeb367016" Title="Vector Constructor " Url="html/Overload-MPT.Math.Vectors.Vector.-ctor.htm">
+        <HelpTOCNode Title="Vector Constructor (Double, Double, Double)" Url="html/M-MPT.Math.Vectors.Vector.-ctor.htm" />
+        <HelpTOCNode Title="Vector Constructor (Double, Double, CartesianCoordinate, Double)" Url="html/M-MPT.Math.Vectors.Vector.-ctor_1.htm" />
+        <HelpTOCNode Title="Vector Constructor (CartesianCoordinate, CartesianCoordinate, Double)" Url="html/M-MPT.Math.Vectors.Vector.-ctor_2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6a9b173a-9f8f-4680-8e6c-d27f23641b24" Title="Vector Methods" Url="html/Methods.T-MPT.Math.Vectors.Vector.htm">
+        <HelpTOCNode Id="36ccc9b1-b6dc-40fb-b966-78255b9ea90c" Title="Angle Method " Url="html/Overload-MPT.Math.Vectors.Vector.Angle.htm">
+          <HelpTOCNode Title="Angle Method " Url="html/M-MPT.Math.Vectors.Vector.Angle.htm" />
+          <HelpTOCNode Title="Angle Method (Vector)" Url="html/M-MPT.Math.Vectors.Vector.Angle_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Area Method " Url="html/M-MPT.Math.Vectors.Vector.Area.htm" />
+        <HelpTOCNode Title="ConcavityCollinearity Method " Url="html/M-MPT.Math.Vectors.Vector.ConcavityCollinearity.htm" />
+        <HelpTOCNode Title="CrossProduct Method " Url="html/M-MPT.Math.Vectors.Vector.CrossProduct.htm" />
+        <HelpTOCNode Title="DotProduct Method " Url="html/M-MPT.Math.Vectors.Vector.DotProduct.htm" />
+        <HelpTOCNode Id="576c8db3-c5e8-4cf0-a55c-1c96b908ddf5" Title="Equals Method " Url="html/Overload-MPT.Math.Vectors.Vector.Equals.htm">
+          <HelpTOCNode Title="Equals Method (Vector)" Url="html/M-MPT.Math.Vectors.Vector.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Vectors.Vector.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Vectors.Vector.GetHashCode.htm" />
+        <HelpTOCNode Title="IsCollinearOppositeDirection Method " Url="html/M-MPT.Math.Vectors.Vector.IsCollinearOppositeDirection.htm" />
+        <HelpTOCNode Title="IsCollinearSameDirection Method " Url="html/M-MPT.Math.Vectors.Vector.IsCollinearSameDirection.htm" />
+        <HelpTOCNode Title="IsConcave Method " Url="html/M-MPT.Math.Vectors.Vector.IsConcave.htm" />
+        <HelpTOCNode Title="IsConcaveInside Method " Url="html/M-MPT.Math.Vectors.Vector.IsConcaveInside.htm" />
+        <HelpTOCNode Title="IsConvex Method " Url="html/M-MPT.Math.Vectors.Vector.IsConvex.htm" />
+        <HelpTOCNode Title="IsConvexInside Method " Url="html/M-MPT.Math.Vectors.Vector.IsConvexInside.htm" />
+        <HelpTOCNode Title="IsOrthogonal Method " Url="html/M-MPT.Math.Vectors.Vector.IsOrthogonal.htm" />
+        <HelpTOCNode Title="Magnitude Method " Url="html/M-MPT.Math.Vectors.Vector.Magnitude.htm" />
+        <HelpTOCNode Title="MagnitudeSquared Method " Url="html/M-MPT.Math.Vectors.Vector.MagnitudeSquared.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b95ab51d-bfeb-4a93-ad92-d80a172d60fe" Title="Vector Operators" Url="html/Operators.T-MPT.Math.Vectors.Vector.htm">
+        <HelpTOCNode Title="Addition Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Addition.htm" />
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Inequality.htm" />
+        <HelpTOCNode Id="f63b8c86-dc67-4a12-aa81-c2e170a6e31f" Title="Multiply Operator " Url="html/Overload-MPT.Math.Vectors.Vector.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (Vector, Double)" Url="html/M-MPT.Math.Vectors.Vector.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Vector, Vector)" Url="html/M-MPT.Math.Vectors.Vector.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Subtraction Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Subtraction.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3804400a-34f6-4935-9103-f83cafa3effe" Title="Vector Properties" Url="html/Properties.T-MPT.Math.Vectors.Vector.htm">
+        <HelpTOCNode Title="Location Property " Url="html/P-MPT.Math.Vectors.Vector.Location.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Vectors.Vector.Tolerance.htm" />
+        <HelpTOCNode Title="Xcomponent Property " Url="html/P-MPT.Math.Vectors.Vector.Xcomponent.htm" />
+        <HelpTOCNode Title="Ycomponent Property " Url="html/P-MPT.Math.Vectors.Vector.Ycomponent.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b1cc965e-9ab4-4e64-9264-526afe04c9cb" Title="Vector3D Structure" Url="html/T-MPT.Math.Vectors.Vector3D.htm">
+      <HelpTOCNode Title="Vector3D Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector3D.htm" />
+      <HelpTOCNode Id="ceea904c-6a50-42b5-b1d5-3c08b5a912e5" Title="Vector3D Constructor " Url="html/Overload-MPT.Math.Vectors.Vector3D.-ctor.htm">
+        <HelpTOCNode Title="Vector3D Constructor (Double, Double, Double, Double)" Url="html/M-MPT.Math.Vectors.Vector3D.-ctor.htm" />
+        <HelpTOCNode Title="Vector3D Constructor (Double, Double, Double, CartesianCoordinate3D, Double)" Url="html/M-MPT.Math.Vectors.Vector3D.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3c964e70-9c4f-4d41-b459-8e8c1fdc1f51" Title="Vector3D Methods" Url="html/Methods.T-MPT.Math.Vectors.Vector3D.htm">
+        <HelpTOCNode Title="CrossProduct Method " Url="html/M-MPT.Math.Vectors.Vector3D.CrossProduct.htm" />
+        <HelpTOCNode Title="DotProduct Method " Url="html/M-MPT.Math.Vectors.Vector3D.DotProduct.htm" />
+        <HelpTOCNode Id="f9de0a49-0511-4095-8a09-90c6c89b11f5" Title="Equals Method " Url="html/Overload-MPT.Math.Vectors.Vector3D.Equals.htm">
+          <HelpTOCNode Title="Equals Method (Vector3D)" Url="html/M-MPT.Math.Vectors.Vector3D.Equals.htm" />
+          <HelpTOCNode Title="Equals Method (Object)" Url="html/M-MPT.Math.Vectors.Vector3D.Equals_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetHashCode Method " Url="html/M-MPT.Math.Vectors.Vector3D.GetHashCode.htm" />
+        <HelpTOCNode Title="Magnitude Method " Url="html/M-MPT.Math.Vectors.Vector3D.Magnitude.htm" />
+        <HelpTOCNode Title="MagnitudeSquared Method " Url="html/M-MPT.Math.Vectors.Vector3D.MagnitudeSquared.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a77c2a81-c569-4590-837f-41d11f52b5ba" Title="Vector3D Operators" Url="html/Operators.T-MPT.Math.Vectors.Vector3D.htm">
+        <HelpTOCNode Title="Addition Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Addition.htm" />
+        <HelpTOCNode Title="Division Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Division.htm" />
+        <HelpTOCNode Title="Equality Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Equality.htm" />
+        <HelpTOCNode Title="Inequality Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Inequality.htm" />
+        <HelpTOCNode Id="b6ffe114-c88c-451c-a068-b90e64f0bbe1" Title="Multiply Operator " Url="html/Overload-MPT.Math.Vectors.Vector3D.op_Multiply.htm">
+          <HelpTOCNode Title="Multiply Operator (Vector3D, Double)" Url="html/M-MPT.Math.Vectors.Vector3D.op_Multiply.htm" />
+          <HelpTOCNode Title="Multiply Operator (Vector3D, Vector3D)" Url="html/M-MPT.Math.Vectors.Vector3D.op_Multiply_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Subtraction Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Subtraction.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1fadd632-023d-4722-85e8-b3f3dc41e9d5" Title="Vector3D Properties" Url="html/Properties.T-MPT.Math.Vectors.Vector3D.htm">
+        <HelpTOCNode Title="Location Property " Url="html/P-MPT.Math.Vectors.Vector3D.Location.htm" />
+        <HelpTOCNode Title="Tolerance Property " Url="html/P-MPT.Math.Vectors.Vector3D.Tolerance.htm" />
+        <HelpTOCNode Title="Xcomponent Property " Url="html/P-MPT.Math.Vectors.Vector3D.Xcomponent.htm" />
+        <HelpTOCNode Title="Ycomponent Property " Url="html/P-MPT.Math.Vectors.Vector3D.Ycomponent.htm" />
+        <HelpTOCNode Title="Zcomponent Property " Url="html/P-MPT.Math.Vectors.Vector3D.Zcomponent.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ec64f08c-ab90-4222-b4b3-f4bf1bdbbe88" Title="VectorLibrary Class" Url="html/T-MPT.Math.Vectors.VectorLibrary.htm">
+      <HelpTOCNode Title="VectorLibrary Members" Url="html/AllMembers.T-MPT.Math.Vectors.VectorLibrary.htm" />
+      <HelpTOCNode Id="c3614947-070d-4211-99df-20021270079b" Title="VectorLibrary Methods" Url="html/Methods.T-MPT.Math.Vectors.VectorLibrary.htm">
+        <HelpTOCNode Id="d798310b-2e4e-45a6-9045-1c2335d12e2c" Title="Angle Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.Angle.htm">
+          <HelpTOCNode Title="Angle Method (Double, Double)" Url="html/M-MPT.Math.Vectors.VectorLibrary.Angle.htm" />
+          <HelpTOCNode Title="Angle Method (Vector, Vector)" Url="html/M-MPT.Math.Vectors.VectorLibrary.Angle_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ConcavityCollinearity Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.ConcavityCollinearity.htm" />
+        <HelpTOCNode Id="eaa477e0-6bb3-42f9-a289-04a37e60c596" Title="CrossProduct Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.CrossProduct.htm">
+          <HelpTOCNode Title="CrossProduct Method (Double, Double, Double, Double)" Url="html/M-MPT.Math.Vectors.VectorLibrary.CrossProduct.htm" />
+          <HelpTOCNode Title="CrossProduct Method (Double, Double, Double, Double, Double, Double)" Url="html/M-MPT.Math.Vectors.VectorLibrary.CrossProduct_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="d5f293e9-00eb-44a2-be3b-fd08ca6158f0" Title="DotProduct Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.DotProduct.htm">
+          <HelpTOCNode Title="DotProduct Method (Double, Double, Double, Double)" Url="html/M-MPT.Math.Vectors.VectorLibrary.DotProduct.htm" />
+          <HelpTOCNode Title="DotProduct Method (Double, Double, Double, Double, Double, Double)" Url="html/M-MPT.Math.Vectors.VectorLibrary.DotProduct_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="IsCollinearOppositeDirection Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearOppositeDirection.htm" />
+        <HelpTOCNode Title="IsCollinearSameDirection Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearSameDirection.htm" />
+        <HelpTOCNode Title="IsConcave Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcave.htm" />
+        <HelpTOCNode Title="IsConcaveInside Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcaveInside.htm" />
+        <HelpTOCNode Title="IsConvex Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvex.htm" />
+        <HelpTOCNode Title="IsConvexInside Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvexInside.htm" />
+        <HelpTOCNode Title="IsOrthogonal Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsOrthogonal.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

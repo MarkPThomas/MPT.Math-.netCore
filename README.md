@@ -1,2 +1,2 @@
-# MPT.Net
-Collection of custom libraries and classes used across various personal projects, written in VB & C#.
+# MPT.Math
+A library and classes for mathematical operations, written in C# for .Net Core.

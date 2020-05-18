@@ -1,0 +1,1131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title=" to Angle conversion" Url="html/M-MPT.Math.Coordinates.Angle.op_Implicit.htm" />
+  <HelpKINode Title="AddAngleAzimuthDegrees method">
+    <HelpKINode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthDegrees.htm" />
+    <HelpKINode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthDegrees.htm" />
+    <HelpKINode Title="AddAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthDegrees.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddAngleAzimuthRadians method">
+    <HelpKINode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthRadians.htm" />
+    <HelpKINode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthRadians.htm" />
+    <HelpKINode Title="AddAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddAngleInclinationDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationDegrees.htm" />
+  <HelpKINode Title="AddAngleInclinationRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationRadians.htm" />
+  <HelpKINode Title="Addition operator">
+    <HelpKINode Title="Addition Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Addition.htm" />
+    <HelpKINode Title="Addition Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Addition.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddToHeight method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToHeight.htm" />
+  <HelpKINode Title="AddToRadialLength method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddToRadialLength.htm" />
+  <HelpKINode Title="AddToRadius method">
+    <HelpKINode Title="AddToRadius Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddToRadius.htm" />
+    <HelpKINode Title="AddToRadius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToRadius.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AlgebraLibrary class">
+    <HelpKINode Title="AlgebraLibrary Class" Url="html/T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+    <HelpKINode Title="AlgebraLibrary Members" Url="html/AllMembers.T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+    <HelpKINode Title="about AlgebraLibrary class" Url="html/T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AlgebraLibrary.CubicCurveLowestRoot method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveLowestRoot.htm" />
+  <HelpKINode Title="AlgebraLibrary.CubicCurveRoots method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveRoots.htm" />
+  <HelpKINode Title="AlgebraLibrary.InterpolationLinear method" Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear.htm" />
+  <HelpKINode Title="AlgebraLibrary.InterpolationLinear2D method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear2D.htm" />
+  <HelpKINode Title="AlgebraLibrary.InterpolationPolynomial method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationPolynomial.htm" />
+  <HelpKINode Title="AlgebraLibrary.IntersectionX method" Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.IntersectionX.htm" />
+  <HelpKINode Title="AlgebraLibrary.QuadraticFormula method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.QuadraticFormula.htm" />
+  <HelpKINode Title="AlgebraLibrary.SRSS method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.SRSS.htm" />
+  <HelpKINode Title="Alpha property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Alpha.htm" />
+  <HelpKINode Title="Angle method">
+    <HelpKINode Title="Angle Method " Url="html/Overload-MPT.Math.Vectors.Vector.Angle.htm" />
+    <HelpKINode Title="Angle Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.Angle.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Angle structure">
+    <HelpKINode Title="Angle Members" Url="html/AllMembers.T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="Angle Structure" Url="html/T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="about Angle structure" Url="html/T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.Angle.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="operators and type conversions" Url="html/Operators.T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.Angle.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Angle to  conversion" Url="html/M-MPT.Math.Coordinates.Angle.op_Explicit.htm" />
+  <HelpKINode Title="Angle.Addition operator" Url="html/Overload-MPT.Math.Coordinates.Angle.op_Addition.htm" />
+  <HelpKINode Title="Angle.Angle constructor" Url="html/M-MPT.Math.Coordinates.Angle.-ctor.htm" />
+  <HelpKINode Title="Angle.ClockwiseDegrees property" Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseDegrees.htm" />
+  <HelpKINode Title="Angle.ClockwiseRadians property" Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseRadians.htm" />
+  <HelpKINode Title="Angle.CreateFromDegree method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromDegree.htm" />
+  <HelpKINode Title="Angle.CreateFromRadian method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromRadian.htm" />
+  <HelpKINode Title="Angle.CreateFromVector method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromVector.htm" />
+  <HelpKINode Title="Angle.Degrees property" Url="html/P-MPT.Math.Coordinates.Angle.Degrees.htm" />
+  <HelpKINode Title="Angle.Division operator" Url="html/M-MPT.Math.Coordinates.Angle.op_Division.htm" />
+  <HelpKINode Title="Angle.Equality operator" Url="html/Overload-MPT.Math.Coordinates.Angle.op_Equality.htm" />
+  <HelpKINode Title="Angle.Equals method" Url="html/Overload-MPT.Math.Coordinates.Angle.Equals.htm" />
+  <HelpKINode Title="Angle.GetDirectionVector method" Url="html/M-MPT.Math.Coordinates.Angle.GetDirectionVector.htm" />
+  <HelpKINode Title="Angle.GetHashCode method" Url="html/M-MPT.Math.Coordinates.Angle.GetHashCode.htm" />
+  <HelpKINode Title="Angle.Inequality operator" Url="html/Overload-MPT.Math.Coordinates.Angle.op_Inequality.htm" />
+  <HelpKINode Title="Angle.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.Angle.op_Multiply.htm" />
+  <HelpKINode Title="Angle.Radians property" Url="html/P-MPT.Math.Coordinates.Angle.Radians.htm" />
+  <HelpKINode Title="Angle.RotateVector method" Url="html/M-MPT.Math.Coordinates.Angle.RotateVector.htm" />
+  <HelpKINode Title="Angle.SetDirectionVector method" Url="html/M-MPT.Math.Coordinates.Angle.SetDirectionVector.htm" />
+  <HelpKINode Title="Angle.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates.Angle.op_Subtraction.htm" />
+  <HelpKINode Title="Angle.ToDegrees method" Url="html/M-MPT.Math.Coordinates.Angle.ToDegrees.htm" />
+  <HelpKINode Title="Angle.Tolerance property" Url="html/P-MPT.Math.Coordinates.Angle.Tolerance.htm" />
+  <HelpKINode Title="Angle.ToRadians method" Url="html/M-MPT.Math.Coordinates.Angle.ToRadians.htm" />
+  <HelpKINode Title="Angle.WrapAngle method" Url="html/M-MPT.Math.Coordinates.Angle.WrapAngle.htm" />
+  <HelpKINode Title="AngularOffset structure">
+    <HelpKINode Title="AngularOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="AngularOffset Structure" Url="html/T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="about AngularOffset structure" Url="html/T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.AngularOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.AngularOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AngularOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Addition.htm" />
+  <HelpKINode Title="AngularOffset.AngularOffset constructor" Url="html/M-MPT.Math.Coordinates.AngularOffset.-ctor.htm" />
+  <HelpKINode Title="AngularOffset.Delta method" Url="html/M-MPT.Math.Coordinates.AngularOffset.Delta.htm" />
+  <HelpKINode Title="AngularOffset.Division operator" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Division.htm" />
+  <HelpKINode Title="AngularOffset.Equality operator" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Equality.htm" />
+  <HelpKINode Title="AngularOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates.AngularOffset.Equals.htm" />
+  <HelpKINode Title="AngularOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates.AngularOffset.GetHashCode.htm" />
+  <HelpKINode Title="AngularOffset.I property" Url="html/P-MPT.Math.Coordinates.AngularOffset.I.htm" />
+  <HelpKINode Title="AngularOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Inequality.htm" />
+  <HelpKINode Title="AngularOffset.J property" Url="html/P-MPT.Math.Coordinates.AngularOffset.J.htm" />
+  <HelpKINode Title="AngularOffset.LengthArc method" Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthArc.htm" />
+  <HelpKINode Title="AngularOffset.LengthChord method" Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthChord.htm" />
+  <HelpKINode Title="AngularOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Multiply.htm" />
+  <HelpKINode Title="AngularOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Subtraction.htm" />
+  <HelpKINode Title="AngularOffset.ToAngle method" Url="html/M-MPT.Math.Coordinates.AngularOffset.ToAngle.htm" />
+  <HelpKINode Title="AngularOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates.AngularOffset.Tolerance.htm" />
+  <HelpKINode Title="Area method" Url="html/M-MPT.Math.Vectors.Vector.Area.htm" />
+  <HelpKINode Title="AreEqual method" Url="html/M-MPT.Math.Numbers.AreEqual.htm" />
+  <HelpKINode Title="Azimuth method">
+    <HelpKINode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Azimuth.htm" />
+    <HelpKINode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Azimuth.htm" />
+    <HelpKINode Title="Azimuth Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Azimuth.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Azimuth property">
+    <HelpKINode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Azimuth.htm" />
+    <HelpKINode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Azimuth.htm" />
+    <HelpKINode Title="Azimuth Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Azimuth.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BarycentricCoordinate structure">
+    <HelpKINode Title="BarycentricCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="BarycentricCoordinate Structure" Url="html/T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="about BarycentricCoordinate structure" Url="html/T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BarycentricCoordinate.Alpha property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Alpha.htm" />
+  <HelpKINode Title="BarycentricCoordinate.BarycentricCoordinate constructor" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.-ctor.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Beta property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Beta.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Equality.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates.BarycentricCoordinate.Equals.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Gamma property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Gamma.htm" />
+  <HelpKINode Title="BarycentricCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="BarycentricCoordinate.ToCartesian method" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToCartesian.htm" />
+  <HelpKINode Title="BarycentricCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Tolerance.htm" />
+  <HelpKINode Title="BarycentricCoordinate.ToTrilinear method" Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToTrilinear.htm" />
+  <HelpKINode Title="Beta property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Beta.htm" />
+  <HelpKINode Title="CartesianCoordinate structure">
+    <HelpKINode Title="CartesianCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="CartesianCoordinate Structure" Url="html/T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="about CartesianCoordinate structure" Url="html/T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CartesianCoordinate.Addition operator" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Addition.htm" />
+  <HelpKINode Title="CartesianCoordinate.CartesianCoordinate constructor" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.-ctor.htm" />
+  <HelpKINode Title="CartesianCoordinate.CrossProduct method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.CrossProduct.htm" />
+  <HelpKINode Title="CartesianCoordinate.Division operator" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Division.htm" />
+  <HelpKINode Title="CartesianCoordinate.DotProduct method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.DotProduct.htm" />
+  <HelpKINode Title="CartesianCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Equality.htm" />
+  <HelpKINode Title="CartesianCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.Equals.htm" />
+  <HelpKINode Title="CartesianCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="CartesianCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="CartesianCoordinate.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.op_Multiply.htm" />
+  <HelpKINode Title="CartesianCoordinate.Subtraction operator" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Subtraction.htm" />
+  <HelpKINode Title="CartesianCoordinate.ToBarycentric method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToBarycentric.htm" />
+  <HelpKINode Title="CartesianCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Tolerance.htm" />
+  <HelpKINode Title="CartesianCoordinate.ToPolar method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToPolar.htm" />
+  <HelpKINode Title="CartesianCoordinate.ToTrilinear method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToTrilinear.htm" />
+  <HelpKINode Title="CartesianCoordinate.X property" Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.X.htm" />
+  <HelpKINode Title="CartesianCoordinate.Y property" Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Y.htm" />
+  <HelpKINode Title="CartesianCoordinate3D structure">
+    <HelpKINode Title="CartesianCoordinate3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="CartesianCoordinate3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="about CartesianCoordinate3D structure" Url="html/T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CartesianCoordinate3D.Addition operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Addition.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.CartesianCoordinate3D constructor" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.-ctor.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.CrossProduct method" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.CrossProduct.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Division operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Division.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.DotProduct method" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.DotProduct.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Equality operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Equality.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.GetHashCode.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Inequality.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Multiply operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Multiply.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Subtraction operator" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Subtraction.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.ToCylindrical method" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToCylindrical.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Tolerance.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.ToSpherical method" Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToSpherical.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.X property" Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.X.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Y property" Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Y.htm" />
+  <HelpKINode Title="CartesianCoordinate3D.Z property" Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Z.htm" />
+  <HelpKINode Title="CartesianOffset structure">
+    <HelpKINode Title="CartesianOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="CartesianOffset Structure" Url="html/T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="about CartesianOffset structure" Url="html/T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.CartesianOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CartesianOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Addition.htm" />
+  <HelpKINode Title="CartesianOffset.CartesianOffset constructor" Url="html/M-MPT.Math.Coordinates.CartesianOffset.-ctor.htm" />
+  <HelpKINode Title="CartesianOffset.Division operator" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Division.htm" />
+  <HelpKINode Title="CartesianOffset.Equality operator" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Equality.htm" />
+  <HelpKINode Title="CartesianOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.Equals.htm" />
+  <HelpKINode Title="CartesianOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.GetHashCode.htm" />
+  <HelpKINode Title="CartesianOffset.I property" Url="html/P-MPT.Math.Coordinates.CartesianOffset.I.htm" />
+  <HelpKINode Title="CartesianOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Inequality.htm" />
+  <HelpKINode Title="CartesianOffset.J property" Url="html/P-MPT.Math.Coordinates.CartesianOffset.J.htm" />
+  <HelpKINode Title="CartesianOffset.Length method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.Length.htm" />
+  <HelpKINode Title="CartesianOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Multiply.htm" />
+  <HelpKINode Title="CartesianOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Subtraction.htm" />
+  <HelpKINode Title="CartesianOffset.ToCartesianCoordinate method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.ToCartesianCoordinate.htm" />
+  <HelpKINode Title="CartesianOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates.CartesianOffset.Tolerance.htm" />
+  <HelpKINode Title="CartesianOffset.X method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.X.htm" />
+  <HelpKINode Title="CartesianOffset.Y method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.Y.htm" />
+  <HelpKINode Title="CartesianOffset3D structure">
+    <HelpKINode Title="CartesianOffset3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="CartesianOffset3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="about CartesianOffset3D structure" Url="html/T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CartesianOffset3D.Addition operator" Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition.htm" />
+  <HelpKINode Title="CartesianOffset3D.CartesianOffset3D constructor" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.-ctor.htm" />
+  <HelpKINode Title="CartesianOffset3D.Division operator" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Division.htm" />
+  <HelpKINode Title="CartesianOffset3D.Equality operator" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Equality.htm" />
+  <HelpKINode Title="CartesianOffset3D.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.Equals.htm" />
+  <HelpKINode Title="CartesianOffset3D.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.GetHashCode.htm" />
+  <HelpKINode Title="CartesianOffset3D.I property" Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.I.htm" />
+  <HelpKINode Title="CartesianOffset3D.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Inequality.htm" />
+  <HelpKINode Title="CartesianOffset3D.J property" Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.J.htm" />
+  <HelpKINode Title="CartesianOffset3D.Length method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Length.htm" />
+  <HelpKINode Title="CartesianOffset3D.Multiply operator" Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply.htm" />
+  <HelpKINode Title="CartesianOffset3D.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction.htm" />
+  <HelpKINode Title="CartesianOffset3D.ToCartesianCoordinate3D method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.ToCartesianCoordinate3D.htm" />
+  <HelpKINode Title="CartesianOffset3D.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.Tolerance.htm" />
+  <HelpKINode Title="CartesianOffset3D.X method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.X.htm" />
+  <HelpKINode Title="CartesianOffset3D.Y method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Y.htm" />
+  <HelpKINode Title="CartesianOffset3D.Z method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Z.htm" />
+  <HelpKINode Title="ClockwiseDegrees property" Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseDegrees.htm" />
+  <HelpKINode Title="ClockwiseRadians property" Url="html/P-MPT.Math.Coordinates.Angle.ClockwiseRadians.htm" />
+  <HelpKINode Title="ConcavityCollinearity method">
+    <HelpKINode Title="ConcavityCollinearity Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.ConcavityCollinearity.htm" />
+    <HelpKINode Title="ConcavityCollinearity Method " Url="html/M-MPT.Math.Vectors.Vector.ConcavityCollinearity.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateFromDegree method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromDegree.htm" />
+  <HelpKINode Title="CreateFromRadian method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromRadian.htm" />
+  <HelpKINode Title="CreateFromVector method" Url="html/M-MPT.Math.Coordinates.Angle.CreateFromVector.htm" />
+  <HelpKINode Title="CrossProduct method">
+    <HelpKINode Title="CrossProduct Method " Url="html/M-MPT.Math.Vectors.Vector.CrossProduct.htm" />
+    <HelpKINode Title="CrossProduct Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.CrossProduct.htm" />
+    <HelpKINode Title="CrossProduct Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.CrossProduct.htm" />
+    <HelpKINode Title="CrossProduct Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.CrossProduct.htm" />
+    <HelpKINode Title="CrossProduct Method " Url="html/M-MPT.Math.Vectors.Vector3D.CrossProduct.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Cubed method" Url="html/Overload-MPT.Math.Numbers.Cubed.htm" />
+  <HelpKINode Title="CubeRoot method" Url="html/Overload-MPT.Math.Numbers.CubeRoot.htm" />
+  <HelpKINode Title="CubicCurveLowestRoot method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveLowestRoot.htm" />
+  <HelpKINode Title="CubicCurveRoots method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.CubicCurveRoots.htm" />
+  <HelpKINode Title="CylindricalCoordinate structure">
+    <HelpKINode Title="CylindricalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="CylindricalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="about CylindricalCoordinate structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CylindricalCoordinate.AddAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="CylindricalCoordinate.AddAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthRadians.htm" />
+  <HelpKINode Title="CylindricalCoordinate.AddToHeight method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToHeight.htm" />
+  <HelpKINode Title="CylindricalCoordinate.AddToRadius method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.AddToRadius.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Azimuth property" Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Azimuth.htm" />
+  <HelpKINode Title="CylindricalCoordinate.CylindricalCoordinate constructor" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.-ctor.htm" />
+  <HelpKINode Title="CylindricalCoordinate.DivideAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideAngleAzimuthBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.DivideHeightBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideHeightBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.DivideRadiusBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideRadiusBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Division operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Division.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Equality.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.Equals.htm" />
+  <HelpKINode Title="CylindricalCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Height property" Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Height.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Multiply operator" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply.htm" />
+  <HelpKINode Title="CylindricalCoordinate.MultiplyAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyAngleAzimuthBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.MultiplyHeightBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyHeightBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.MultiplyRadiusBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyRadiusBy.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Radius property" Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Radius.htm" />
+  <HelpKINode Title="CylindricalCoordinate.SubtractAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="CylindricalCoordinate.SubtractAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthRadians.htm" />
+  <HelpKINode Title="CylindricalCoordinate.SubtractFromHeight method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromHeight.htm" />
+  <HelpKINode Title="CylindricalCoordinate.SubtractFromRadius method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromRadius.htm" />
+  <HelpKINode Title="CylindricalCoordinate.ToCartesian method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToCartesian.htm" />
+  <HelpKINode Title="CylindricalCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Tolerance.htm" />
+  <HelpKINode Title="CylindricalCoordinate.ToSpherical method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToSpherical.htm" />
+  <HelpKINode Title="CylindricalOffset structure">
+    <HelpKINode Title="CylindricalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="CylindricalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="about CylindricalOffset structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CylindricalOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Addition.htm" />
+  <HelpKINode Title="CylindricalOffset.Azimuth method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Azimuth.htm" />
+  <HelpKINode Title="CylindricalOffset.CylindricalOffset constructor" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.-ctor.htm" />
+  <HelpKINode Title="CylindricalOffset.Division operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Division.htm" />
+  <HelpKINode Title="CylindricalOffset.Equality operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Equality.htm" />
+  <HelpKINode Title="CylindricalOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.Equals.htm" />
+  <HelpKINode Title="CylindricalOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.GetHashCode.htm" />
+  <HelpKINode Title="CylindricalOffset.Height method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Height.htm" />
+  <HelpKINode Title="CylindricalOffset.I property" Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.I.htm" />
+  <HelpKINode Title="CylindricalOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Inequality.htm" />
+  <HelpKINode Title="CylindricalOffset.J property" Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.J.htm" />
+  <HelpKINode Title="CylindricalOffset.Length method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Length.htm" />
+  <HelpKINode Title="CylindricalOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply.htm" />
+  <HelpKINode Title="CylindricalOffset.Radius method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Radius.htm" />
+  <HelpKINode Title="CylindricalOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction.htm" />
+  <HelpKINode Title="CylindricalOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.Tolerance.htm" />
+  <HelpKINode Title="Degrees property" Url="html/P-MPT.Math.Coordinates.Angle.Degrees.htm" />
+  <HelpKINode Title="Delta method">
+    <HelpKINode Title="Delta Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.Delta.htm" />
+    <HelpKINode Title="Delta Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.Delta.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DimensionSize property" Url="html/P-MPT.Math.Matrices.Matrix.DimensionSize.htm" />
+  <HelpKINode Title="DivideAngleAzimuthBy method">
+    <HelpKINode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleAzimuthBy.htm" />
+    <HelpKINode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideAngleAzimuthBy.htm" />
+    <HelpKINode Title="DivideAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideAngleAzimuthBy.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DivideAngleInclinationBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleInclinationBy.htm" />
+  <HelpKINode Title="DivideHeightBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideHeightBy.htm" />
+  <HelpKINode Title="DivideRadialLengthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideRadialLengthBy.htm" />
+  <HelpKINode Title="DivideRadiusBy method">
+    <HelpKINode Title="DivideRadiusBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.DivideRadiusBy.htm" />
+    <HelpKINode Title="DivideRadiusBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideRadiusBy.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Division operator">
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.Angle.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Division.htm" />
+    <HelpKINode Title="Division Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Division.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DotProduct method">
+    <HelpKINode Title="DotProduct Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.DotProduct.htm" />
+    <HelpKINode Title="DotProduct Method " Url="html/M-MPT.Math.Vectors.Vector.DotProduct.htm" />
+    <HelpKINode Title="DotProduct Method " Url="html/M-MPT.Math.Vectors.Vector3D.DotProduct.htm" />
+    <HelpKINode Title="DotProduct Method " Url="html/Overload-MPT.Math.Vectors.VectorLibrary.DotProduct.htm" />
+    <HelpKINode Title="DotProduct Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.DotProduct.htm" />
+  </HelpKINode>
+  <HelpKINode Title="E field" Url="html/F-MPT.Math.Numbers.E.htm" />
+  <HelpKINode Title="Equality operator">
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Equality.htm" />
+    <HelpKINode Title="Equality Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Equality.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Equals method">
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Matrices.Matrix.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.BarycentricCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.Angle.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.TrilinearCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Vectors.Vector3D.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Vectors.Vector.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.Equals.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Factorial method" Url="html/M-MPT.Math.Numbers.Factorial.htm" />
+  <HelpKINode Title="Gamma property" Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Gamma.htm" />
+  <HelpKINode Title="GetDeterminant method" Url="html/M-MPT.Math.Matrices.Matrix.GetDeterminant.htm" />
+  <HelpKINode Title="GetDirectionVector method" Url="html/M-MPT.Math.Coordinates.Angle.GetDirectionVector.htm" />
+  <HelpKINode Title="GetHashCode method">
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.Angle.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Vectors.Vector.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Vectors.Vector3D.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Matrices.Matrix.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.AngularOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.GetHashCode.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GoldenRatio method" Url="html/M-MPT.Math.Numbers.GoldenRatio.htm" />
+  <HelpKINode Title="Height method" Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Height.htm" />
+  <HelpKINode Title="Height property" Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Height.htm" />
+  <HelpKINode Title="I property">
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.I.htm" />
+    <HelpKINode Title="I Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.I.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Inclination method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Inclination.htm" />
+  <HelpKINode Title="Inclination property" Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Inclination.htm" />
+  <HelpKINode Title="Inequality operator">
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.AngularOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.CartesianOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.op_Inequality.htm" />
+    <HelpKINode Title="Inequality Operator " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Inequality.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InterpolationLinear method" Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear.htm" />
+  <HelpKINode Title="InterpolationLinear2D method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear2D.htm" />
+  <HelpKINode Title="InterpolationPolynomial method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.InterpolationPolynomial.htm" />
+  <HelpKINode Title="IntersectionX method" Url="html/Overload-MPT.Math.Algebra.AlgebraLibrary.IntersectionX.htm" />
+  <HelpKINode Title="IsCollinearOppositeDirection method">
+    <HelpKINode Title="IsCollinearOppositeDirection Method " Url="html/M-MPT.Math.Vectors.Vector.IsCollinearOppositeDirection.htm" />
+    <HelpKINode Title="IsCollinearOppositeDirection Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearOppositeDirection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsCollinearSameDirection method">
+    <HelpKINode Title="IsCollinearSameDirection Method " Url="html/M-MPT.Math.Vectors.Vector.IsCollinearSameDirection.htm" />
+    <HelpKINode Title="IsCollinearSameDirection Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearSameDirection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsComposite method" Url="html/M-MPT.Math.Numbers.IsComposite.htm" />
+  <HelpKINode Title="IsConcave method">
+    <HelpKINode Title="IsConcave Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcave.htm" />
+    <HelpKINode Title="IsConcave Method " Url="html/M-MPT.Math.Vectors.Vector.IsConcave.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsConcaveInside method">
+    <HelpKINode Title="IsConcaveInside Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcaveInside.htm" />
+    <HelpKINode Title="IsConcaveInside Method " Url="html/M-MPT.Math.Vectors.Vector.IsConcaveInside.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsConvex method">
+    <HelpKINode Title="IsConvex Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvex.htm" />
+    <HelpKINode Title="IsConvex Method " Url="html/M-MPT.Math.Vectors.Vector.IsConvex.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsConvexInside method">
+    <HelpKINode Title="IsConvexInside Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvexInside.htm" />
+    <HelpKINode Title="IsConvexInside Method " Url="html/M-MPT.Math.Vectors.Vector.IsConvexInside.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsEqualTo method" Url="html/M-MPT.Math.Numbers.IsEqualTo.htm" />
+  <HelpKINode Title="IsEven method" Url="html/M-MPT.Math.Numbers.IsEven.htm" />
+  <HelpKINode Title="IsGreaterThan method" Url="html/M-MPT.Math.Numbers.IsGreaterThan.htm" />
+  <HelpKINode Title="IsGreaterThanOrEqualTo method" Url="html/M-MPT.Math.Numbers.IsGreaterThanOrEqualTo.htm" />
+  <HelpKINode Title="IsLessThan method" Url="html/M-MPT.Math.Numbers.IsLessThan.htm" />
+  <HelpKINode Title="IsLessThanOrEqualTo method" Url="html/M-MPT.Math.Numbers.IsLessThanOrEqualTo.htm" />
+  <HelpKINode Title="IsNegative method" Url="html/Overload-MPT.Math.Numbers.IsNegative.htm" />
+  <HelpKINode Title="IsOdd method" Url="html/M-MPT.Math.Numbers.IsOdd.htm" />
+  <HelpKINode Title="IsOrthogonal method">
+    <HelpKINode Title="IsOrthogonal Method " Url="html/M-MPT.Math.Vectors.Vector.IsOrthogonal.htm" />
+    <HelpKINode Title="IsOrthogonal Method " Url="html/M-MPT.Math.Vectors.VectorLibrary.IsOrthogonal.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsPositive method" Url="html/Overload-MPT.Math.Numbers.IsPositive.htm" />
+  <HelpKINode Title="IsPrime method" Url="html/M-MPT.Math.Numbers.IsPrime.htm" />
+  <HelpKINode Title="IsZero method" Url="html/M-MPT.Math.Numbers.IsZero.htm" />
+  <HelpKINode Title="Item property" Url="html/P-MPT.Math.Matrices.Matrix.Item-System.Int32,System.Int32-.htm" />
+  <HelpKINode Title="J property">
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.J.htm" />
+    <HelpKINode Title="J Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.J.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LastDigit method" Url="html/M-MPT.Math.Numbers.LastDigit.htm" />
+  <HelpKINode Title="Length method">
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates.LinearOffset.Length.htm" />
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Length.htm" />
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Length.htm" />
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.Length.htm" />
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Length.htm" />
+    <HelpKINode Title="Length Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Length.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LengthArc method" Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthArc.htm" />
+  <HelpKINode Title="LengthChord method" Url="html/M-MPT.Math.Coordinates.AngularOffset.LengthChord.htm" />
+  <HelpKINode Title="Limit method" Url="html/Overload-MPT.Math.Numbers.Limit.htm" />
+  <HelpKINode Title="LinearOffset structure">
+    <HelpKINode Title="LinearOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="LinearOffset Structure" Url="html/T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="about LinearOffset structure" Url="html/T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.LinearOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.LinearOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LinearOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Addition.htm" />
+  <HelpKINode Title="LinearOffset.Delta method" Url="html/M-MPT.Math.Coordinates.LinearOffset.Delta.htm" />
+  <HelpKINode Title="LinearOffset.Division operator" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Division.htm" />
+  <HelpKINode Title="LinearOffset.Equality operator" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Equality.htm" />
+  <HelpKINode Title="LinearOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates.LinearOffset.Equals.htm" />
+  <HelpKINode Title="LinearOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates.LinearOffset.GetHashCode.htm" />
+  <HelpKINode Title="LinearOffset.I property" Url="html/P-MPT.Math.Coordinates.LinearOffset.I.htm" />
+  <HelpKINode Title="LinearOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates.LinearOffset.op_Inequality.htm" />
+  <HelpKINode Title="LinearOffset.J property" Url="html/P-MPT.Math.Coordinates.LinearOffset.J.htm" />
+  <HelpKINode Title="LinearOffset.Length method" Url="html/M-MPT.Math.Coordinates.LinearOffset.Length.htm" />
+  <HelpKINode Title="LinearOffset.LinearOffset constructor" Url="html/M-MPT.Math.Coordinates.LinearOffset.-ctor.htm" />
+  <HelpKINode Title="LinearOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Multiply.htm" />
+  <HelpKINode Title="LinearOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Subtraction.htm" />
+  <HelpKINode Title="LinearOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates.LinearOffset.Tolerance.htm" />
+  <HelpKINode Title="LinearOffset.ToValue method" Url="html/M-MPT.Math.Coordinates.LinearOffset.ToValue.htm" />
+  <HelpKINode Title="Location property">
+    <HelpKINode Title="Location Property " Url="html/P-MPT.Math.Vectors.Vector3D.Location.htm" />
+    <HelpKINode Title="Location Property " Url="html/P-MPT.Math.Vectors.Vector.Location.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Log10E method" Url="html/M-MPT.Math.Numbers.Log10E.htm" />
+  <HelpKINode Title="Log2E method" Url="html/M-MPT.Math.Numbers.Log2E.htm" />
+  <HelpKINode Title="Magnitude method">
+    <HelpKINode Title="Magnitude Method " Url="html/M-MPT.Math.Vectors.Vector3D.Magnitude.htm" />
+    <HelpKINode Title="Magnitude Method " Url="html/M-MPT.Math.Vectors.Vector.Magnitude.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MagnitudeSquared method">
+    <HelpKINode Title="MagnitudeSquared Method " Url="html/M-MPT.Math.Vectors.Vector.MagnitudeSquared.htm" />
+    <HelpKINode Title="MagnitudeSquared Method " Url="html/M-MPT.Math.Vectors.Vector3D.MagnitudeSquared.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Matrix structure">
+    <HelpKINode Title="Matrix Members" Url="html/AllMembers.T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="Matrix Structure" Url="html/T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="about Matrix structure" Url="html/T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Matrices.Matrix.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Matrices.Matrix.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Matrix.Addition operator" Url="html/M-MPT.Math.Matrices.Matrix.op_Addition.htm" />
+  <HelpKINode Title="Matrix.DimensionSize property" Url="html/P-MPT.Math.Matrices.Matrix.DimensionSize.htm" />
+  <HelpKINode Title="Matrix.Equality operator" Url="html/M-MPT.Math.Matrices.Matrix.op_Equality.htm" />
+  <HelpKINode Title="Matrix.Equals method" Url="html/Overload-MPT.Math.Matrices.Matrix.Equals.htm" />
+  <HelpKINode Title="Matrix.GetDeterminant method" Url="html/M-MPT.Math.Matrices.Matrix.GetDeterminant.htm" />
+  <HelpKINode Title="Matrix.GetHashCode method" Url="html/M-MPT.Math.Matrices.Matrix.GetHashCode.htm" />
+  <HelpKINode Title="Matrix.Inequality operator" Url="html/M-MPT.Math.Matrices.Matrix.op_Inequality.htm" />
+  <HelpKINode Title="Matrix.Item property" Url="html/P-MPT.Math.Matrices.Matrix.Item-System.Int32,System.Int32-.htm" />
+  <HelpKINode Title="Matrix.Matrix constructor" Url="html/M-MPT.Math.Matrices.Matrix.-ctor.htm" />
+  <HelpKINode Title="Matrix.Subtraction operator" Url="html/M-MPT.Math.Matrices.Matrix.op_Subtraction.htm" />
+  <HelpKINode Title="Matrix.Tolerance property" Url="html/P-MPT.Math.Matrices.Matrix.Tolerance.htm" />
+  <HelpKINode Title="MPT.Math namespace" Url="html/N-MPT.Math.htm" />
+  <HelpKINode Title="MPT.Math.Algebra namespace" Url="html/N-MPT.Math.Algebra.htm" />
+  <HelpKINode Title="MPT.Math.Algebra.AlgebraLibrary class">
+    <HelpKINode Title="AlgebraLibrary Class" Url="html/T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+    <HelpKINode Title="AlgebraLibrary Members" Url="html/AllMembers.T-MPT.Math.Algebra.AlgebraLibrary.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates namespace" Url="html/N-MPT.Math.Coordinates.htm" />
+  <HelpKINode Title="MPT.Math.Coordinates.Angle structure">
+    <HelpKINode Title="Angle Members" Url="html/AllMembers.T-MPT.Math.Coordinates.Angle.htm" />
+    <HelpKINode Title="Angle Structure" Url="html/T-MPT.Math.Coordinates.Angle.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.AngularOffset structure">
+    <HelpKINode Title="AngularOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.AngularOffset.htm" />
+    <HelpKINode Title="AngularOffset Structure" Url="html/T-MPT.Math.Coordinates.AngularOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.BarycentricCoordinate structure">
+    <HelpKINode Title="BarycentricCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+    <HelpKINode Title="BarycentricCoordinate Structure" Url="html/T-MPT.Math.Coordinates.BarycentricCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.CartesianCoordinate structure">
+    <HelpKINode Title="CartesianCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+    <HelpKINode Title="CartesianCoordinate Structure" Url="html/T-MPT.Math.Coordinates.CartesianCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.CartesianOffset structure">
+    <HelpKINode Title="CartesianOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.CartesianOffset.htm" />
+    <HelpKINode Title="CartesianOffset Structure" Url="html/T-MPT.Math.Coordinates.CartesianOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.LinearOffset structure">
+    <HelpKINode Title="LinearOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.LinearOffset.htm" />
+    <HelpKINode Title="LinearOffset Structure" Url="html/T-MPT.Math.Coordinates.LinearOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.PolarCoordinate structure">
+    <HelpKINode Title="PolarCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="PolarCoordinate Structure" Url="html/T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.PolarOffset structure">
+    <HelpKINode Title="PolarOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="PolarOffset Structure" Url="html/T-MPT.Math.Coordinates.PolarOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates.TrilinearCoordinate structure">
+    <HelpKINode Title="TrilinearCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="TrilinearCoordinate Structure" Url="html/T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D namespace" Url="html/N-MPT.Math.Coordinates3D.htm" />
+  <HelpKINode Title="MPT.Math.Coordinates3D.CartesianCoordinate3D structure">
+    <HelpKINode Title="CartesianCoordinate3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+    <HelpKINode Title="CartesianCoordinate3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianCoordinate3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D.CartesianOffset3D structure">
+    <HelpKINode Title="CartesianOffset3D Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+    <HelpKINode Title="CartesianOffset3D Structure" Url="html/T-MPT.Math.Coordinates3D.CartesianOffset3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D.CylindricalCoordinate structure">
+    <HelpKINode Title="CylindricalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+    <HelpKINode Title="CylindricalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D.CylindricalOffset structure">
+    <HelpKINode Title="CylindricalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+    <HelpKINode Title="CylindricalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.CylindricalOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D.SphericalCoordinate structure">
+    <HelpKINode Title="SphericalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="SphericalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Coordinates3D.SphericalOffset structure">
+    <HelpKINode Title="SphericalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="SphericalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Matrices namespace" Url="html/N-MPT.Math.Matrices.htm" />
+  <HelpKINode Title="MPT.Math.Matrices.Matrix structure">
+    <HelpKINode Title="Matrix Members" Url="html/AllMembers.T-MPT.Math.Matrices.Matrix.htm" />
+    <HelpKINode Title="Matrix Structure" Url="html/T-MPT.Math.Matrices.Matrix.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Numbers class">
+    <HelpKINode Title="Numbers Class" Url="html/T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="Numbers Members" Url="html/AllMembers.T-MPT.Math.Numbers.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Vectors namespace" Url="html/N-MPT.Math.Vectors.htm" />
+  <HelpKINode Title="MPT.Math.Vectors.Vector structure">
+    <HelpKINode Title="Vector Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="Vector Structure" Url="html/T-MPT.Math.Vectors.Vector.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Vectors.Vector3D structure">
+    <HelpKINode Title="Vector3D Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="Vector3D Structure" Url="html/T-MPT.Math.Vectors.Vector3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MPT.Math.Vectors.VectorLibrary class">
+    <HelpKINode Title="VectorLibrary Class" Url="html/T-MPT.Math.Vectors.VectorLibrary.htm" />
+    <HelpKINode Title="VectorLibrary Members" Url="html/AllMembers.T-MPT.Math.Vectors.VectorLibrary.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Multiply operator">
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianCoordinate.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Vectors.Vector3D.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Vectors.Vector.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply.htm" />
+    <HelpKINode Title="Multiply Operator " Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.op_Multiply.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MultiplyAngleAzimuthBy method">
+    <HelpKINode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleAzimuthBy.htm" />
+    <HelpKINode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyAngleAzimuthBy.htm" />
+    <HelpKINode Title="MultiplyAngleAzimuthBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyAngleAzimuthBy.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MultiplyAngleInclinationBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleInclinationBy.htm" />
+  <HelpKINode Title="MultiplyHeightBy method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyHeightBy.htm" />
+  <HelpKINode Title="MultiplyRadialLengthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyRadialLengthBy.htm" />
+  <HelpKINode Title="MultiplyRadiusBy method">
+    <HelpKINode Title="MultiplyRadiusBy Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyRadiusBy.htm" />
+    <HelpKINode Title="MultiplyRadiusBy Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyRadiusBy.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Numbers class">
+    <HelpKINode Title="Numbers Class" Url="html/T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="Numbers Members" Url="html/AllMembers.T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="about Numbers class" Url="html/T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="fields" Url="html/Fields.T-MPT.Math.Numbers.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Numbers.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Numbers.AreEqual method" Url="html/M-MPT.Math.Numbers.AreEqual.htm" />
+  <HelpKINode Title="Numbers.Cubed method" Url="html/Overload-MPT.Math.Numbers.Cubed.htm" />
+  <HelpKINode Title="Numbers.CubeRoot method" Url="html/Overload-MPT.Math.Numbers.CubeRoot.htm" />
+  <HelpKINode Title="Numbers.E field" Url="html/F-MPT.Math.Numbers.E.htm" />
+  <HelpKINode Title="Numbers.Factorial method" Url="html/M-MPT.Math.Numbers.Factorial.htm" />
+  <HelpKINode Title="Numbers.GoldenRatio method" Url="html/M-MPT.Math.Numbers.GoldenRatio.htm" />
+  <HelpKINode Title="Numbers.IsComposite method" Url="html/M-MPT.Math.Numbers.IsComposite.htm" />
+  <HelpKINode Title="Numbers.IsEqualTo method" Url="html/M-MPT.Math.Numbers.IsEqualTo.htm" />
+  <HelpKINode Title="Numbers.IsEven method" Url="html/M-MPT.Math.Numbers.IsEven.htm" />
+  <HelpKINode Title="Numbers.IsGreaterThan method" Url="html/M-MPT.Math.Numbers.IsGreaterThan.htm" />
+  <HelpKINode Title="Numbers.IsGreaterThanOrEqualTo method" Url="html/M-MPT.Math.Numbers.IsGreaterThanOrEqualTo.htm" />
+  <HelpKINode Title="Numbers.IsLessThan method" Url="html/M-MPT.Math.Numbers.IsLessThan.htm" />
+  <HelpKINode Title="Numbers.IsLessThanOrEqualTo method" Url="html/M-MPT.Math.Numbers.IsLessThanOrEqualTo.htm" />
+  <HelpKINode Title="Numbers.IsNegative method" Url="html/Overload-MPT.Math.Numbers.IsNegative.htm" />
+  <HelpKINode Title="Numbers.IsOdd method" Url="html/M-MPT.Math.Numbers.IsOdd.htm" />
+  <HelpKINode Title="Numbers.IsPositive method" Url="html/Overload-MPT.Math.Numbers.IsPositive.htm" />
+  <HelpKINode Title="Numbers.IsPrime method" Url="html/M-MPT.Math.Numbers.IsPrime.htm" />
+  <HelpKINode Title="Numbers.IsZero method" Url="html/M-MPT.Math.Numbers.IsZero.htm" />
+  <HelpKINode Title="Numbers.LastDigit method" Url="html/M-MPT.Math.Numbers.LastDigit.htm" />
+  <HelpKINode Title="Numbers.Limit method" Url="html/Overload-MPT.Math.Numbers.Limit.htm" />
+  <HelpKINode Title="Numbers.Log10E method" Url="html/M-MPT.Math.Numbers.Log10E.htm" />
+  <HelpKINode Title="Numbers.Log2E method" Url="html/M-MPT.Math.Numbers.Log2E.htm" />
+  <HelpKINode Title="Numbers.Pi field" Url="html/F-MPT.Math.Numbers.Pi.htm" />
+  <HelpKINode Title="Numbers.PiOver2 field" Url="html/F-MPT.Math.Numbers.PiOver2.htm" />
+  <HelpKINode Title="Numbers.PiOver4 field" Url="html/F-MPT.Math.Numbers.PiOver4.htm" />
+  <HelpKINode Title="Numbers.PlusMinus method" Url="html/Overload-MPT.Math.Numbers.PlusMinus.htm" />
+  <HelpKINode Title="Numbers.Pow method" Url="html/Overload-MPT.Math.Numbers.Pow.htm" />
+  <HelpKINode Title="Numbers.Sqrt method" Url="html/Overload-MPT.Math.Numbers.Sqrt.htm" />
+  <HelpKINode Title="Numbers.Squared method" Url="html/Overload-MPT.Math.Numbers.Squared.htm" />
+  <HelpKINode Title="Numbers.TwoPi field" Url="html/F-MPT.Math.Numbers.TwoPi.htm" />
+  <HelpKINode Title="Numbers.ZeroTolerance field" Url="html/F-MPT.Math.Numbers.ZeroTolerance.htm" />
+  <HelpKINode Title="Pi field" Url="html/F-MPT.Math.Numbers.Pi.htm" />
+  <HelpKINode Title="PiOver2 field" Url="html/F-MPT.Math.Numbers.PiOver2.htm" />
+  <HelpKINode Title="PiOver4 field" Url="html/F-MPT.Math.Numbers.PiOver4.htm" />
+  <HelpKINode Title="PlusMinus method" Url="html/Overload-MPT.Math.Numbers.PlusMinus.htm" />
+  <HelpKINode Title="PolarCoordinate structure">
+    <HelpKINode Title="PolarCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="PolarCoordinate Structure" Url="html/T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="about PolarCoordinate structure" Url="html/T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.PolarCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PolarCoordinate.AddAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="PolarCoordinate.AddAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians.htm" />
+  <HelpKINode Title="PolarCoordinate.AddToRadius method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.AddToRadius.htm" />
+  <HelpKINode Title="PolarCoordinate.Azimuth property" Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Azimuth.htm" />
+  <HelpKINode Title="PolarCoordinate.DivideAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideAngleAzimuthBy.htm" />
+  <HelpKINode Title="PolarCoordinate.DivideRadiusBy method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.DivideRadiusBy.htm" />
+  <HelpKINode Title="PolarCoordinate.Division operator" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Division.htm" />
+  <HelpKINode Title="PolarCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Equality.htm" />
+  <HelpKINode Title="PolarCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.Equals.htm" />
+  <HelpKINode Title="PolarCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="PolarCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="PolarCoordinate.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.op_Multiply.htm" />
+  <HelpKINode Title="PolarCoordinate.MultiplyAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyAngleAzimuthBy.htm" />
+  <HelpKINode Title="PolarCoordinate.MultiplyRadiusBy method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.MultiplyRadiusBy.htm" />
+  <HelpKINode Title="PolarCoordinate.PolarCoordinate constructor" Url="html/Overload-MPT.Math.Coordinates.PolarCoordinate.-ctor.htm" />
+  <HelpKINode Title="PolarCoordinate.Radius property" Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Radius.htm" />
+  <HelpKINode Title="PolarCoordinate.SubtractAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="PolarCoordinate.SubtractAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthRadians.htm" />
+  <HelpKINode Title="PolarCoordinate.SubtractFromRadius method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractFromRadius.htm" />
+  <HelpKINode Title="PolarCoordinate.ToCartesian method" Url="html/M-MPT.Math.Coordinates.PolarCoordinate.ToCartesian.htm" />
+  <HelpKINode Title="PolarCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Tolerance.htm" />
+  <HelpKINode Title="PolarOffset structure">
+    <HelpKINode Title="PolarOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="PolarOffset Structure" Url="html/T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="about PolarOffset structure" Url="html/T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.PolarOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.PolarOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.PolarOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PolarOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Addition.htm" />
+  <HelpKINode Title="PolarOffset.Azimuth method" Url="html/M-MPT.Math.Coordinates.PolarOffset.Azimuth.htm" />
+  <HelpKINode Title="PolarOffset.Division operator" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Division.htm" />
+  <HelpKINode Title="PolarOffset.Equality operator" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Equality.htm" />
+  <HelpKINode Title="PolarOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates.PolarOffset.Equals.htm" />
+  <HelpKINode Title="PolarOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates.PolarOffset.GetHashCode.htm" />
+  <HelpKINode Title="PolarOffset.I property" Url="html/P-MPT.Math.Coordinates.PolarOffset.I.htm" />
+  <HelpKINode Title="PolarOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates.PolarOffset.op_Inequality.htm" />
+  <HelpKINode Title="PolarOffset.J property" Url="html/P-MPT.Math.Coordinates.PolarOffset.J.htm" />
+  <HelpKINode Title="PolarOffset.Length method" Url="html/M-MPT.Math.Coordinates.PolarOffset.Length.htm" />
+  <HelpKINode Title="PolarOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Multiply.htm" />
+  <HelpKINode Title="PolarOffset.PolarOffset constructor" Url="html/M-MPT.Math.Coordinates.PolarOffset.-ctor.htm" />
+  <HelpKINode Title="PolarOffset.Radius method" Url="html/M-MPT.Math.Coordinates.PolarOffset.Radius.htm" />
+  <HelpKINode Title="PolarOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Subtraction.htm" />
+  <HelpKINode Title="PolarOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates.PolarOffset.Tolerance.htm" />
+  <HelpKINode Title="Pow method" Url="html/Overload-MPT.Math.Numbers.Pow.htm" />
+  <HelpKINode Title="QuadraticFormula method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.QuadraticFormula.htm" />
+  <HelpKINode Title="Radians property" Url="html/P-MPT.Math.Coordinates.Angle.Radians.htm" />
+  <HelpKINode Title="Radius method">
+    <HelpKINode Title="Radius Method " Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Radius.htm" />
+    <HelpKINode Title="Radius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalOffset.Radius.htm" />
+    <HelpKINode Title="Radius Method " Url="html/M-MPT.Math.Coordinates.PolarOffset.Radius.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Radius property">
+    <HelpKINode Title="Radius Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Radius.htm" />
+    <HelpKINode Title="Radius Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Radius.htm" />
+    <HelpKINode Title="Radius Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Radius.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RotateVector method" Url="html/M-MPT.Math.Coordinates.Angle.RotateVector.htm" />
+  <HelpKINode Title="SetDirectionVector method" Url="html/M-MPT.Math.Coordinates.Angle.SetDirectionVector.htm" />
+  <HelpKINode Title="SphericalCoordinate structure">
+    <HelpKINode Title="SphericalCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="SphericalCoordinate Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="about SphericalCoordinate structure" Url="html/T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.SphericalCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SphericalCoordinate.AddAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="SphericalCoordinate.AddAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthRadians.htm" />
+  <HelpKINode Title="SphericalCoordinate.AddAngleInclinationDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationDegrees.htm" />
+  <HelpKINode Title="SphericalCoordinate.AddAngleInclinationRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationRadians.htm" />
+  <HelpKINode Title="SphericalCoordinate.AddToRadialLength method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.AddToRadialLength.htm" />
+  <HelpKINode Title="SphericalCoordinate.Azimuth property" Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Azimuth.htm" />
+  <HelpKINode Title="SphericalCoordinate.DivideAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleAzimuthBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.DivideAngleInclinationBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleInclinationBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.DivideRadialLengthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.DivideRadialLengthBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.Division operator" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Division.htm" />
+  <HelpKINode Title="SphericalCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Equality.htm" />
+  <HelpKINode Title="SphericalCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.Equals.htm" />
+  <HelpKINode Title="SphericalCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="SphericalCoordinate.Inclination property" Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Inclination.htm" />
+  <HelpKINode Title="SphericalCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="SphericalCoordinate.Multiply operator" Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply.htm" />
+  <HelpKINode Title="SphericalCoordinate.MultiplyAngleAzimuthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleAzimuthBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.MultiplyAngleInclinationBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleInclinationBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.MultiplyRadialLengthBy method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyRadialLengthBy.htm" />
+  <HelpKINode Title="SphericalCoordinate.Radius property" Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Radius.htm" />
+  <HelpKINode Title="SphericalCoordinate.SphericalCoordinate constructor" Url="html/Overload-MPT.Math.Coordinates3D.SphericalCoordinate.-ctor.htm" />
+  <HelpKINode Title="SphericalCoordinate.SubtractAngleAzimuthDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+  <HelpKINode Title="SphericalCoordinate.SubtractAngleAzimuthRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthRadians.htm" />
+  <HelpKINode Title="SphericalCoordinate.SubtractAngleInclinationDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationDegrees.htm" />
+  <HelpKINode Title="SphericalCoordinate.SubtractAngleInclinationRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationRadians.htm" />
+  <HelpKINode Title="SphericalCoordinate.SubtractFromRadialLength method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractFromRadialLength.htm" />
+  <HelpKINode Title="SphericalCoordinate.ToCartesian method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCartesian.htm" />
+  <HelpKINode Title="SphericalCoordinate.ToCylindrical method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCylindrical.htm" />
+  <HelpKINode Title="SphericalCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Tolerance.htm" />
+  <HelpKINode Title="SphericalOffset structure">
+    <HelpKINode Title="SphericalOffset Members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="SphericalOffset Structure" Url="html/T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="about SphericalOffset structure" Url="html/T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates3D.SphericalOffset.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SphericalOffset.Addition operator" Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Addition.htm" />
+  <HelpKINode Title="SphericalOffset.Azimuth method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Azimuth.htm" />
+  <HelpKINode Title="SphericalOffset.Division operator" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Division.htm" />
+  <HelpKINode Title="SphericalOffset.Equality operator" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Equality.htm" />
+  <HelpKINode Title="SphericalOffset.Equals method" Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.Equals.htm" />
+  <HelpKINode Title="SphericalOffset.GetHashCode method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.GetHashCode.htm" />
+  <HelpKINode Title="SphericalOffset.I property" Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.I.htm" />
+  <HelpKINode Title="SphericalOffset.Inclination method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Inclination.htm" />
+  <HelpKINode Title="SphericalOffset.Inequality operator" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.op_Inequality.htm" />
+  <HelpKINode Title="SphericalOffset.J property" Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.J.htm" />
+  <HelpKINode Title="SphericalOffset.Length method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Length.htm" />
+  <HelpKINode Title="SphericalOffset.Multiply operator" Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Multiply.htm" />
+  <HelpKINode Title="SphericalOffset.Radius method" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.Radius.htm" />
+  <HelpKINode Title="SphericalOffset.SphericalOffset constructor" Url="html/M-MPT.Math.Coordinates3D.SphericalOffset.-ctor.htm" />
+  <HelpKINode Title="SphericalOffset.Subtraction operator" Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction.htm" />
+  <HelpKINode Title="SphericalOffset.Tolerance property" Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.Tolerance.htm" />
+  <HelpKINode Title="Sqrt method" Url="html/Overload-MPT.Math.Numbers.Sqrt.htm" />
+  <HelpKINode Title="Squared method" Url="html/Overload-MPT.Math.Numbers.Squared.htm" />
+  <HelpKINode Title="SRSS method" Url="html/M-MPT.Math.Algebra.AlgebraLibrary.SRSS.htm" />
+  <HelpKINode Title="SubtractAngleAzimuthDegrees method">
+    <HelpKINode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthDegrees.htm" />
+    <HelpKINode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+    <HelpKINode Title="SubtractAngleAzimuthDegrees Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthDegrees.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SubtractAngleAzimuthRadians method">
+    <HelpKINode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthRadians.htm" />
+    <HelpKINode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthRadians.htm" />
+    <HelpKINode Title="SubtractAngleAzimuthRadians Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractAngleAzimuthRadians.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SubtractAngleInclinationDegrees method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationDegrees.htm" />
+  <HelpKINode Title="SubtractAngleInclinationRadians method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationRadians.htm" />
+  <HelpKINode Title="SubtractFromHeight method" Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromHeight.htm" />
+  <HelpKINode Title="SubtractFromRadialLength method" Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.SubtractFromRadialLength.htm" />
+  <HelpKINode Title="SubtractFromRadius method">
+    <HelpKINode Title="SubtractFromRadius Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.SubtractFromRadius.htm" />
+    <HelpKINode Title="SubtractFromRadius Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromRadius.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Subtraction operator">
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.PolarOffset.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.LinearOffset.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.CartesianOffset.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/M-MPT.Math.Vectors.Vector.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.Angle.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/M-MPT.Math.Vectors.Vector3D.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates.AngularOffset.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/M-MPT.Math.Matrices.Matrix.op_Subtraction.htm" />
+    <HelpKINode Title="Subtraction Operator " Url="html/Overload-MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToAngle method" Url="html/M-MPT.Math.Coordinates.AngularOffset.ToAngle.htm" />
+  <HelpKINode Title="ToBarycentric method">
+    <HelpKINode Title="ToBarycentric Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToBarycentric.htm" />
+    <HelpKINode Title="ToBarycentric Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToBarycentric.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToCartesian method">
+    <HelpKINode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToCartesian.htm" />
+    <HelpKINode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToCartesian.htm" />
+    <HelpKINode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToCartesian.htm" />
+    <HelpKINode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCartesian.htm" />
+    <HelpKINode Title="ToCartesian Method " Url="html/M-MPT.Math.Coordinates.PolarCoordinate.ToCartesian.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToCartesianCoordinate method" Url="html/M-MPT.Math.Coordinates.CartesianOffset.ToCartesianCoordinate.htm" />
+  <HelpKINode Title="ToCartesianCoordinate3D method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.ToCartesianCoordinate3D.htm" />
+  <HelpKINode Title="ToCylindrical method">
+    <HelpKINode Title="ToCylindrical Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToCylindrical.htm" />
+    <HelpKINode Title="ToCylindrical Method " Url="html/M-MPT.Math.Coordinates3D.SphericalCoordinate.ToCylindrical.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToDegrees method" Url="html/M-MPT.Math.Coordinates.Angle.ToDegrees.htm" />
+  <HelpKINode Title="Tolerance property">
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.PolarOffset.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.SphericalCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Vectors.Vector3D.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Matrices.Matrix.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.PolarCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Vectors.Vector.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.LinearOffset.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.SphericalOffset.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CartesianOffset3D.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.AngularOffset.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.Angle.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.BarycentricCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates.CartesianOffset.Tolerance.htm" />
+    <HelpKINode Title="Tolerance Property " Url="html/P-MPT.Math.Coordinates3D.CylindricalOffset.Tolerance.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToPolar method" Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToPolar.htm" />
+  <HelpKINode Title="ToRadians method" Url="html/M-MPT.Math.Coordinates.Angle.ToRadians.htm" />
+  <HelpKINode Title="ToSpherical method">
+    <HelpKINode Title="ToSpherical Method " Url="html/M-MPT.Math.Coordinates3D.CartesianCoordinate3D.ToSpherical.htm" />
+    <HelpKINode Title="ToSpherical Method " Url="html/M-MPT.Math.Coordinates3D.CylindricalCoordinate.ToSpherical.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToTrilinear method">
+    <HelpKINode Title="ToTrilinear Method " Url="html/M-MPT.Math.Coordinates.CartesianCoordinate.ToTrilinear.htm" />
+    <HelpKINode Title="ToTrilinear Method " Url="html/M-MPT.Math.Coordinates.BarycentricCoordinate.ToTrilinear.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToValue method" Url="html/M-MPT.Math.Coordinates.LinearOffset.ToValue.htm" />
+  <HelpKINode Title="TrilinearCoordinate structure">
+    <HelpKINode Title="TrilinearCoordinate Members" Url="html/AllMembers.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="TrilinearCoordinate Structure" Url="html/T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="about TrilinearCoordinate structure" Url="html/T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="constructor" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Coordinates.TrilinearCoordinate.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TrilinearCoordinate.Equality operator" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Equality.htm" />
+  <HelpKINode Title="TrilinearCoordinate.Equals method" Url="html/Overload-MPT.Math.Coordinates.TrilinearCoordinate.Equals.htm" />
+  <HelpKINode Title="TrilinearCoordinate.GetHashCode method" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.GetHashCode.htm" />
+  <HelpKINode Title="TrilinearCoordinate.Inequality operator" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.op_Inequality.htm" />
+  <HelpKINode Title="TrilinearCoordinate.ToBarycentric method" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToBarycentric.htm" />
+  <HelpKINode Title="TrilinearCoordinate.ToCartesian method" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.ToCartesian.htm" />
+  <HelpKINode Title="TrilinearCoordinate.Tolerance property" Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Tolerance.htm" />
+  <HelpKINode Title="TrilinearCoordinate.TrilinearCoordinate constructor" Url="html/M-MPT.Math.Coordinates.TrilinearCoordinate.-ctor.htm" />
+  <HelpKINode Title="TrilinearCoordinate.X property" Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.X.htm" />
+  <HelpKINode Title="TrilinearCoordinate.Y property" Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Y.htm" />
+  <HelpKINode Title="TrilinearCoordinate.Z property" Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Z.htm" />
+  <HelpKINode Title="TwoPi field" Url="html/F-MPT.Math.Numbers.TwoPi.htm" />
+  <HelpKINode Title="Vector structure">
+    <HelpKINode Title="Vector Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="Vector Structure" Url="html/T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="about Vector structure" Url="html/T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-MPT.Math.Vectors.Vector.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Vectors.Vector.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Vectors.Vector.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Vector.Addition operator" Url="html/M-MPT.Math.Vectors.Vector.op_Addition.htm" />
+  <HelpKINode Title="Vector.Angle method" Url="html/Overload-MPT.Math.Vectors.Vector.Angle.htm" />
+  <HelpKINode Title="Vector.Area method" Url="html/M-MPT.Math.Vectors.Vector.Area.htm" />
+  <HelpKINode Title="Vector.ConcavityCollinearity method" Url="html/M-MPT.Math.Vectors.Vector.ConcavityCollinearity.htm" />
+  <HelpKINode Title="Vector.CrossProduct method" Url="html/M-MPT.Math.Vectors.Vector.CrossProduct.htm" />
+  <HelpKINode Title="Vector.Division operator" Url="html/M-MPT.Math.Vectors.Vector.op_Division.htm" />
+  <HelpKINode Title="Vector.DotProduct method" Url="html/M-MPT.Math.Vectors.Vector.DotProduct.htm" />
+  <HelpKINode Title="Vector.Equality operator" Url="html/M-MPT.Math.Vectors.Vector.op_Equality.htm" />
+  <HelpKINode Title="Vector.Equals method" Url="html/Overload-MPT.Math.Vectors.Vector.Equals.htm" />
+  <HelpKINode Title="Vector.GetHashCode method" Url="html/M-MPT.Math.Vectors.Vector.GetHashCode.htm" />
+  <HelpKINode Title="Vector.Inequality operator" Url="html/M-MPT.Math.Vectors.Vector.op_Inequality.htm" />
+  <HelpKINode Title="Vector.IsCollinearOppositeDirection method" Url="html/M-MPT.Math.Vectors.Vector.IsCollinearOppositeDirection.htm" />
+  <HelpKINode Title="Vector.IsCollinearSameDirection method" Url="html/M-MPT.Math.Vectors.Vector.IsCollinearSameDirection.htm" />
+  <HelpKINode Title="Vector.IsConcave method" Url="html/M-MPT.Math.Vectors.Vector.IsConcave.htm" />
+  <HelpKINode Title="Vector.IsConcaveInside method" Url="html/M-MPT.Math.Vectors.Vector.IsConcaveInside.htm" />
+  <HelpKINode Title="Vector.IsConvex method" Url="html/M-MPT.Math.Vectors.Vector.IsConvex.htm" />
+  <HelpKINode Title="Vector.IsConvexInside method" Url="html/M-MPT.Math.Vectors.Vector.IsConvexInside.htm" />
+  <HelpKINode Title="Vector.IsOrthogonal method" Url="html/M-MPT.Math.Vectors.Vector.IsOrthogonal.htm" />
+  <HelpKINode Title="Vector.Location property" Url="html/P-MPT.Math.Vectors.Vector.Location.htm" />
+  <HelpKINode Title="Vector.Magnitude method" Url="html/M-MPT.Math.Vectors.Vector.Magnitude.htm" />
+  <HelpKINode Title="Vector.MagnitudeSquared method" Url="html/M-MPT.Math.Vectors.Vector.MagnitudeSquared.htm" />
+  <HelpKINode Title="Vector.Multiply operator" Url="html/Overload-MPT.Math.Vectors.Vector.op_Multiply.htm" />
+  <HelpKINode Title="Vector.Subtraction operator" Url="html/M-MPT.Math.Vectors.Vector.op_Subtraction.htm" />
+  <HelpKINode Title="Vector.Tolerance property" Url="html/P-MPT.Math.Vectors.Vector.Tolerance.htm" />
+  <HelpKINode Title="Vector.Vector constructor" Url="html/Overload-MPT.Math.Vectors.Vector.-ctor.htm" />
+  <HelpKINode Title="Vector.Xcomponent property" Url="html/P-MPT.Math.Vectors.Vector.Xcomponent.htm" />
+  <HelpKINode Title="Vector.Ycomponent property" Url="html/P-MPT.Math.Vectors.Vector.Ycomponent.htm" />
+  <HelpKINode Title="Vector3D structure">
+    <HelpKINode Title="Vector3D Members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="Vector3D Structure" Url="html/T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="about Vector3D structure" Url="html/T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-MPT.Math.Vectors.Vector3D.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="operators" Url="html/Operators.T-MPT.Math.Vectors.Vector3D.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-MPT.Math.Vectors.Vector3D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Vector3D.Addition operator" Url="html/M-MPT.Math.Vectors.Vector3D.op_Addition.htm" />
+  <HelpKINode Title="Vector3D.CrossProduct method" Url="html/M-MPT.Math.Vectors.Vector3D.CrossProduct.htm" />
+  <HelpKINode Title="Vector3D.Division operator" Url="html/M-MPT.Math.Vectors.Vector3D.op_Division.htm" />
+  <HelpKINode Title="Vector3D.DotProduct method" Url="html/M-MPT.Math.Vectors.Vector3D.DotProduct.htm" />
+  <HelpKINode Title="Vector3D.Equality operator" Url="html/M-MPT.Math.Vectors.Vector3D.op_Equality.htm" />
+  <HelpKINode Title="Vector3D.Equals method" Url="html/Overload-MPT.Math.Vectors.Vector3D.Equals.htm" />
+  <HelpKINode Title="Vector3D.GetHashCode method" Url="html/M-MPT.Math.Vectors.Vector3D.GetHashCode.htm" />
+  <HelpKINode Title="Vector3D.Inequality operator" Url="html/M-MPT.Math.Vectors.Vector3D.op_Inequality.htm" />
+  <HelpKINode Title="Vector3D.Location property" Url="html/P-MPT.Math.Vectors.Vector3D.Location.htm" />
+  <HelpKINode Title="Vector3D.Magnitude method" Url="html/M-MPT.Math.Vectors.Vector3D.Magnitude.htm" />
+  <HelpKINode Title="Vector3D.MagnitudeSquared method" Url="html/M-MPT.Math.Vectors.Vector3D.MagnitudeSquared.htm" />
+  <HelpKINode Title="Vector3D.Multiply operator" Url="html/Overload-MPT.Math.Vectors.Vector3D.op_Multiply.htm" />
+  <HelpKINode Title="Vector3D.Subtraction operator" Url="html/M-MPT.Math.Vectors.Vector3D.op_Subtraction.htm" />
+  <HelpKINode Title="Vector3D.Tolerance property" Url="html/P-MPT.Math.Vectors.Vector3D.Tolerance.htm" />
+  <HelpKINode Title="Vector3D.Vector3D constructor" Url="html/Overload-MPT.Math.Vectors.Vector3D.-ctor.htm" />
+  <HelpKINode Title="Vector3D.Xcomponent property" Url="html/P-MPT.Math.Vectors.Vector3D.Xcomponent.htm" />
+  <HelpKINode Title="Vector3D.Ycomponent property" Url="html/P-MPT.Math.Vectors.Vector3D.Ycomponent.htm" />
+  <HelpKINode Title="Vector3D.Zcomponent property" Url="html/P-MPT.Math.Vectors.Vector3D.Zcomponent.htm" />
+  <HelpKINode Title="VectorLibrary class">
+    <HelpKINode Title="VectorLibrary Class" Url="html/T-MPT.Math.Vectors.VectorLibrary.htm" />
+    <HelpKINode Title="VectorLibrary Members" Url="html/AllMembers.T-MPT.Math.Vectors.VectorLibrary.htm" />
+    <HelpKINode Title="about VectorLibrary class" Url="html/T-MPT.Math.Vectors.VectorLibrary.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-MPT.Math.Vectors.VectorLibrary.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-MPT.Math.Vectors.VectorLibrary.htm" />
+  </HelpKINode>
+  <HelpKINode Title="VectorLibrary.Angle method" Url="html/Overload-MPT.Math.Vectors.VectorLibrary.Angle.htm" />
+  <HelpKINode Title="VectorLibrary.ConcavityCollinearity method" Url="html/M-MPT.Math.Vectors.VectorLibrary.ConcavityCollinearity.htm" />
+  <HelpKINode Title="VectorLibrary.CrossProduct method" Url="html/Overload-MPT.Math.Vectors.VectorLibrary.CrossProduct.htm" />
+  <HelpKINode Title="VectorLibrary.DotProduct method" Url="html/Overload-MPT.Math.Vectors.VectorLibrary.DotProduct.htm" />
+  <HelpKINode Title="VectorLibrary.IsCollinearOppositeDirection method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearOppositeDirection.htm" />
+  <HelpKINode Title="VectorLibrary.IsCollinearSameDirection method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsCollinearSameDirection.htm" />
+  <HelpKINode Title="VectorLibrary.IsConcave method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcave.htm" />
+  <HelpKINode Title="VectorLibrary.IsConcaveInside method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConcaveInside.htm" />
+  <HelpKINode Title="VectorLibrary.IsConvex method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvex.htm" />
+  <HelpKINode Title="VectorLibrary.IsConvexInside method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsConvexInside.htm" />
+  <HelpKINode Title="VectorLibrary.IsOrthogonal method" Url="html/M-MPT.Math.Vectors.VectorLibrary.IsOrthogonal.htm" />
+  <HelpKINode Title="WrapAngle method" Url="html/M-MPT.Math.Coordinates.Angle.WrapAngle.htm" />
+  <HelpKINode Title="X method">
+    <HelpKINode Title="X Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.X.htm" />
+    <HelpKINode Title="X Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.X.htm" />
+  </HelpKINode>
+  <HelpKINode Title="X property">
+    <HelpKINode Title="X Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.X.htm" />
+    <HelpKINode Title="X Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.X.htm" />
+    <HelpKINode Title="X Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.X.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Xcomponent property">
+    <HelpKINode Title="Xcomponent Property " Url="html/P-MPT.Math.Vectors.Vector.Xcomponent.htm" />
+    <HelpKINode Title="Xcomponent Property " Url="html/P-MPT.Math.Vectors.Vector3D.Xcomponent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Y method">
+    <HelpKINode Title="Y Method " Url="html/M-MPT.Math.Coordinates.CartesianOffset.Y.htm" />
+    <HelpKINode Title="Y Method " Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Y.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Y property">
+    <HelpKINode Title="Y Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Y.htm" />
+    <HelpKINode Title="Y Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Y.htm" />
+    <HelpKINode Title="Y Property " Url="html/P-MPT.Math.Coordinates.CartesianCoordinate.Y.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Ycomponent property">
+    <HelpKINode Title="Ycomponent Property " Url="html/P-MPT.Math.Vectors.Vector.Ycomponent.htm" />
+    <HelpKINode Title="Ycomponent Property " Url="html/P-MPT.Math.Vectors.Vector3D.Ycomponent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Z method" Url="html/M-MPT.Math.Coordinates3D.CartesianOffset3D.Z.htm" />
+  <HelpKINode Title="Z property">
+    <HelpKINode Title="Z Property " Url="html/P-MPT.Math.Coordinates.TrilinearCoordinate.Z.htm" />
+    <HelpKINode Title="Z Property " Url="html/P-MPT.Math.Coordinates3D.CartesianCoordinate3D.Z.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Zcomponent property" Url="html/P-MPT.Math.Vectors.Vector3D.Zcomponent.htm" />
+  <HelpKINode Title="ZeroTolerance field" Url="html/F-MPT.Math.Numbers.ZeroTolerance.htm" />
+</HelpKI>
