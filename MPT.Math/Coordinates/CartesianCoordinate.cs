@@ -11,8 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using MPT.Math.Vectors;
 using MPT.Math.Algebra;
+using MPT.Math.NumberTypeExtensions;
+using MPT.Math.Vectors;
 using System;
 using NMath = System.Math;
 

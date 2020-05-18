@@ -4,10 +4,10 @@
 // Created          : 02-21-2017
 //
 // Last Modified By : Mark Thomas
-// Last Modified On : 12-09-2017
+// Last Modified On : 05-16-2020
 // ***********************************************************************
-// <copyright file="Matrix.cs" company="">
-//     Copyright ©  2017
+// <copyright file="Matrix.cs" company="Mark P Thomas, Inc.">
+//     2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************

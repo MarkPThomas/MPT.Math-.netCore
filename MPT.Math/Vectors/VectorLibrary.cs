@@ -1,6 +1,7 @@
 ﻿using NMath = System.Math;
 
 using Num = MPT.Math.Numbers;
+using MPT.Math.NumberTypeExtensions;
 
 namespace MPT.Math.Vectors
 {

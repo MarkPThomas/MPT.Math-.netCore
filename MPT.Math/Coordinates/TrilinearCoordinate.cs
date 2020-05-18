@@ -4,14 +4,14 @@
 // Created          : 02-21-2017
 //
 // Last Modified By : Mark Thomas
-// Last Modified On : 12-10-2017
+// Last Modified On : 05-18-2020
 // ***********************************************************************
-// <copyright file="TrilinearCoordinate.cs" company="">
-//     Copyright ©  2017
+// <copyright file="TrilinearCoordinate.cs" company="Mark P Thomas, Inc.">
+//     2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
+using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;
 

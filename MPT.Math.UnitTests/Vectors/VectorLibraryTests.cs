@@ -1,9 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
-namespace MPT.Math.Vectors.UnitTests
+
+namespace MPT.Math.UnitTests.Vectors
 {
     [TestFixture]
-    public class VectorTests
+    public class VectorLibraryTests
     {
     }
 }

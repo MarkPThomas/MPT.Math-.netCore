@@ -1,4 +1,5 @@
 ﻿using MPT.Math.Coordinates;
+using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;
 

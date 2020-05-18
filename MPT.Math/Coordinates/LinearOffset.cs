@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;
 

@@ -1,79 +1,44 @@
 ﻿using System;
-
 using NMath = System.Math;
 
-// TODO: See if later implementing SIMD: https://msdn.microsoft.com/en-us/library/system.numerics(v=vs.111).aspx
-// The SIMD-enabled vector types, which include Vector2, Vector3, Vector4, Matrix3x2, Matrix4x4, Plane, and Quaternion.
-
-namespace MPT.Math
+namespace MPT.Math.NumberTypeExtensions
 {
     /// <summary>
-    /// Contains static methods dealing generically with numbers. 
+    /// Contains extension methods dealing generically with numbers. 
     /// </summary>
-    public static class Numbers
+    public static class NumberTypeExtensionLibrary
     {
-        #region Constants
-        /// <summary>
-        /// Default zero tolerance for operations.
-        /// </summary>
-        public const double ZeroTolerance = 1E-20;
-
-        /// <summary>
-        /// Represents the value of pi.
-        /// </summary>
-        public const double Pi = NMath.PI;
-
-        /// <summary>
-        /// Represents the value of pi times two.
-        /// </summary>
-        public const double TwoPi = 2 * NMath.PI;
-
-        /// <summary>
-        /// Represents the value of pi divided by two.
-        /// </summary>
-        public const double PiOver2 = NMath.PI / 2;
-
-        /// <summary>
-        /// Represents the value of pi divided by four.
-        /// </summary>
-        public const double PiOver4 = NMath.PI / 4;
-
-        /// <summary>
-        /// Represents the mathematical constant e.
-        /// </summary>
-        public const double E = NMath.E;
-
-        /// <summary>
-        /// Represents the log base ten of e.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        public static double Log10E() => NMath.Log10(NMath.E);
-
-        /// <summary>
-        /// Represents the log base two of e.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        public static double Log2E() => NMath.Log(NMath.E, 2); 
-
-        /// <summary>
-        /// The golden ratio, also known as the divine proportion, golden mean, or golden section, is a number often encountered when taking the ratios of distances in simple geometric figures such as the pentagon, pentagram, decagon and dodecahedron. 
-        /// It is denoted phi and is approximately 1.618033988749...
-        /// </summary>
-        /// <returns></returns>
-        public static double GoldenRatio() => 0.5 * (1 + NMath.Sqrt(5)); 
-        #endregion
-
         #region Signs
+        /// <summary>
+        /// Value is greater than 0.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsPositive(this int value)
+        {
+            return (value > 0);
+        }
+
         /// <summary>
         /// Value is greater than the zero-tolerance.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsPositive(double value, double tolerance = ZeroTolerance)
+        public static bool IsPositive(this double value, double tolerance = Numbers.ZeroTolerance)
         {
-            if (IsZero(value, tolerance)) { return false; }
+            if (value.IsZero(tolerance)) { return false; }
             return (value > NMath.Abs(tolerance));
+        }
+
+        /// <summary>
+        /// Value is less than zero.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsNegative(this int value)
+        {
+            return (value < 0);
         }
 
         /// <summary>
@@ -82,9 +47,9 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsNegative(double value, double tolerance = ZeroTolerance)
+        public static bool IsNegative(this double value, double tolerance = Numbers.ZeroTolerance)
         {
-            if (IsZero(value, tolerance)) { return false; }
+            if (value.IsZero(tolerance)) { return false; }
             return (value < NMath.Abs(tolerance));
         }
 
@@ -94,7 +59,7 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsZero(double value, double tolerance = ZeroTolerance)
+        public static bool IsZero(this double value, double tolerance = Numbers.ZeroTolerance)
         {
             return (NMath.Abs(value) < NMath.Abs(tolerance));
         }
@@ -108,9 +73,9 @@ namespace MPT.Math
         /// <param name="value2"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsEqualTo(double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsEqualTo(this double value1, double value2, double tolerance = Numbers.ZeroTolerance)
         {
-            return AreEqual(value1, value2, tolerance);
+            return Numbers.AreEqual(value1, value2, tolerance);
         }
 
         /// <summary>
@@ -120,7 +85,7 @@ namespace MPT.Math
         /// <param name="value2"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsGreaterThan(double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsGreaterThan(this double value1, double value2, double tolerance = Numbers.ZeroTolerance)
         {
             return ((value1 - value2) > NMath.Abs(tolerance));
         }
@@ -132,24 +97,10 @@ namespace MPT.Math
         /// <param name="value2"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsLessThan(double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsLessThan(this double value1, double value2, double tolerance = Numbers.ZeroTolerance)
         {
-            if (IsEqualTo(value1, value2, tolerance)) { return false; }
+            if (value1.IsEqualTo(value2, tolerance)) { return false; }
             return ((value1 - value2) < NMath.Abs(tolerance));
-        }
-
-        /// <summary>
-        /// Values are equal within the absolute value of the zero-tolerance.
-        /// </summary>
-        /// <param name="value1"></param>
-        /// <param name="value2"></param>
-        /// <param name="tolerance"></param>
-        /// <returns></returns>
-        public static bool AreEqual(double value1, double value2, double tolerance = ZeroTolerance)
-        {
-            if (double.IsPositiveInfinity(value1) && double.IsPositiveInfinity(value2)) { return true; }
-            if (double.IsNegativeInfinity(value1) && double.IsNegativeInfinity(value2)) { return true; }
-            return (NMath.Abs(value1 - value2) < NMath.Abs(tolerance));
         }
 
         /// <summary>
@@ -159,9 +110,9 @@ namespace MPT.Math
         /// <param name="value2">The value2.</param>
         /// <param name="tolerance">The tolerance.</param>
         /// <returns><c>true</c> if [is greater than or equal to] [the specified value2]; otherwise, <c>false</c>.</returns>
-        public static bool IsGreaterThanOrEqualTo(double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsGreaterThanOrEqualTo(this double value1, double value2, double tolerance = Numbers.ZeroTolerance)
         {
-            return (IsGreaterThan(value1, value2, tolerance) || IsEqualTo(value1, value2, tolerance));
+            return (value1.IsGreaterThan(value2, tolerance) || value1.IsEqualTo(value2, tolerance));
         }
 
         /// <summary>
@@ -171,9 +122,9 @@ namespace MPT.Math
         /// <param name="value2">The value2.</param>
         /// <param name="tolerance">The tolerance.</param>
         /// <returns><c>true</c> if [is less than or equal to] [the specified value2]; otherwise, <c>false</c>.</returns>
-        public static bool IsLessThanOrEqualTo(double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsLessThanOrEqualTo(this double value1, double value2, double tolerance = Numbers.ZeroTolerance)
         {
-            return (IsLessThan(value1, value2, tolerance) || IsEqualTo(value1, value2, tolerance));
+            return (value1.IsLessThan(value2, tolerance) || value1.IsEqualTo(value2, tolerance));
         }
         #endregion
 
@@ -183,7 +134,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsOdd(int value)
+        public static bool IsOdd(this int value)
         {
             return (value % 2 != 0);
         }
@@ -193,7 +144,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsEven(int value)
+        public static bool IsEven(this int value)
         {
             return !IsOdd(value);
         }
@@ -204,7 +155,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsPrime(int value)
+        public static bool IsPrime(this int value)
         {
             value = NMath.Abs(value);
             if (value == 0)
@@ -254,7 +205,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsComposite(int value)
+        public static bool IsComposite(this int value)
         {
             if (value == 0)
             {
@@ -272,7 +223,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int LastDigit(int value)
+        public static int LastDigit(this int value)
         {
             return NMath.Abs((value % 10));
         }
@@ -284,7 +235,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int Squared(int value)
+        public static int Squared(this int value)
         {
             return (value * value);
         }
@@ -293,7 +244,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static double Squared(double value)
+        public static double Squared(this double value)
         {
             return (value * value);
         }
@@ -303,7 +254,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int Cubed(int value)
+        public static int Cubed(this int value)
         {
             return (value * value * value);
         }
@@ -312,7 +263,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static double Cubed(double value)
+        public static double Cubed(this double value)
         {
             return (value * value * value);
         }
@@ -322,7 +273,16 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>System.Double.</returns>
-        public static double Sqrt(double value)
+        public static double Sqrt(this int value)
+        {
+            return Sqrt((double)value);
+        }
+        /// <summary>
+        /// Returns the square root of the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.Double.</returns>
+        public static double Sqrt(this double value)
         {
             return NMath.Sqrt(value);
         }
@@ -332,9 +292,18 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>System.Double.</returns>
-        public static double CubeRoot(double value)
+        public static double CubeRoot(this int value)
         {
-            return Root(value, 3);
+            return CubeRoot((double)value);
+        }
+        /// <summary>
+        /// Returns the cube root of the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.Double.</returns>
+        public static double CubeRoot(this double value)
+        {
+            return NMath.Sign(value) * NMath.Abs(value).Pow(1d / 3d);
         }
 
         /// <summary>
@@ -343,20 +312,19 @@ namespace MPT.Math
         /// <param name="value">The value.</param>
         /// <param name="root">The root.</param>
         /// <returns>System.Double.</returns>
-        public static double Root(double value, int root)
+        public static double Root(this double value, int root)
         {
-            return IsOdd(root) ? NMath.Sign(value) * Pow(NMath.Abs(value), 1d / root) : Pow(value, 1d / root);
+            return root.IsOdd() ? NMath.Sign(value) * NMath.Abs(value).Pow(1d / root) : value.Pow(1d / root);
         }
-
         /// <summary>
         /// Returns the root of the number.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="root">The root.</param>
         /// <returns>System.Double.</returns>
-        public static double Root(double value, double root)
+        public static double Root(this double value, double root)
         {
-            return Pow(value, 1d / root);
+            return value.Pow(1d / root);
         }
 
         /// <summary>
@@ -365,9 +333,19 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="power"></param>
         /// <returns></returns>
-        public static double Pow(double value, double power)
+        public static double Pow(this int value, double power)
         {
-            if (value == 0 && IsNegative(power))
+            return ((double)value).Pow(power);
+        }
+        /// <summary>
+        /// Returns the value raised to the power provided.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        public static double Pow(this double value, double power)
+        {
+            if (value == 0 && power.IsNegative(0))
             {
                 throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
             }
@@ -381,7 +359,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static int Factorial(int value)
+        public static int Factorial(this int value)
         {
             if (value == 0)
             {
@@ -401,7 +379,7 @@ namespace MPT.Math
         /// </summary>
         /// <param name="baseValue"></param>
         /// <param name="plusMinusValue">Value to add and subtract from the base value.</param>
-        public static int[] PlusMinus(int baseValue, int plusMinusValue)
+        public static int[] PlusMinus(this int baseValue, int plusMinusValue)
         {
             return new[]
             {
@@ -414,8 +392,17 @@ namespace MPT.Math
         /// </summary>
         /// <param name="baseValue"></param>
         /// <param name="plusMinusValue">Value to add and subtract from the base value.</param>
+        public static double[] PlusMinus(this int baseValue, double plusMinusValue)
+        {
+            return ((double)baseValue).PlusMinus(plusMinusValue);
+        }
+        /// <summary>
+        /// Returns the paired result of adding and subtracting the provided value from the base value.
+        /// </summary>
+        /// <param name="baseValue"></param>
+        /// <param name="plusMinusValue">Value to add and subtract from the base value.</param>
         /// <returns></returns>
-        public static double[] PlusMinus(double baseValue, double plusMinusValue)
+        public static double[] PlusMinus(this double baseValue, double plusMinusValue)
         {
             return new[]
             {
@@ -423,6 +410,7 @@ namespace MPT.Math
                 baseValue - plusMinusValue
             };
         }
+
 
 
         /// <summary>
@@ -437,7 +425,26 @@ namespace MPT.Math
         /// If value &gt; max, max will be returned.
         /// If value &lt; min, min will be returned.
         /// If min ≤ value ≥ max, value will be returned.</returns>
-        public static int Limit(int value, int min, int max)
+        public static int Limit(this int value, int min, int max)
+        {
+            if (max < min) throw new ArgumentException($"Max limit, {max}, is less than the min limit, {min}");
+            if (value > max) { return max; }
+            if (value < min) { return min; }
+            return value;
+        }
+        /// <summary>
+        /// Restricts a value to be within a specified range.
+        /// </summary>
+        /// <param name="value">The value to clamp.</param>
+        /// <param name="min">The minimum value. 
+        /// If value is less than min, min will be returned.</param>
+        /// <param name="max">The maximum value. 
+        /// If value is greater than max, max will be returned.</param>
+        /// <returns>The clamped value.
+        /// If value &gt; max, max will be returned.
+        /// If value &lt; min, min will be returned.
+        /// If min ≤ value ≥ max, value will be returned.</returns>
+        public static double Limit(this int value, double min, double max)
         {
             if (max < min) throw new ArgumentException($"Max limit, {max}, is less than the min limit, {min}");
             if (value > max) { return max; }
@@ -457,11 +464,11 @@ namespace MPT.Math
         /// If value &gt; max, max will be returned.
         /// If value &lt; min, min will be returned.
         /// If min ≤ value ≥ max, value will be returned.</returns>
-        public static double Limit(double value, double min, double max, double tolerance = ZeroTolerance)
+        public static double Limit(this double value, double min, double max, double tolerance = Numbers.ZeroTolerance)
         {
             if (max < min) throw new ArgumentException($"Max limit, {max}, is less than the min limit, {min}");
-            if (IsGreaterThan(value, max, tolerance)) { return max; }
-            if (IsLessThan(value, min, tolerance)) { return min; }
+            if (value.IsGreaterThan(max, tolerance)) { return max; }
+            if (value.IsLessThan(min, tolerance)) { return min; }
             return value;
         }
         #endregion

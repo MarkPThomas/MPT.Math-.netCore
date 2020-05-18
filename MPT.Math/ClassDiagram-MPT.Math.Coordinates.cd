@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Struct Name="MPT.Math.Coordinates.AngularOffset">
+    <Position X="10.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QACAAAAAAAACAAAA4AUAAAAAAAAAAIAAIAAAACABCiA=</HashCode>
+      <FileName>Coordinates\AngularOffset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.Angle" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAAgAAAAECAAIA4AUCUAAAAgBAAIACgCAAAIAAAiA=</HashCode>
+      <FileName>Coordinates\Angle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.BarycentricCoordinate" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAACAAAAgAAAAAAAAAQAAJAAAAAAAAABAiA=</HashCode>
+      <FileName>Coordinates\BarycentricCoordinate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.CartesianCoordinate" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQACAAAACAAAA4AUAAAAEAAQAAIAAAAAAAEAAYiA=</HashCode>
+      <FileName>Coordinates\CartesianCoordinate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.CartesianOffset" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAACAAAA4AUAAABAAAAAAIAAAAAAACABYiA=</HashCode>
+      <FileName>Coordinates\CartesianOffset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.LinearOffset" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAACAAgA4AUAAABAAAAAAIAAAAAAACABAiA=</HashCode>
+      <FileName>Coordinates\LinearOffset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.PolarCoordinate" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAqAACAAAAogRBAABABAAAQoAAAAQAAAIASiA=</HashCode>
+      <FileName>Coordinates\PolarCoordinate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.PolarOffset" BaseTypeListCollapsed="true">
+    <Position X="16" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAACAAAA4AUAAABAAAAAAIAAAAAAACABCiA=</HashCode>
+      <FileName>Coordinates\PolarOffset.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="MPT.Math.Coordinates.TrilinearCoordinate" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACAACAAAAgAAAAAAAAAAAAIAAAAAAAAAAYiE=</HashCode>
+      <FileName>Coordinates\TrilinearCoordinate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

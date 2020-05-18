@@ -1,5 +1,6 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Coordinates3D;
+using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;
 
@@ -20,9 +21,12 @@ namespace MPT.Math.Algebra
         /// <returns></returns>
         public static double[] QuadraticFormula(double a, double b, double c)
         {
+            if (a.IsZero()) { throw new ArgumentException("Argument 'a' cannot be 0"); }
             double denominator = 2 * a;
             double operand1 = -b / denominator;
-            double operand2 = Numbers.Sqrt(b.Squared() - 4 * a * c) / denominator;
+            double operand2Sqrt = b.Squared() - 4 * a * c;
+            if (operand2Sqrt.IsNegative()) { throw new ArgumentException("'b^2 - 4 * a * c' cannot be negative"); }
+            double operand2 = Numbers.Sqrt(operand2Sqrt) / denominator;
            
 
             return operand1.PlusMinus(operand2);
@@ -43,7 +47,7 @@ namespace MPT.Math.Algebra
             double a1 = c / a;
             double a0 = d / a;
 
-            double B = -(9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed())/27;
+            double B = -(9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed())/27d;
 
             return cubicCurveLeastRootNormalized(a0, a1, a2, B);
         }
@@ -58,8 +62,8 @@ namespace MPT.Math.Algebra
         /// <returns>System.Double[].</returns>
         private static double cubicCurveLeastRootNormalized(double a0, double a1, double a2, double B)
         {
-            double A = (1 / 3) * (3 * a1 - a2.Pow(2));
-            double tSqrt = Numbers.Sqrt(B.Squared() + (4 / 27) * A.Cubed());
+            double A = (1 / 3d) * (3 * a1 - a2.Pow(2));
+            double tSqrt = Numbers.Sqrt(B.Squared() + (4 / 27d) * A.Cubed());
 
             if (B.IsNegative() || tSqrt.IsNegative())
             {
@@ -67,7 +71,7 @@ namespace MPT.Math.Algebra
             }
             double t = Numbers.CubeRoot(0.5 * (-B + tSqrt));
 
-            return Numbers.CubeRoot(B + t.Cubed()) - t - a2 / 3;
+            return Numbers.CubeRoot(B + t.Cubed()) - t - a2 / 3d;
         }
 
         /// <summary>
@@ -98,25 +102,25 @@ namespace MPT.Math.Algebra
         /// <returns></returns>
         private static double[] cubicCurveRootsNormalized(double a0, double a1, double a2, bool returnLowestRoot = false)
         {
-            double Q = (3 * a1 - a2.Squared()) / 9;
-            double R = (9 * a2 * a1 - 27 * a0 - 2 * a2.Cubed()) / 54;
+            double Q = (3 * a1 - a2.Squared()) / 9d;
+            double R = (9 * a2 * a1 - 27 * a0 - 2 * a2.Cubed()) / 54d;
             double D = Q.Cubed() + R.Squared();
-            double x1 = 0;
+            double x1;
 
             if (returnLowestRoot && D.IsGreaterThanOrEqualTo(0))
             {
-                double S = (R + Numbers.Sqrt(D)).Pow(1 / 3);
-                double T = (R - D.Pow(0.5)).Pow(1 / 3);
-                x1 = (S + T) - (1 / 3) * a2;
+                double S = Numbers.CubeRoot(R + Numbers.Sqrt(D));
+                double T = Numbers.CubeRoot(R - D.Pow(0.5));
+                x1 = (S + T) - (1 / 3d) * a2;
 
                 return new double[] { x1 };
             }
 
             double theta = NMath.Acos(R / Numbers.Sqrt(-(NMath.Abs(Q.Cubed()))));
 
-            x1 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos(theta / 3) - a2 / 3;
-            double x2 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 2 * Numbers.Pi) / 3) - a2 / 3;
-            double x3 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 4 * Numbers.Pi) / 3) - a2 / 3;
+            x1 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos(theta / 3d) - a2 / 3d;
+            double x2 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 2 * Numbers.Pi) / 3d) - a2 / 3d;
+            double x3 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 4 * Numbers.Pi) / 3d) - a2 / 3d;
 
             return new double[] { x1, x2, x3 };
         }
@@ -128,13 +132,13 @@ namespace MPT.Math.Algebra
         /// </summary>
         /// <param name="value1">First value.</param>
         /// <param name="value2">Second value.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of the second value.</param>
+        /// <param name="point2Weight">Value between 0 and 1 indicating the weight of the second value.</param>
         /// <returns>Interpolated value.</returns>
         public static double InterpolationLinear(double value1,
                                                  double value2,
-                                                 double amount)
+                                                 double point2Weight)
         {
-            return value1 + (value2 - value1) * amount;
+            return value1 + (value2 - value1) * point2Weight;
         }
 
         /// <summary>
@@ -142,13 +146,13 @@ namespace MPT.Math.Algebra
         /// </summary>
         /// <param name="point1">First point.</param>
         /// <param name="point2">Second point.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of the second point.</param>
+        /// <param name="point2Weight">Value between 0 and 1 indicating the weight of the second point.</param>
         /// <returns>Interpolated value.</returns>
         public static CartesianCoordinate InterpolationLinear(CartesianCoordinate point1,
                                                 CartesianCoordinate point2,
-                                                double amount)
+                                                double point2Weight)
         {
-            return point1 + (point2 - point1) * amount;
+            return point1 + (point2 - point1) * point2Weight;
         }
 
         /// <summary>
@@ -201,6 +205,17 @@ namespace MPT.Math.Algebra
         /// X-coordinate of a horizontal line intersecting the line described by the points provided.
         /// </summary>
         /// <param name="y">Y-coordinate of the horizontal line.</param>
+        /// <param name="I">First point.</param>
+        /// <param name="J">Second point.</param>
+        /// <returns></returns>
+        public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J)
+        {
+            return IntersectionX(y, I.X, I.Y, J.X, J.Y);
+        }
+        /// <summary>
+        /// X-coordinate of a horizontal line intersecting the line described by the points provided.
+        /// </summary>
+        /// <param name="y">Y-coordinate of the horizontal line.</param>
         /// <param name="x1">X-coordinate of first point.</param>
         /// <param name="y1">Y-coordinate of first point.</param>
         /// <param name="x2">X-coordinate of second point.</param>
@@ -209,18 +224,6 @@ namespace MPT.Math.Algebra
         public static double IntersectionX(double y, double x1, double y1, double x2, double y2)
         {
             return ((((y - y1) * (x2 - x1)) / (y2 - y1)) + x1);
-        }
-
-        /// <summary>
-        /// X-coordinate of a horizontal line intersecting the line described by the points provided.
-        /// </summary>
-        /// <param name="y">Y-coordinate of the horizontal line.</param>
-        /// <param name="I">First point.</param>
-        /// <param name="J">Second point.</param>
-        /// <returns></returns>
-        public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J)
-        {
-            return IntersectionX(y, I.X, I.Y, J.X, J.Y);
         }
         #endregion
 

@@ -13,6 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Algebra\bin\**" />
+    <EmbeddedResource Remove="Algebra\bin\**" />
+    <None Remove="Algebra\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Coordinates3D\EllipsoidCoordinate.cs" />
     <Compile Remove="Point.cs" />
     <Compile Remove="Vectors\VectorPolar.cs" />

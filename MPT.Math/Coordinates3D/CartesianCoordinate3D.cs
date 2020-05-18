@@ -7,10 +7,11 @@
 // Last Modified On : 05-16-2020
 // ***********************************************************************
 // <copyright file="CartesianCoordinate3D.cs" company="Mark P Thomas, Inc.">
-//     Copyright ©  2017
+//     2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using System;
 using NMath = System.Math;
