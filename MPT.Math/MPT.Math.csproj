@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Copyright>2020</Copyright>
+    <Company>Mark P Thomas, Inc.</Company>
+    <Authors>Mark P Thomas</Authors>
+    <Description>A library for mathematical operations.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>MPT.Math.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Coordinates3D\EllipsoidCoordinate.cs" />
+    <Compile Remove="Point.cs" />
+    <Compile Remove="Vectors\VectorPolar.cs" />
+    <Compile Remove="Vectors\VectorSpherical.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
