@@ -11,7 +11,7 @@ namespace MPT.Math.Coordinates3D
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Spherical_coordinate_system"/>
     /// <seealso cref="System.IEquatable{SphericalCoordinate}" />
-    public struct SphericalCoordinate : IEquatable<SphericalCoordinate>
+    public struct SphericalCoordinate : IEquatable<SphericalCoordinate>, ICoordinate3D
     {
         // TODO: Handle ability to make spherical coordinates unique:
         // If it is necessary to define a unique set of spherical coordinates for each point, one must restrict their ranges. A common choice is

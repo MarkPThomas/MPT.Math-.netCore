@@ -23,7 +23,7 @@ namespace MPT.Math.Coordinates
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Polar_coordinate_system"/>
     /// <seealso cref="System.IEquatable{PolarCoordinate}" />
-    public struct PolarCoordinate : IEquatable<PolarCoordinate>
+    public struct PolarCoordinate : IEquatable<PolarCoordinate>, ICoordinate
     {
         // TODO: Handle ability to make polar coordinates unique:
         // Where a unique representation is needed for any point besides the pole, it is usual to limit r to positive numbers (r > 0) and φ to the interval [0, 360°) or (−180°, 180°] (in radians, [0, 2π) or (−π, π]).

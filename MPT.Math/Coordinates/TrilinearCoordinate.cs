@@ -22,7 +22,7 @@ namespace MPT.Math.Coordinates
     /// See <a href="https://en.wikipedia.org/wiki/Trilinear_coordinates#Formulas">Wikipedia</a>. 
     /// </summary>
     /// <seealso cref="System.IEquatable{TrilinearCoordinate}" />
-    public struct TrilinearCoordinate : IEquatable<TrilinearCoordinate>
+    public struct TrilinearCoordinate : IEquatable<TrilinearCoordinate>, ICoordinate
     {
         /// <summary>
         /// Tolerance to use in all calculations with double types.

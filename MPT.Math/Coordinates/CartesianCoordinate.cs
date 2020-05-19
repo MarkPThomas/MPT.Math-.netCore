@@ -26,7 +26,7 @@ namespace MPT.Math.Coordinates
     /// <seealso ref="https://en.wikipedia.org/wiki/Cartesian_coordinate_system"/>
     /// <seealso ref="https://en.wikipedia.org/wiki/Euclidean_space"/>
     /// <seealso cref="System.IEquatable{CartesianCoordinate}" />
-    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>
+    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>, ICoordinate
     {
         #region Properties
         /// <summary>

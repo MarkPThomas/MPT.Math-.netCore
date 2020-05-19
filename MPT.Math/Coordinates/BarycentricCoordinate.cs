@@ -22,7 +22,7 @@ namespace MPT.Math.Coordinates
     /// See <a href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system">Wikipedia</a>. 
     /// </summary>
     /// <seealso cref="System.IEquatable{BarycentricCoordinate}" />
-    public struct BarycentricCoordinate : IEquatable<BarycentricCoordinate>
+    public struct BarycentricCoordinate : IEquatable<BarycentricCoordinate>, ICoordinate
     {
         /// <summary>
         /// Tolerance to use in all calculations with double types.

@@ -11,7 +11,7 @@ namespace MPT.Math.Coordinates3D
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Cylindrical_coordinate_system"/>
     /// <seealso cref="System.IEquatable{CylindricalCoordinate}" />
-    public struct CylindricalCoordinate : IEquatable<CylindricalCoordinate>
+    public struct CylindricalCoordinate : IEquatable<CylindricalCoordinate>, ICoordinate3D
     {
         // TODO: Handle ability to make spherical coordinates unique:
         // In situations where someone wants a unique set of coordinates for each point, one may restrict the radius to be non-negative (ρ ≥ 0) and the azimuth φ to lie in a specific interval spanning 360°, such as [−180°,+180°] or [0,360°].
