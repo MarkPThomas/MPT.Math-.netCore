@@ -8,6 +8,11 @@ namespace MPT.Math.NumberTypeExtensions
     /// </summary>
     public static class NumberTypeExtensionLibrary
     {
+        /// <summary>
+        /// Default zero tolerance for operations.
+        /// </summary>
+        public const double ZeroTolerance = Numbers.ZeroTolerance;
+
         #region Signs
         /// <summary>
         /// Value is greater than 0.
@@ -47,7 +52,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsNegative(this double value, double tolerance = Numbers.ZeroTolerance)
+        public static bool IsNegative(this double value, double tolerance = ZeroTolerance)
         {
             if (value.IsZero(tolerance)) { return false; }
             return (value < NMath.Abs(tolerance));
