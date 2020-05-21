@@ -83,7 +83,7 @@ build_script:
 #  - cmd: ./.build_script.cmd
 #  - SonarScanner.MSBuild.exe begin /k:"MarkPThomas_MPT.SE.CrossSection-.netCore" /n:"MarkPThomas_MPT.SE.CrossSection-.netCore" /v:"1.0" /o:"markpthomas-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="751c7e83861178a7af7cb29f1443f48f076ac5d0" /d:sonar.cs.opencover.reportsPaths=".\results.xml"
   - msbuild ./MPT.Math.sln /t:Rebuild
-  - cmd: ./.after_test.cmd
+#  - cmd: ./.after_test.cmd
 #  - SonarScanner.MSBuild.exe end /d:"sonar.login=751c7e83861178a7af7cb29f1443f48f076ac5d0"
 
 # to disable automatic builds
