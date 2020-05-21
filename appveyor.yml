@@ -131,6 +131,7 @@ build_script:
 
 # to run your custom scripts instead of automatic tests
 test_script:
+  - dotnet test  .\MPT.Math.UnitTests\bin\Debug\netcoreapp2.1\MPT.Math.UnitTests.dll
   - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
 #  - dotnet test test/Qwack.Core.Tests/Qwack.Core.Tests.csproj
 
