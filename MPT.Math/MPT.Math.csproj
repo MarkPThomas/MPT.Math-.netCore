@@ -19,7 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="CoordinateConverters\Cartesian2DBarycentricConverter.cs" />
+    <Compile Remove="CoordinateConverters\Cartesian2DTrilinearConverter.cs" />
+    <Compile Remove="CoordinateConverters\Cartesian3DEllipsoidConverter.cs" />
     <Compile Remove="Coordinates3D\EllipsoidCoordinate.cs" />
+    <Compile Remove="Coordinates\BarycentricCoordinate.cs" />
+    <Compile Remove="Coordinates\TrilinearCoordinate.cs" />
     <Compile Remove="Point.cs" />
     <Compile Remove="Vectors\VectorPolar.cs" />
     <Compile Remove="Vectors\VectorSpherical.cs" />

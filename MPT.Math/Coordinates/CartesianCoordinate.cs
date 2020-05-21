@@ -77,41 +77,10 @@ namespace MPT.Math.Coordinates
                 Tolerance);
         }
 
-        /// <summary>
-        /// Converts to Barycentric coordinates.
-        /// </summary>
-        /// <param name="vertexA">The vertex a coordinate of the simplex shape.</param>
-        /// <param name="vertexB">The vertex b.</param>
-        /// <param name="vertexC">The vertex c.</param>
-        /// <returns>BarycentricCoordinate.</returns>
-        public BarycentricCoordinate ToBarycentric(CartesianCoordinate vertexA, CartesianCoordinate vertexB, CartesianCoordinate vertexC)
-        {
-            double determinate = (vertexB.Y - vertexC.Y) * (vertexA.X - vertexC.X) +
-                                 (vertexC.X - vertexB.X) * (vertexA.Y - vertexC.Y);
+        
+        
 
-            double alpha = ((vertexB.Y - vertexC.Y) * (X - vertexC.X) +
-                            (vertexC.X - vertexB.X) * (Y - vertexC.Y)) / determinate;
-
-            double beta = ((vertexC.Y - vertexA.Y) * (X - vertexC.X) +
-                            (vertexA.X - vertexC.X) * (Y - vertexC.Y)) / determinate;
-
-            double gamma = 1 - alpha - beta;
-
-            return new BarycentricCoordinate(alpha, beta, gamma, Tolerance);
-        }
-
-        /// <summary>
-        /// Converts to Trilinear coordinates.
-        /// </summary>
-        /// <param name="vertexA">The vertex a.</param>
-        /// <param name="vertexB">The vertex b.</param>
-        /// <param name="vertexC">The vertex c.</param>
-        /// <returns>TrilinearCoordinate.</returns>
-        public TrilinearCoordinate ToTrilinear(CartesianCoordinate vertexA, CartesianCoordinate vertexB, CartesianCoordinate vertexC)
-        {
-            BarycentricCoordinate barycentric = ToBarycentric(vertexA, vertexB, vertexC);
-            return barycentric.ToTrilinear(vertexA, vertexB, vertexC);
-        }
+        
         #endregion
 
         #region Methods

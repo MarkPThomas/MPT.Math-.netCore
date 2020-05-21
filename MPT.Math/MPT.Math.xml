@@ -2656,6 +2656,27 @@
             <param name="b">The b.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="T:MPT.Math.Geometry.GeometryLibrary">
+            <summary>
+            Contains static methods for common geometry operations.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Geometry.GeometryLibrary.TangentVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Returns the tangent vector to the supplied points.
+            </summary>
+            <param name="i">First point.</param>
+            <param name="j">Second point.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Geometry.GeometryLibrary.NormalVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Returns a normal vector to a line connecting two points.
+            </summary>
+            <param name="i">First point.</param>
+            <param name="j">Second point.</param> 
+            <returns></returns>
+        </member>
         <member name="T:MPT.Math.Matrices.Matrix">
             <summary>
             Struct Matrix
