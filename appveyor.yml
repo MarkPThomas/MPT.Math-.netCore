@@ -33,7 +33,7 @@ image: Visual Studio 2019
 # environment variables
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: /fSfzvBbEF0W3AA9JRDaqsyiye2SFFnz8+6Y+/2pkAIiy1FbIPgluCQDOXWH1cXe
+    secure: fZ2/wSRQaKLmLOMoMyffe1JTyxvVIEqln4vQ4a8vd97uQS9p2phm9aghI83p4XsJ
 
 #  SONARQUBE:
 #    secure: 20SN5KTeMrw/ROlDr08KTCYaEkdvxDbMxzihANB+sqa7nEj6vxGNM27ecL0BzHDU
@@ -60,7 +60,7 @@ environment:
 
 # scripts to run before build
 before_build:
-  - nuget restore #./MPT.Math.sln
+  - dotnet restore
   
 build:
   #parallel: true                  # enable MSBuild parallel builds
@@ -78,7 +78,6 @@ build:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-  - dotnet restore
   - dotnet build -c Debug
 #  - choco install "msbuild-sonarqube-runner" -y
 #  - cmd: ./.build_script.cmd
