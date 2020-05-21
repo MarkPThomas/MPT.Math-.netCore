@@ -130,13 +130,13 @@ build_script:
 #  - ps: Write-Host "script1"
 
 # to run your custom scripts instead of automatic tests
-test_script:
-  - dotnet test  .\MPT.Math.UnitTests\bin\Debug\netcoreapp2.1\MPT.Math.UnitTests.dll
-  - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
+#test_script:
+#  - dotnet test  .\MPT.Math.UnitTests\bin\Debug\netcoreapp2.1\MPT.Math.UnitTests.dll
+#  - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
 #  - dotnet test test/Qwack.Core.Tests/Qwack.Core.Tests.csproj
 
 # scripts to run after tests
-after_test:
+#after_test:
   #- cmd: ./DB-Location-XReferencer/.after_test.cmd
   #- ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:".\script\runtests.bat" -searchdirs:".\test\Qwack.Math.Tests\bin\Debug\netcoreapp1.1;.\test\Qwack.Dates.Tests\bin\Debug\netcoreapp1.1;.\test\Qwack.Core.Tests\bin\Debug\netcoreapp1.1" -oldstyle -output:coverage.xml -skipautoprops -returntargetcode -filter:"+[Qwack*]* -[*Tests]* -[*Benchmark]*"')
   #- ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml')
