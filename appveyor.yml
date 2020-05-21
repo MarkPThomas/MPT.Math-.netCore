@@ -80,7 +80,7 @@ build:
 build_script:
   - dotnet build -c Debug
 #  - choco install "msbuild-sonarqube-runner" -y
-#  - cmd: ./.build_script.cmd
+  - cmd: ./.build_script.cmd
 #  - SonarScanner.MSBuild.exe begin /k:"MarkPThomas_MPT.SE.CrossSection-.netCore" /n:"MarkPThomas_MPT.SE.CrossSection-.netCore" /v:"1.0" /o:"markpthomas-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="751c7e83861178a7af7cb29f1443f48f076ac5d0" /d:sonar.cs.opencover.reportsPaths=".\results.xml"
 #  - msbuild ./MPT.Math.sln /t:Rebuild
 #  - cmd: ./.after_test.cmd
@@ -133,7 +133,9 @@ build_script:
 test_script:
   - ps: >-
     nuget install xunit.runner.console -OutputDirectory packages -Version 2.4.1  
+    
     nuget install OpenCover -OutputDirectory packages -Version 4.6.519
+    
     dotnet tool install coveralls.net --version 1.0.0-beta0002 --tool-path tools
     
     .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:dotnet.exe "-targetargs:"".\packages\xunit.runner.console.2.4.1\tools\netcoreapp2.1\xunit.console.dll"" "".\MPT.Math.UnitTests\bin\Release\netcoreapp2.1\MPT.Math.UnitTests.dll"" -noshadow -appveyor" -filter:"+[MPT.Math*]*" -oldStyle -output:opencoverCoverage.xml
