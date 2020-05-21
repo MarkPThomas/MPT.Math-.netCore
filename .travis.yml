@@ -1,15 +1,20 @@
 dist: trusty
-sudo: required
 language: csharp
 solution: MPT.Math.sln
+jobs:
+  include:
+    - dotnet: 2.1.502
+      mono: none
+      env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
+    - mono: latest
 install:
 - nuget restore MPT.Math.sln
-- nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+- nuget install NUnit.Runners -Version 3.9.0 -OutputDirectory testrunner
 - nuget install OpenCover -Version 4.6.519 -OutputDirectory testrunner
 script:
 - ./build/travis.sh
-#- msbuild /p:Configuration=Debug MPT.Math.sln
-#- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./MPT.Math.UnitTests/bin/Debug/netcoreapp3.1/MPT.Math.dll
+- msbuild /p:Configuration=Debug MPT.Math.sln
+- mono ./testrunner/NUnit.Runners.3.9.0/tools/nunit-console.exe ./MPT.Math.UnitTests/bin/Debug/netcoreapp3.1/MPT.Math.dll
 env:
   global:
     secure: O9hMQC8sURNC/MnWiVD0Grt2MUZFNyPFixlnP/I6/un4Zv6WTqNTuAzXGWPjEqkIDU8yODwI7cGAz39jkD8cXeYYsnJFvDAY/1h5Kzt48i/QjWo1UJcccE8cZr8cmjSbOSZ7GoDIl8yn9f9Oyo/KA+t/AurOOPye8ZYTCt8xVPPSs9uZUhyTfVln5q+A8xfkA5mD8b1qBygxR7Z2/su9ZlIeZ0aAxa4ez602vX50MRHoivHVPoRA145cXGMhfe5ORA0Jo/bHYdpCZIj6r7vgaoSZUGBx60YC34zozIBBD42dsooTwnHrH7G4LmXJ2bx4MdjLI50Hso2r+7CfVOKNQCqEFDPYcFaRaRuPMu95mBnwgyumVNvIecl/75J4iLsX7Srqs0c1lEL3Ne23rRcSwtoO/uK21R8VUGLeCynImH9/lnYUMWQayBWiI81PyCzPIEyPalFum0qVOU/KfSmeXHyAaRcWyzbsXE9tRRW68O+8duBwqNDFgGfloiJat2r0XtKRG4KlWHlsxYmtpuOuhY+uE9O8GInYr+4LhN60UJ2G+amK5a40cMJwkmYG10fwwSqn0tjPsAr1ahR+NfjiusV15V3+z4/2/BB22xBtmR8aKb8iZ+s3A9Ld63QsZK8L4Ru8VsrPGAhcUx27Xgsr/espRLZhWeML41L0YH77+Z8=
