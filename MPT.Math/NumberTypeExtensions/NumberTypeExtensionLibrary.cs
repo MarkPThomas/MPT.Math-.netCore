@@ -345,7 +345,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// <returns></returns>
         public static double Pow(this double value, double power)
         {
-            if (value == 0 && power.IsNegative(0))
+            if (value == 0 && power.IsNegative())
             {
                 throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
             }
