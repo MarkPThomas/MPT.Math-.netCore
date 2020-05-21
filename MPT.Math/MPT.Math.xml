@@ -2624,7 +2624,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.Numbers.IsPositive(System.Double,System.Double)">
+        <member name="M:MPT.Math.Numbers.IsPositiveSign(System.Double,System.Double)">
             <summary>
             Value is greater than the zero-tolerance.
             </summary>
@@ -2632,7 +2632,7 @@
             <param name="tolerance"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.Numbers.IsNegative(System.Double,System.Double)">
+        <member name="M:MPT.Math.Numbers.IsNegativeSign(System.Double,System.Double)">
             <summary>
             Value is less than the zero-tolerance.
             </summary>
@@ -2640,7 +2640,7 @@
             <param name="tolerance"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.Numbers.IsZero(System.Double,System.Double)">
+        <member name="M:MPT.Math.Numbers.IsZeroSign(System.Double,System.Double)">
             <summary>
             Value is within the absolute value of the zero-tolerance.
             </summary>
@@ -2860,14 +2860,14 @@
             Contains extension methods dealing generically with numbers. 
             </summary>
         </member>
-        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsPositive(System.Int32)">
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsPositiveSign(System.Int32)">
             <summary>
             Value is greater than 0.
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsPositive(System.Double,System.Double)">
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsPositiveSign(System.Double,System.Double)">
             <summary>
             Value is greater than the zero-tolerance.
             </summary>
@@ -2875,14 +2875,14 @@
             <param name="tolerance"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsNegative(System.Int32)">
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsNegativeSign(System.Int32)">
             <summary>
             Value is less than zero.
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsNegative(System.Double,System.Double)">
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsNegativeSign(System.Double,System.Double)">
             <summary>
             Value is less than the zero-tolerance.
             </summary>
@@ -2890,7 +2890,7 @@
             <param name="tolerance"></param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsZero(System.Double,System.Double)">
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.IsZeroSign(System.Double,System.Double)">
             <summary>
             Value is within the absolute value of the zero-tolerance.
             </summary>

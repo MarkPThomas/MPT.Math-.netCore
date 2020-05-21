@@ -1,9 +1,9 @@
 # MPT.Math
 A library and classes for mathematical operations, written in C# for .Net Core.
 
-Travis CI: [![Build Status](https://travis-ci.com/MarkPThomas/MPT.Math-.netCore.svg?branch=master)](https://travis-ci.com/MarkPThomas/MPT.Math-.netCore)
+Travis CI: [![Build Status](https://travis-ci.com/MarkPThomas/MPT.Math-.netCore.svg?branch=master)](https://travis-ci.com/MarkPThomas/MPT.Math-.netCore) (Ubuntu Linux)
 
-AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/jney82f0uwl7mf26?svg=true)](https://ci.appveyor.com/project/MarkPThomas/MPT.Math-.netCore)
+AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/jney82f0uwl7mf26?svg=true)](https://ci.appveyor.com/project/MarkPThomas/MPT.Math-.netCore) (Windows)
 
 AppVeyor: [![AppVeyor tests](https://img.shields.io/appveyor/tests/MarkPThomas/MPT.Math-.netCore.svg)](https://ci.appveyor.com/project/MarkPThomas/MPT.Math-.netCore/build/tests)
 
