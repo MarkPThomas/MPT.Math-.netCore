@@ -90,10 +90,10 @@ build_script:
 #---------------------------------#
 
 # to run tests again only selected assemblies and/or categories
-test:
-  assemblies:
-    only:
-      - MPT.Math.UnitTests.dll
+#test:
+#  assemblies:
+#    only:
+#      - MPT.Math.UnitTests.dll
 #      - asm2.dll
 
 #  categories:
