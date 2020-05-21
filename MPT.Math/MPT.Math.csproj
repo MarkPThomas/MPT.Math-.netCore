@@ -6,6 +6,7 @@
     <Company>Mark P Thomas, Inc.</Company>
     <Authors>Mark P Thomas</Authors>
     <Description>A library for mathematical operations.</Description>
+	<DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
