@@ -78,6 +78,7 @@ build:
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
+  - dotnet restore
   - dotnet build -c Debug
 #  - choco install "msbuild-sonarqube-runner" -y
 #  - cmd: ./.build_script.cmd
