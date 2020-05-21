@@ -1,14 +1,14 @@
 dist: trusty
 language: csharp
 mono: none
-dotnet: 2.1.502 #3.1.201 #300   # for some reason .net Core v3.1 does not work
+dotnet: 2.1.502  #3.0.0.300 #3.0.0.201 # For some reason .Net Core v3.1 is not working with Travis
 install:
-  - dotnet restore
-  
+- dotnet restore
 script:
-  - dotnet build MPT.Math/MPT.Math.csproj 
-  - dotnet test MPT.Math.UnitTests/MPT.Math.UnitTests.csproj 
-  
-env:
-  global:
-    secure: O9hMQC8sURNC/MnWiVD0Grt2MUZFNyPFixlnP/I6/un4Zv6WTqNTuAzXGWPjEqkIDU8yODwI7cGAz39jkD8cXeYYsnJFvDAY/1h5Kzt48i/QjWo1UJcccE8cZr8cmjSbOSZ7GoDIl8yn9f9Oyo/KA+t/AurOOPye8ZYTCt8xVPPSs9uZUhyTfVln5q+A8xfkA5mD8b1qBygxR7Z2/su9ZlIeZ0aAxa4ez602vX50MRHoivHVPoRA145cXGMhfe5ORA0Jo/bHYdpCZIj6r7vgaoSZUGBx60YC34zozIBBD42dsooTwnHrH7G4LmXJ2bx4MdjLI50Hso2r+7CfVOKNQCqEFDPYcFaRaRuPMu95mBnwgyumVNvIecl/75J4iLsX7Srqs0c1lEL3Ne23rRcSwtoO/uK21R8VUGLeCynImH9/lnYUMWQayBWiI81PyCzPIEyPalFum0qVOU/KfSmeXHyAaRcWyzbsXE9tRRW68O+8duBwqNDFgGfloiJat2r0XtKRG4KlWHlsxYmtpuOuhY+uE9O8GInYr+4LhN60UJ2G+amK5a40cMJwkmYG10fwwSqn0tjPsAr1ahR+NfjiusV15V3+z4/2/BB22xBtmR8aKb8iZ+s3A9Ld63QsZK8L4Ru8VsrPGAhcUx27Xgsr/espRLZhWeML41L0YH77+Z8=
+- dotnet build MPT.Math/MPT.Math.csproj
+- dotnet test MPT.Math.UnitTests/MPT.Math.UnitTests.csproj
+
+#env:
+#  global:
+# Coveralls
+#  - secure: CmAfBeodkdz7uq7XPiUSBXBNv6bEpk9ZI5Mtb00i3xdyYroYB8b0ZujHPB5dTparoft66MzYw05QzvnxsSXSr6iuXhDqon5qixZnVoVr13TvGdcfVfGBI13LGwCNPlOk5E4ZrVnzhiKPgdM0+2nxKygvgWrx+0Km2q78qHoRMLwGQLS+PEVt16ICS87gOs0K+e0Z6/mP54BNklzy4g+4mse4fVLrS1howfct7COGzdjgCWvtBaJrxadqedC5iUI92qC8A/hFPBcZfNG2/U3hurLXLRDrSF3MrliJRsECnpcxzkYcdvK3iYWxwdIzKsC8PzPMtm3kDr8E6TXiKtKYNyULnlLFk+qH44I4IoK+f0MU/LajcLX41WJ57d0esFQtqGutIwEZ40F+WyHr1DoJANZNiTse76vVvPeD2GZYEsWTK2pnxhGlITHHCCY63/5fQOgZZLVIMvxltyuK5o+Rd1sem84YOSgnu2DeHk4zw2w3F3YaqBpUXNDt+qiB7zmEs8IWRSopCMdEGzK3KZDNMqEW9EQqys6nm6IdEPxyoeOQX69OpFquzGIdkpLuu4FgqwCRvelKYB8OhcRd6bEEygVdFrZwzBa5zfgC7b2C8Pizycv5V/snerYBhffGr2KjMh5J7/M341mSKk0R3D4/nfPzUVP9YiTzCicOsp03FxI=
