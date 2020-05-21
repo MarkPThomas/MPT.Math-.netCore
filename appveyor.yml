@@ -130,7 +130,8 @@ build_script:
 #  - ps: Write-Host "script1"
 
 # to run your custom scripts instead of automatic tests
-#test_script:
+test_script:
+  - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
 #  - dotnet test test/Qwack.Core.Tests/Qwack.Core.Tests.csproj
 
 # scripts to run after tests
