@@ -135,7 +135,7 @@ test_script:
 #  - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
 #  - dotnet test test/Qwack.Core.Tests/Qwack.Core.Tests.csproj
  - ps: dotnet test --no-build
- - ps: dotnet test .\MPT.Math.UnitTests\MPT.Math.UnitTests.csproj" --no-build --logger:Appveyor
+ - ps: dotnet test .\MPT.Math.UnitTests\MPT.Math.UnitTests.csproj --no-build --logger:Appveyor
  
 # scripts to run after tests
 #after_test:
