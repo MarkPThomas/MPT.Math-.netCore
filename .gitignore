@@ -61,7 +61,7 @@ Temporary Items
 *.userosscache
 *.sln.docstates
 *.vcxproj.filters
-*.sln
+#*.sln
 *.vcxproj
 *.ncrunchproject
 *.ncrunchsolution
