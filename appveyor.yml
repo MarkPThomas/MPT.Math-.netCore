@@ -28,7 +28,7 @@ dotnet_csproj:
 image: Visual Studio 2019
 
 # environment variables
-environment:
+#environment:
 #  COVERALLS_REPO_TOKEN:
 #    secure: U6PTNVHFEk9HwMVJUM5sP8uOhINScFDjE # AftoKDQ4EreVjaFeRW/l/qo3Nza59mPmvcDnWQwPCIx5R8m0X1nAH/Imye4Nteq/
 #  SONARQUBE:
