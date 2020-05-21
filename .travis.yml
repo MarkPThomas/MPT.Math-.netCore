@@ -13,7 +13,8 @@ install:
   #- export COVERALLSNET_EXEPATH=/home/travis/build/csMACnz/coveralls.net/Package/Archive/linux/csmacnz.Coveralls
   - dotnet restore ./MPT.Math.sln
   #- nuget restore MPT.Math.sln
-  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+  #- nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
   - nuget install OpenCover -Version 4.6.519 -OutputDirectory testrunner
 script:
   - dotnet build ./MPT.Math.sln
