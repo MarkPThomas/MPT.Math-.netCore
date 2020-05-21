@@ -5,7 +5,7 @@ Travis CI: [![Build Status](https://travis-ci.com/MarkPThomas/MPT.Math-.netCore.
 
 AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/jney82f0uwl7mf26?svg=true)](https://ci.appveyor.com/project/MarkPThomas/MPT.Math-.netCore) (Windows)
 
-AppVeyor: [![AppVeyor tests](https://img.shields.io/appveyor/tests/MarkPThomas/MPT.Math-.netCore.svg)](https://ci.appveyor.com/project/MarkPThomas/MPT.Math-.netCore/build/tests)
+AppVeyor: [![AppVeyor tests](https://img.shields.io/appveyor/tests/MarkPThomas/mpt-math-netcore.svg)](https://ci.appveyor.com/project/MarkPThomas/mpt-math-netcore/build/tests)
 
 Coveralls w/ AppVeyor: [![Coverage Status](https://coveralls.io/repos/github/MarkPThomas/MPT.Math-.netCore/badge.svg?branch=master)](https://coveralls.io/github/MarkPThomas/MPT.Math-.netCore?branch=master)
 
