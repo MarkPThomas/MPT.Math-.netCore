@@ -7,7 +7,7 @@ install:
 script:
 - dotnet build MPT.Math/MPT.Math.csproj
 - dotnet test MPT.Math.UnitTests/MPT.Math.UnitTests.csproj
-- dotnet test MPT.Math.UnitTests/MPT.Math.xUnitTests.csproj
+- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
 
 #env:
 #  global:
