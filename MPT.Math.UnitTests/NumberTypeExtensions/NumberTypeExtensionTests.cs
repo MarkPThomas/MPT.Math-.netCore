@@ -92,7 +92,7 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         [TestCase(double.NegativeInfinity, ExpectedResult = true)]
         public bool IsNegative_Double_Default_Tolerance(double number)
         {
-            return number.IsNegative();
+            return number.IsNNegative();
         }
 
         [TestCase(-0.001, 0.1, ExpectedResult = false)]
@@ -102,7 +102,7 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         [TestCase(-0.001, -0.0001, ExpectedResult = true)]
         public bool IsNegative_Double_Custom_Tolerance(double number, double tolerance)
         {
-            return number.IsNegative(tolerance);
+            return number.IsNNegative(tolerance);
         }
 
         [TestCase(0, ExpectedResult = true)]

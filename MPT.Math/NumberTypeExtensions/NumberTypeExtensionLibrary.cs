@@ -8,11 +8,6 @@ namespace MPT.Math.NumberTypeExtensions
     /// </summary>
     public static class NumberTypeExtensionLibrary
     {
-        /// <summary>
-        /// Default zero tolerance for operations.
-        /// </summary>
-        public const double ZeroTolerance = Numbers.ZeroTolerance;
-
         #region Signs
         /// <summary>
         /// Value is greater than 0.
@@ -52,9 +47,10 @@ namespace MPT.Math.NumberTypeExtensions
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsNegative(this double value, double tolerance = ZeroTolerance)
+        public static bool IsNNegative(this double value, double tolerance = Numbers.ZeroTolerance)
         {
             if (value.IsZero(tolerance)) { return false; }
+           
             return (value < NMath.Abs(tolerance));
         }
 
@@ -350,7 +346,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// <returns></returns>
         public static double Pow(this double value, double power)
         {
-            if (value == 0 && power.IsNegative())
+            if (value == 0 && power.IsNNegative())
             {
                 throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
             }

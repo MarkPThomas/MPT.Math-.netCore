@@ -25,7 +25,7 @@ namespace MPT.Math.Algebra
             double denominator = 2 * a;
             double operand1 = -b / denominator;
             double operand2Sqrt = b.Squared() - 4 * a * c;
-            if (operand2Sqrt.IsNegative()) { throw new ArgumentException("'b^2 - 4 * a * c' cannot be negative"); }
+            if (operand2Sqrt.IsNNegative()) { throw new ArgumentException("'b^2 - 4 * a * c' cannot be negative"); }
             double operand2 = Numbers.Sqrt(operand2Sqrt) / denominator;
            
 
@@ -65,7 +65,7 @@ namespace MPT.Math.Algebra
             double A = (1 / 3d) * (3 * a1 - a2.Pow(2));
             double tSqrt = Numbers.Sqrt(B.Squared() + (4 / 27d) * A.Cubed());
 
-            if (B.IsNegative() || tSqrt.IsNegative())
+            if (B.IsNNegative() || tSqrt.IsNNegative())
             {
                 return cubicCurveRootsNormalized(0, a1, a2, returnLowestRoot: true)[0];
             }

@@ -101,7 +101,7 @@ namespace MPT.Math.Coordinates3D
             {
                 angleAzimuth = NMath.Asin(Y / radialDistance);
             }
-            else if (X.IsNegative())
+            else if (X.IsNNegative())
             {
                 angleAzimuth = -NMath.Asin(Y / radialDistance) + Numbers.Pi;
             }
