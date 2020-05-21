@@ -93,15 +93,15 @@ namespace MPT.Math.Coordinates3D
             double radialDistance = Numbers.Sqrt(X.Squared() + Y.Squared());
             double height = Z;
             double angleAzimuth = 0;
-            if (X.IsZero() && Y.IsZero())
+            if (X.IsZeroSign() && Y.IsZeroSign())
             {
                 angleAzimuth = 0;
             }
-            else if (X.IsGreaterThanOrEqualTo(0) && !Y.IsZero())
+            else if (X.IsGreaterThanOrEqualTo(0) && !Y.IsZeroSign())
             {
                 angleAzimuth = NMath.Asin(Y / radialDistance);
             }
-            else if (X.IsNNegative())
+            else if (X.IsNegativeSign())
             {
                 angleAzimuth = -NMath.Asin(Y / radialDistance) + Numbers.Pi;
             }

@@ -70,9 +70,9 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsPositive(double value, double tolerance = ZeroTolerance)
+        public static bool IsPositiveSign(double value, double tolerance = ZeroTolerance)
         {
-            if (IsZero(value, tolerance)) { return false; }
+            if (IsZeroSign(value, tolerance)) { return false; }
             return (value > NMath.Abs(tolerance));
         }
 
@@ -82,9 +82,9 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsNegative(double value, double tolerance = ZeroTolerance)
+        public static bool IsNegativeSign(double value, double tolerance = ZeroTolerance)
         {
-            if (IsZero(value, tolerance)) { return false; }
+            if (IsZeroSign(value, tolerance)) { return false; }
             return (value < NMath.Abs(tolerance));
         }
 
@@ -94,7 +94,7 @@ namespace MPT.Math
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsZero(double value, double tolerance = ZeroTolerance)
+        public static bool IsZeroSign(double value, double tolerance = ZeroTolerance)
         {
             return (NMath.Abs(value) < NMath.Abs(tolerance));
         }
@@ -367,7 +367,7 @@ namespace MPT.Math
         /// <returns></returns>
         public static double Pow(double value, double power)
         {
-            if (value == 0 && IsNegative(power))
+            if (value == 0 && IsNegativeSign(power))
             {
                 throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
             }

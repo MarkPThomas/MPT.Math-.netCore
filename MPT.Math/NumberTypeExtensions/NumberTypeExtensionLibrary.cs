@@ -14,7 +14,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsPositive(this int value)
+        public static bool IsPositiveSign(this int value)
         {
             return (value > 0);
         }
@@ -25,9 +25,9 @@ namespace MPT.Math.NumberTypeExtensions
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsPositive(this double value, double tolerance = Numbers.ZeroTolerance)
+        public static bool IsPositiveSign(this double value, double tolerance = Numbers.ZeroTolerance)
         {
-            if (value.IsZero(tolerance)) { return false; }
+            if (value.IsZeroSign(tolerance)) { return false; }
             return (value > NMath.Abs(tolerance));
         }
 
@@ -36,7 +36,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsNegative(this int value)
+        public static bool IsNegativeSign(this int value)
         {
             return (value < 0);
         }
@@ -47,9 +47,9 @@ namespace MPT.Math.NumberTypeExtensions
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsNNegative(this double value, double tolerance = Numbers.ZeroTolerance)
+        public static bool IsNegativeSign(this double value, double tolerance = Numbers.ZeroTolerance)
         {
-            if (value.IsZero(tolerance)) { return false; }
+            if (value.IsZeroSign(tolerance)) { return false; }
            
             return (value < NMath.Abs(tolerance));
         }
@@ -60,7 +60,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// <param name="value"></param>
         /// <param name="tolerance"></param>
         /// <returns></returns>
-        public static bool IsZero(this double value, double tolerance = Numbers.ZeroTolerance)
+        public static bool IsZeroSign(this double value, double tolerance = Numbers.ZeroTolerance)
         {
             return (NMath.Abs(value) < NMath.Abs(tolerance));
         }
@@ -346,7 +346,7 @@ namespace MPT.Math.NumberTypeExtensions
         /// <returns></returns>
         public static double Pow(this double value, double power)
         {
-            if (value == 0 && power.IsNNegative())
+            if (value == 0 && power.IsNegativeSign())
             {
                 throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
             }

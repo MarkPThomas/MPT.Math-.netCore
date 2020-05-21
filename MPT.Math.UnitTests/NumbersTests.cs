@@ -64,17 +64,17 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, ExpectedResult = false)]
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = true)]
-        public bool IsPositive_Int(int number)
+        public bool IsPositiveSign_Int(int number)
         {
-            return Numbers.IsPositive(number);
+            return Numbers.IsPositiveSign(number);
         }
 
         [TestCase(-1, ExpectedResult = true)]
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = false)]
-        public bool IsNegative_Int(int number)
+        public bool IsNegativeSign_Int(int number)
         {
-            return Numbers.IsNegative(number);
+            return Numbers.IsNegativeSign(number);
         }
 
         [TestCase(-1, ExpectedResult = false)]
@@ -84,9 +84,9 @@ namespace MPT.Math.UnitTests
         [TestCase(5.31256712, ExpectedResult = true)]
         [TestCase(double.PositiveInfinity, ExpectedResult = true)]
         [TestCase(double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsPositive_Double_Default_Tolerance(double number)
+        public bool IsPositiveSign_Double_Default_Tolerance(double number)
         {
-            return Numbers.IsPositive(number);
+            return Numbers.IsPositiveSign(number);
         }
 
         [TestCase(-0.001, 0.1, ExpectedResult = false)]
@@ -94,9 +94,9 @@ namespace MPT.Math.UnitTests
         [TestCase(0.001, 0.1, ExpectedResult = false)]
         [TestCase(0.001, 0.0001, ExpectedResult = true)]
         [TestCase(0.001, -0.0001, ExpectedResult = true)]
-        public bool IsPositive_Double_Custom_Tolerance(double number, double tolerance)
+        public bool IsPositiveSign_Double_Custom_Tolerance(double number, double tolerance)
         {
-            return Numbers.IsPositive(number, tolerance);
+            return Numbers.IsPositiveSign(number, tolerance);
         }
 
         [TestCase(-1, ExpectedResult = true)]
@@ -106,9 +106,9 @@ namespace MPT.Math.UnitTests
         [TestCase(5.31256712, ExpectedResult = false)]
         [TestCase(double.PositiveInfinity, ExpectedResult = false)]
         [TestCase(double.NegativeInfinity, ExpectedResult = true)]
-        public bool IsNegative_Double_Default_Tolerance(double number)
+        public bool IsNegativeSign_Double_Default_Tolerance(double number)
         {
-            return Numbers.IsNegative(number);
+            return Numbers.IsNegativeSign(number);
         }
 
         [TestCase(-0.001, 0.1, ExpectedResult = false)]
@@ -116,9 +116,9 @@ namespace MPT.Math.UnitTests
         [TestCase(0.001, 0.1, ExpectedResult = false)]
         [TestCase(-0.001, 0.0001, ExpectedResult = true)]
         [TestCase(-0.001, -0.0001, ExpectedResult = true)]
-        public bool IsNegative_Double_Custom_Tolerance(double number, double tolerance)
+        public bool IsNegativeSign_Double_Custom_Tolerance(double number, double tolerance)
         {
-            return Numbers.IsNegative(number, tolerance);
+            return Numbers.IsNegativeSign(number, tolerance);
         }
 
         [TestCase(0, ExpectedResult = true)]
@@ -126,18 +126,18 @@ namespace MPT.Math.UnitTests
         [TestCase(-0.0001, ExpectedResult = false)]
         [TestCase(double.PositiveInfinity, ExpectedResult = false)]
         [TestCase(double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsZero_Default_Tolerance(double value)
+        public bool IsZeroSign_Default_Tolerance(double value)
         {
-            return Numbers.IsZero(value);
+            return Numbers.IsZeroSign(value);
         }
 
 
         [TestCase(0, ExpectedResult = true)]
         [TestCase(1, ExpectedResult = false)]
         [TestCase(-1, ExpectedResult = false)]
-        public bool IsZero_Custom_Tolerance_Default(double value)
+        public bool IsZeroSign_Custom_Tolerance_Default(double value)
         {
-            return Numbers.IsZero(value);
+            return Numbers.IsZeroSign(value);
         }
                 
         [TestCase(0.0001, 0.001, ExpectedResult = true)]
@@ -148,9 +148,9 @@ namespace MPT.Math.UnitTests
         [TestCase(-0.0001, 0.0001, ExpectedResult = false)]
         [TestCase(0.0001, -0.0001, ExpectedResult = false)]
         [TestCase(-0.0001, -0.0001, ExpectedResult = false)]
-        public bool IsZero_Custom_Tolerance(double value, double tolerance)
+        public bool IsZeroSign_Custom_Tolerance(double value, double tolerance)
         {
-            return Numbers.IsZero(value, tolerance);
+            return Numbers.IsZeroSign(value, tolerance);
         }
 
         [TestCase(0, 0, ExpectedResult = true)]

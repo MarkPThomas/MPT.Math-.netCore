@@ -21,11 +21,11 @@ namespace MPT.Math.Algebra
         /// <returns></returns>
         public static double[] QuadraticFormula(double a, double b, double c)
         {
-            if (a.IsZero()) { throw new ArgumentException("Argument 'a' cannot be 0"); }
+            if (a.IsZeroSign()) { throw new ArgumentException("Argument 'a' cannot be 0"); }
             double denominator = 2 * a;
             double operand1 = -b / denominator;
             double operand2Sqrt = b.Squared() - 4 * a * c;
-            if (operand2Sqrt.IsNNegative()) { throw new ArgumentException("'b^2 - 4 * a * c' cannot be negative"); }
+            if (operand2Sqrt.IsNegativeSign()) { throw new ArgumentException("'b^2 - 4 * a * c' cannot be negative"); }
             double operand2 = Numbers.Sqrt(operand2Sqrt) / denominator;
            
 
@@ -65,7 +65,7 @@ namespace MPT.Math.Algebra
             double A = (1 / 3d) * (3 * a1 - a2.Pow(2));
             double tSqrt = Numbers.Sqrt(B.Squared() + (4 / 27d) * A.Cubed());
 
-            if (B.IsNNegative() || tSqrt.IsNNegative())
+            if (B.IsNegativeSign() || tSqrt.IsNegativeSign())
             {
                 return cubicCurveRootsNormalized(0, a1, a2, returnLowestRoot: true)[0];
             }
