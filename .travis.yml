@@ -17,4 +17,4 @@ script:
   #- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
   
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - sonar-scanner -x
+  - sonar-scanner -debug
