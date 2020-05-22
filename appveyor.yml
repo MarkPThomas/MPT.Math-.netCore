@@ -14,10 +14,7 @@ image: Visual Studio 2019
 
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: fZ2/wSRQaKLmLOMoMyffe1JTyxvVIEqln4vQ4a8vd97uQS9p2phm9aghI83p4XsJ
-
-  SONARQUBE:
-    secure: 20SN5KTeMrw/ROlDr08KTCYaEkdvxDbMxzihANB+sqa7nEj6vxGNM27ecL0BzHDU
+    secure: fZ2/wSRQaKLmLOMoMyffe1JTyxvVIEqln4vQ4a8vd97uQS9p2phm9aghI83p4XsJ    # encrypt token here: https://ci.appveyor.com/tools/encrypt
 
 before_build:
   - dotnet restore
@@ -27,10 +24,7 @@ build:
   verbosity: minimal #quiet|minimal|normal|detailed
   
 build_script:
-  - choco install "msbuild-sonarqube-runner" -y
   - dotnet build -c Debug
-  - SonarScanner.MSBuild.exe begin /k:"MarkPThomas_MPT.SE.CrossSection-.netCore" /n:"MarkPThomas_MPT.SE.CrossSection-.netCore" /v:"1.0" /o:"markpthomas-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="751c7e83861178a7af7cb29f1443f48f076ac5d0" /d:sonar.cs.opencover.reportsPaths=".\results.xml"
-  - SonarScanner.MSBuild.exe end /d:"sonar.login=751c7e83861178a7af7cb29f1443f48f076ac5d0"
 
 #before_test:
 #  - echo script1
@@ -38,12 +32,15 @@ build_script:
 
 # to run your custom scripts instead of automatic tests
 test_script:
- - ps: dotnet test --no-build
- - ps: dotnet test .\MPT.Math.UnitTests\MPT.Math.UnitTests.csproj --no-build --logger:Appveyor
+ # This works fine for xUnit Tests, with or without the switch
+ - ps: dotnet test --no-build  
+ # This is needed for NUnit Tests to show up in the AppVeyor 'Tests' tab
+ - ps: dotnet test .\MPT.Math.UnitTests\MPT.Math.UnitTests.csproj --no-build --logger:Appveyor  
  
 # scripts to run after tests
 after_test:
-  - cmd: ./.after_test.cmd
+  # Performs additional installations and testing for Coveralls code coverage
+  - cmd: ./.after_test.cmd  
 
 # to disable automatic tests
 #test: off
