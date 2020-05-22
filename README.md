@@ -13,7 +13,7 @@ A library and classes for mathematical operations, written in C# for .Net Core.
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=security_rating)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 
-&nbsp;&nbsp;&nbsp;&nbsp;![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=ncloc)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore) 
+&nbsp;&nbsp;&nbsp;&nbsp;[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=ncloc)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore) 
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 <!---[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=coverage)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)-->
 
