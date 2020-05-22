@@ -1,18 +1,4 @@
-# Notes:
-#   - Minimal appveyor.yml file is an empty file. All sections are optional.
-#   - Indent each level of configuration with 2 spaces. Do not use tabs!
-#   - All section names are case-sensitive.
-#   - Section names should be unique on each level.
-# See: https://www.appveyor.com/docs/appveyor-yml/
-
-#---------------------------------#
-#      general configuration      #
-#---------------------------------#
-
-# version format
 version: 1.0.{build}
-
-# Do not build on tags (GitHub and BitBucket)
 skip_tags: true
 
 dotnet_csproj:
@@ -23,125 +9,41 @@ dotnet_csproj:
   assembly_version: '{version}'
   file_version: '{version}'
   informational_version: '{version}'
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
 
-# Build worker image (VM template)
 image: Visual Studio 2019
 
-# environment variables
 environment:
   COVERALLS_REPO_TOKEN:
     secure: fZ2/wSRQaKLmLOMoMyffe1JTyxvVIEqln4vQ4a8vd97uQS9p2phm9aghI83p4XsJ
 
-#  SONARQUBE:
-#    secure: 20SN5KTeMrw/ROlDr08KTCYaEkdvxDbMxzihANB+sqa7nEj6vxGNM27ecL0BzHDU
+  SONARQUBE:
+    secure: 20SN5KTeMrw/ROlDr08KTCYaEkdvxDbMxzihANB+sqa7nEj6vxGNM27ecL0BzHDU
 
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
-
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-#platform: Any CPU
-
-# to add several platforms to build matrix:
-#platform:
-#  - x86
-#  - Any CPU
-
-# build Configuration, i.e. Debug, Release, etc.
-#configuration: Release
-
-# to add several configurations to build matrix:
-#configuration:
-#  - Debug
-#  - Release
-
-# scripts to run before build
 before_build:
   - dotnet restore
   
 build:
-  #parallel: true                  # enable MSBuild parallel builds
-  project: ./MPT.Math.sln      # path to Visual Studio solution or project
-  
-  # MSBuild verbosity level
+  project: ./MPT.Math.sln      
   verbosity: minimal #quiet|minimal|normal|detailed
   
-
-# scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
-#before_package:
-
-# scripts to run after build
-#after_build:
-
-# to run your custom scripts instead of automatic MSBuild
 build_script:
+  - choco install "msbuild-sonarqube-runner" -y
   - dotnet build -c Debug
-#  - choco install "msbuild-sonarqube-runner" -y
-#  - cmd: ./.build_script.cmd
-#  - SonarScanner.MSBuild.exe begin /k:"MarkPThomas_MPT.SE.CrossSection-.netCore" /n:"MarkPThomas_MPT.SE.CrossSection-.netCore" /v:"1.0" /o:"markpthomas-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="751c7e83861178a7af7cb29f1443f48f076ac5d0" /d:sonar.cs.opencover.reportsPaths=".\results.xml"
-#  - msbuild ./MPT.Math.sln /t:Rebuild
-  - cmd: ./.after_test.cmd
-#  - SonarScanner.MSBuild.exe end /d:"sonar.login=751c7e83861178a7af7cb29f1443f48f076ac5d0"
+  - SonarScanner.MSBuild.exe begin /k:"MarkPThomas_MPT.SE.CrossSection-.netCore" /n:"MarkPThomas_MPT.SE.CrossSection-.netCore" /v:"1.0" /o:"markpthomas-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="751c7e83861178a7af7cb29f1443f48f076ac5d0" /d:sonar.cs.opencover.reportsPaths=".\results.xml"
+  - SonarScanner.MSBuild.exe end /d:"sonar.login=751c7e83861178a7af7cb29f1443f48f076ac5d0"
 
-# to disable automatic builds
-#build: off
-
-#---------------------------------#
-#       tests configuration       #
-#---------------------------------#
-
-# to run tests again only selected assemblies and/or categories
-#test:
-#  assemblies:
-#    only:
-#      - MPT.Math.UnitTests.dll
-#      - asm2.dll
-
-#  categories:
-#    only:
-#      - UI
-#      - E2E
-
-# to run tests again all except selected assemblies and/or categories
-#test:
-#  assemblies:
-#    except:
-#      - asm1.dll
-#      - asm2.dll
-#
-#  categories:
-#    except:
-#      - UI
-#      - E2E
-
-# to run tests from different categories as separate jobs in parallel
-#test:
-#  categories:
-#    - A            # A category common for all jobs
-#    - [UI]         # 1st job
-#    - [DAL, BL]    # 2nd job
-
-# scripts to run before tests
 #before_test:
 #  - echo script1
 #  - ps: Write-Host "script1"
 
 # to run your custom scripts instead of automatic tests
 test_script:
-#  - dotnet test  .\MPT.Math.UnitTests\bin\Debug\netcoreapp2.1\MPT.Math.UnitTests.dll
-#  - dotnet test  .\MPT.Math.xUnitTests\bin\Debug\netcoreapp2.1\MPT.Math.xUnitTests.dll
-#  - dotnet test test/Qwack.Core.Tests/Qwack.Core.Tests.csproj
  - ps: dotnet test --no-build
  - ps: dotnet test .\MPT.Math.UnitTests\MPT.Math.UnitTests.csproj --no-build --logger:Appveyor
  
 # scripts to run after tests
-#after_test:
-  #- cmd: ./DB-Location-XReferencer/.after_test.cmd
-  #- ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:".\script\runtests.bat" -searchdirs:".\test\Qwack.Math.Tests\bin\Debug\netcoreapp1.1;.\test\Qwack.Dates.Tests\bin\Debug\netcoreapp1.1;.\test\Qwack.Core.Tests\bin\Debug\netcoreapp1.1" -oldstyle -output:coverage.xml -skipautoprops -returntargetcode -filter:"+[Qwack*]* -[*Tests]* -[*Benchmark]*"')
-  #- ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml')
+after_test:
+  - cmd: ./.after_test.cmd
 
 # to disable automatic tests
 #test: off

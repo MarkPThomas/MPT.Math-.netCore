@@ -4,13 +4,24 @@ mono: none
 dotnet: 2.1.502  #3.0.0.300 #3.0.0.201 # For some reason .Net Core v3.1 is not working with Travis
 install:
 - dotnet restore
+addons:
+  sonarcloud:
+    organization: "markpthomas-github"
+    token:
+      secure: "F7SBPFsA4RZFBAxClB7y3jiJ9pOWQ0Yc+X7M3f+tznCXMh1UUb4XaX5KY8Bmm38e4mxcLXgjrUHmI67/HiHJt+GZgykkwkpTD4/yPctYOsUBCly2TbshuAOCEXE9FNYsTnCrbeF3Nw9h0S/ag/uc+z24xObM45hsejxr2dczwFtuXD8WHUE8XW9eABSG2cIOXRHaDGZ8d3CVyhv/KxLl/GzqpV1L3b45SXPbkW1ChwoSLMDhKKrW3V/0Rj8QAmCAFFIlflqDjat3N9uyKu0sbRmosRmFTlj1SsKKZodxRvprdpCcHaydqpBjGZeZgLlo7s18Fqio5+pN6wWIK0M0FiSOVtKvLlq3tt8ZYieSle/WWeGv3PI+PqKu8yUI2cGNburjs8M+2mbXSpDN4hjmgGHraNzd+17h2cDWhInKuAhWrXthyUwUaEWY2f+Xc+LjH3013LFWPPahyb1teFiVyzhwS919E7HFuj0DMNcN5ZKSoLBg5FyWN98OsUeI6FQcS7w6oKEM88GZBz842OXJldJmQNs9v7dbBzI4VwA0VtYWyL5JbZejgqAJIsXztizI+2w5EhqVPxH/+5hWKtD55TEu3Eq/4+ugGo7LGKT1YK45phtnBIWAGO1vmL8z1RCr+Z5tNVdl/s+iOsJeO63sFBKMqg/vXOBKBb6pSp8O/s8=" # encrypted value of your token
 
 script:
-- dotnet build MPT.Math/MPT.Math.csproj
-- dotnet test MPT.Math.UnitTests/MPT.Math.UnitTests.csproj
-- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - sonar-scanner
+  
+#script:
+#- dotnet build MPT.Math/MPT.Math.csproj
+#- dotnet test MPT.Math.UnitTests/MPT.Math.UnitTests.csproj
+#- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
 
-env:
-  global:
+
+
+#env:
+#  global:
 # Coveralls
-  - secure: CmAfBeodkdz7uq7XPiUSBXBNv6bEpk9ZI5Mtb00i3xdyYroYB8b0ZujHPB5dTparoft66MzYw05QzvnxsSXSr6iuXhDqon5qixZnVoVr13TvGdcfVfGBI13LGwCNPlOk5E4ZrVnzhiKPgdM0+2nxKygvgWrx+0Km2q78qHoRMLwGQLS+PEVt16ICS87gOs0K+e0Z6/mP54BNklzy4g+4mse4fVLrS1howfct7COGzdjgCWvtBaJrxadqedC5iUI92qC8A/hFPBcZfNG2/U3hurLXLRDrSF3MrliJRsECnpcxzkYcdvK3iYWxwdIzKsC8PzPMtm3kDr8E6TXiKtKYNyULnlLFk+qH44I4IoK+f0MU/LajcLX41WJ57d0esFQtqGutIwEZ40F+WyHr1DoJANZNiTse76vVvPeD2GZYEsWTK2pnxhGlITHHCCY63/5fQOgZZLVIMvxltyuK5o+Rd1sem84YOSgnu2DeHk4zw2w3F3YaqBpUXNDt+qiB7zmEs8IWRSopCMdEGzK3KZDNMqEW9EQqys6nm6IdEPxyoeOQX69OpFquzGIdkpLuu4FgqwCRvelKYB8OhcRd6bEEygVdFrZwzBa5zfgC7b2C8Pizycv5V/snerYBhffGr2KjMh5J7/M341mSKk0R3D4/nfPzUVP9YiTzCicOsp03FxI=
+#  - secure: CmAfBeodkdz7uq7XPiUSBXBNv6bEpk9ZI5Mtb00i3xdyYroYB8b0ZujHPB5dTparoft66MzYw05QzvnxsSXSr6iuXhDqon5qixZnVoVr13TvGdcfVfGBI13LGwCNPlOk5E4ZrVnzhiKPgdM0+2nxKygvgWrx+0Km2q78qHoRMLwGQLS+PEVt16ICS87gOs0K+e0Z6/mP54BNklzy4g+4mse4fVLrS1howfct7COGzdjgCWvtBaJrxadqedC5iUI92qC8A/hFPBcZfNG2/U3hurLXLRDrSF3MrliJRsECnpcxzkYcdvK3iYWxwdIzKsC8PzPMtm3kDr8E6TXiKtKYNyULnlLFk+qH44I4IoK+f0MU/LajcLX41WJ57d0esFQtqGutIwEZ40F+WyHr1DoJANZNiTse76vVvPeD2GZYEsWTK2pnxhGlITHHCCY63/5fQOgZZLVIMvxltyuK5o+Rd1sem84YOSgnu2DeHk4zw2w3F3YaqBpUXNDt+qiB7zmEs8IWRSopCMdEGzK3KZDNMqEW9EQqys6nm6IdEPxyoeOQX69OpFquzGIdkpLuu4FgqwCRvelKYB8OhcRd6bEEygVdFrZwzBa5zfgC7b2C8Pizycv5V/snerYBhffGr2KjMh5J7/M341mSKk0R3D4/nfPzUVP9YiTzCicOsp03FxI=
