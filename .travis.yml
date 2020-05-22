@@ -1,7 +1,7 @@
 dist: trusty
 language: csharp
 mono: none
-dotnet: 2.1.502  #3.0.0.300 #3.0.0.201 # For some reason .Net Core v3.1 is not working with Travis
+dotnet: 2.1.502  #3.1.300 # For some reason .Net Core v3.1 is not working with Travis. I might have been using the wrong version. Check cmd: dotnet --version
 install:
 - dotnet restore
 addons:
@@ -17,4 +17,4 @@ script:
   #- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
   
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  #- sonar-scanner
+  - sonar-scanner
