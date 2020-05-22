@@ -3,13 +3,13 @@ language: csharp
 mono: none
 dotnet: 2.1.502  #3.1.300 # For some reason .Net Core v3.1 is not working with Travis. I might have been using the wrong version. Check cmd: dotnet --version
 install:
-- dotnet restore
+  - dotnet restore
 addons:
   sonarcloud:
     organization: "markpthomas-github"
     token:
       # encrypted value of your token by running the command line: travis encrypt {token_provided_by_SonarCloud}
-      secure:"mxUmP2RUBKXR0Tmp76pPVnEuUwUApradW4slwX2b/P55Mm6suYZCxok823bGflqNHSlO26YONGrrHvwDtrTVHoHeBZWZeOnKIUpuqnkmuvK0jno15pjKHw4zEDQCibUo7UA1cPG21l1kLb1OiCcxQb47p2Sd6CkZYj0d+dErIutA5rWWCigCgfoedTz5SEHQIDwn86nH5XVhFvxA4qgnPGn3RmEoAYMod1l+0zsEiKAbpYfUlFYo4oCE/R6/+3RPCqiMwm1LnzMCq4vD1TmcZiI+tPOixI4wAvrr4g8G54B1Kwn0qt/aP99jxtbXMpEOfhUNn/RfhhXkCThi4duGl6JePy6jaMfBBQOMiDLvmMFxlQSCHDwf8WRVcUWl+wpUB29EHVWP/5DJPGdmnh+jBPlwyYPjEcuQA5RJSDrBvrsZNGngtCjsV780M5YC9NYLArBb9ahMa3F26j8eZNszkIz2XdmKrU67aqLWMSSEtkyhQIbtlXGU1QagQz+JwV/fK8/3XzLm8BJPkC+CYP69T4giSgyit7ciFffHoobwXllNTZzcoHA65GGCoqgfNSc9ww+/D4XxJOqtsdXrE5IFOMZS/iD/1MyfdOC+TUVBvh01vo4Qrb7kIxuV/tp9UMJ6iDIsnb/vPH51mLZxWWu+MsKuRo91w8rQ+xac/3LV6nI="
+      secure:"ucx1Wy5UZ8PKGLsTJ94Q2D//6WsLI27Ds47WU2CTbREO6i/XYnvaXWADYYQs4rp+o/gs4ICV2bv2iL3tVNXyG59G4a/KPOuh11I3XqC9lOiy0vX3bRo30TdvYQtstH0FDoquRYGDtgv9BhUMe2eQB1GTutnwD/5iKuQozbTceqpHL7Rsq1AnuP+PtFS7HNkPNmW2fBPCY4OimCZ63XXcJ1kfYrTF3UeOSq43SM/3JvO2whgZWv3hs3bHA3KSZTxfNY3wFnD0hYXNMcn22Ts3CN/L8RSm5yLnI8Wx96+Hv51RYyYp/V9LEm3cgE7GmgBhcVDFSs00QuiqJlUZfw0B0vwOUea1NJjoOL/tBB64K3xDMgz1PB3RhlLn3eaB3Ws+iNwu+d2ysKjWAbBAIdkbMRSpriSF9uVMOpNsxYYD8xlB/S3kvuxMMLY8t8QFuxKswvwBRVlg6AAFazqwxpB3vbk3AHxOZQY+Ylb+kY0Lu7N+0D2t9gHT0mt6FBwYa6rIn6VMVCbiYeJva/82YhD4VxwB9UgA8XOBzJDhhUJWGG35XUSMFuq6h+HFpLGMpZYgH2E3vu9+v1MZpLHGsH3+pim0XDu2n01nEcWCa0o32BNcDDjBLea+0bW2+Dqugekc7AGQvVE25TxvvX/1IF4s1brfnyyiGQOss4Jf3tg31Xg="
 
 script:
   - dotnet build MPT.Math/MPT.Math.csproj
@@ -17,4 +17,4 @@ script:
   #- dotnet test MPT.Math.xUnitTests/MPT.Math.xUnitTests.csproj
   
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  #- sonar-scanner
+  - sonar-scanner
