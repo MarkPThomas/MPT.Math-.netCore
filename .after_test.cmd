@@ -1,4 +1,3 @@
-nuget install Appveyor.TestLogger -Version 2.0.0
 nuget install OpenCover -OutputDirectory packages -Version 4.6.519
 nuget install coveralls.net -OutputDirectory packages -Version 0.412.0
 
