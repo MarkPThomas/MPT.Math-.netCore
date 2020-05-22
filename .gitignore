@@ -333,8 +333,9 @@ __pycache__/
  packages/
 
 # Help Files
-#**/lib/**.xml
-lib
+**/lib/**.xml
+**/lib/**.pdb
+#lib
 *.htm
 
 # Auxiliary Directories
@@ -342,6 +343,10 @@ obj/
 
 # NCrunch Files
 nCrunchTemp_*
+
+# NUnit Files
+nunit.framework.dll
+nunit.framework.xml
 
 * - Copy
 lib - testing
