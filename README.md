@@ -8,9 +8,7 @@ A library and classes for mathematical operations, written in C# for .Net Core.
 [![Coverage Status](https://coveralls.io/repos/github/MarkPThomas/MPT.Math-.netCore/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/MarkPThomas/MPT.Math-.netCore?branch=master&kill_cache=1) (via Coveralls)
 
 
-**SonarCloud**
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=alert_status)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
+**SonarCloud**: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=alert_status)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=MarkPThomas_MPT.SE.CrossSection-.netCore&metric=security_rating)](https://sonarcloud.io/dashboard?id=MarkPThomas_MPT.SE.CrossSection-.netCore)
