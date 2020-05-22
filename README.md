@@ -7,7 +7,7 @@ AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/jney82f0u
 
 AppVeyor: [![AppVeyor tests](https://img.shields.io/appveyor/tests/MarkPThomas/mpt-math-netcore.svg)](https://ci.appveyor.com/project/MarkPThomas/mpt-math-netcore/build/tests)
 
-Coveralls w/ AppVeyor: [![Coverage Status](https://coveralls.io/repos/github/MarkPThomas/MPT.Math-.netCore/badge.svg?branch=master)](https://coveralls.io/github/MarkPThomas/MPT.Math-.netCore?branch=master)
+Coveralls w/ AppVeyor: [![Coverage Status](https://coveralls.io/repos/github/MarkPThomas/MPT.Math-.netCore/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/MarkPThomas/MPT.Math-.netCore?branch=master&kill_cache=1)
 
 
 **SonarCloud**
