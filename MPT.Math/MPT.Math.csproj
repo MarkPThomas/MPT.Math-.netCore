@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Copyright>2020</Copyright>
-    <Company>Mark P Thomas, Inc.</Company>
     <Authors>Mark P Thomas</Authors>
+    <Company>Mark P Thomas, Inc.</Company>
+    <Copyright>Copyright (c) 2020. All rights reserved.</Copyright>
     <Description>A library for mathematical operations.</Description>
 	<DebugType>full</DebugType>
   </PropertyGroup>
