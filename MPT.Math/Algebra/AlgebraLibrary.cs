@@ -6,6 +6,9 @@ using NMath = System.Math;
 
 namespace MPT.Math.Algebra
 {
+    // TODO: Quadratic formula from object
+    // TODO: Summation from object & strategy pattern
+
     /// <summary>
     /// Contains static methods for common algebraic operations.
     /// </summary>
@@ -47,7 +50,8 @@ namespace MPT.Math.Algebra
             double a1 = c / a;
             double a0 = d / a;
 
-            double B = -(9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed())/27d;
+            double B = (9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed())/27d;
+            //double B = -(9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed()) / 27d;
 
             return cubicCurveLeastRootNormalized(a0, a1, a2, B);
         }
@@ -55,7 +59,6 @@ namespace MPT.Math.Algebra
         /// <summary>
         /// Returns the least positive solution to the equation x^3 + a2x^2 + a1x + a0 = 0.
         /// </summary>
-        /// <param name="a0">Constant.</param>
         /// <param name="a1">Multiplier to x^2.</param>
         /// <param name="a2">Multiplier to x.</param>
         /// <param name="B">Derived constant.</param>
@@ -63,13 +66,13 @@ namespace MPT.Math.Algebra
         private static double cubicCurveLeastRootNormalized(double a0, double a1, double a2, double B)
         {
             double A = (1 / 3d) * (3 * a1 - a2.Pow(2));
-            double tSqrt = Numbers.Sqrt(B.Squared() + (4 / 27d) * A.Cubed());
+            double tSqrt = B.Squared() + (4 / 27d) * A.Cubed();
 
             if (B.IsNegativeSign() || tSqrt.IsNegativeSign())
             {
-                return cubicCurveRootsNormalized(0, a1, a2, returnLowestRoot: true)[0];
+                return Numbers.Min(cubicCurveRootsNormalized(a0, a1, a2, returnFirstRoot: true));
             }
-            double t = Numbers.CubeRoot(0.5 * (-B + tSqrt));
+            double t = Numbers.CubeRoot(0.5 * (-B + Numbers.Sqrt(tSqrt)));
 
             return Numbers.CubeRoot(B + t.Cubed()) - t - a2 / 3d;
         }
@@ -98,29 +101,31 @@ namespace MPT.Math.Algebra
         /// <param name="a0">Constant.</param>
         /// <param name="a1">Multiplier to x.</param>
         /// <param name="a2">Multiplier to x^2.</param>
-        /// <param name="returnLowestRoot"></param>
+        /// <param name="returnFirstRoot"></param>
         /// <returns></returns>
-        private static double[] cubicCurveRootsNormalized(double a0, double a1, double a2, bool returnLowestRoot = false)
+        private static double[] cubicCurveRootsNormalized(double a0, double a1, double a2, bool returnFirstRoot = false)
         {
             double Q = (3 * a1 - a2.Squared()) / 9d;
             double R = (9 * a2 * a1 - 27 * a0 - 2 * a2.Cubed()) / 54d;
             double D = Q.Cubed() + R.Squared();
+            double aCosRatio = R / Numbers.Sqrt(NMath.Abs(-Q.Cubed()));
             double x1;
 
-            if (returnLowestRoot && D.IsGreaterThanOrEqualTo(0))
+            if ((returnFirstRoot && D.IsGreaterThanOrEqualTo(0)) ||
+                (aCosRatio.IsLessThan(-1) || aCosRatio.IsGreaterThan(1)))
             {
                 double S = Numbers.CubeRoot(R + Numbers.Sqrt(D));
-                double T = Numbers.CubeRoot(R - D.Pow(0.5));
+                double T = Numbers.CubeRoot(R - Numbers.Sqrt(D));
                 x1 = (S + T) - (1 / 3d) * a2;
 
                 return new double[] { x1 };
             }
 
-            double theta = NMath.Acos(R / Numbers.Sqrt(-(NMath.Abs(Q.Cubed()))));
+            double theta = NMath.Acos(aCosRatio);
 
-            x1 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos(theta / 3d) - a2 / 3d;
-            double x2 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 2 * Numbers.Pi) / 3d) - a2 / 3d;
-            double x3 = 2 * Numbers.Sqrt(-(NMath.Abs(Q))) * NMath.Cos((theta + 4 * Numbers.Pi) / 3d) - a2 / 3d;
+            x1 = 2 * Numbers.Sqrt((NMath.Abs(-Q))) * NMath.Cos(theta / 3d) - a2 / 3d;
+            double x2 = 2 * Numbers.Sqrt(NMath.Abs(-Q)) * NMath.Cos((theta + 2 * Numbers.Pi) / 3d) - a2 / 3d;
+            double x3 = 2 * Numbers.Sqrt(NMath.Abs(-Q)) * NMath.Cos((theta + 4 * Numbers.Pi) / 3d) - a2 / 3d;
 
             return new double[] { x1, x2, x3 };
         }
@@ -244,5 +249,18 @@ namespace MPT.Math.Algebra
             return NMath.Sqrt(sumOfSquares);
         }
         #endregion
+
+        // TODO: Work out if better to call System.Math often with this library, or just encapsulate methods.
+        //#region Functions from System.Math
+        //public static double Abs(double a)
+        //{
+        //    return NMath.Abs(a);
+        //}
+
+        //public static int Abs(int a)
+        //{
+        //    return NMath.Abs(a);
+        //}
+        //#endregion
     }
 }

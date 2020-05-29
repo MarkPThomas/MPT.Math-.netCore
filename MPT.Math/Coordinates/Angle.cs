@@ -4,10 +4,10 @@
 // Created          : 02-21-2017
 //
 // Last Modified By : Mark Thomas
-// Last Modified On : 05-16-2020
+// Last Modified On : 05-27-2020
 // ***********************************************************************
 // <copyright file="Angle.cs" company="Mark P Thomas, Inc.">
-//     2020
+//     Copyright © 2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -23,11 +23,9 @@ namespace MPT.Math.Coordinates
     /// Represents an Angle based on a radian value.
     /// </summary>
     /// <seealso cref="System.IEquatable{Angle}" />
-    public struct Angle : IEquatable<Angle>
+    public struct Angle : IEquatable<Angle>, IComparable<Angle>, ITolerance
     {
         #region Properties
-        // TODO: Make immutable
-
         /// <summary>
         /// Default zero tolerance for operations.
         /// </summary>
@@ -35,38 +33,28 @@ namespace MPT.Math.Coordinates
         public double Tolerance { get; set; }
 
         /// <summary>
-        /// The radians
-        /// </summary>
-        private double _radians;
-        /// <summary>
-        /// Gets or sets the radians, which is a value between -π and +π.
+        /// The angle as radians, which is a value between -π (clockwise) and +π (counter-clockwise).
         /// </summary>
         /// <value>The radians.</value>
-        public double Radians
-        {
-            get { return _radians; }
-            set
-            {
-                _radians = WrapAngle(value);
-            }
-        }
+        public double Radians { get; }
+
         /// <summary>
-        /// Gets or sets the clockwise (inverted) radians.
+        /// The angle as clockwise (inverted) radians, which is a value between -π (counter-clockwise) and +π (clockwise).
         /// </summary>
         /// <value>The clockwise radians.</value>
-        public double ClockwiseRadians { get { return -_radians; } set { Radians = -value; } }
-
+        public double ClockwiseRadians => -Radians;
 
         /// <summary>
-        /// Gets or sets the degree.
+        /// The angle as degrees, which is a value between -180 (clockwise) and +180 (counter-clockwise).
         /// </summary>
         /// <value>The degree.</value>
-        public double Degrees { get { return ToDegrees(_radians); } set { Radians = ToRadians(value); } }
+        public double Degrees => RadiansToDegrees(Radians);
+
         /// <summary>
-        /// Gets or sets the clockwise (inverted) degree.
+        /// The angle as clockwise (inverted) degrees, which is a value between -180 (counter-clockwise) and +180 (clockwise).
         /// </summary>
         /// <value>The clockwise degree.</value>
-        public double ClockwiseDegrees { get { return ToDegrees(-_radians); } set { Radians = ToRadians(-value); } }
+        public double ClockwiseDegrees => RadiansToDegrees(-Radians);
         #endregion
 
         #region Initialization
@@ -79,13 +67,12 @@ namespace MPT.Math.Coordinates
             double radians,
             double tolerance = Numbers.ZeroTolerance)
         {
-            _radians = WrapAngle(radians);
+            Radians = WrapAngleWithinPositiveNegativePi(radians);
             Tolerance = tolerance;
         }
         #endregion
 
-        #region Static Methods
-
+        #region Methods: Static
         /// <summary>
         /// Creates an <see cref="Angle" /> from a radian value.
         /// </summary>
@@ -109,7 +96,7 @@ namespace MPT.Math.Coordinates
             double degrees,
             double tolerance = Numbers.ZeroTolerance)
         {
-            return new Angle(ToRadians(degrees), tolerance);
+            return new Angle(DegreesToRadians(degrees), tolerance);
         }
 
         /// <summary>
@@ -122,65 +109,147 @@ namespace MPT.Math.Coordinates
             Vector direction,
             double tolerance = Numbers.ZeroTolerance)
         {
-            Angle a = new Angle(0, tolerance);
-            a.SetDirectionVector(direction);
-            return a;
+            return new Angle(AsRadians(direction.Xcomponent, direction.Ycomponent), tolerance);
         }
 
         /// <summary>
-        /// Reduces a given angle to a value between π and -π.
+        /// Converts radians to degrees.
         /// </summary>
-        /// <param name="radians">The radians.</param>
+        /// <param name="radians">The angle in radians.</param>
         /// <returns>System.Double.</returns>
-        public static double WrapAngle(double radians)
+        public static double RadiansToDegrees(double radians)
         {
-            int revolutions = (int)NMath.Floor(radians / Numbers.TwoPi);
-            double wrappedAngle = radians - revolutions*Numbers.TwoPi;
+            return radians * (180d / Numbers.Pi);
+        }
 
-            if (NMath.Abs(wrappedAngle) > Numbers.Pi)
+        /// <summary>
+        /// Converts degrees to radians.
+        /// </summary>
+        /// <param name="degrees">The degrees.</param>
+        /// <returns>System.Double.</returns>
+        public static double DegreesToRadians(double degrees)
+        {
+            return degrees * (Numbers.Pi / 180);
+        }
+
+        /// <summary>
+        /// Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns>System.Double.</returns>
+        public static double AsDegrees(CartesianCoordinate coordinate)
+        {
+            return AsDegrees(coordinate.X, coordinate.Y);
+        }
+
+        /// <summary>
+        /// Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
+        /// </summary>
+        /// <param name="x">The x-coordinate.</param>
+        /// <param name="y">The y-coordinate.</param>
+        /// <returns>System.Double.</returns>
+        public static double AsDegrees(double x, double y)
+        {
+            return RadiansToDegrees(AsRadians(x, y));
+        }
+
+        /// <summary>
+        /// Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns>System.Double.</returns>
+        public static double AsRadians(CartesianCoordinate coordinate)
+        {
+            return AsRadians(coordinate.X, coordinate.Y);
+        }
+
+        /// <summary>
+        /// Returns the positive angle [radians] from the x-axis, counter-clockwise, of the coordinates.
+        /// </summary>
+        /// <param name="x">The x-coordinate.</param>
+        /// <param name="y">The y-coordinate.</param>
+        /// <returns>System.Double.</returns>
+        public static double AsRadians(double x, double y)
+        {
+            if (x.IsZeroSign())
             {
-                return -NMath.Sign(wrappedAngle)*(Numbers.TwoPi - NMath.Abs(wrappedAngle));
+                if (y.IsPositiveSign()) { return Numbers.Pi / 2; } // 90 deg
+                if (y.IsNegativeSign()) { return (3d / 2) * Numbers.Pi; } // 270 deg
+                return 0;  // Assume 0 degrees for origin
             }
-            return wrappedAngle;
+
+            double angleOffset = 0;
+            if (x.IsNegativeSign()) // 2nd or 3rd quadrant
+            {
+                angleOffset = Numbers.Pi;
+            }
+            else if (y.IsNegativeSign()) // 4th quadrant
+            {
+                angleOffset = 2 * Numbers.Pi;
+            }
+
+            return angleOffset + NMath.Atan(y / x);
+        }
+
+
+        /// <summary>
+        /// Reduces a given angle to a value between -π and +π radians.
+        /// </summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        public static double WrapAngleWithinPositiveNegativePi(double radians, double tolerance = Numbers.ZeroTolerance)
+        {
+            double wrappedAngleWithinTwoPi = WrapAngleWithinTwoPi(radians, tolerance); 
+
+            if (NMath.Abs(wrappedAngleWithinTwoPi) > Numbers.Pi)
+            {
+                return -NMath.Sign(wrappedAngleWithinTwoPi) * (Numbers.TwoPi - NMath.Abs(wrappedAngleWithinTwoPi));
+            }
+            return wrappedAngleWithinTwoPi;
         }
 
         /// <summary>
-        /// Converts the radian angle to degrees.
+        /// Reduces a given angle to a value between 0 and 2π radians, matching the sign of the angle.
         /// </summary>
-        /// <param name="radians">The angle to convert [radians].</param>
+        /// <param name="radians">The angle in radians.</param>
+        /// <param name="tolerance">The tolerance.</param>
         /// <returns>System.Double.</returns>
-        public static double ToDegrees(double radians)
+        public static double WrapAngleWithinTwoPi(double radians, double tolerance = Numbers.ZeroTolerance)
         {
-            return (radians / Numbers.Pi);
-        }
+            if (radians.IsZeroSign(tolerance))
+            {
+                radians = 0;
+            }
+            if (radians == double.PositiveInfinity || radians == double.NegativeInfinity)
+            {
+                return double.PositiveInfinity;
+            }
+            int inferredRounding = NMath.Max(Numbers.DecimalPlaces(radians), 6);
+            double roundedPi = NMath.Round(Numbers.TwoPi, inferredRounding);
+            int revolutions = (int)NMath.Round(NMath.Floor(radians / roundedPi), inferredRounding);   
 
-        /// <summary>
-        /// Converts the degrees angle to radians.
-        /// </summary>
-        /// <param name="degrees">The angle to convert [degrees].</param>
-        /// <returns>System.Double.</returns>
-        public static double ToRadians(double degrees)
-        {
-            return (degrees * Numbers.Pi);
+            return radians - revolutions * roundedPi;
         }
         #endregion
 
-        #region Public Methods
+        #region Methods: Public
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - Radians: " + Radians;
+        }
+
         /// <summary>
         /// Gets the direction vector, which is a normalized vector pointing to the direction of this angle.
         /// </summary>
         /// <returns>Vector.</returns>
         public Vector GetDirectionVector()
         {
-            return new Vector(NMath.Cos(ClockwiseRadians), NMath.Sin(ClockwiseRadians));
-        }
-        /// <summary>
-        /// Sets the Angle by using a direction vector.
-        /// </summary>
-        /// <param name="direction">The direction vector.</param>
-        public void SetDirectionVector(Vector direction)
-        {
-            ClockwiseRadians = NMath.Atan2(direction.Ycomponent, direction.Xcomponent);
+            return new Vector(NMath.Cos(Radians), NMath.Sin(Radians));
         }
 
         /// <summary>
@@ -190,46 +259,26 @@ namespace MPT.Math.Coordinates
         /// <returns>The rotated vector.</returns>
         public Vector RotateVector(Vector vector)
         {
-            if (_radians == 0)
-                return vector;
-
-            Angle completeAngle = CreateFromVector(vector) + _radians;
+            double tolerance = Helper.GetTolerance(this, vector);
+            if (Radians.IsZeroSign(tolerance)) { return vector; }
+                
+            Angle completeAngle = CreateFromVector(vector) + Radians;
             return completeAngle.GetDirectionVector() * vector.Magnitude();
         }
 
+        /// <summary>
+        /// Returns the angular offset of the current angle from the provided angle.
+        /// i.e. the current angle subtracting the provided angle.
+        /// </summary>
+        /// <param name="angleI">The angle i.</param>
+        /// <returns>AngularOffset.</returns>
+        public AngularOffset OffsetFrom(Angle angleI)
+        {
+            return new AngularOffset(angleI, this);
+        }
         #endregion
 
-        #region Operators & Equals
-
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        public bool Equals(Angle other)
-        {
-            double tolerance = NMath.Min(Tolerance, other.Tolerance);
-            return _radians.IsEqualTo(other._radians, tolerance);
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj is Angle) { return Equals((Angle)obj); }
-            return base.Equals(obj);
-        }
-
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        public override int GetHashCode() => _radians.GetHashCode();
-
-
+        #region Operators: Equals
         /// <summary>
         /// Implements the == operator.
         /// </summary>
@@ -241,6 +290,27 @@ namespace MPT.Math.Coordinates
             return a.Equals(b);
         }
         /// <summary>
+        /// Implements the == operator for an angle and a double which represents radians.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(double a, Angle b)
+        {
+            return a == b.Radians;
+        }
+        /// <summary>
+        /// Implements the == operator for an angle and a double which represents radians.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(Angle a, double b)
+        {
+            return a.Radians == b;
+        }
+
+        /// <summary>
         /// Implements the != operator.
         /// </summary>
         /// <param name="a">Angle a.</param>
@@ -251,14 +321,14 @@ namespace MPT.Math.Coordinates
             return !a.Equals(b);
         }
         /// <summary>
-        /// Implements the == operator for an angle and a double which represents radians.
+        /// Implements the != operator for an angle and a double which represents radians.
         /// </summary>
-        /// <param name="a">Angle a.</param>
-        /// <param name="b">Angle b, in radians.</param>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator ==(Angle a, double b)
+        public static bool operator !=(double a, Angle b)
         {
-            return a._radians == b;
+            return a != b.Radians;
         }
         /// <summary>
         /// Implements the != operator for an angle and a double which represents radians.
@@ -268,29 +338,140 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static bool operator !=(Angle a, double b)
         {
-            return a._radians != b;
+            return a.Radians != b;
+        }
+        #endregion
+
+        #region Operators: Comparison
+        /// <summary>
+        /// Implements the &gt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >(Angle a, Angle b)
+        {
+            return a.CompareTo(b) == 1;
         }
         /// <summary>
-        /// Implements the == operator for an angle and a double which represents radians.
+        /// Implements the &gt; operator.
         /// </summary>
         /// <param name="a">Angle a, in radians.</param>
         /// <param name="b">Angle b.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator ==(double a, Angle b)
+        public static bool operator >(double a, Angle b)
         {
-            return a == b._radians;
+            return b.CompareTo(a) == -1;
         }
         /// <summary>
-        /// Implements the != operator for an angle and a double which represents radians.
+        /// Implements the &gt; operator.
         /// </summary>
-        /// <param name="a">Angle a, in radians.</param>
-        /// <param name="b">Angle b.</param>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator !=(double a, Angle b)
+        public static bool operator >(Angle a, double b)
         {
-            return a != b._radians;
+            return a.CompareTo(b) == 1;
         }
 
+
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(Angle a, Angle b)
+        {
+            return a.CompareTo(b) == -1;
+        }
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(double a, Angle b)
+        {
+            return b.CompareTo(a) == 1;
+        }
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(Angle a, double b)
+        {
+            return a.CompareTo(b) == -1;
+        }
+
+
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(Angle a, Angle b)
+        {
+            return a.CompareTo(b) >= 0;
+        }
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(double a, Angle b)
+        {
+            return b.CompareTo(a) <= 0;
+        }
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(Angle a, double b)
+        {
+            return a.CompareTo(b) >= 0;
+        }
+
+
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(Angle a, Angle b)
+        {
+            return a.CompareTo(b) <= 0;
+        }
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(double a, Angle b)
+        {
+            return b.CompareTo(a) >= 0;
+        }
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(Angle a, double b)
+        {
+            return a.CompareTo(b) <= 0;
+        }
+        #endregion
+
+        #region Operators: Combining
         /// <summary>
         /// Implements the + operator.
         /// </summary>
@@ -299,7 +480,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator +(Angle a, Angle b)
         {
-            return new Angle(a._radians + b._radians);
+            return new Angle(a.Radians + b.Radians, Helper.GetTolerance(a, b));
         }
         /// <summary>
         /// Implements the operator + for an angle and a double which represents radians.
@@ -319,7 +500,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator +(Angle a, double b)
         {
-            return new Angle(a._radians + b);
+            return new Angle(a.Radians + b, a.Tolerance);
         }
 
         /// <summary>
@@ -330,7 +511,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator -(Angle a, Angle b)
         {
-            return new Angle(a._radians - b._radians);
+            return new Angle(a.Radians - b.Radians, Helper.GetTolerance(a, b));
         }
         /// <summary>
         /// Implements the operator - for an angle and a double which represents radians.
@@ -340,7 +521,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator -(double a, Angle b)
         {
-            return b - a;
+            return new Angle(a - b.Radians, b.Tolerance);
         }
         /// <summary>
         /// Implements the operator - for an angle and a double which represents radians.
@@ -350,7 +531,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator -(Angle a, double b)
         {
-            return new Angle(a._radians - b);
+            return new Angle(a.Radians - b, a.Tolerance);
         }
 
         /// <summary>
@@ -371,7 +552,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator *(Angle angle, double multiplier)
         {
-            return new Angle(angle._radians * multiplier);
+            return new Angle(angle.Radians * multiplier, angle.Tolerance);
         }
 
         /// <summary>
@@ -382,11 +563,14 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator /(Angle angle, double denominator)
         {
-            return new Angle(angle._radians / denominator);
+            if (denominator == 0) { throw new DivideByZeroException(); }
+            return new Angle(angle.Radians / denominator, angle.Tolerance);
         }
+        #endregion
 
+        #region Conversion
         /// <summary>
-        /// Performs an explicit conversion from <see cref="Angle"/> to <see cref="System.Double"/>.
+        /// Performs an explicit conversion from <see cref="Angle" /> to <see cref="double" />.
         /// </summary>
         /// <param name="a">Angle a.</param>
         /// <returns>The result of the conversion.</returns>
@@ -396,7 +580,7 @@ namespace MPT.Math.Coordinates
         }
 
         /// <summary>
-        /// Performs an implicit conversion from <see cref="System.Double"/> to <see cref="Angle"/>.
+        /// Performs an implicit conversion from <see cref="double" /> to <see cref="Angle" />.
         /// </summary>
         /// <param name="radian">Angle in radians.</param>
         /// <returns>The result of the conversion.</returns>
@@ -404,8 +588,78 @@ namespace MPT.Math.Coordinates
         {
             return new Angle(radian);
         }
-
         #endregion
 
+        #region IEquatable
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        public bool Equals(Angle other)
+        {
+            double tolerance = Helper.GetTolerance(this, other);
+            return Radians.IsEqualTo(other.Radians, tolerance);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is Angle) { return Equals((Angle)obj); }
+            return base.Equals(obj);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        public override int GetHashCode() => Radians.GetHashCode();
+        #endregion
+
+        #region IComparable
+        /// <summary>
+        /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+        /// </summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// Value
+        /// Meaning
+        /// Less than zero
+        /// This instance precedes <paramref name="other">other</paramref> in the sort order.
+        /// Zero
+        /// This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+        /// Greater than zero
+        /// This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        public int CompareTo(Angle other)
+        {
+            if (Equals(other)) { return 0; }
+
+            double tolerance = Helper.GetTolerance(this, other);
+            return Radians.IsLessThan(other.Radians, tolerance) ? -1 : 1;
+        }
+        /// <summary>
+        /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+        /// </summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// Value
+        /// Meaning
+        /// Less than zero
+        /// This instance precedes <paramref name="other">other</paramref> in the sort order.
+        /// Zero
+        /// This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+        /// Greater than zero
+        /// This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        public int CompareTo(double other)
+        {
+            if (Equals(other)) { return 0; }
+
+            return Radians.IsLessThan(other, Tolerance) ? -1 : 1;
+        }
+        #endregion
     }
 }

@@ -23,7 +23,7 @@ namespace MPT.Math.Coordinates
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Polar_coordinate_system"/>
     /// <seealso cref="System.IEquatable{PolarCoordinate}" />
-    public struct PolarCoordinate : IEquatable<PolarCoordinate>, ICoordinate
+    public struct PolarCoordinate : IEquatable<PolarCoordinate>, ICoordinate, ITolerance
     {
         // TODO: Handle ability to make polar coordinates unique:
         // Where a unique representation is needed for any point besides the pole, it is usual to limit r to positive numbers (r > 0) and φ to the interval [0, 360°) or (−180°, 180°] (in radians, [0, 2π) or (−π, π]).
@@ -82,19 +82,6 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Conversion
-        /// <summary>
-        /// Converts to Cartesian coordinates.
-        /// </summary>
-        /// <returns>CartesianCoordinate.</returns>
-        public CartesianCoordinate ToCartesian()
-        {
-            double x = Radius * NMath.Cos(Azimuth.Radians);
-            double y = Radius * NMath.Sin(Azimuth.Radians);
-            return new CartesianCoordinate(x, y, Tolerance);
-        }
-        #endregion
-
         #region Methods: Azimuth Angle Add/Subtract/Multiply/Divide
         /// <summary>
         /// Adds the angle, in radians, to the angle of the current coordinate.
@@ -123,7 +110,7 @@ namespace MPT.Math.Coordinates
         /// <returns>PolarCoordinate.</returns>
         public PolarCoordinate AddAngleAzimuthDegrees(double angle)
         {
-            return changeAngleAzimuthRadians(Azimuth.Radians + Angle.ToRadians(angle));
+            return changeAngleAzimuthRadians(Azimuth.Radians + Angle.DegreesToRadians(angle));
         }
 
         /// <summary>
@@ -133,7 +120,7 @@ namespace MPT.Math.Coordinates
         /// <returns>PolarCoordinate.</returns>
         public PolarCoordinate SubtractAngleAzimuthDegrees(double angle)
         {
-            return changeAngleAzimuthRadians(Azimuth.Radians - Angle.ToRadians(angle));
+            return changeAngleAzimuthRadians(Azimuth.Radians - Angle.DegreesToRadians(angle));
         }
 
         /// <summary>

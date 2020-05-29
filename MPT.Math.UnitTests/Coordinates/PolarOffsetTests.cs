@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace MPT.Math.UnitTests.Coordinates
 {
     [TestFixture]
-    public class PolarOffsetTests
+    public static class PolarOffsetTests
     {
     }
 }

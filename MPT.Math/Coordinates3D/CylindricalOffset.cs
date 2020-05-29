@@ -9,7 +9,7 @@ namespace MPT.Math.Coordinates3D
     /// Represents the difference between cylindrical coordinates I (first) and J (second) in two-dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{CylindricalOffset}" />
-    public struct CylindricalOffset : IEquatable<CylindricalOffset>
+    public struct CylindricalOffset : IEquatable<CylindricalOffset>, ITolerance
     {
         #region Properties
         /// <summary>

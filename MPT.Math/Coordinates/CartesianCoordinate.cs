@@ -7,11 +7,10 @@
 // Last Modified On : 05-16-2020
 // ***********************************************************************
 // <copyright file="CartesianCoordinate.cs" company="Mark P Thomas, Inc.">
-//     2020
+//     Copyright © 2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using MPT.Math.Algebra;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using System;
@@ -26,7 +25,7 @@ namespace MPT.Math.Coordinates
     /// <seealso ref="https://en.wikipedia.org/wiki/Cartesian_coordinate_system"/>
     /// <seealso ref="https://en.wikipedia.org/wiki/Euclidean_space"/>
     /// <seealso cref="System.IEquatable{CartesianCoordinate}" />
-    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>, ICoordinate
+    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>, ICoordinate, ITolerance
     {
         #region Properties
         /// <summary>
@@ -64,26 +63,16 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Conversion
+        #region Methods: Public
         /// <summary>
-        /// Converts to Polar coordinates.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>PolarCoordinate.</returns>
-        public PolarCoordinate ToPolar()
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
         {
-            return new PolarCoordinate(
-                radius: AlgebraLibrary.SRSS(X, Y),
-                azimuth: new Angle(NMath.Atan(Y / X)),
-                tolerance: Tolerance);
+            return base.ToString() + " - X: " + X + ", Y: " + Y;
         }
 
-        
-        
-
-        
-        #endregion
-
-        #region Methods
         /// <summary>
         /// Returns the cross product/determinant of the coordinates.
         /// x1*y2 - x2*y1
@@ -105,42 +94,20 @@ namespace MPT.Math.Coordinates
         {
             return VectorLibrary.DotProduct(X, Y, coordinate.X, coordinate.Y);
         }
+
+        /// <summary>
+        /// Returns the cartesian offset of the current coordinate from the provided coordinate.
+        /// i.e. the current coordinate subtracting the provided coordinate.
+        /// </summary>
+        /// <param name="coordinateI">The coordinate i.</param>
+        /// <returns>AngularOffset.</returns>
+        public CartesianOffset OffsetFrom(CartesianCoordinate coordinateI)
+        {
+            return new CartesianOffset(coordinateI, this);
+        }
         #endregion
 
-        #region Operators & Equals
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        public bool Equals(CartesianCoordinate other)
-        {
-            double tolerance = NMath.Min(Tolerance, other.Tolerance);
-            return X.IsEqualTo(other.X, tolerance) &&
-                   Y.IsEqualTo(other.Y, tolerance);
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj is CartesianCoordinate) { return Equals((CartesianCoordinate)obj); }
-            return base.Equals(obj);
-        }
-
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        public override int GetHashCode()
-        {
-            return X.GetHashCode() ^ Y.GetHashCode();
-        }
-
-
+        #region Operators: Equals
         /// <summary>
         /// Implements the == operator.
         /// </summary>
@@ -161,19 +128,21 @@ namespace MPT.Math.Coordinates
         {
             return !a.Equals(b);
         }
+        #endregion
 
+        #region Operators: Combining
         /// <summary>
         /// Implements the - operator.
         /// </summary>
         /// <param name="a">Coordinate a.</param>
         /// <param name="b">Coordinate b.</param>
         /// <returns>The result of the operator.</returns>
-        public static CartesianOffset operator -(CartesianCoordinate a, CartesianCoordinate b)
+        public static CartesianCoordinate operator -(CartesianCoordinate a, CartesianCoordinate b)
         {
-            return new CartesianOffset(
-                a,
-                b,
-                NMath.Max(a.Tolerance, b.Tolerance));
+            return new CartesianCoordinate(
+                a.X - b.X,
+                a.Y - b.Y,
+                Helper.GetTolerance(a, b));
         }
 
 
@@ -188,7 +157,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 a.X + b.X,
                 a.Y + b.Y,
-                NMath.Max(a.Tolerance, b.Tolerance));
+                Helper.GetTolerance(a, b));
         }
 
 
@@ -225,10 +194,45 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static CartesianCoordinate operator /(CartesianCoordinate coordinate, double denominator)
         {
-            return new CartesianCoordinate(
-                coordinate.X / denominator,
-                coordinate.Y / denominator,
-                coordinate.Tolerance);
+            if (denominator == 0) { throw new DivideByZeroException(); }
+            double x = coordinate.X / denominator;
+            double y = coordinate.Y / denominator;
+
+            return new CartesianCoordinate(x, y, coordinate.Tolerance);
+        }
+        #endregion
+
+        #region IEquatable
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        public bool Equals(CartesianCoordinate other)
+        {
+            double tolerance = NMath.Min(Tolerance, other.Tolerance);
+            return X.IsEqualTo(other.X, tolerance) &&
+                   Y.IsEqualTo(other.Y, tolerance);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is CartesianCoordinate) { return Equals((CartesianCoordinate)obj); }
+            return base.Equals(obj);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() ^ Y.GetHashCode();
         }
         #endregion
     }

@@ -11,7 +11,7 @@ namespace MPT.Math.Coordinates3D
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Spherical_coordinate_system"/>
     /// <seealso cref="System.IEquatable{SphericalCoordinate}" />
-    public struct SphericalCoordinate : IEquatable<SphericalCoordinate>, ICoordinate3D
+    public struct SphericalCoordinate : IEquatable<SphericalCoordinate>, ICoordinate3D, ITolerance
     {
         // TODO: Handle ability to make spherical coordinates unique:
         // If it is necessary to define a unique set of spherical coordinates for each point, one must restrict their ranges. A common choice is
@@ -86,33 +86,6 @@ namespace MPT.Math.Coordinates3D
         }
         #endregion
 
-        #region Conversion
-        /// <summary>
-        /// Converts to Cartesian coordinates.
-        /// </summary>
-        /// <returns>CartesianCoordinate.</returns>
-        public CartesianCoordinate3D ToCartesian()
-        {
-            double x = Radius * NMath.Sin(Inclination.Radians) * NMath.Cos(Azimuth.Radians);
-            double y = Radius * NMath.Sin(Inclination.Radians) * NMath.Sin(Azimuth.Radians);
-            double z = Radius * NMath.Cos(Inclination.Radians);
-            return new CartesianCoordinate3D(x, y, z, Tolerance);
-        }
-
-        /// <summary>
-        /// Converts to cylindrical coordinates.
-        /// </summary>
-        /// <returns>CylindricalCoordinate.</returns>
-        public CylindricalCoordinate ToCylindrical()
-        {
-            double radius = Radius*NMath.Sin(Inclination.Radians);
-            double height = Radius * NMath.Cos(Inclination.Radians);
-            double azimuth = Azimuth.Radians;
-
-            return new CylindricalCoordinate(radius, height, azimuth, Tolerance);
-        }
-        #endregion
-
         #region Methods: Inclination Angle Add/Subtract/Multiply/Divide
         /// <summary>
         /// Adds the angle, in radians, to the inclination angle, θ, of the current coordinate.
@@ -141,7 +114,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>SphericalCoordinate.</returns>
         public SphericalCoordinate AddAngleInclinationDegrees(double angle)
         {
-            return changeAngleInclinationRadians(Inclination.Radians + Angle.ToRadians(angle));
+            return changeAngleInclinationRadians(Inclination.Radians + Angle.DegreesToRadians(angle));
         }
 
         /// <summary>
@@ -151,7 +124,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>SphericalCoordinate.</returns>
         public SphericalCoordinate SubtractAngleInclinationDegrees(double angle)
         {
-            return changeAngleInclinationRadians(Inclination.Radians - Angle.ToRadians(angle));
+            return changeAngleInclinationRadians(Inclination.Radians - Angle.DegreesToRadians(angle));
         }
 
         /// <summary>
@@ -217,7 +190,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>SphericalCoordinate.</returns>
         public SphericalCoordinate AddAngleAzimuthDegrees(double angle)
         {
-            return changePhiAngleAzimuthRadians(Azimuth.Radians + Angle.ToRadians(angle));
+            return changePhiAngleAzimuthRadians(Azimuth.Radians + Angle.DegreesToRadians(angle));
         }
 
         /// <summary>
@@ -227,7 +200,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>SphericalCoordinate.</returns>
         public SphericalCoordinate SubtractAngleAzimuthDegrees(double angle)
         {
-            return changePhiAngleAzimuthRadians(Azimuth.Radians - Angle.ToRadians(angle));
+            return changePhiAngleAzimuthRadians(Azimuth.Radians - Angle.DegreesToRadians(angle));
         }
 
         /// <summary>

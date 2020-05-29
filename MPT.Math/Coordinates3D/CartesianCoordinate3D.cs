@@ -24,7 +24,7 @@ namespace MPT.Math.Coordinates3D
     /// <seealso ref="https://en.wikipedia.org/wiki/Cartesian_coordinate_system"/>
     /// <seealso ref="https://en.wikipedia.org/wiki/Euclidean_space"/>
     /// <seealso cref="System.IEquatable{CartesianCoordinate3D}" />
-    public struct CartesianCoordinate3D : IEquatable<CartesianCoordinate3D>, ICoordinate3D
+    public struct CartesianCoordinate3D : IEquatable<CartesianCoordinate3D>, ICoordinate3D, ITolerance
     {
         #region Properties
         /// <summary>
@@ -67,46 +67,6 @@ namespace MPT.Math.Coordinates3D
             Y = y;
             Z = z;
             Tolerance = tolerance;
-        }
-        #endregion
-
-        #region Conversion
-        /// <summary>
-        /// Converts to spherical coordinates.
-        /// </summary>
-        /// <returns>SphericalCoordinate.</returns>
-        public SphericalCoordinate ToSpherical()
-        {
-            double radialDistance = Numbers.Sqrt(X.Squared() + Y.Squared() + Z.Squared());
-            double angleAzimuth = NMath.Atan(Y / X);
-            double angleInclination = NMath.Acos(Z / radialDistance);
-
-            return new SphericalCoordinate(radialDistance, angleInclination, angleAzimuth, Tolerance);
-        }
-
-        /// <summary>
-        /// Converts to cylindrical coordinates.
-        /// </summary>
-        /// <returns>CylindricalCoordinate.</returns>
-        public CylindricalCoordinate ToCylindrical()
-        {
-            double radialDistance = Numbers.Sqrt(X.Squared() + Y.Squared());
-            double height = Z;
-            double angleAzimuth = 0;
-            if (X.IsZeroSign() && Y.IsZeroSign())
-            {
-                angleAzimuth = 0;
-            }
-            else if (X.IsGreaterThanOrEqualTo(0) && !Y.IsZeroSign())
-            {
-                angleAzimuth = NMath.Asin(Y / radialDistance);
-            }
-            else if (X.IsNegativeSign())
-            {
-                angleAzimuth = -NMath.Asin(Y / radialDistance) + Numbers.Pi;
-            }
-
-            return new CylindricalCoordinate(radialDistance, height, angleAzimuth, Tolerance);
         }
         #endregion
 

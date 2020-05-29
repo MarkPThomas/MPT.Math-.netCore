@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -15,12 +15,16 @@
 
   <ItemGroup>
     <Compile Remove="Algebra\bin\**" />
+    <Compile Remove="Geometry\**" />
     <EmbeddedResource Remove="Algebra\bin\**" />
+    <EmbeddedResource Remove="Geometry\**" />
     <None Remove="Algebra\bin\**" />
+    <None Remove="Geometry\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="CoordinateConverters\Cartesian2DBarycentricConverter.cs" />
+    <Compile Remove="CoordinateConverters\Cartesian2DCartesian3DConverter.cs" />
     <Compile Remove="CoordinateConverters\Cartesian2DTrilinearConverter.cs" />
     <Compile Remove="CoordinateConverters\Cartesian3DEllipsoidConverter.cs" />
     <Compile Remove="Coordinates3D\EllipsoidCoordinate.cs" />

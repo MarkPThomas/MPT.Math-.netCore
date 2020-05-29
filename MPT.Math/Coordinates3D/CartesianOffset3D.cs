@@ -22,7 +22,7 @@ namespace MPT.Math.Coordinates3D
     /// Represents the difference between 3D Cartesian coordinates I (first) and J (second) in three-dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{CartesianOffset3D}" />
-    public struct CartesianOffset3D : IEquatable<CartesianOffset3D>
+    public struct CartesianOffset3D : IEquatable<CartesianOffset3D>, ITolerance
     {
         #region Properties
         /// <summary>

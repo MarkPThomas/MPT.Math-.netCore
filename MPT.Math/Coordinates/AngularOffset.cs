@@ -4,10 +4,10 @@
 // Created          : 05-17-2020
 //
 // Last Modified By : Mark P Thomas
-// Last Modified On : 05-17-2020
+// Last Modified On : 05-26-2020
 // ***********************************************************************
 // <copyright file="AngularOffset.cs" company="Mark P Thomas, Inc.">
-//     2020
+//     Copyright © 2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -22,7 +22,7 @@ namespace MPT.Math.Coordinates
     /// Implements the <see cref="IEquatable{AngleOffset}" />
     /// </summary>
     /// <seealso cref="IEquatable{AngleOffset}" />
-    public struct AngularOffset : IEquatable<AngularOffset>
+    public struct AngularOffset : IEquatable<AngularOffset>, IComparable<AngularOffset>, ITolerance
     {
         #region Properties
         /// <summary>
@@ -46,7 +46,7 @@ namespace MPT.Math.Coordinates
 
         #region Initialization
         /// <summary>
-        /// Initializes a new instance of the <see cref="AngularOffset"/> struct.
+        /// Initializes a new instance of the <see cref="AngularOffset" /> struct.
         /// </summary>
         /// <param name="i">The first angle.</param>
         /// <param name="j">The second angle.</param>
@@ -70,9 +70,38 @@ namespace MPT.Math.Coordinates
         {
             return new Angle(Delta().Radians, Tolerance);
         }
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="AngularOffset" /> to <see cref="double" />.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static explicit operator double(AngularOffset a)
+        {
+            return a.Delta().Radians;
+        }
+
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="double" /> to <see cref="AngularOffset" />.
+        /// </summary>
+        /// <param name="radian">Angle in radians.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator AngularOffset(double radian)
+        {
+            return new AngularOffset(new Angle(0), new Angle(radian)); ;
+        }
         #endregion
 
-        #region Methods
+        #region Methods: Public
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - Radians_i: " + I.Radians + " - Radians_j: " + J.Radians;
+        }
+
         /// <summary>
         /// j - i.
         /// </summary>
@@ -103,39 +132,7 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Operators & Equals
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        public bool Equals(AngularOffset other)
-        {
-            double tolerance = NMath.Min(Tolerance, other.Tolerance);
-            return Delta().Radians.IsEqualTo(other.Delta().Radians, tolerance);
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj is AngularOffset) { return Equals((AngularOffset)obj); }
-            return base.Equals(obj);
-        }
-
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        public override int GetHashCode()
-        {
-            return I.GetHashCode() ^ J.GetHashCode();
-        }
-
-
+        #region Operators: Equals
         /// <summary>
         /// Implements the == operator.
         /// </summary>
@@ -146,6 +143,21 @@ namespace MPT.Math.Coordinates
         {
             return a.Equals(b);
         }
+        public static bool operator ==(double a, AngularOffset b)
+        {
+            return a == b.Delta().Radians;
+        }
+        /// <summary>
+        /// Implements the == operator for an angle and a double which represents radians.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(AngularOffset a, double b)
+        {
+            return a.Delta().Radians == b;
+        }
+
         /// <summary>
         /// Implements the != operator.
         /// </summary>
@@ -156,7 +168,152 @@ namespace MPT.Math.Coordinates
         {
             return !a.Equals(b);
         }
+        public static bool operator !=(double a, AngularOffset b)
+        {
+            return a != b.Delta().Radians;
+        }
+        /// <summary>
+        /// Implements the != operator for an angle and a double which represents radians.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator !=(AngularOffset a, double b)
+        {
+            return a.Delta().Radians != b;
+        }
+        #endregion
 
+        #region Operators: Comparison
+        /// <summary>
+        /// Implements the &gt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >(AngularOffset a, AngularOffset b)
+        {
+            return a.CompareTo(b) == 1;
+        }
+        /// <summary>
+        /// Implements the &gt; operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >(double a, AngularOffset b)
+        {
+            return b.CompareTo(a) == -1;
+        }
+        /// <summary>
+        /// Implements the &gt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >(AngularOffset a, double b)
+        {
+            return a.CompareTo(b) == 1;
+        }
+
+
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(AngularOffset a, AngularOffset b)
+        {
+            return a.CompareTo(b) == -1;
+        }
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(double a, AngularOffset b)
+        {
+            return b.CompareTo(a) == 1;
+        }
+        /// <summary>
+        /// Implements the &lt; operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <(AngularOffset a, double b)
+        {
+            return a.CompareTo(b) == -1;
+        }
+
+
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(AngularOffset a, AngularOffset b)
+        {
+            return a.CompareTo(b) >= 0;
+        }
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(double a, AngularOffset b)
+        {
+            return b.CompareTo(a) <= 0;
+        }
+        /// <summary>
+        /// Implements the &gt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator >=(AngularOffset a, double b)
+        {
+            return a.CompareTo(b) >= 0;
+        }
+
+
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(AngularOffset a, AngularOffset b)
+        {
+            return a.CompareTo(b) <= 0;
+        }
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a, in radians.</param>
+        /// <param name="b">Angle b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(double a, AngularOffset b)
+        {
+            return b.CompareTo(a) >= 0;
+        }
+        /// <summary>
+        /// Implements the &lt;= operator.
+        /// </summary>
+        /// <param name="a">Angle a.</param>
+        /// <param name="b">Angle b, in radians.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator <=(AngularOffset a, double b)
+        {
+            return a.CompareTo(b) <= 0;
+        }
+        #endregion
+
+        #region Operators: Combining
         /// <summary>
         /// Implements the - operator.
         /// </summary>
@@ -168,7 +325,7 @@ namespace MPT.Math.Coordinates
             return new AngularOffset(
                 new Angle(),
                 offset1.ToAngle() - offset2.ToAngle(),
-                NMath.Max(offset1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -202,7 +359,7 @@ namespace MPT.Math.Coordinates
             return new AngularOffset(
                 offset1.I + offset2.I,
                 offset1.J + offset2.J,
-                NMath.Min(offset1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -260,10 +417,87 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static AngularOffset operator /(AngularOffset offset, double denominator)
         {
+            if (denominator == 0) { throw new DivideByZeroException(); }
             return new AngularOffset(
                 offset.I / denominator,
                 offset.J / denominator,
                 offset.Tolerance);
+        }
+        #endregion
+
+        #region IEquatable
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        public bool Equals(AngularOffset other)
+        {
+            double tolerance = Helper.GetTolerance(this, other);
+            return Delta().Radians.IsEqualTo(other.Delta().Radians, tolerance);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current instance.</param>
+        /// <returns><c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is AngularOffset) { return Equals((AngularOffset)obj); }
+           
+            return base.Equals(obj);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        public override int GetHashCode()
+        {
+            return I.GetHashCode() ^ J.GetHashCode();
+        }
+        #endregion
+
+        #region IComparable
+        /// <summary>
+        /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+        /// </summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// Value
+        /// Meaning
+        /// Less than zero
+        /// This instance precedes <paramref name="other">other</paramref> in the sort order.
+        /// Zero
+        /// This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+        /// Greater than zero
+        /// This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        public int CompareTo(AngularOffset other)
+        {
+            if (Equals(other)) { return 0; }
+
+            double tolerance = Helper.GetTolerance(this, other);
+            return Delta().Radians.IsLessThan(other.Delta().Radians, tolerance) ? -1 : 1;
+        }
+        /// <summary>
+        /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+        /// </summary>
+        /// <param name="other">An object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+        /// Value
+        /// Meaning
+        /// Less than zero
+        /// This instance precedes <paramref name="other">other</paramref> in the sort order.
+        /// Zero
+        /// This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+        /// Greater than zero
+        /// This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        public int CompareTo(double other)
+        {
+            if (Equals(other)) { return 0; }
+
+            return Delta().Radians.IsLessThan(other, Tolerance) ? -1 : 1;
         }
         #endregion
     }

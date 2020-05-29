@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace MPT.Math.UnitTests.Coordinates3D
 {
     [TestFixture]
-    public class SphericalCoordinateTests
+    public static class SphericalCoordinateTests
     {
     }
 }

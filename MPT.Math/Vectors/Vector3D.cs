@@ -22,7 +22,7 @@ namespace MPT.Math.Vectors
     /// Represents a vector in 3D space.
     /// </summary>
     /// <seealso cref="System.IEquatable{Vector3D}" />
-    public struct Vector3D : IEquatable<Vector3D>
+    public class Vector3D : IEquatable<Vector3D>, ITolerance
     {
         #region Properties
         /// <summary>

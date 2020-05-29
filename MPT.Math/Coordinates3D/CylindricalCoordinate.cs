@@ -11,7 +11,7 @@ namespace MPT.Math.Coordinates3D
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Cylindrical_coordinate_system"/>
     /// <seealso cref="System.IEquatable{CylindricalCoordinate}" />
-    public struct CylindricalCoordinate : IEquatable<CylindricalCoordinate>, ICoordinate3D
+    public struct CylindricalCoordinate : IEquatable<CylindricalCoordinate>, ICoordinate3D, ITolerance
     {
         // TODO: Handle ability to make spherical coordinates unique:
         // In situations where someone wants a unique set of coordinates for each point, one may restrict the radius to be non-negative (ρ ≥ 0) and the azimuth φ to lie in a specific interval spanning 360°, such as [−180°,+180°] or [0,360°].
@@ -83,34 +83,6 @@ namespace MPT.Math.Coordinates3D
             _azimuth = new Angle(azimuth.Radians);
             Tolerance = tolerance;
         }
-        #endregion
-
-        #region Conversion
-        /// <summary>
-        /// Converts to Cartesian coordinates.
-        /// </summary>
-        /// <returns>CartesianCoordinate.</returns>
-        public CartesianCoordinate3D ToCartesian()
-        {
-            double x = Radius * NMath.Cos(_azimuth.Radians);
-            double y = Radius * NMath.Sin(_azimuth.Radians);
-            double z = Height;
-            return new CartesianCoordinate3D(x, y, z, Tolerance);
-        }
-
-        /// <summary>
-        /// Converts to spherical coordinates.
-        /// </summary>
-        /// <returns>SphericalCoordinate.</returns>
-        public SphericalCoordinate ToSpherical()
-        {
-            double radius = Numbers.Sqrt(Radius.Squared() + Height.Squared());
-            double azimuth = _azimuth.Radians;
-            double inclination = NMath.Atan(Radius / Height);
-
-            return new SphericalCoordinate(radius, inclination, azimuth, Tolerance);
-        }
-
         #endregion
 
         #region Methods: Height Add/Subtract/Multiply/Divide
@@ -197,7 +169,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>PolarCoordinate.</returns>
         public CylindricalCoordinate AddAngleAzimuthDegrees(double angle)
         {
-            return changePhiAngleAzimuthRadians(_azimuth.Radians + Angle.ToRadians(angle));
+            return changePhiAngleAzimuthRadians(_azimuth.Radians + Angle.DegreesToRadians(angle));
         }
 
         /// <summary>
@@ -207,7 +179,7 @@ namespace MPT.Math.Coordinates3D
         /// <returns>PolarCoordinate.</returns>
         public CylindricalCoordinate SubtractAngleAzimuthDegrees(double angle)
         {
-            return changePhiAngleAzimuthRadians(_azimuth.Radians - Angle.ToRadians(angle));
+            return changePhiAngleAzimuthRadians(_azimuth.Radians - Angle.DegreesToRadians(angle));
         }
 
         /// <summary>

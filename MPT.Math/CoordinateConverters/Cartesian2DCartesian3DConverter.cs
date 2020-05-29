@@ -4,7 +4,10 @@ using System.Text;
 
 namespace MPT.Math.CoordinateConverters
 {
-    class Cartesian2DCartesian3DConverter
+    /// <summary>
+    /// Class Cartesian2DCartesian3DConverter.
+    /// </summary>
+    public static class Cartesian2DCartesian3DConverter
     {
     }
 }

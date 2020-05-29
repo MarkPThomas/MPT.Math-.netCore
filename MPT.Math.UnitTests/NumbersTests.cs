@@ -5,22 +5,24 @@ using NUnit.Framework;
 namespace MPT.Math.UnitTests
 {
     [TestFixture]
-    public class NumbersTests
+    public static class NumbersTests
     {
+        public static double Tolerance = 0.00001;
+
         [Test]
-        public void Log10E()
+        public static void Log10E()
         {
             Assert.AreEqual(0.4342944819, NMath.Round(Numbers.Log10E(), 11));
         }
 
         [Test]
-        public void Log2E()
+        public static void Log2E()
         {
             Assert.AreEqual(1.44269504, NMath.Round(Numbers.Log2E(), 8));
         }
 
         [Test]
-        public void GoldenRatio()
+        public static void GoldenRatio()
         {
             Assert.AreEqual(1.61803398875, NMath.Round(Numbers.GoldenRatio(), 11));
         }
@@ -38,7 +40,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, ExpectedResult = false)]
         [TestCase(-3, ExpectedResult = false)]
         [TestCase(-5, ExpectedResult = false)]
-        public bool IsEven_Int(int number)
+        public static bool IsEven_Int(int number)
         {
             return Numbers.IsEven(number);
         }
@@ -56,7 +58,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, ExpectedResult = true)]
         [TestCase(-3, ExpectedResult = true)]
         [TestCase(-5, ExpectedResult = true)]
-        public bool IsOdd_Int(int number)
+        public static bool IsOdd_Int(int number)
         {
             return Numbers.IsOdd(number);
         }
@@ -64,7 +66,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, ExpectedResult = false)]
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = true)]
-        public bool IsPositiveSign_Int(int number)
+        public static bool IsPositiveSign_Int(int number)
         {
             return Numbers.IsPositiveSign(number);
         }
@@ -72,7 +74,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, ExpectedResult = true)]
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = false)]
-        public bool IsNegativeSign_Int(int number)
+        public static bool IsNegativeSign_Int(int number)
         {
             return Numbers.IsNegativeSign(number);
         }
@@ -84,7 +86,7 @@ namespace MPT.Math.UnitTests
         [TestCase(5.31256712, ExpectedResult = true)]
         [TestCase(double.PositiveInfinity, ExpectedResult = true)]
         [TestCase(double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsPositiveSign_Double_Default_Tolerance(double number)
+        public static bool IsPositiveSign_Double_Default_Tolerance(double number)
         {
             return Numbers.IsPositiveSign(number);
         }
@@ -94,7 +96,7 @@ namespace MPT.Math.UnitTests
         [TestCase(0.001, 0.1, ExpectedResult = false)]
         [TestCase(0.001, 0.0001, ExpectedResult = true)]
         [TestCase(0.001, -0.0001, ExpectedResult = true)]
-        public bool IsPositiveSign_Double_Custom_Tolerance(double number, double tolerance)
+        public static bool IsPositiveSign_Double_Custom_Tolerance(double number, double tolerance)
         {
             return Numbers.IsPositiveSign(number, tolerance);
         }
@@ -106,7 +108,7 @@ namespace MPT.Math.UnitTests
         [TestCase(5.31256712, ExpectedResult = false)]
         [TestCase(double.PositiveInfinity, ExpectedResult = false)]
         [TestCase(double.NegativeInfinity, ExpectedResult = true)]
-        public bool IsNegativeSign_Double_Default_Tolerance(double number)
+        public static bool IsNegativeSign_Double_Default_Tolerance(double number)
         {
             return Numbers.IsNegativeSign(number);
         }
@@ -116,26 +118,23 @@ namespace MPT.Math.UnitTests
         [TestCase(0.001, 0.1, ExpectedResult = false)]
         [TestCase(-0.001, 0.0001, ExpectedResult = true)]
         [TestCase(-0.001, -0.0001, ExpectedResult = true)]
-        public bool IsNegativeSign_Double_Custom_Tolerance(double number, double tolerance)
+        public static bool IsNegativeSign_Double_Custom_Tolerance(double number, double tolerance)
         {
             return Numbers.IsNegativeSign(number, tolerance);
         }
 
         [TestCase(0, ExpectedResult = true)]
-        [TestCase(0.0001, ExpectedResult = false)]
-        [TestCase(-0.0001, ExpectedResult = false)]
-        [TestCase(double.PositiveInfinity, ExpectedResult = false)]
-        [TestCase(double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsZeroSign_Default_Tolerance(double value)
-        {
-            return Numbers.IsZeroSign(value);
-        }
-
-
-        [TestCase(0, ExpectedResult = true)]
         [TestCase(1, ExpectedResult = false)]
         [TestCase(-1, ExpectedResult = false)]
-        public bool IsZeroSign_Custom_Tolerance_Default(double value)
+        [TestCase(0.0001, ExpectedResult = false)]
+        [TestCase(-0.0001, ExpectedResult = false)]
+        [TestCase(1.2345E-7, ExpectedResult = false)]
+        [TestCase(1.437821381955473E-07, ExpectedResult = false)]
+        [TestCase(-1.2345E-7, ExpectedResult = false)]
+        [TestCase(-1.437821381955473E-07, ExpectedResult = false)]
+        [TestCase(double.PositiveInfinity, ExpectedResult = false)]
+        [TestCase(double.NegativeInfinity, ExpectedResult = false)]
+        public static bool IsZeroSign_Default_Tolerance(double value)
         {
             return Numbers.IsZeroSign(value);
         }
@@ -148,7 +147,13 @@ namespace MPT.Math.UnitTests
         [TestCase(-0.0001, 0.0001, ExpectedResult = false)]
         [TestCase(0.0001, -0.0001, ExpectedResult = false)]
         [TestCase(-0.0001, -0.0001, ExpectedResult = false)]
-        public bool IsZeroSign_Custom_Tolerance(double value, double tolerance)
+        [TestCase(1.2345E-7, 0.0001, ExpectedResult = true)]
+        [TestCase(1.437821381955473E-07, 0.0001, ExpectedResult = true)]
+        [TestCase(-1.2345E-7, 0.0001, ExpectedResult = true)]
+        [TestCase(-1.437821381955473E-07, 0.0001, ExpectedResult = true)]
+        [TestCase(double.PositiveInfinity, 0.0001, ExpectedResult = false)]
+        [TestCase(double.NegativeInfinity, 0.0001, ExpectedResult = false)]
+        public static bool IsZeroSign_Custom_Tolerance(double value, double tolerance)
         {
             return Numbers.IsZeroSign(value, tolerance);
         }
@@ -162,7 +167,7 @@ namespace MPT.Math.UnitTests
         [TestCase(double.PositiveInfinity, double.PositiveInfinity, ExpectedResult = true)]
         [TestCase(double.NegativeInfinity, double.NegativeInfinity, ExpectedResult = true)]
         [TestCase(double.PositiveInfinity, double.NegativeInfinity, ExpectedResult = false)]
-        public bool AreEqual_Default_Tolerance(double value1, double value2)
+        public static bool AreEqual_Default_Tolerance(double value1, double value2)
         {
             return Numbers.AreEqual(value1, value2);
         }
@@ -173,7 +178,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-5.555, -5.554, -0.001, ExpectedResult = true)]
         [TestCase(5.555, 5.554, 0.0001, ExpectedResult = false)]
         [TestCase(-5.555, -5.554, 0.0001, ExpectedResult = false)]
-        public bool AreEqual_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool AreEqual_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.AreEqual(value1, value2, tolerance);
         }
@@ -187,7 +192,7 @@ namespace MPT.Math.UnitTests
         [TestCase(double.PositiveInfinity, double.PositiveInfinity, ExpectedResult = true)]
         [TestCase(double.NegativeInfinity, double.NegativeInfinity, ExpectedResult = true)]
         [TestCase(double.PositiveInfinity, double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsEqualTo_Default_Tolerance(double value1, double value2)
+        public static bool IsEqualTo_Default_Tolerance(double value1, double value2)
         {
             return Numbers.IsEqualTo(value1, value2);
         }
@@ -198,7 +203,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-5.555, -5.554, -0.001, ExpectedResult = true)]
         [TestCase(5.555, 5.554, 0.0001, ExpectedResult = false)]
         [TestCase(-5.555, -5.554, 0.0001, ExpectedResult = false)]
-        public bool IsEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool IsEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.IsEqualTo(value1, value2, tolerance);
         }
@@ -217,7 +222,7 @@ namespace MPT.Math.UnitTests
         [TestCase(5.6882, double.NegativeInfinity, ExpectedResult = true)]
         [TestCase(-5.6882, double.PositiveInfinity, ExpectedResult = false)]
         [TestCase(-5.6882, double.NegativeInfinity, ExpectedResult = true)]
-        public bool IsGreaterThan_Default_Tolerance(double value1, double value2)
+        public static bool IsGreaterThan_Default_Tolerance(double value1, double value2)
         {
             return Numbers.IsGreaterThan(value1, value2);
         }
@@ -228,7 +233,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-5.554, -5.555, 0.001, ExpectedResult = false)]
         [TestCase(-5.554, -5.555, 0.0001, ExpectedResult = true)]
         [TestCase(-5.554, -5.555, -0.0001, ExpectedResult = true)]
-        public bool IsGreaterThan_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool IsGreaterThan_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.IsGreaterThan(value1, value2, tolerance);
         }
@@ -247,7 +252,7 @@ namespace MPT.Math.UnitTests
         [TestCase(5.6882, double.NegativeInfinity, ExpectedResult = false)]
         [TestCase(-5.6882, double.PositiveInfinity, ExpectedResult = true)]
         [TestCase(-5.6882, double.NegativeInfinity, ExpectedResult = false)]
-        public bool IsLessThan_Default_Tolerance(double value1, double value2)
+        public static bool IsLessThan_Default_Tolerance(double value1, double value2)
         {
             return Numbers.IsLessThan(value1, value2);
         }
@@ -258,7 +263,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-5.555, -5.554, 0.0001, ExpectedResult = true)]
         [TestCase(-5.555, -5.554, -0.0001, ExpectedResult = true)]
         [TestCase(-5.555, -5.554, 0.01, ExpectedResult = false)]
-        public bool IsLessThan_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool IsLessThan_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.IsLessThan(value1, value2, tolerance);
         }
@@ -268,7 +273,7 @@ namespace MPT.Math.UnitTests
         [TestCase(3, ExpectedResult = 3)]
         [TestCase(45, ExpectedResult = 5)]
         [TestCase(63, ExpectedResult = 3)]
-        public int LastDigit(int number)
+        public static int LastDigit(int number)
         {
             return Numbers.LastDigit(number);
         }
@@ -278,7 +283,7 @@ namespace MPT.Math.UnitTests
         [TestCase(2, ExpectedResult = 1 * 2)]
         [TestCase(3, ExpectedResult = 1 * 2 * 3)]
         [TestCase(4, ExpectedResult = 1 * 2 *3 * 4)]
-        public int Factorial(int number)
+        public static int Factorial(int number)
         {
             return Numbers.Factorial(number);
         }
@@ -289,13 +294,13 @@ namespace MPT.Math.UnitTests
         [TestCase(2, 0, ExpectedResult = 1)]
         [TestCase(0, 0, ExpectedResult = 1)]
         [TestCase(-1, 0, ExpectedResult = 1)]
-        public double Pow_Integer(int number, int power)
+        public static double Pow_Integer(int number, int power)
         {
             return Numbers.Pow(number, power);
         }
 
         [TestCase(0, -1)]
-        public void Pow_Integer_Throws_Exception(int number, int power)
+        public static void Pow_Integer_Throws_Exception(int number, int power)
         {
             Assert.Throws<DivideByZeroException>(() => Numbers.Pow(number, power));
         }
@@ -313,13 +318,13 @@ namespace MPT.Math.UnitTests
         [TestCase(double.NegativeInfinity, 3, ExpectedResult = double.NegativeInfinity)]
         [TestCase(2, double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
         [TestCase(2, double.NegativeInfinity, ExpectedResult = 0)]
-        public double Pow_Double(double number, double power)
+        public static double Pow_Double(double number, double power)
         {
             return Numbers.Pow(number, power);
         }
 
         [TestCase(0, -1)]
-        public void Pow_Double_Throws_Exception(double number, double power)
+        public static void Pow_Double_Throws_Exception(double number, double power)
         {
             Assert.Throws<DivideByZeroException>(() => Numbers.Pow(number, power));
         }
@@ -328,7 +333,7 @@ namespace MPT.Math.UnitTests
         [TestCase(1, ExpectedResult = 1)]
         [TestCase(2, ExpectedResult = 4)]
         [TestCase(3, ExpectedResult = 9)]
-        public int Squared_Integer(int value)
+        public static int Squared_Integer(int value)
         {
             return Numbers.Squared(value);
         }
@@ -337,7 +342,7 @@ namespace MPT.Math.UnitTests
         [TestCase(1, ExpectedResult = 1)]
         [TestCase(2, ExpectedResult = 8)]
         [TestCase(3, ExpectedResult = 27)]
-        public int Cubed_Integer(int value)
+        public static int Cubed_Integer(int value)
         {
             return Numbers.Cubed(value);
         }
@@ -349,7 +354,7 @@ namespace MPT.Math.UnitTests
         [TestCase(4.4, ExpectedResult = 4.4 * 4.4)]
         [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
         [TestCase(double.NegativeInfinity, ExpectedResult = double.PositiveInfinity)]
-        public double Squared_Double(double value)
+        public static double Squared_Double(double value)
         {
             return Numbers.Squared(value);
         }
@@ -361,7 +366,7 @@ namespace MPT.Math.UnitTests
         [TestCase(4.4, ExpectedResult = 4.4 * 4.4 * 4.4)]
         [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
         [TestCase(double.NegativeInfinity, ExpectedResult = double.NegativeInfinity)]
-        public double Cubed_Double(double value)
+        public static double Cubed_Double(double value)
         {
             return Numbers.Cubed(value);
         }
@@ -411,7 +416,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-941, ExpectedResult = true)]
         [TestCase(-967, ExpectedResult = true)]
         [TestCase(-997, ExpectedResult = true)]
-        public bool IsPrime_Returns_True_for_Prime_Numbers(int number)
+        public static bool IsPrime_Returns_True_for_Prime_Numbers(int number)
         {
             return Numbers.IsPrime(number);
         }
@@ -432,7 +437,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-9, ExpectedResult = false)]
         [TestCase(-10, ExpectedResult = false)]
         [TestCase(-841, ExpectedResult = false)]
-        public bool IsPrime_Returns_False_for_Not_Prime_Numbers(int number)
+        public static bool IsPrime_Returns_False_for_Not_Prime_Numbers(int number)
         {
             return Numbers.IsPrime(number);
         }
@@ -477,7 +482,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-941, ExpectedResult = false)]
         [TestCase(-967, ExpectedResult = false)]
         [TestCase(-997, ExpectedResult = false)]
-        public bool IsComposite_Returns_True_for_Prime_Numbers(int number)
+        public static bool IsComposite_Returns_True_for_Prime_Numbers(int number)
         {
             return Numbers.IsComposite(number);
         }
@@ -497,7 +502,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-9, ExpectedResult = true)]
         [TestCase(-10, ExpectedResult = true)]
         [TestCase(-841, ExpectedResult = true)]
-        public bool IsComposite_Returns_False_for_Not_Prime_Numbers(int number)
+        public static bool IsComposite_Returns_False_for_Not_Prime_Numbers(int number)
         {
             return Numbers.IsComposite(number);
         }
@@ -514,7 +519,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-2.29, -2.3, ExpectedResult = true)]
         [TestCase(-2.3, -2.3, ExpectedResult = true)]
         [TestCase(-2.31, -2.3, ExpectedResult = false)]
-        public bool IsGreaterThanOrEqualTo_Default_Tolerance(double value1, double value2)
+        public static bool IsGreaterThanOrEqualTo_Default_Tolerance(double value1, double value2)
         {
             return Numbers.IsGreaterThanOrEqualTo(value1, value2);
         }
@@ -531,7 +536,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = true)]
         [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
         [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = false)]
-        public bool IsGreaterThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool IsGreaterThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.IsGreaterThanOrEqualTo(value1, value2, tolerance);
         }
@@ -548,7 +553,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-2.29, -2.3, ExpectedResult = false)]
         [TestCase(-2.3, -2.3, ExpectedResult = true)]
         [TestCase(-2.31, -2.3, ExpectedResult = true)]
-        public bool IsLessThanOrEqualTo_Default_Tolerance(double value1, double value2)
+        public static bool IsLessThanOrEqualTo_Default_Tolerance(double value1, double value2)
         {
             return Numbers.IsLessThanOrEqualTo(value1, value2);
         }
@@ -565,15 +570,58 @@ namespace MPT.Math.UnitTests
         [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = false)]
         [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
         [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = true)]
-        public bool IsLessThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
+        public static bool IsLessThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
         {
             return Numbers.IsLessThanOrEqualTo(value1, value2, tolerance);
         }
 
+        [TestCase(0, 0)]
+        [TestCase(1, 0)]
+        [TestCase(-1, 0)]
+        [TestCase(0.0009, 4)]
+        [TestCase(0.9, 1)]
+        [TestCase(1.1, 1)]
+        [TestCase(-0.0009, 4)]
+        [TestCase(-0.9, 1)]
+        [TestCase(-1.1, 1)]
+        [TestCase(5000.12345678, 8)]
+        [TestCase(-5000.12345678, 8)]
+        [TestCase(-0.1234567891111111, 15)]  // 16 places = 16 > 15 so 1 places extra => 16 - 1 places = 15 places
+        [TestCase(-5000.1234567891111111, 11)]  // 16 places + 4 whole = 20 > 15 so 5 places extra => 16 - 5 places = 11 places
+        [TestCase(-1.437821381955473E-07, 15)]
+        public static void DecimalPlaces(double value, int expectedResult)
+        {
+            Assert.AreEqual(expectedResult, Numbers.DecimalPlaces(value));
+        }
+
+        [TestCase(-0.1234567891111111, 15)]  // 16 places + 1 whole = 16> 15 so 1 places extra => 16 - 1 places = 15 places
+        [TestCase(-5000.1234567891111111, 11)]  // 16 places + 4 whole = 20 > 15 so 5 places extra => 16 - 5 places = 11 places
+        [TestCase(-1.437821381955473E-07, 21)]
+        public static void DecimalPlaces_Not_Limited_when_Overridden(double value, int expectedResult)
+        {
+            Assert.AreEqual(expectedResult, Numbers.DecimalPlaces(value, limitForRounding: false));
+        }
+
+        //[TestCase(0, 0)]
+        //[TestCase(1, 0)]
+        //[TestCase(-1, 0)]
+        //[TestCase(0.0009, 4)]
+        //[TestCase(0.9, 1)]
+        //[TestCase(1.1, 1)]
+        //[TestCase(-0.0009, 4)]
+        //[TestCase(-0.9, 1)]
+        //[TestCase(-1.1, 1)]
+        //[TestCase(5000.12345678, 8)]
+        //[TestCase(-5000.12345678, 8)]
+        //public static void SignificantFigures(double value, int expectedResult)
+        //{
+        //    Assert.AreEqual(expectedResult, Numbers.SigFigs(value));
+        //}
+
         [TestCase(-2.31)]
         [TestCase(0)]
         [TestCase(2.31)]
-        public void Sqrt_double(double value1)
+        public static void Sqrt_double(double value1)
         {
             Assert.AreEqual(NMath.Sqrt(value1), Numbers.Sqrt(value1));
         }
@@ -585,7 +633,7 @@ namespace MPT.Math.UnitTests
         [TestCase(2)]
         [TestCase(3)]
         [TestCase(4)]
-        public void Sqrt_integer(int value1)
+        public static void Sqrt_integer(int value1)
         {
             Assert.AreEqual(NMath.Sqrt(value1), Numbers.Sqrt(value1));
         }
@@ -593,7 +641,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-9.9, -2.1472)]
         [TestCase(0, 0)]
         [TestCase(9.9, 2.1472)]
-        public void CubeRoot_Double(double value1, double valueExpected)
+        public static void CubeRoot_Double(double value1, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.CubeRoot(value1), 0.0001);
         }
@@ -608,7 +656,7 @@ namespace MPT.Math.UnitTests
         [TestCase(9, 2.0801)]
         [TestCase(15, 2.4662)]
         [TestCase(27, 3)]
-        public void CubeRoot_Integer(int value1, double valueExpected)
+        public static void CubeRoot_Integer(int value1, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.CubeRoot(value1), 0.0001);
         }
@@ -620,13 +668,13 @@ namespace MPT.Math.UnitTests
         [TestCase(-9, 3, -2.0801)]
         [TestCase(-1, -3, -1)]
         [TestCase(-9, -3, -0.4807)]
-        public void Root_Integer(double value1, int root, double valueExpected)
+        public static void Root_Integer(double value1, int root, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Root(value1, root), 0.0001);
         }
 
         [TestCase(-1, 2)]
-        public void Root_Integer_of_Negative_Number_of_NonOdd_Root_Returns_NAN(double value1, int root)
+        public static void Root_Integer_of_Negative_Number_of_NonOdd_Root_Returns_NAN(double value1, int root)
         {
             Assert.IsNaN(Numbers.Root(value1, root));
         }
@@ -635,13 +683,13 @@ namespace MPT.Math.UnitTests
         [TestCase(4.1, 2, 2.0248)]
         [TestCase(9.1, 3.1, 2.0388)]
         [TestCase(9.1, -3.1, 0.4905)]
-        public void Root_Double(double value1, double root, double valueExpected)
+        public static void Root_Double(double value1, double root, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Root(value1, root), 0.0001);
         }
 
         [TestCase(-1.1, 2.2)]
-        public void Root_Double_of_Negative_Number_Returns_NAN(double value1, double root)
+        public static void Root_Double_of_Negative_Number_Returns_NAN(double value1, double root)
         {
             Assert.IsNaN(Numbers.Root(value1, root));
         }
@@ -649,7 +697,7 @@ namespace MPT.Math.UnitTests
         [TestCase(0, 0, 0, 0)]
         [TestCase(1, 1, 2, 0)]
         [TestCase(-2, -3, -5, 1)]
-        public void PlusMinus_BaseInteger_PlusMinus_Integer(int baseValue, int plusMinusValue, int valueExpected1, int valueExpected2)
+        public static void PlusMinus_BaseInteger_PlusMinus_Integer(int baseValue, int plusMinusValue, int valueExpected1, int valueExpected2)
         {
             int[] values = Numbers.PlusMinus(baseValue, plusMinusValue);
             Assert.AreEqual(valueExpected1, values[0], 0.000001);
@@ -659,7 +707,7 @@ namespace MPT.Math.UnitTests
         [TestCase(0, 0.0, 0.0, 0.0)]
         [TestCase(1, 1.1, 2.1, -0.1)]
         [TestCase(-2, -3.2, -5.2, 1.2)]
-        public void PlusMinus_BaseInteger_PlusMinus_Double(int baseValue, double plusMinusValue, double valueExpected1, double valueExpected2)
+        public static void PlusMinus_BaseInteger_PlusMinus_Double(int baseValue, double plusMinusValue, double valueExpected1, double valueExpected2)
         {
             double[] values = Numbers.PlusMinus(baseValue, plusMinusValue);
             Assert.AreEqual(valueExpected1, values[0], 0.000001);
@@ -671,7 +719,7 @@ namespace MPT.Math.UnitTests
         [TestCase(-2.1, -3, -5.1, 0.9)]
         [TestCase(1.1, 1.1, 2.2, 0)]
         [TestCase(-2.2, -3.2, -5.4, 1)]
-        public void PlusMinus_BaseDouble_PlusMinus_Double(double baseValue, double plusMinusValue, double valueExpected1, double valueExpected2)
+        public static void PlusMinus_BaseDouble_PlusMinus_Double(double baseValue, double plusMinusValue, double valueExpected1, double valueExpected2)
         {
             double[] values = Numbers.PlusMinus(baseValue, plusMinusValue);
             Assert.AreEqual(valueExpected1, values[0], 0.000001);
@@ -685,14 +733,14 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, -1, 2, -1)]
         [TestCase(3, 1, 2, 2)]
         [TestCase(-2, -1, 2, -1)]
-        public void Limit_Integer(int value, int min, int max, int valueExpected)
+        public static void Limit_Integer(int value, int min, int max, int valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Limit(value, min, max));
         }
 
         [TestCase(-2, 2, -1)]   // Flipped max/min
         [TestCase(3, 2, -1)]   // Flipped max/min
-        public void Limit_Integer_Throws_Argument_Exception_when_MaxMin_Reversed(int value, int min, int max)
+        public static void Limit_Integer_Throws_Argument_Exception_when_MaxMin_Reversed(int value, int min, int max)
         {
             Assert.Throws<ArgumentException>(() => Numbers.Limit(value, min, max));
         }
@@ -704,14 +752,14 @@ namespace MPT.Math.UnitTests
         [TestCase(-1, -1.1, 2.1, -1)]
         [TestCase(3, 1.1, 2.1, 2.1)]
         [TestCase(-2, -1.1, 2.1, -1.1)]
-        public void Limit_Integer_with_Double_Limits(int value, double min, double max, double valueExpected)
+        public static void Limit_Integer_with_Double_Limits(int value, double min, double max, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Limit(value, min, max));
         }
 
         [TestCase(-2, 2.2, -1.2)]   // Flipped max/min
         [TestCase(3, 2.2, -1.2)]   // Flipped max/min
-        public void Limit_Integer_with_Double_Limits_Throws_Argument_Exception_when_MaxMin_Reversed(int value, double min, double max)
+        public static void Limit_Integer_with_Double_Limits_Throws_Argument_Exception_when_MaxMin_Reversed(int value, double min, double max)
         {
             Assert.Throws<ArgumentException>(() => Numbers.Limit(value, min, max));
         }
@@ -723,14 +771,14 @@ namespace MPT.Math.UnitTests
         [TestCase(-1.1, -1.1, 2.1, -1.1)]
         [TestCase(3.1, 1.1, 2.1, 2.1)]
         [TestCase(-2.1, -1.1, 2.1, -1.1)]
-        public void Limit_Double_Default_Tolerance(double value, double min, double max, double valueExpected)
+        public static void Limit_Double_Default_Tolerance(double value, double min, double max, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Limit(value, min, max));
         }
 
         [TestCase(-2.2, 2.2, -1.2)]   // Flipped max/min
         [TestCase(3.2, 2.2, -1.2)]   // Flipped max/min
-        public void Limit_Double_Default_Throws_Argument_Exception_when_MaxMin_Reversed(double value, double min, double max)
+        public static void Limit_Double_Default_Throws_Argument_Exception_when_MaxMin_Reversed(double value, double min, double max)
         {
             Assert.Throws<ArgumentException>(() => Numbers.Limit(value, min, max));
         }
@@ -742,9 +790,12 @@ namespace MPT.Math.UnitTests
         [TestCase(-1.1, -1.1, 2.1, 0.0001, -1.1)]
         [TestCase(3.1, 1.1, 2.1, 0.0001, 2.1)]
         [TestCase(-2.1, -1.1, 2.1, 0.0001, -1.1)]
-        public void Limit_Double_Custom_Tolerance(double value, double min, double max, double tolerance, double valueExpected)
+        public static void Limit_Double_Custom_Tolerance(double value, double min, double max, double tolerance, double valueExpected)
         {
             Assert.AreEqual(valueExpected, Numbers.Limit(value, min, max));
         }
+
+        // RoundToSignificantDigits
+        // RemoveTrailingZeroes
     }
 }

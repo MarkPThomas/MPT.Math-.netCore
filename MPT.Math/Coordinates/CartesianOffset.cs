@@ -4,10 +4,10 @@
 // Created          : 12-09-2017
 //
 // Last Modified By : Mark Thomas
-// Last Modified On : 05-16-2020
+// Last Modified On : 05-18-2020
 // ***********************************************************************
 // <copyright file="CartesianOffset.cs" company="Mark P Thomas, Inc.">
-//     2020
+//     Copyright © 2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -22,7 +22,7 @@ namespace MPT.Math.Coordinates
     /// Represents the difference between Cartesian coordinates I (first) and J (second) in two-dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{CartesianOffset}" />
-    public struct CartesianOffset : IEquatable<CartesianOffset>
+    public struct CartesianOffset : IEquatable<CartesianOffset>, ITolerance
     {
         #region Properties
         /// <summary>
@@ -75,7 +75,16 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Methods
+        #region Methods: Public
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - I: (" + I.X + ", " + I.Y + "), J: (" + J.X + ", " + J.Y + ")";
+        }
+
         /// <summary>
         /// Xj - Xi.
         /// </summary>
@@ -170,7 +179,7 @@ namespace MPT.Math.Coordinates
             return new CartesianOffset(
                 new CartesianCoordinate(),
                 offset1.ToCartesianCoordinate() - offset2,
-                NMath.Max(offset1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -183,7 +192,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 point1.X - offset2.X(),
                 point1.Y - offset2.Y(),
-                NMath.Max(point1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(point1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -196,7 +205,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 offset1.X() - point2.X,
                 offset1.Y() - point2.Y,
-                NMath.Max(offset1.Tolerance, point2.Tolerance));
+                Helper.GetTolerance(offset1, point2));
         }
 
         /// <summary>
@@ -212,7 +221,7 @@ namespace MPT.Math.Coordinates
                 new CartesianCoordinate(
                     offset1.X() + offset2.X(),
                     offset1.Y() + offset2.Y()),
-                NMath.Max(offset1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -225,7 +234,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 point1.X + offset2.X(),
                 point1.Y + offset2.Y(),
-                NMath.Max(point1.Tolerance, offset2.Tolerance));
+                Helper.GetTolerance(point1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -273,6 +282,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static CartesianOffset operator /(CartesianOffset offset, double denominator)
         {
+            if (denominator == 0) { throw new DivideByZeroException(); }
             return new CartesianOffset(
                 offset.I / denominator,
                 offset.J / denominator,

@@ -3,7 +3,7 @@
 namespace MPT.Math.UnitTests.Geometry
 {
     [TestFixture]
-    public class GeometryLibraryTests
+    public static class GeometryLibraryTests
     {
     }
 }

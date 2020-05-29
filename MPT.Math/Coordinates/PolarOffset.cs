@@ -8,7 +8,7 @@ namespace MPT.Math.Coordinates
     /// Represents the difference between polar coordinates I (first) and J (second) in two-dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{PolarOffset}" />
-    public struct PolarOffset : IEquatable<PolarOffset>
+    public struct PolarOffset : IEquatable<PolarOffset>, ITolerance
     {
         #region Properties
         /// <summary>

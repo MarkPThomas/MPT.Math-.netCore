@@ -9,7 +9,7 @@ namespace MPT.Math.Coordinates3D
     /// Represents the difference between spherical coordinates I (first) and J (second) in two-dimensional space.
     /// </summary>
     /// <seealso cref="System.IEquatable{SphericalOffset}" />
-    public struct SphericalOffset : IEquatable<SphericalOffset>
+    public struct SphericalOffset : IEquatable<SphericalOffset>, ITolerance
     {
         #region Properties
         /// <summary>
