@@ -33,7 +33,6 @@
             <summary>
             Returns the least positive solution to the equation x^3 + a2x^2 + a1x + a0 = 0.
             </summary>
-            <param name="a0">Constant.</param>
             <param name="a1">Multiplier to x^2.</param>
             <param name="a2">Multiplier to x.</param>
             <param name="B">Derived constant.</param>
@@ -57,7 +56,7 @@
             <param name="a0">Constant.</param>
             <param name="a1">Multiplier to x.</param>
             <param name="a2">Multiplier to x^2.</param>
-            <param name="returnLowestRoot"></param>
+            <param name="returnFirstRoot"></param>
             <returns></returns>
         </member>
         <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear(System.Double,System.Double,System.Double)">
@@ -126,6 +125,74 @@
             <param name="values"></param>
             <returns></returns>
         </member>
+        <member name="T:MPT.Math.CoordinateConverters.Cartesian2DPolarConverter">
+            <summary>
+            Class Cartesian2DPolarConverter.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian2DPolarConverter.ToPolar(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Converts to Polar coordinates.
+            </summary>
+            <returns>PolarCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian2DPolarConverter.ToCartesian(MPT.Math.Coordinates.PolarCoordinate)">
+            <summary>
+            Converts to Cartesian coordinates.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="T:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter">
+            <summary>
+            Class Cartesian3DCylindricalConverter.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter.ToCylindrical(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
+            <summary>
+            Converts to cylindrical coordinates.
+            </summary>
+            <returns>CylindricalCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter.ToCartesian(MPT.Math.Coordinates3D.CylindricalCoordinate)">
+            <summary>
+            Converts to Cartesian coordinates.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="T:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter">
+            <summary>
+            Class Cartesian3DSphericalConverter.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter.ToSpherical(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
+            <summary>
+            Converts to spherical coordinates.
+            </summary>
+            <returns>SphericalCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter.ToCartesian(MPT.Math.Coordinates3D.SphericalCoordinate)">
+            <summary>
+            Converts to Cartesian coordinates.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="T:MPT.Math.CoordinateConverters.CylindricalSphericalConverter">
+            <summary>
+            Class CylindricalSphericalConverter.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.CylindricalSphericalConverter.ToSpherical(MPT.Math.Coordinates3D.CylindricalCoordinate)">
+            <summary>
+            Converts to spherical coordinates.
+            </summary>
+            <returns>SphericalCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.CoordinateConverters.CylindricalSphericalConverter.ToCylindrical(MPT.Math.Coordinates3D.SphericalCoordinate)">
+            <summary>
+            Converts to cylindrical coordinates.
+            </summary>
+            <returns>CylindricalCoordinate.</returns>
+        </member>
         <member name="T:MPT.Math.Coordinates3D.CartesianCoordinate3D">
             <summary>
             A three-dimensional coordinate system that specifies each point uniquely in a plane by a set of numerical coordinates, which are the signed distances to the point from two fixed perpendicular oriented lines, measured in the same unit of length.
@@ -166,18 +233,6 @@
             <param name="y">The y.</param>
             <param name="z">The z.</param>
             <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.ToSpherical">
-            <summary>
-            Converts to spherical coordinates.
-            </summary>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.ToCylindrical">
-            <summary>
-            Converts to cylindrical coordinates.
-            </summary>
-            <returns>CylindricalCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.CrossProduct(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
             <summary>
@@ -485,18 +540,6 @@
             <param name="height">The height, z, which is the signed distance from the chosen plane to the point P.</param>
             <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.</param>
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.ToCartesian">
-            <summary>
-            Converts to Cartesian coordinates.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.ToSpherical">
-            <summary>
-            Converts to spherical coordinates.
-            </summary>
-            <returns>SphericalCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.AddToHeight(System.Double)">
             <summary>
@@ -825,6 +868,11 @@
             <param name="denominator">The denominator.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="T:MPT.Math.Coordinates3D.ICoordinate3D">
+            <summary>
+            Interface ICoordinate3D
+            </summary>
+        </member>
         <member name="T:MPT.Math.Coordinates3D.SphericalCoordinate">
             <summary>
             A coordinate system for three-dimensional space where the position of a point is specified by three numbers: the radial length of that point from a fixed origin, r, its polar angle measured from a fixed zenith direction, θ, and the azimuthal angle, φ, of its orthogonal projection on a reference plane that passes through the origin and is orthogonal to the zenith, measured from a fixed reference direction on that plane. 
@@ -874,18 +922,6 @@
             <param name="inclination">The polar angle, θ, which lies in the vertical plane sweeping out from the Z-axis.</param>
             <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.</param>
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.ToCartesian">
-            <summary>
-            Converts to Cartesian coordinates.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.ToCylindrical">
-            <summary>
-            Converts to cylindrical coordinates.
-            </summary>
-            <returns>CylindricalCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationRadians(System.Double)">
             <summary>
@@ -1240,32 +1276,27 @@
             </summary>
             <value>The tolerance.</value>
         </member>
-        <member name="F:MPT.Math.Coordinates.Angle._radians">
-            <summary>
-            The radians
-            </summary>
-        </member>
         <member name="P:MPT.Math.Coordinates.Angle.Radians">
             <summary>
-            Gets or sets the radians, which is a value between -π and +π.
+            The angle as radians, which is a value between -π (clockwise) and +π (counter-clockwise).
             </summary>
             <value>The radians.</value>
         </member>
         <member name="P:MPT.Math.Coordinates.Angle.ClockwiseRadians">
             <summary>
-            Gets or sets the clockwise (inverted) radians.
+            The angle as clockwise (inverted) radians, which is a value between -π (counter-clockwise) and +π (clockwise).
             </summary>
             <value>The clockwise radians.</value>
         </member>
         <member name="P:MPT.Math.Coordinates.Angle.Degrees">
             <summary>
-            Gets or sets the degree.
+            The angle as degrees, which is a value between -180 (clockwise) and +180 (counter-clockwise).
             </summary>
             <value>The degree.</value>
         </member>
         <member name="P:MPT.Math.Coordinates.Angle.ClockwiseDegrees">
             <summary>
-            Gets or sets the clockwise (inverted) degree.
+            The angle as clockwise (inverted) degrees, which is a value between -180 (counter-clockwise) and +180 (clockwise).
             </summary>
             <value>The clockwise degree.</value>
         </member>
@@ -1300,38 +1331,77 @@
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
             <returns>Angle.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.WrapAngle(System.Double)">
+        <member name="M:MPT.Math.Coordinates.Angle.RadiansToDegrees(System.Double)">
             <summary>
-            Reduces a given angle to a value between π and -π.
+            Converts radians to degrees.
             </summary>
-            <param name="radians">The radians.</param>
+            <param name="radians">The angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.ToDegrees(System.Double)">
+        <member name="M:MPT.Math.Coordinates.Angle.DegreesToRadians(System.Double)">
             <summary>
-            Converts the radian angle to degrees.
+            Converts degrees to radians.
             </summary>
-            <param name="radians">The angle to convert [radians].</param>
+            <param name="degrees">The degrees.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.ToRadians(System.Double)">
+        <member name="M:MPT.Math.Coordinates.Angle.AsDegrees(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
-            Converts the degrees angle to radians.
+            Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
             </summary>
-            <param name="degrees">The angle to convert [degrees].</param>
+            <param name="coordinate">The coordinate.</param>
             <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.AsDegrees(System.Double,System.Double)">
+            <summary>
+            Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
+            </summary>
+            <param name="x">The x-coordinate.</param>
+            <param name="y">The y-coordinate.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.AsRadians(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Returns the positive angle [degrees] from the x-axis, counter-clockwise, of the coordinates.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.AsRadians(System.Double,System.Double)">
+            <summary>
+            Returns the positive angle [radians] from the x-axis, counter-clockwise, of the coordinates.
+            </summary>
+            <param name="x">The x-coordinate.</param>
+            <param name="y">The y-coordinate.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.WrapAngleWithinPositiveNegativePi(System.Double,System.Double)">
+            <summary>
+            Reduces a given angle to a value between -π and +π radians.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.WrapAngleWithinTwoPi(System.Double,System.Double)">
+            <summary>
+            Reduces a given angle to a value between 0 and 2π radians, matching the sign of the angle.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.GetDirectionVector">
             <summary>
             Gets the direction vector, which is a normalized vector pointing to the direction of this angle.
             </summary>
             <returns>Vector.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.Angle.SetDirectionVector(MPT.Math.Vectors.Vector)">
-            <summary>
-            Sets the Angle by using a direction vector.
-            </summary>
-            <param name="direction">The direction vector.</param>
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.RotateVector(MPT.Math.Vectors.Vector)">
             <summary>
@@ -1340,25 +1410,13 @@
             <param name="vector">The vector to rotate.</param>
             <returns>The rotated vector.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.Equals(MPT.Math.Coordinates.Angle)">
+        <member name="M:MPT.Math.Coordinates.Angle.OffsetFrom(MPT.Math.Coordinates.Angle)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Returns the angular offset of the current angle from the provided angle.
+            i.e. the current angle subtracting the provided angle.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.Angle.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.Angle.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+            <param name="angleI">The angle i.</param>
+            <returns>AngularOffset.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.op_Equality(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
             <summary>
@@ -1368,11 +1426,11 @@
             <param name="b">Angle b.</param>
             <returns>The result of the operator.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.op_Inequality(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
+        <member name="M:MPT.Math.Coordinates.Angle.op_Equality(System.Double,MPT.Math.Coordinates.Angle)">
             <summary>
-            Implements the != operator.
+            Implements the == operator for an angle and a double which represents radians.
             </summary>
-            <param name="a">Angle a.</param>
+            <param name="a">Angle a, in radians.</param>
             <param name="b">Angle b.</param>
             <returns>The result of the operator.</returns>
         </member>
@@ -1384,19 +1442,11 @@
             <param name="b">Angle b, in radians.</param>
             <returns>The result of the operator.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.Angle.op_Inequality(MPT.Math.Coordinates.Angle,System.Double)">
+        <member name="M:MPT.Math.Coordinates.Angle.op_Inequality(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
             <summary>
-            Implements the != operator for an angle and a double which represents radians.
+            Implements the != operator.
             </summary>
             <param name="a">Angle a.</param>
-            <param name="b">Angle b, in radians.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.Angle.op_Equality(System.Double,MPT.Math.Coordinates.Angle)">
-            <summary>
-            Implements the == operator for an angle and a double which represents radians.
-            </summary>
-            <param name="a">Angle a, in radians.</param>
             <param name="b">Angle b.</param>
             <returns>The result of the operator.</returns>
         </member>
@@ -1406,6 +1456,110 @@
             </summary>
             <param name="a">Angle a, in radians.</param>
             <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_Inequality(MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Implements the != operator for an angle and a double which represents radians.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThan(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThan(System.Double,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThan(MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThan(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThan(System.Double,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThan(MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThanOrEqual(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThanOrEqual(System.Double,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_GreaterThanOrEqual(MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThanOrEqual(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThanOrEqual(System.Double,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.op_LessThanOrEqual(MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
             <returns>The result of the operator.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.op_Addition(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle)">
@@ -1482,17 +1636,67 @@
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.op_Explicit(MPT.Math.Coordinates.Angle)~System.Double">
             <summary>
-            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.Angle"/> to <see cref="T:System.Double"/>.
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.Angle" /> to <see cref="T:System.Double" />.
             </summary>
             <param name="a">Angle a.</param>
             <returns>The result of the conversion.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.Angle.op_Implicit(System.Double)~MPT.Math.Coordinates.Angle">
             <summary>
-            Performs an implicit conversion from <see cref="T:System.Double"/> to <see cref="T:MPT.Math.Coordinates.Angle"/>.
+            Performs an implicit conversion from <see cref="T:System.Double" /> to <see cref="T:MPT.Math.Coordinates.Angle" />.
             </summary>
             <param name="radian">Angle in radians.</param>
             <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.Equals(MPT.Math.Coordinates.Angle)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.CompareTo(MPT.Math.Coordinates.Angle)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.Angle.CompareTo(System.Double)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
         </member>
         <member name="T:MPT.Math.Coordinates.AngularOffset">
             <summary>
@@ -1521,7 +1725,7 @@
         </member>
         <member name="M:MPT.Math.Coordinates.AngularOffset.#ctor(MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle,System.Double)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates.AngularOffset"/> struct.
+            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates.AngularOffset" /> struct.
             </summary>
             <param name="i">The first angle.</param>
             <param name="j">The second angle.</param>
@@ -1532,6 +1736,26 @@
             Converts to a single value.
             </summary>
             <returns>double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_Explicit(MPT.Math.Coordinates.AngularOffset)~System.Double">
+            <summary>
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.AngularOffset" /> to <see cref="T:System.Double" />.
+            </summary>
+            <param name="a">Angle a.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_Implicit(System.Double)~MPT.Math.Coordinates.AngularOffset">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.Double" /> to <see cref="T:MPT.Math.Coordinates.AngularOffset" />.
+            </summary>
+            <param name="radian">Angle in radians.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.AngularOffset.Delta">
             <summary>
@@ -1553,26 +1777,6 @@
             <param name="radius">The radius to use with the angular offset.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.AngularOffset.Equals(MPT.Math.Coordinates.AngularOffset)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.AngularOffset.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.AngularOffset.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
         <member name="M:MPT.Math.Coordinates.AngularOffset.op_Equality(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
             <summary>
             Implements the == operator.
@@ -1581,12 +1785,124 @@
             <param name="b">Offset b.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_Equality(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the == operator for an angle and a double which represents radians.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.AngularOffset.op_Inequality(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
             <summary>
             Implements the != operator.
             </summary>
             <param name="a">Offset a.</param>
             <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_Inequality(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the != operator for an angle and a double which represents radians.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThan(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThan(System.Double,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThan(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThan(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThan(System.Double,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThan(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThanOrEqual(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThanOrEqual(System.Double,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_GreaterThanOrEqual(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThanOrEqual(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThanOrEqual(System.Double,MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.op_LessThanOrEqual(MPT.Math.Coordinates.AngularOffset,System.Double)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Angle a.</param>
+            <param name="b">Angle b, in radians.</param>
             <returns>The result of the operator.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.AngularOffset.op_Subtraction(MPT.Math.Coordinates.AngularOffset,MPT.Math.Coordinates.AngularOffset)">
@@ -1661,6 +1977,56 @@
             <param name="denominator">Denominator value.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.Equals(MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.CompareTo(MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.AngularOffset.CompareTo(System.Double)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        </member>
         <member name="T:MPT.Math.Coordinates.CartesianCoordinate">
             <summary>
             A two-dimensional coordinate system that specifies each point uniquely in a plane by a set of numerical coordinates, which are the signed distances to the point from two fixed perpendicular oriented lines, measured in the same unit of length.
@@ -1695,11 +2061,11 @@
             <param name="y">The y-coordinate.</param>
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
         </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.ToPolar">
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.ToString">
             <summary>
-            Converts to Polar coordinates.
+            Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
-            <returns>PolarCoordinate.</returns>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.CrossProduct(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
@@ -1717,25 +2083,30 @@
             <param name="coordinate">The coordinate.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.OffsetFrom(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Returns the cartesian offset of the current coordinate from the provided coordinate.
+            i.e. the current coordinate subtracting the provided coordinate.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+            <param name="coordinateI">The coordinate i.</param>
+            <returns>AngularOffset.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(System.Object)">
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.RotateAboutPoint(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            Rotates the the specified coordinate by the specified angle about a point.
             </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+            <param name="coordinate">The coordinate.</param>
+            <param name="centerOfRotation">The center of rotation.</param>
+            <param name="degreeRadians">The degree [radians].</param>
+            <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.GetHashCode">
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Rotate(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
-            Returns a hash code for this instance.
+            Rotates the specified coordinate by the specifed angle about the origin.
             </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+            <param name="coordinate">The coordinate.</param>
+            <param name="degreeRadians">The degree [radians].</param>
+            <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Equality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
@@ -1793,6 +2164,26 @@
             <param name="denominator">The denominator value.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
         <member name="T:MPT.Math.Coordinates.CartesianOffset">
             <summary>
             Represents the difference between Cartesian coordinates I (first) and J (second) in two-dimensional space.
@@ -1830,6 +2221,12 @@
             Converts to a single <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> coordinate.
             </summary>
             <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianOffset.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianOffset.X">
             <summary>
@@ -1957,6 +2354,11 @@
             <param name="denominator">Denominator value.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="T:MPT.Math.Coordinates.ICoordinate">
+            <summary>
+            Interface ICoordinate
+            </summary>
+        </member>
         <member name="T:MPT.Math.Coordinates.LinearOffset">
             <summary>
             Represents the linear difference between coordinates I (first) and J (second) in one-dimensional space.
@@ -1996,6 +2398,26 @@
             </summary>
             <returns>double.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Explicit(MPT.Math.Coordinates.LinearOffset)~System.Double">
+            <summary>
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.LinearOffset" /> to <see cref="T:System.Double" />.
+            </summary>
+            <param name="a">Angle a.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Implicit(System.Double)~MPT.Math.Coordinates.LinearOffset">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.Double" /> to <see cref="T:MPT.Math.Coordinates.LinearOffset" />.
+            </summary>
+            <param name="distance">Offset distance.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.LinearOffset.Delta">
             <summary>
             j - i.
@@ -2008,27 +2430,23 @@
             </summary>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.LinearOffset.Equals(MPT.Math.Coordinates.LinearOffset)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.LinearOffset.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.LinearOffset.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
         <member name="M:MPT.Math.Coordinates.LinearOffset.op_Equality(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the == operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Equality(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the == operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Equality(MPT.Math.Coordinates.LinearOffset,System.Double)">
             <summary>
             Implements the == operator.
             </summary>
@@ -2039,6 +2457,118 @@
         <member name="M:MPT.Math.Coordinates.LinearOffset.op_Inequality(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
             <summary>
             Implements the != operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Inequality(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the != operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_Inequality(MPT.Math.Coordinates.LinearOffset,System.Double)">
+            <summary>
+            Implements the != operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThan(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThan(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Offset a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThan(MPT.Math.Coordinates.LinearOffset,System.Double)">
+            <summary>
+            Implements the &gt; operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThan(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThan(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Offset a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThan(MPT.Math.Coordinates.LinearOffset,System.Double)">
+            <summary>
+            Implements the &lt; operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThanOrEqual(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThanOrEqual(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Offset a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_GreaterThanOrEqual(MPT.Math.Coordinates.LinearOffset,System.Double)">
+            <summary>
+            Implements the &gt;= operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Offset b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThanOrEqual(MPT.Math.Coordinates.LinearOffset,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Offset a.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThanOrEqual(System.Double,MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Implements the &lt;= operator.
+            </summary>
+            <param name="a">Offset a, in radians.</param>
+            <param name="b">Angle b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.op_LessThanOrEqual(MPT.Math.Coordinates.LinearOffset,System.Double)">
+            <summary>
+            Implements the &lt;= operator.
             </summary>
             <param name="a">Offset a.</param>
             <param name="b">Offset b.</param>
@@ -2116,6 +2646,56 @@
             <param name="denominator">Denominator value.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.Equals(MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.CompareTo(MPT.Math.Coordinates.LinearOffset)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.LinearOffset.CompareTo(System.Double)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+            Value
+            Meaning
+            Less than zero
+            This instance precedes <paramref name="other">other</paramref> in the sort order.
+            Zero
+            This instance occurs in the same position in the sort order as <paramref name="other">other</paramref>.
+            Greater than zero
+            This instance follows <paramref name="other">other</paramref> in the sort order.</returns>
+        </member>
         <member name="T:MPT.Math.Coordinates.PolarCoordinate">
             <summary>
             A two-dimensional coordinate system in which each point on a plane is determined by a distance from a reference point and an angle from a reference direction. 
@@ -2157,12 +2737,6 @@
             <param name="radius">The distance from a reference point.</param>
             <param name="azimuth">The angle from a reference direction [radians].</param>
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates.PolarCoordinate.ToCartesian">
-            <summary>
-            Converts to Cartesian coordinates.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians(System.Double)">
             <summary>
@@ -2450,26 +3024,33 @@
             <param name="denominator">The denominator.</param>
             <returns>The result of the operator.</returns>
         </member>
-        <member name="T:MPT.Math.Geometry.GeometryLibrary">
+        <member name="T:MPT.Math.Helper">
             <summary>
-            Contains static methods for common geometry operations.
+            Class Helper.
             </summary>
         </member>
-        <member name="M:MPT.Math.Geometry.GeometryLibrary.TangentVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Helper.GetTolerance``2(``0,``1,System.Double)">
             <summary>
-            Returns the tangent vector to the supplied points.
+            Gets the tolerance between two items.
+            This is the maximum defined, or the overwrite, if provided.
             </summary>
-            <param name="i">First point.</param>
-            <param name="j">Second point.</param>
-            <returns></returns>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="item1">The item1.</param>
+            <param name="item2">The item2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Geometry.GeometryLibrary.NormalVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="T:MPT.Math.ITolerance">
             <summary>
-            Returns a normal vector to a line connecting two points.
+            Interface ITolerance
             </summary>
-            <param name="i">First point.</param>
-            <param name="j">Second point.</param> 
-            <returns></returns>
+        </member>
+        <member name="P:MPT.Math.ITolerance.Tolerance">
+            <summary>
+            Tolerance to use in all calculations with double types.
+            </summary>
+            <value>The tolerance.</value>
         </member>
         <member name="T:MPT.Math.Matrices.Matrix">
             <summary>
@@ -2572,7 +3153,7 @@
         </member>
         <member name="T:MPT.Math.Numbers">
             <summary>
-            Contains static methods dealing generically with numbers. 
+            Contains static methods dealing generically with numbers.
             </summary>
         </member>
         <member name="F:MPT.Math.Numbers.ZeroTolerance">
@@ -2619,70 +3200,70 @@
         </member>
         <member name="M:MPT.Math.Numbers.GoldenRatio">
             <summary>
-            The golden ratio, also known as the divine proportion, golden mean, or golden section, is a number often encountered when taking the ratios of distances in simple geometric figures such as the pentagon, pentagram, decagon and dodecahedron. 
+            The golden ratio, also known as the divine proportion, golden mean, or golden section, is a number often encountered when taking the ratios of distances in simple geometric figures such as the pentagon, pentagram, decagon and dodecahedron.
             It is denoted phi and is approximately 1.618033988749...
             </summary>
-            <returns></returns>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsPositiveSign(System.Double,System.Double)">
             <summary>
             Value is greater than the zero-tolerance.
             </summary>
-            <param name="value"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is positive sign] [the specified value]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsNegativeSign(System.Double,System.Double)">
             <summary>
             Value is less than the zero-tolerance.
             </summary>
-            <param name="value"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is negative sign] [the specified value]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsZeroSign(System.Double,System.Double)">
             <summary>
             Value is within the absolute value of the zero-tolerance.
             </summary>
-            <param name="value"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is zero sign] [the specified value]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsEqualTo(System.Double,System.Double,System.Double)">
             <summary>
             Value is equal to the provided value within the absolute value of the zero-tolerance.
             </summary>
-            <param name="value1"></param>
-            <param name="value2"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is equal to] [the specified value1]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsGreaterThan(System.Double,System.Double,System.Double)">
             <summary>
             Value is greater than the provided value, within the absolute value of the zero-tolerance.
             </summary>
-            <param name="value1"></param>
-            <param name="value2"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is greater than] [the specified value1]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsLessThan(System.Double,System.Double,System.Double)">
             <summary>
             Value is less than the provided value, within the absolute value of the zero-tolerance.
             </summary>
-            <param name="value1"></param>
-            <param name="value2"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is less than] [the specified value1]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.AreEqual(System.Double,System.Double,System.Double)">
             <summary>
             Values are equal within the absolute value of the zero-tolerance.
             </summary>
-            <param name="value1"></param>
-            <param name="value2"></param>
-            <param name="tolerance"></param>
-            <returns></returns>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsGreaterThanOrEqualTo(System.Double,System.Double,System.Double)">
             <summary>
@@ -2702,69 +3283,106 @@
             <param name="tolerance">The tolerance.</param>
             <returns><c>true</c> if [is less than or equal to] [the specified value2]; otherwise, <c>false</c>.</returns>
         </member>
+        <member name="M:MPT.Math.Numbers.Max``1(``0[])">
+            <summary>
+            Determines the maximum of the parameters.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <returns>T.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+        </member>
+        <member name="M:MPT.Math.Numbers.Min``1(``0[])">
+            <summary>
+            Determines the minimum of the parameters.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <returns>T.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+        </member>
         <member name="M:MPT.Math.Numbers.IsOdd(System.Int32)">
             <summary>
             Value is an odd number.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns><c>true</c> if the specified value is odd; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsEven(System.Int32)">
             <summary>
             Value is an even number.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns><c>true</c> if the specified value is even; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsPrime(System.Int32)">
             <summary>
-            A whole number greater than 1, whose only two whole-number factors are 1 and itself. 
+            A whole number greater than 1, whose only two whole-number factors are 1 and itself.
             Uses the 'Sieve of Eratosthenes', which is very efficient for solving small primes (i.e. &lt; 10,000,000,000).
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns><c>true</c> if the specified value is prime; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.IsComposite(System.Int32)">
             <summary>
             A whole number that can be divided evenly by numbers other than 1 or itself.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns><c>true</c> if the specified value is composite; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.LastDigit(System.Int32)">
             <summary>
             Returns the last digit without sign of the value provided.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.DecimalPlaces(System.Double,System.Boolean)">
+            <summary>
+            Number of decimal places.
+            Note that for non-scientific notation, the maximum that may be returned is (# decimal places) &lt;= 15 - (# whole numbers, not including leading 0s).
+            </summary>
+            <param name="value">The value.</param>
+            <param name="limitForRounding">If set to <c>true</c>, results are limited to a range that is appropriate for rounding methods (0 &lt;= value &lt;= 15).
+            Not using this limit may result in a thrown exception when rounding.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.SignificantFigures(System.Double)">
+            <summary>
+            Number of significant figures.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.Int32.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Squared(System.Int32)">
             <summary>
             Returns the value squared..
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Int32.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Squared(System.Double)">
             <summary>
             Returns the value squared.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Cubed(System.Int32)">
             <summary>
             Returns the value cubed.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Int32.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Cubed(System.Double)">
             <summary>
             Returns the value cubed.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Sqrt(System.Double)">
             <summary>
@@ -2800,60 +3418,79 @@
             <summary>
             Returns the value raised to the power provided.
             </summary>
-            <param name="value"></param>
-            <param name="power"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <param name="power">The power.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.DivideByZeroException"></exception>
         </member>
         <member name="M:MPT.Math.Numbers.Factorial(System.Int32)">
             <summary>
             The product of an integer and all the integers below it; e.g., factorial four ( 4! ) is equal to 24.
             </summary>
-            <param name="value"></param>
-            <returns></returns>
+            <param name="value">The value.</param>
+            <returns>System.Int32.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.PlusMinus(System.Int32,System.Int32)">
             <summary>
             Returns the paired result of adding and subtracting the provided value from the base value.
             </summary>
-            <param name="baseValue"></param>
+            <param name="baseValue">The base value.</param>
             <param name="plusMinusValue">Value to add and subtract from the base value.</param>
+            <returns>System.Int32[].</returns>
         </member>
         <member name="M:MPT.Math.Numbers.PlusMinus(System.Double,System.Double)">
             <summary>
             Returns the paired result of adding and subtracting the provided value from the base value.
             </summary>
-            <param name="baseValue"></param>
+            <param name="baseValue">The base value.</param>
             <param name="plusMinusValue">Value to add and subtract from the base value.</param>
-            <returns></returns>
+            <returns>System.Double[].</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Limit(System.Int32,System.Int32,System.Int32)">
             <summary>
             Restricts a value to be within a specified range.
             </summary>
             <param name="value">The value to clamp.</param>
-            <param name="min">The minimum value. 
+            <param name="min">The minimum value.
             If value is less than min, min will be returned.</param>
-            <param name="max">The maximum value. 
+            <param name="max">The maximum value.
             If value is greater than max, max will be returned.</param>
             <returns>The clamped value.
             If value &gt; max, max will be returned.
             If value &lt; min, min will be returned.
             If min ≤ value ≥ max, value will be returned.</returns>
+            <exception cref="T:System.ArgumentException">Max limit, {max}, is less than the min limit, {min}</exception>
         </member>
         <member name="M:MPT.Math.Numbers.Limit(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Restricts a value to be within a specified range.
             </summary>
             <param name="value">The value to clamp.</param>
-            <param name="min">The minimum value. 
+            <param name="min">The minimum value.
             If value is less than min, min will be returned.</param>
-            <param name="max">The maximum value. 
+            <param name="max">The maximum value.
             If value is greater than max, max will be returned.</param>
             <param name="tolerance">The tolerance.</param>
             <returns>The clamped value.
             If value &gt; max, max will be returned.
             If value &lt; min, min will be returned.
             If min ≤ value ≥ max, value will be returned.</returns>
+            <exception cref="T:System.ArgumentException">Max limit, {max}, is less than the min limit, {min}</exception>
+        </member>
+        <member name="M:MPT.Math.Numbers.RoundToSignificantDigits(System.Double,System.Int32)">
+            <summary>
+            Rounds to significant digits.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="digits">The number of significant digits.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.RemoveTrailingZeroes(System.Decimal)">
+            <summary>
+            Removes trailing zeros from value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.Decimal.</returns>
         </member>
         <member name="T:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary">
             <summary>
@@ -3139,6 +3776,86 @@
             If value &lt; min, min will be returned.
             If min ≤ value ≥ max, value will be returned.</returns>
         </member>
+        <member name="T:MPT.Math.Trigonometry.TrigonometryLibrary">
+            <summary>
+            Library of trigonometric calculations.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Sin(System.Double)">
+            <summary>
+            Returns the sine of the specified angle.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Cos(System.Double)">
+            <summary>
+            Returns the cosine of the specified angle.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Tan(System.Double,System.Double)">
+            <summary>
+            Returns the tangent of the specified angle.
+            Returns <see cref="F:System.Double.NegativeInfinity" /> if angle is a multiple of -π/2 or -(3/2)*π.
+            Returns <see cref="F:System.Double.PositiveInfinity" /> if angle is a multiple of +π/2 or +(3/2)*π.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.ArcSin(System.Double)">
+            <summary>
+            Returns the angle whose sine is the specified ratio.
+            </summary>
+            <param name="ratio">The ratio of 'opposite / hypotenuse'.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.ArcCos(System.Double)">
+            <summary>
+            Returns the angle whose cosine is the specified ratio.
+            </summary>
+            <param name="ratio">The ratio of 'adjacent / hypotenuse'.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.ArcTan(System.Double)">
+            <summary>
+            Returns the angle whose tangent is the specified ratio.
+            </summary>
+            <param name="ratio">The ratio of 'opposite / adjacent'.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Sec(System.Double,System.Double)">
+            <summary>
+            Returns the secant of the specified angle.
+            Returns <see cref="F:System.Double.NegativeInfinity" /> if angle is a multiple of +/- π/2.
+            Returns <see cref="F:System.Double.PositiveInfinity" /> if 0 or angle is a multiple of +/- (3/2)*π.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Csc(System.Double,System.Double)">
+            <summary>
+            Returns the cosecant of the specified angle.
+            Returns <see cref="F:System.Double.NegativeInfinity" /> if angle is a multiple of -π or +2π.
+            Returns <see cref="F:System.Double.PositiveInfinity" /> if 0 or angle is a multiple of +π or -2π.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Trigonometry.TrigonometryLibrary.Cot(System.Double,System.Double)">
+            <summary>
+            Returns the cotangent of the specified angle.
+            Returns <see cref="F:System.Double.NegativeInfinity" /> if angle is a multiple of +π or +2π.
+            Returns <see cref="F:System.Double.PositiveInfinity" /> if 0 or angle is a multiple of -π or -2π.
+            </summary>
+            <param name="radians">The angle in radians.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+        </member>
         <member name="T:MPT.Math.Vectors.Vector">
             <summary>
             Library of methods related to vectors.
@@ -3174,6 +3891,18 @@
             </summary>
             <value>The location.</value>
         </member>
+        <member name="M:MPT.Math.Vectors.Vector.Magnitude">
+            <summary>
+            Length of this vector.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="P:MPT.Math.Vectors.Vector.MagnitudeSquared">
+            <summary>
+            Gets the square of the length of this vector.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
         <member name="M:MPT.Math.Vectors.Vector.#ctor(System.Double,System.Double,System.Double)">
             <summary>
             Initializes the class with a vector structure.
@@ -3193,23 +3922,11 @@
         </member>
         <member name="M:MPT.Math.Vectors.Vector.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Vectors.Vector"/> struct.
+            Initializes a new instance of the <see cref="T:MPT.Math.Vectors.Vector" /> struct.
             </summary>
-            <param name="pointI">The point i.</param>
-            <param name="pointJ">The point j.</param>
+            <param name="pointI">The starting point, i.</param>
+            <param name="pointJ">The ending point, j.</param>
             <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector.Magnitude">
-            <summary>
-            Length of this vector.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector.MagnitudeSquared">
-            <summary>
-            Gets the square of the length of this vector.
-            </summary>
-            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Vectors.Vector.IsCollinearSameDirection(MPT.Math.Vectors.Vector)">
             <summary>
@@ -3290,13 +4007,13 @@
         </member>
         <member name="M:MPT.Math.Vectors.Vector.Angle">
             <summary>
-            Returns the angle [radians] of a vector from the origin axis (x, positive, +ccw).
+            Returns the angle [radians] of a vector from the origin axis (x-axis, positive for counter-clockwise).
             </summary>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Vectors.Vector.Angle(MPT.Math.Vectors.Vector)">
             <summary>
-            Returns the angle [radians] between the two vectors.
+            Returns the angle [radians] between the two vectors, which is a value between 0 and +π.
             </summary>
             <param name="vector">The vector.</param>
             <returns>System.Double.</returns>
@@ -3307,6 +4024,157 @@
             </summary>
             <param name="vector">The vector.</param>
             <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.UnitVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns a normalized vector.
+            </summary>
+            <param name="i">The i.</param>
+            <param name="j">The j.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>Vector.</returns>
+            <exception cref="T:System.Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.UnitTangentVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns the tangent vector to the supplied points.
+            </summary>
+            <param name="i">First point.</param>
+            <param name="j">Second point.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.UnitNormalVector(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns a normal vector to a line connecting two points.
+            </summary>
+            <param name="i">First point.</param>
+            <param name="j">Second point.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.Angle(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            Returns the angle [radians] between the two vectors, which is a value between 0 and +π.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsCollinearSameDirection(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            True: Segments are parallel, on the same line, oriented in the same direction.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if [is collinear same direction] [the specified vector1]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsConcave(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            Vectors form a concave angle.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if the specified vector1 is concave; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsOrthogonal(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            Vectors form a 90 degree angle.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if the specified vector1 is orthogonal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsConvex(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            Vectors form a convex angle.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if the specified vector1 is convex; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsCollinearOppositeDirection(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            True: Segments are parallel, on the same line, oriented in the opposite direction.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if [is collinear opposite direction] [the specified vector1]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsConcaveInside(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            True: The concave side of the vector is inside the shape.
+            This is determined by the direction of the vector.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if [is concave inside] [the specified vector1]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.IsConvexInside(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
+            <summary>
+            True: The convex side of the vector is inside the shape.
+            This is determined by the direction of the vector.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if [is convex inside] [the specified vector1]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.ConcavityCollinearity(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector)">
+            <summary>
+            Returns a value indicating the concavity of the vectors.
+            1 = Pointing the same way.
+            &gt; 0 = Concave.
+            0 = Orthogonal.
+            &lt; 0 = Convex.
+            -1 = Pointing the exact opposite way.
+            </summary>
+            <param name="vector1">The vector1.</param>
+            <param name="vector2">The vector2.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.getXComponent(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Gets the x component.
+            </summary>
+            <param name="i">The i.</param>
+            <param name="j">The j.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.getYComponent(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Gets the y component.
+            </summary>
+            <param name="i">The i.</param>
+            <param name="j">The j.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.getMagnitude(System.Double,System.Double,System.Double)">
+            <summary>
+            Gets the magnitude.
+            </summary>
+            <param name="xComponent">The x component.</param>
+            <param name="yComponent">The y component.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        </member>
+        <member name="M:MPT.Math.Vectors.Vector.getUnitVector(System.Double,System.Double,System.Double)">
+            <summary>
+            Returns a normalized vector.
+            </summary>
+            <param name="xComponent">The x component.</param>
+            <param name="yComponent">The y component.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>Vector.</returns>
+            <exception cref="T:System.Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
         </member>
         <member name="M:MPT.Math.Vectors.Vector.Equals(MPT.Math.Vectors.Vector)">
             <summary>
@@ -3553,120 +4421,48 @@
         </member>
         <member name="M:MPT.Math.Vectors.VectorLibrary.DotProduct(System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Returns the dot product of the points. 
+            Returns the dot product of the points.
             x1*x2 + y1*y2
             </summary>
+            <param name="x1">The x1.</param>
+            <param name="y1">The y1.</param>
+            <param name="x2">The x2.</param>
+            <param name="y2">The y2.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Vectors.VectorLibrary.CrossProduct(System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Returns the cross product/determinant of the points. 
+            Returns the cross product/determinant of the points.
             x1*y2 - x2*y1
             </summary>
+            <param name="x1">The x1.</param>
+            <param name="y1">The y1.</param>
+            <param name="x2">The x2.</param>
+            <param name="y2">The y2.</param>
             <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.Angle(System.Double,System.Double)">
-            <summary>
-            Returns the angle [radians] from the x-axis, counter clockwise.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.Angle(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector)">
-            <summary>
-            Returns the angle [radians] between the two vectors.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsCollinearSameDirection(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            True: Segments are parallel, on the same line, oriented in the same direction.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsConcave(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            Vectors form a concave angle.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsOrthogonal(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            Vectors form a 90 degree angle.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsConvex(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            Vectors form a convex angle.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsCollinearOppositeDirection(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-             True: Segments are parallel, on the same line, oriented in the opposite direction.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsConcaveInside(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            True: The concave side of the vector is inside the shape.
-            This is determined by the direction of the vector.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.IsConvexInside(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            True: The convex side of the vector is inside the shape.
-            This is determined by the direction of the vector.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.ConcavityCollinearity(MPT.Math.Vectors.Vector,MPT.Math.Vectors.Vector)">
-            <summary>
-            Returns a value indicating the concavity of the vectors. 
-            1 = Pointing the same way. 
-            &gt; 0 = Concave. 
-            0 = Orthogonal. 
-            &lt; 0 = Convex. 
-            -1 = Pointing the exact opposite way.
-            </summary>
-            <param name="vector1"></param>
-            <param name="vector2"></param>
-            <returns></returns>
         </member>
         <member name="M:MPT.Math.Vectors.VectorLibrary.DotProduct(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Returns the dot product of the points. 
+            Returns the dot product of the points.
             </summary>
+            <param name="x1">The x1.</param>
+            <param name="y1">The y1.</param>
+            <param name="z1">The z1.</param>
+            <param name="x2">The x2.</param>
+            <param name="y2">The y2.</param>
+            <param name="z2">The z2.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Vectors.VectorLibrary.CrossProduct(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Returns the cross product/determinant of the points. 
+            Returns the cross product/determinant of the points.
             </summary>
+            <param name="x1">The x1.</param>
+            <param name="y1">The y1.</param>
+            <param name="z1">The z1.</param>
+            <param name="x2">The x2.</param>
+            <param name="y2">The y2.</param>
+            <param name="z2">The z2.</param>
             <returns>System.Double.</returns>
         </member>
     </members>

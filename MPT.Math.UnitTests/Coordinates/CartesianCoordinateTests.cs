@@ -87,6 +87,46 @@ namespace MPT.Math.UnitTests.Coordinates
         }
         #endregion
 
+        #region Methods: Public Static
+        [TestCase(0, 0, Numbers.PiOver2, 0, 0)]
+        [TestCase(3, 4, 0, 3, 4)]
+        [TestCase(3, 4, 0.785398, -0.707107, 4.949747)]
+        [TestCase(3, 4, 1.570796, -4, 3)]
+        [TestCase(3, 4, 2.356194, -4.949747, -0.707107)]
+        [TestCase(3, 4, 3.141593, -3, -4)]
+        [TestCase(3, 4, 3.926991, 0.707107, -4.949747)]
+        [TestCase(3, 4, 4.712389, 4, -3)]
+        [TestCase(3, 4, 5.497787, 4.949747, 0.707107)]
+        [TestCase(3, 4, 6.283185, 3, 4)]
+        public static void Rotate(double x, double y, double angleRadians, double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate cartesianCoordinate = CartesianCoordinate.Rotate(coordinate, angleRadians);
+
+            Assert.AreEqual(expectedX, cartesianCoordinate.X, Tolerance);
+            Assert.AreEqual(expectedY, cartesianCoordinate.Y, Tolerance);
+        }
+
+        [TestCase(3, 4, 2, 1, 0, 3, 4)]
+        [TestCase(3, 4, 2, 1, 0.785398, 0.585786, 3.828427)]
+        [TestCase(3, 4, 2, 1, 1.570796, -1, 2)]
+        [TestCase(3, 4, 2, 1, 2.356194, -0.828427, -0.414214)]
+        [TestCase(3, 4, 2, 1, 3.141593, 1, -2)]
+        [TestCase(3, 4, 2, 1, 3.926991, 3.414214, -1.828427)]
+        [TestCase(3, 4, 2, 1, 4.712389, 5, 0)]
+        [TestCase(3, 4, 2, 1, 5.497787, 4.828427, 2.414214)]
+        [TestCase(3, 4, 2, 1, 6.283185, 3, 4)]
+        public static void RotateAboutPoint(double x, double y, double centerX, double centerY, double angleRadians, double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate centerOfRotation = new CartesianCoordinate(centerX, centerY);
+            CartesianCoordinate cartesianCoordinate = CartesianCoordinate.RotateAboutPoint(coordinate, centerOfRotation, angleRadians);
+
+            Assert.AreEqual(expectedX, cartesianCoordinate.X, Tolerance);
+            Assert.AreEqual(expectedY, cartesianCoordinate.Y, Tolerance);
+        }
+        #endregion
+
         #region Operators: Equals & IEquatable
         [Test]
         public static void EqualsOverride_Is_True_for_Object_with_Identical_Coordinates()

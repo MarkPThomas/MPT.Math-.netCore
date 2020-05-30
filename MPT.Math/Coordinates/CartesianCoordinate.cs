@@ -15,7 +15,7 @@ using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using System;
 using NMath = System.Math;
-
+using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 
 namespace MPT.Math.Coordinates
 {
@@ -104,6 +104,41 @@ namespace MPT.Math.Coordinates
         public CartesianOffset OffsetFrom(CartesianCoordinate coordinateI)
         {
             return new CartesianOffset(coordinateI, this);
+        }
+        #endregion
+
+        #region Methods: Public Static        
+        /// <summary>
+        /// Rotates the the specified coordinate by the specified angle about a point.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="centerOfRotation">The center of rotation.</param>
+        /// <param name="degreeRadians">The degree [radians].</param>
+        /// <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
+        public static CartesianCoordinate RotateAboutPoint(CartesianCoordinate coordinate, CartesianCoordinate centerOfRotation, double degreeRadians)
+        {
+            // Move coordinate such that center of rotation is at origin
+            CartesianCoordinate centeredCoordinate = coordinate - centerOfRotation;
+
+            // Rotate coordinate
+            CartesianCoordinate rotatedCoordinate = Rotate(centeredCoordinate, degreeRadians);
+
+            // Move coordinate such that center of rotation is back at original coordinate
+            return rotatedCoordinate + centerOfRotation;
+        }
+
+        /// <summary>
+        /// Rotates the specified coordinate by the specifed angle about the origin.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="degreeRadians">The degree [radians].</param>
+        /// <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
+        public static CartesianCoordinate Rotate(CartesianCoordinate coordinate, double degreeRadians)
+        {
+            double xRotated = coordinate.X * Trig.Cos(degreeRadians) - coordinate.Y * Trig.Sin(degreeRadians);
+            double yRotated = coordinate.X * Trig.Sin(degreeRadians) + coordinate.Y * Trig.Cos(degreeRadians);
+
+            return new CartesianCoordinate(xRotated, yRotated);
         }
         #endregion
 
