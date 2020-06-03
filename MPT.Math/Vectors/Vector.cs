@@ -30,7 +30,7 @@ namespace MPT.Math.Vectors
         /// Tolerance to use in all calculations with double types.
         /// </summary>
         /// <value>The tolerance.</value>
-        public double Tolerance { get; set; }
+        public double Tolerance { get; set; } = 0.00001;
 
         /// <summary>
         /// Gets the x-component of this vector.
@@ -86,7 +86,11 @@ namespace MPT.Math.Vectors
             _location = new CartesianCoordinate();
             Xcomponent = xMagnitude;
             Ycomponent = yMagnitude;
-            Tolerance = tolerance;
+            
+            if (tolerance != Numbers.ZeroTolerance)
+            {
+                Tolerance = tolerance;
+            }
         }
 
         /// <summary>
@@ -105,7 +109,11 @@ namespace MPT.Math.Vectors
             Xcomponent = xMagnitude;
             Ycomponent = yMagnitude;
             _location = location;
-            Tolerance = tolerance;
+
+            if (tolerance != Numbers.ZeroTolerance)
+            {
+                Tolerance = tolerance;
+            }
         }
 
         /// <summary>
@@ -122,7 +130,11 @@ namespace MPT.Math.Vectors
             Xcomponent = getXComponent(pointI, pointJ);
             Ycomponent = getYComponent(pointI, pointJ);
             _location = pointI;
-            Tolerance = tolerance;
+
+            if (tolerance != Numbers.ZeroTolerance)
+            {
+                Tolerance = tolerance;
+            }
         }
         #endregion
 

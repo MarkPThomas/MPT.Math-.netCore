@@ -17,7 +17,7 @@ namespace MPT.Math
     /// <summary>
     /// Class Helper.
     /// </summary>
-    internal static class Helper
+    public static class Helper
     {
         /// <summary>
         /// Gets the tolerance between two items.
