@@ -140,6 +140,10 @@ namespace MPT.Math.Coordinates
         /// <returns>PolarCoordinate.</returns>
         public PolarCoordinate DivideAngleAzimuthBy(double denominator)
         {
+            if (denominator.IsZeroSign(Tolerance))
+            {
+                throw new DivideByZeroException("Polar Coordinate angle cannot be divided by 0.");
+            }
             return changeAngleAzimuthRadians(Azimuth.Radians / denominator);
         }
 
@@ -195,6 +199,10 @@ namespace MPT.Math.Coordinates
         /// <returns>PolarCoordinate.</returns>
         public PolarCoordinate DivideRadiusBy(double denominator)
         {
+            if(denominator.IsZeroSign(Tolerance))
+            {
+                throw new DivideByZeroException("Polar Coordinate radius cannot be divided by 0.");
+            }
             return changeRadius(Radius / denominator);
         }
 
