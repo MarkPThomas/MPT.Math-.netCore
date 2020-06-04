@@ -23,7 +23,6 @@ namespace MPT.Math.Vectors.UnitTests
             Assert.AreEqual(0, vector.Location.Y);
             Assert.AreEqual(xMagnitude, vector.Xcomponent);
             Assert.AreEqual(yMagnitude, vector.Ycomponent);
-            Assert.AreEqual(Numbers.ZeroTolerance, vector.Tolerance);
         }
 
         [Test]
@@ -59,7 +58,6 @@ namespace MPT.Math.Vectors.UnitTests
             Assert.AreEqual(y, vector.Location.Y);
             Assert.AreEqual(xMagnitude, vector.Xcomponent);
             Assert.AreEqual(yMagnitude, vector.Ycomponent);
-            Assert.AreEqual(Numbers.ZeroTolerance, vector.Tolerance);
         }
 
         [Test]
@@ -104,7 +102,6 @@ namespace MPT.Math.Vectors.UnitTests
             Assert.AreEqual(y1, vector.Location.Y);
             Assert.AreEqual(magnitudeX, vector.Xcomponent);
             Assert.AreEqual(magnitudeY, vector.Ycomponent);
-            Assert.AreEqual(Numbers.ZeroTolerance, vector.Tolerance);
         }
 
         [Test]
