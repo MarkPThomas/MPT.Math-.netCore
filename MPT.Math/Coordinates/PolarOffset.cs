@@ -47,7 +47,18 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Methods
+        #region Methods: Public        
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + 
+                " - I: (r:" + NMath.Round(I.Radius, 6) + ", a:" + NMath.Round(I.Azimuth.Radians, 6) 
+                + "), J: (r:" + NMath.Round(J.Radius, 6) + ", a:" + NMath.Round(J.Azimuth.Radians, 6) + ")";
+        }
+
         /// <summary>
         /// Radius_j - Radius_i.
         /// </summary>
@@ -68,11 +79,12 @@ namespace MPT.Math.Coordinates
 
         /// <summary>
         /// The total straight length between the offset points.
+        /// <seealso ref="https://www.ck12.org/book/ck-12-trigonometry-concepts/section/6.2/"/>
         /// </summary>
         /// <returns>System.Double.</returns>
         public double Length()
         {
-            return NMath.Sqrt(I.Radius.Squared() + J.Radius.Squared() - 2 * I.Radius * J.Radius * (NMath.Cos(I.Azimuth.Radians - J.Azimuth.Radians)));
+            return NMath.Sqrt(I.Radius.Squared() + J.Radius.Squared() - 2 * I.Radius * J.Radius * (NMath.Cos(J.Azimuth.Radians - I.Azimuth.Radians)));
         }
         #endregion
 

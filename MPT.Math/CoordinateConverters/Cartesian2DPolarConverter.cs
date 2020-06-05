@@ -1,5 +1,6 @@
 ﻿using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
+using MPT.Math.NumberTypeExtensions;
 using NMath = System.Math;
 
 namespace MPT.Math.CoordinateConverters
@@ -17,7 +18,7 @@ namespace MPT.Math.CoordinateConverters
         {
             return new PolarCoordinate(
                 radius: AlgebraLibrary.SRSS(coordinate.X, coordinate.Y),
-                azimuth: new Angle(NMath.Atan(coordinate.Y / coordinate.X)),
+                azimuth: Angle.AsRadians(coordinate.X, coordinate.Y),
                 tolerance: coordinate.Tolerance);
         }
 

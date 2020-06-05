@@ -1,8 +1,6 @@
 ﻿using System;
 using MPT.Math.Coordinates;
-using MPT.Math.NumberTypeExtensions;
 using NUnit.Framework;
-using Numbers = MPT.Math.Numbers;
 
 namespace MPT.Math.UnitTests.Coordinates
 {
@@ -33,6 +31,19 @@ namespace MPT.Math.UnitTests.Coordinates
             Assert.AreEqual(radius, coordinate.Radius);
             Assert.AreEqual(azimuth, coordinate.Azimuth.Radians, Tolerance);
             Assert.AreEqual(tolerance, coordinate.Tolerance);
+        }
+        #endregion
+
+        #region Methods: Public
+        [Test]
+        public static void ToString_Returns_Overridden_Value()
+        {
+            double radius = 5.3;
+            double azimuth = -2;
+            double tolerance = 0.0002;
+            PolarCoordinate coordinate = new PolarCoordinate(radius, azimuth, tolerance);
+
+            Assert.AreEqual("MPT.Math.Coordinates.PolarCoordinate - r:5.3, a:-2", coordinate.ToString());
         }
         #endregion
 

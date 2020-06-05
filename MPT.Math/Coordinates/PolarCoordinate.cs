@@ -82,6 +82,17 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
+        #region Methods: Public        
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - r:" + NMath.Round(Radius,6) + ", a:" + NMath.Round(Azimuth.Radians, 6);
+        }
+        #endregion
+
         #region Methods: Azimuth Angle Add/Subtract/Multiply/Divide
         /// <summary>
         /// Adds the angle, in radians, to the angle of the current coordinate.
