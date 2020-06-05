@@ -13,6 +13,7 @@
 // ***********************************************************************
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
+using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
 
 using NMath = System.Math;
@@ -188,7 +189,7 @@ namespace MPT.Math.Coordinates
                 angleOffset = 2 * Numbers.Pi;
             }
 
-            return angleOffset + NMath.Atan(y / x);
+            return angleOffset + Trig.ArcTan(y / x);
         }
 
 

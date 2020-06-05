@@ -24,6 +24,20 @@ namespace MPT.Math
         /// This is the maximum defined, or the overwrite, if provided.
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="item1">The item1.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        public static double GetTolerance<T>(T item1, double tolerance = Numbers.ZeroTolerance)
+            where T : ITolerance
+        {
+            return tolerance == Numbers.ZeroTolerance ? Numbers.Max(item1.Tolerance, Numbers.ZeroTolerance) : tolerance;
+        }
+
+        /// <summary>
+        /// Gets the tolerance between two items.
+        /// This is the maximum defined, or the overwrite, if provided.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <typeparam name="U"></typeparam>
         /// <param name="item1">The item1.</param>
         /// <param name="item2">The item2.</param>

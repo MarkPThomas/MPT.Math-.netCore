@@ -127,6 +127,31 @@ namespace MPT.Math.NumberTypeExtensions
         {
             return (value1.IsLessThan(value2, tolerance) || value1.IsEqualTo(value2, tolerance));
         }
+
+
+        public static bool IsWithinInclusive(this int value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        {
+            return Numbers.IsWithinInclusive(value, value1, value2, tolerance);
+        }
+
+
+        public static bool IsWithinInclusive(this double value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        {
+            return Numbers.IsWithinInclusive(value, value1, value2, tolerance);
+        }
+
+
+        public static bool IsWithinExclusive(this int value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        {
+            return Numbers.IsWithinExclusive(value, value1, value2, tolerance);
+        }
+
+
+        public static bool IsWithinExclusive(this double value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        {
+            return Numbers.IsWithinExclusive(value, value1, value2, tolerance);
+        }
+
         #endregion
 
         #region Properties

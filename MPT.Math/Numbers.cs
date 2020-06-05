@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.NumberTypeExtensions;
 using System;
 using System.Collections.Immutable;
 using System.Globalization;
@@ -190,6 +191,39 @@ namespace MPT.Math
             return (IsLessThan(value1, value2, tolerance) || IsEqualTo(value1, value2, tolerance));
         }
 
+
+        public static bool IsWithinInclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
+        {
+            double maxValue = NMath.Max(value1, value2);
+            double minValue = NMath.Min(value1, value2);
+            return IsLessThanOrEqualTo(minValue, value, tolerance) && IsGreaterThanOrEqualTo(maxValue, value, tolerance);
+        }
+
+
+        public static bool IsWithinInclusive<T>(T value, T value1, T value2) where T : IComparable<T>
+        {
+            T maxValue = Max(value1, value2);
+            T minValue = Min(value1, value2);
+            return IsWithinExclusive(value, value1, value2) ||
+                minValue.CompareTo(value) == 0 ||
+                maxValue.CompareTo(value) == 0;
+        }
+
+
+        public static bool IsWithinExclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
+        {
+            double maxValue = NMath.Max(value1, value2);
+            double minValue = NMath.Min(value1, value2);
+            return IsLessThan(minValue, value, tolerance) && IsGreaterThan(maxValue, value, tolerance);
+        }
+
+
+        public static bool IsWithinExclusive<T>(T value, T value1, T value2) where T : IComparable<T>
+        {
+            T maxValue = Max(value1, value2);
+            T minValue = Min(value1, value2);
+            return minValue.CompareTo(value) < 0 && maxValue.CompareTo(value) > 0;
+        }
 
         /// <summary>
         /// Determines the maximum of the parameters.

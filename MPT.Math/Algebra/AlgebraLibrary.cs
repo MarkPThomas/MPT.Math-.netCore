@@ -1,4 +1,17 @@
-﻿using MPT.Math.Coordinates;
+﻿// ***********************************************************************
+// Assembly         : MPT.Math
+// Author           : Mark P Thomas
+// Created          : 05-17-2020
+//
+// Last Modified By : Mark P Thomas
+// Last Modified On : 06-05-2020
+// ***********************************************************************
+// <copyright file="AlgebraLibrary.cs" company="Mark P Thomas, Inc.">
+//     Copyright (c) 2020. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using MPT.Math.Coordinates;
 using MPT.Math.Coordinates3D;
 using MPT.Math.NumberTypeExtensions;
 using System;
@@ -13,7 +26,7 @@ namespace MPT.Math.Algebra
     /// Contains static methods for common algebraic operations.
     /// </summary>
     public static class AlgebraLibrary
-    {       
+    {
         #region Solutions to Formulas
         /// <summary>
         /// Returns the 2 x solutions to the equation ax^2 + bx + c = 0.
@@ -21,7 +34,13 @@ namespace MPT.Math.Algebra
         /// <param name="a">Multiplier to x^2.</param>
         /// <param name="b">Multiplier to x.</param>
         /// <param name="c">Constant.</param>
-        /// <returns></returns>
+        /// <returns>System.Double[].</returns>
+        /// <exception cref="ArgumentException">Argument 'a' cannot be 0</exception>
+        /// <exception cref="ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
+        /// <exception cref="ArgumentException">Argument 'a' cannot be 0</exception>
+        /// <exception cref="ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
+        /// <exception cref="ArgumentException">Argument 'a' cannot be 0</exception>
+        /// <exception cref="ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
         public static double[] QuadraticFormula(double a, double b, double c)
         {
             if (a.IsZeroSign()) { throw new ArgumentException("Argument 'a' cannot be 0"); }
@@ -43,7 +62,7 @@ namespace MPT.Math.Algebra
         /// <param name="b">Multiplier to x^2.</param>
         /// <param name="c">Multiplier to x.</param>
         /// <param name="d">Constant.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double CubicCurveLowestRoot(double a, double b, double c, double d)
         {
             double a2 = b / a;
@@ -51,7 +70,6 @@ namespace MPT.Math.Algebra
             double a0 = d / a;
 
             double B = (9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed())/27d;
-            //double B = -(9 * a1 * a2 - 27 * a0 - 2 * a2.Cubed()) / 27d;
 
             return cubicCurveLeastRootNormalized(a0, a1, a2, B);
         }
@@ -59,6 +77,7 @@ namespace MPT.Math.Algebra
         /// <summary>
         /// Returns the least positive solution to the equation x^3 + a2x^2 + a1x + a0 = 0.
         /// </summary>
+        /// <param name="a0">The a0.</param>
         /// <param name="a1">Multiplier to x^2.</param>
         /// <param name="a2">Multiplier to x.</param>
         /// <param name="B">Derived constant.</param>
@@ -85,7 +104,7 @@ namespace MPT.Math.Algebra
         /// <param name="b">Multiplier to x^2.</param>
         /// <param name="c">Multiplier to x.</param>
         /// <param name="d">Constant.</param>
-        /// <returns></returns>
+        /// <returns>System.Double[].</returns>
         public static double[] CubicCurveRoots(double a, double b, double c, double d)
         {
             double a2 = b / a;
@@ -101,8 +120,8 @@ namespace MPT.Math.Algebra
         /// <param name="a0">Constant.</param>
         /// <param name="a1">Multiplier to x.</param>
         /// <param name="a2">Multiplier to x^2.</param>
-        /// <param name="returnFirstRoot"></param>
-        /// <returns></returns>
+        /// <param name="returnFirstRoot">if set to <c>true</c> [return first root].</param>
+        /// <returns>System.Double[].</returns>
         private static double[] cubicCurveRootsNormalized(double a0, double a1, double a2, bool returnFirstRoot = false)
         {
             double Q = (3 * a1 - a2.Squared()) / 9d;
@@ -133,76 +152,115 @@ namespace MPT.Math.Algebra
 
         #region Interpolations
         /// <summary>
-        /// Linearly interpolates between two values.
+        /// Interpolates linearly between two values.
         /// </summary>
-        /// <param name="value1">First value.</param>
-        /// <param name="value2">Second value.</param>
-        /// <param name="point2Weight">Value between 0 and 1 indicating the weight of the second value.</param>
-        /// <returns>Interpolated value.</returns>
+        /// <param name="value1">Value 1.</param>
+        /// <param name="value2">Value 2.</param>
+        /// <param name="value2Weight">The weight applied to the difference between value 1 and value 2.
+        /// 0 &lt;= weight &lt;= 1</param>
+        /// <param name="tolerance">The tolerance used for determining if a weight lies within the inclusive range of 0 to 1.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Weight must be between 0 and 1. Weight provided was {value2Weight}</exception>
         public static double InterpolationLinear(double value1,
                                                  double value2,
-                                                 double point2Weight)
+                                                 double value2Weight, 
+                                                 double tolerance = Numbers.ZeroTolerance)
         {
-            return value1 + (value2 - value1) * point2Weight;
+            if (!value2Weight.IsWithinInclusive(0, 1, tolerance))
+            {
+                throw new ArgumentOutOfRangeException($"Weight must be between 0 and 1. Weight provided was {value2Weight}");
+            }
+            return value1 + (value2 - value1) * value2Weight;
         }
 
         /// <summary>
-        /// Linearly interpolates between two values.
+        /// Interpolates linearly between two points.
         /// </summary>
-        /// <param name="point1">First point.</param>
-        /// <param name="point2">Second point.</param>
-        /// <param name="point2Weight">Value between 0 and 1 indicating the weight of the second point.</param>
-        /// <returns>Interpolated value.</returns>
+        /// <param name="point1">Point 1.</param>
+        /// <param name="point2">Point 2.</param>
+        /// <param name="point2Weight">The weight applied to the difference between point 1 and point 2.
+        /// 0 &lt;= weight &lt;= 1</param>
+        /// <param name="tolerance">The tolerance used for determining if a weight lies within the inclusive range of 0 to 1.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Weight must be between 0 and 1. Weight provided was {point2Weight}</exception>
         public static CartesianCoordinate InterpolationLinear(CartesianCoordinate point1,
                                                 CartesianCoordinate point2,
-                                                double point2Weight)
+                                                double point2Weight,
+                                                double tolerance = Numbers.ZeroTolerance)
         {
+            if (!point2Weight.IsWithinInclusive(0, 1, tolerance))
+            {
+                throw new ArgumentOutOfRangeException($"Weight must be between 0 and 1. Weight provided was {point2Weight}");
+            }
             return point1 + (point2 - point1) * point2Weight;
         }
 
         /// <summary>
-        /// Interpolates the polynomial.
-        /// From: https://en.wikipedia.org/wiki/Polynomial_interpolation
-        /// </summary>
-        /// <param name="points">The points.</param>
-        /// <param name="amount">The amount.</param>
-        /// <returns>System.Double.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public static double InterpolationPolynomial(CartesianCoordinate[] points,
-                                                     double amount)
-        {
-            // TODO: Use Lagrange polynomials:
-            // https://en.wikipedia.org/wiki/Polynomial_interpolation
-            // Consider making object in order to follow curve
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Lineary interpolates across a 2D plane to return an interpolated third dimensional value.
+        /// Expected to be used for table interpolation, where x-axis are the columns, and y-axis are the rows.
         /// </summary>
         /// <param name="Po">The point in the plane to get the corresponding magnitude of.</param>
-        /// <param name="ii">Point ii (closest to the origin), where <see cref="CartesianCoordinate3D.Z" /> is the corresponding magnitude.</param>
-        /// <param name="ij">Point ij (farthest from the y-axis), where <see cref="CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
-        /// <param name="ji">Point ji (farthest from the x-axis), where <see cref="CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
-        /// <param name="jj">Point jj (farthest from the origin), where <see cref="CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
+        /// <param name="ii">Point ii (closest to the origin), where <see paramref="iiValue" /> is the corresponding value.</param>
+        /// <param name="jj">Point jj (farthest from the origin), where <see paramref="jjValue" /> property is the corresponding value.</param>
+        /// <param name="iiValue">The value at point ii, which is closest to the origin.</param>
+        /// <param name="ijValue">The value at point ij, which is in line with point ii but farthest along the x-axis (columns).</param>
+        /// <param name="jiValue">The value at point ji, which is in line with point ii but farthest along the y-axis (rows).</param>
+        /// <param name="jjValue">The value at point jj, which is farthest from the origin.</param>
+        /// <param name="tolerance">The tolerance used for determining if a weight lies within the boundaries of the values being interpolated.</param>
         /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentException">Different columns must be chosen: Column ii = Column jj = {ii.X}</exception>
+        /// <exception cref="ArgumentException">Different rows must be chosen: Row ii = Row jj = {ii.Y}</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Point ({Po.X}, {Po.Y}) must lie within the bounds of values to interpolate within, ({ii.X}, {ii.Y}), ({jj.X}, {jj.Y})</exception>
+        /// <exception cref="ArgumentException">Different columns must be chosen: Column ii = Column jj = {ii.X}</exception>
         public static double InterpolationLinear2D(
             CartesianCoordinate Po,
-            CartesianCoordinate3D ii,
-            CartesianCoordinate3D ij,
-            CartesianCoordinate3D ji,
-            CartesianCoordinate3D jj
-            )
+            CartesianCoordinate ii,
+            CartesianCoordinate jj,
+            double iiValue,
+            double ijValue,
+            double jiValue,
+            double jjValue,
+            double tolerance = Numbers.ZeroTolerance)
         {
-            double Wii = (Po.X - ii.X) * (Po.Y - ii.Y);
-            double Wij = (Po.X - ij.X) * (ij.Y - Po.Y);
-            double Wji = (ji.X - Po.X) * (Po.Y - ii.Y);
-            double Wjj = (ji.X - Po.X) * (ii.Y - Po.Y);
-            double Ao = (ij.X - ii.X) * (ji.Y - ii.Y);
+            double toleranceActual = Helper.GetTolerance(Po, Helper.GetTolerance(ii, jj, tolerance));
+            if (ii.X.IsEqualTo(jj.X, toleranceActual))
+            {
+                throw new ArgumentException($"Different columns must be chosen: Column ii = Column jj = {ii.X}");
+            }
+            if (ii.Y.IsEqualTo(jj.Y, toleranceActual))
+            {
+                throw new ArgumentException($"Different rows must be chosen: Row ii = Row jj = {ii.Y}");
+            }
+            if (!Po.X.IsWithinInclusive(ii.X, jj.X, tolerance) || !Po.Y.IsWithinInclusive(ii.Y, jj.Y, tolerance))
+            {
+                throw new ArgumentOutOfRangeException($"Point ({Po.X}, {Po.Y}) must lie within the bounds of values to interpolate within, ({ii.X}, {ii.Y}), ({jj.X}, {jj.Y})");
+            }
 
-            return (ii.Z * Wjj + ij.Z * Wji + ji.Z * Wij + jj.Z * Wii) / Ao;
+            double Wii = (Po.X - ii.X) * (Po.Y - ii.Y);
+            double Wij = (jj.X - Po.X) * (Po.Y - ii.Y);
+            double Wji = (Po.X - ii.X) * (jj.Y - Po.Y);
+            double Wjj = (jj.X - Po.X) * (jj.Y - Po.Y);
+            double Ao = (jj.X - ii.X) * (jj.Y - ii.Y);
+
+            return (iiValue * Wjj + ijValue * Wji + jiValue * Wij + jjValue * Wii) / Ao;
         }
 
+
+        ///// <summary>
+        ///// Interpolates the polynomial.
+        ///// From: https://en.wikipedia.org/wiki/Polynomial_interpolation
+        ///// </summary>
+        ///// <param name="points">The points.</param>
+        ///// <param name="amount">The amount.</param>
+        ///// <returns>System.Double.</returns>
+        //public static double InterpolationPolynomial(CartesianCoordinate[] points,
+        //                                             double amount)
+        //{
+        //    // TODO: Use Lagrange polynomials:
+        //    // https://en.wikipedia.org/wiki/Polynomial_interpolation
+        //    // Consider making object in order to follow curve
+        //    throw new NotImplementedException();
+        //}
         #endregion
 
         #region Intersections
@@ -212,10 +270,12 @@ namespace MPT.Math.Algebra
         /// <param name="y">Y-coordinate of the horizontal line.</param>
         /// <param name="I">First point.</param>
         /// <param name="J">Second point.</param>
-        /// <returns></returns>
-        public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J)
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J, double tolerance = Numbers.ZeroTolerance)
         {
-            return IntersectionX(y, I.X, I.Y, J.X, J.Y);
+            double actualTolerance = Helper.GetTolerance(I, J, tolerance);
+            return IntersectionX(y, I.X, I.Y, J.X, J.Y, actualTolerance);
         }
         /// <summary>
         /// X-coordinate of a horizontal line intersecting the line described by the points provided.
@@ -225,9 +285,25 @@ namespace MPT.Math.Algebra
         /// <param name="y1">Y-coordinate of first point.</param>
         /// <param name="x2">X-coordinate of second point.</param>
         /// <param name="y2">Y-coordinate of second point.</param>
-        /// <returns></returns>
-        public static double IntersectionX(double y, double x1, double y1, double x2, double y2)
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentException">Identical points provided. Points need to define a line.</exception>
+        /// <exception cref="ArgumentException">Line is collinear to horizontal projection.</exception>
+        /// <exception cref="ArgumentException">Line is parallel to horizontal projection.</exception>
+        public static double IntersectionX(double y, double x1, double y1, double x2, double y2, double tolerance = Numbers.ZeroTolerance)
         {
+            if (x1.IsEqualTo(x2, tolerance) && y1.IsEqualTo(y2, tolerance))
+            {
+                throw new ArgumentException("Identical points provided. Points need to define a line.");
+            }
+            if (y1.IsEqualTo(y2, tolerance)) // Horizontal line
+            {
+                if (y.IsEqualTo(y1, tolerance)) // Collinear line
+                {
+                    throw new ArgumentException("Line is collinear to horizontal projection.");
+                }
+                throw new ArgumentException("Line is parallel to horizontal projection.");
+            }
             return ((((y - y1) * (x2 - x1)) / (y2 - y1)) + x1);
         }
         #endregion
@@ -236,8 +312,8 @@ namespace MPT.Math.Algebra
         /// <summary>
         /// Performs the square root of the sum of the squares of the provided values.
         /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
+        /// <param name="values">The values.</param>
+        /// <returns>System.Double.</returns>
         public static double SRSS(params double[] values)
         {
             double sumOfSquares = 0;

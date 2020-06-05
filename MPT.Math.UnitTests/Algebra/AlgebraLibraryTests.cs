@@ -3,6 +3,7 @@ using MPT.Math.NumberTypeExtensions;
 using NMath = System.Math;
 using NUnit.Framework;
 using System;
+using MPT.Math.Coordinates;
 
 namespace MPT.Math.Algebra.UnitTests
 {
@@ -62,23 +63,168 @@ namespace MPT.Math.Algebra.UnitTests
         #endregion
 
         #region Interpolations
-        // public static double InterpolationLinear(double value1, double value2, double point2Weight)
+        [TestCase(1, 11, 0, 1)]
+        [TestCase(1, 11, 1, 11)]
+        [TestCase(1, 11, 0.5, 6)]
+        [TestCase(1.1, 11.1, 0.5, 6.1)]
+        public static void InterpolationLinear_Between_Two_Values(double value1, double value2, double point2Weight, double expectedResult)
+        {
+            double interpolatedValue = AlgebraLibrary.InterpolationLinear(value1, value2, point2Weight);
 
-        // public static CartesianCoordinate InterpolationLinear(CartesianCoordinate point1, CartesianCoordinate point2, double point2Weight)
+            Assert.AreEqual(expectedResult, interpolatedValue);
+        }
 
+        [TestCase(1, 11, 2)]
+        [TestCase(1, 11, -2)]
+        public static void InterpolationLinear_Between_Two_Values_Throws_Exception_if_Weight_Outside_Bounds(double value1, double value2, double point2Weight)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => { AlgebraLibrary.InterpolationLinear(value1, value2, point2Weight); });
+        }
 
-        // Check for each corner
-        // Check outside of bounds
-        //Check all corners have same value
-        // public static double InterpolationLinear2D(CartesianCoordinate Po, CartesianCoordinate3D ii, CartesianCoordinate3D ij, CartesianCoordinate3D ji, CartesianCoordinate3D jj )
+        [TestCase(1, -2, 11, 6, 0, 1, -2)]
+        [TestCase(1, -2, 11, 6, 1, 11, 6)]
+        [TestCase(1, -2, 11, 6, 0.5, 6, 2)]
+        [TestCase(1.1, -2.2, 11.1, 6.6, 0.5, 6.1, 2.2)]
+        public static void InterpolationLinear_Between_Two_Coordinates(double x1, double y1, double x2, double y2, double point2Weight, double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate1 = new CartesianCoordinate(x1, y1);
+            CartesianCoordinate coordinate2= new CartesianCoordinate(x2, y2);
+
+            CartesianCoordinate interpolatedCoordinate = AlgebraLibrary.InterpolationLinear(coordinate1, coordinate2, point2Weight);
+
+            Assert.AreEqual(expectedX, interpolatedCoordinate.X);
+            Assert.AreEqual(expectedY, interpolatedCoordinate.Y);
+        }
+
+        [TestCase(1, 2, 11, 5, 2)]
+        [TestCase(1, 2, 11, 5, -2)]
+        public static void InterpolationLinear_Between_Two_Coordinates_Throws_Exception_if_Weight_Outside_Bounds(
+            double x1, double y1, 
+            double x2, double y2, double point2Weight)
+        {
+            CartesianCoordinate coordinate1 = new CartesianCoordinate(x1, y1);
+            CartesianCoordinate coordinate2 = new CartesianCoordinate(x2, y2);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => { AlgebraLibrary.InterpolationLinear(coordinate1, coordinate2, point2Weight); });
+        }
+
+        [TestCase(2.2, 3.3, 1.1, 2.2, 4.4, 6.6, 1.5, 1.5, 1.5, 1.5, 1.5)]  // All Corners have same value
+        [TestCase(1.1, 2.2, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 1)]  // Pt ii
+        [TestCase(4.4, 6.6, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 4)]  // Pt jj
+        [TestCase(1.1, 6.6, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 3)]  // Pt ij
+        [TestCase(4.4, 2.2, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 2)]  // Pt ji
+        [TestCase(2.75, 2.2, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 1.5)]  // Top Edge
+        [TestCase(2.75, 6.6, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 3.5)]  // Bottom Edge
+        [TestCase(1.1, 4.4, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 2)]  // Left Edge
+        [TestCase(4.4, 4.4, 1.1, 2.2, 4.4, 6.6, 1, 2, 3, 4, 3)]  // Right Edge
+        [TestCase(2.75, 4.4, 1.1, 2.2, 4.4, 6.6, 1.5, 1.5, 2.5, 2.5, 2)]  // Center of plane sloped along rows
+        [TestCase(2.75, 4.4, 1.1, 2.2, 4.4, 6.6, 1.5, 3.5, 1.5, 3.5, 2.5)]  // Center of plane sloped along columns
+        [TestCase(2.2, 3.3, 1.1, 2.2, 4.4, 6.6, 1.1, 2.2, 3.3, 4.4, 2.016667)]  // All corners have different value, point not centered
+        public static void InterpolationLinear2D(
+            double col0, double row0,
+            double iiCol, double iiRow,
+            double jjCol, double jjRow,
+            double iiValue, double ijValue, double jiValue, double jjValue,
+            double expectedValue)
+        {
+            CartesianCoordinate pO = new CartesianCoordinate(col0, row0);
+            CartesianCoordinate ii = new CartesianCoordinate(iiCol, iiRow);
+            CartesianCoordinate jj = new CartesianCoordinate(jjCol, jjRow);
+
+            double value = AlgebraLibrary.InterpolationLinear2D(pO, ii, jj, iiValue, ijValue, jiValue, jjValue);
+
+            Assert.AreEqual(expectedValue, value, Tolerance);
+        }
+
+        [Test]
+        public static void InterpolationLinear2D_Width_0_Throws_ArgumentException()
+        {
+            CartesianCoordinate pO = new CartesianCoordinate(2.2, 3.3);
+            CartesianCoordinate ii = new CartesianCoordinate(1.1, 2.2);
+            CartesianCoordinate jj = new CartesianCoordinate(1.1, 6.6);
+
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.InterpolationLinear2D(pO, ii, jj, 1, 1, 1, 1); });
+        }
+
+        [Test]
+        public static void InterpolationLinear2D_Height_0_Throws_ArgumentException()
+        {
+            CartesianCoordinate pO = new CartesianCoordinate(2.2, 3.3);
+            CartesianCoordinate ii = new CartesianCoordinate(1.1, 2.2);
+            CartesianCoordinate jj = new CartesianCoordinate(4.4, 2.2);
+
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.InterpolationLinear2D(pO, ii, jj, 1, 1, 1, 1); });
+        }
+
+        [Test]
+        public static void InterpolationLinear2D_OutOfBounds_Throws_ArgumentOutOfRangeException()
+        {
+            CartesianCoordinate pO = new CartesianCoordinate(1, 2);
+            CartesianCoordinate ii = new CartesianCoordinate(1.1, 2.2);
+            CartesianCoordinate jj = new CartesianCoordinate(4.4, 6.6);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => { AlgebraLibrary.InterpolationLinear2D(pO, ii, jj, 1, 1, 1, 1); });
+        }
         #endregion
 
         #region Intersections
-        // Horizonal line colinear
-        // Horizontal line parallel offset
-        // public static double IntersectionX(double y, double x1, double y1, double x2, double y2)
+        [TestCase(3, 2, 3, 2, 10, 2)]  // vertical line
+        [TestCase(4, 2, 3, 5, 6, 3)]  // within points
+        [TestCase(7, 2, 3, 5, 6, 6)]  // outside of points
+        [TestCase(-1, 2, 3, -2, -3, -0.666667)]  // negative slope
+        public static void IntersectionX_Returns_X_Coordinate_Intersection(double y, double x1, double y1, double x2, double y2, double expectedX)
+        {
+            double result = AlgebraLibrary.IntersectionX(y, x1, y1, x2, y2);
 
-        // public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J)
+            Assert.AreEqual(expectedX, result, Tolerance);
+        }
+
+        [Test]
+        public static void IntersectionX_Throws_Exception_for_Line_as_Point()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(3, 2, 3, 2, 3); });
+        }
+
+        [Test]
+        public static void IntersectionX_Throws_Exception_for_Collinear_Line()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(2, 2, 3, 6, 3); });
+        }
+
+        [Test]
+        public static void IntersectionX_Throws_Exception_for_Parallel_Line()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(3, 2, 3, 6, 3); });
+        }
+
+        [TestCase(3, 2, 3, 2, 10, 2)]  // vertical line
+        [TestCase(4, 2, 3, 5, 6, 3)]  // within points
+        [TestCase(7, 2, 3, 5, 6, 6)]  // outside of points
+        [TestCase(-1, 2, 3, -2, -3, -0.666667)]  // negative slope
+        public static void IntersectionX_Between_Two_Coordinates_Returns_X_Coordinate_Intersection_of_Line_Formed(double y, double x1, double y1, double x2, double y2, double expectedX)
+        {
+            double result = AlgebraLibrary.IntersectionX(y, new CartesianCoordinate(x1, y1), new CartesianCoordinate(x2, y2));
+
+            Assert.AreEqual(expectedX, result, Tolerance);
+        }
+
+        [Test]
+        public static void IntersectionX_Between_Two_Coordinates_Throws_Exception_for_Line_as_Point()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(3, new CartesianCoordinate(2, 3), new CartesianCoordinate(2, 3)); });
+        }
+
+        [Test]
+        public static void IntersectionX_Between_Two_Coordinates_Throws_Exception_for_Collinear_Line_of_Line_Formed()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(2, new CartesianCoordinate(2, 3), new CartesianCoordinate(6, 3)); });
+        }
+
+        [Test]
+        public static void IntersectionX_Between_Two_Coordinates_Throws_Exception_for_Parallel_Line_of_Line_Formed()
+        {
+            Assert.Throws<ArgumentException>(() => { AlgebraLibrary.IntersectionX(3, new CartesianCoordinate(2, 3), new CartesianCoordinate(6, 3)); });
+        }
         #endregion
 
         #region Calcs

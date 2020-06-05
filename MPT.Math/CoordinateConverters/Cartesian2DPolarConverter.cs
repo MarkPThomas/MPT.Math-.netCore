@@ -1,7 +1,6 @@
 ﻿using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
-using MPT.Math.NumberTypeExtensions;
-using NMath = System.Math;
+using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 
 namespace MPT.Math.CoordinateConverters
 {
@@ -28,8 +27,8 @@ namespace MPT.Math.CoordinateConverters
         /// <returns>CartesianCoordinate.</returns>
         public static  CartesianCoordinate ToCartesian(PolarCoordinate coordinate)
         {
-            double x = coordinate.Radius * NMath.Cos(coordinate.Azimuth.Radians);
-            double y = coordinate.Radius * NMath.Sin(coordinate.Azimuth.Radians);
+            double x = coordinate.Radius * Trig.Cos(coordinate.Azimuth.Radians);
+            double y = coordinate.Radius * Trig.Sin(coordinate.Azimuth.Radians);
             return new CartesianCoordinate(x, y, coordinate.Tolerance);
         }
     }
