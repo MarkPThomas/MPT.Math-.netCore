@@ -4,7 +4,7 @@
 // Created          : 06-20-2018
 //
 // Last Modified By : Mark P Thomas
-// Last Modified On : 05-26-2020
+// Last Modified On : 06-05-2020
 // ***********************************************************************
 // <copyright file="Numbers.cs" company="Mark P Thomas, Inc.">
 //     Copyright (c) 2020. All rights reserved.
@@ -192,6 +192,14 @@ namespace MPT.Math
         }
 
 
+        /// <summary>
+        /// Determines whether [is within inclusive] [the specified value].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
         public static bool IsWithinInclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
         {
             double maxValue = NMath.Max(value1, value2);
@@ -200,6 +208,14 @@ namespace MPT.Math
         }
 
 
+        /// <summary>
+        /// Determines whether [is within inclusive] [the specified value].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
         public static bool IsWithinInclusive<T>(T value, T value1, T value2) where T : IComparable<T>
         {
             T maxValue = Max(value1, value2);
@@ -210,6 +226,14 @@ namespace MPT.Math
         }
 
 
+        /// <summary>
+        /// Determines whether [is within exclusive] [the specified value].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
         public static bool IsWithinExclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
         {
             double maxValue = NMath.Max(value1, value2);
@@ -218,6 +242,14 @@ namespace MPT.Math
         }
 
 
+        /// <summary>
+        /// Determines whether [is within exclusive] [the specified value].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
         public static bool IsWithinExclusive<T>(T value, T value1, T value2) where T : IComparable<T>
         {
             T maxValue = Max(value1, value2);
@@ -233,6 +265,7 @@ namespace MPT.Math
         /// <returns>T.</returns>
         /// <exception cref="ArgumentException">Argument cannot be null.</exception>
         /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
+        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
         public static T Max<T>(params T[] items) where T : IComparable<T>
         {
             if (items == null) { throw new ArgumentException("Argument cannot be null."); }
@@ -257,6 +290,7 @@ namespace MPT.Math
         /// <returns>T.</returns>
         /// <exception cref="ArgumentException">Argument cannot be null.</exception>
         /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
+        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
         public static T Min<T>(params T[] items) where T : IComparable<T>
         {
             if (items == null) { throw new ArgumentException("Argument cannot be null."); }

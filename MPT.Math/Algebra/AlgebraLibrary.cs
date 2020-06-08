@@ -12,7 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Coordinates;
-using MPT.Math.Coordinates3D;
 using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;

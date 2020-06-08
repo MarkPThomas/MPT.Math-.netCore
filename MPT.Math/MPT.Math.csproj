@@ -15,10 +15,13 @@
 
   <ItemGroup>
     <Compile Remove="Algebra\bin\**" />
+    <Compile Remove="Coordinates3D\**" />
     <Compile Remove="Geometry\**" />
     <EmbeddedResource Remove="Algebra\bin\**" />
+    <EmbeddedResource Remove="Coordinates3D\**" />
     <EmbeddedResource Remove="Geometry\**" />
     <None Remove="Algebra\bin\**" />
+    <None Remove="Coordinates3D\**" />
     <None Remove="Geometry\**" />
   </ItemGroup>
 
@@ -26,11 +29,23 @@
     <Compile Remove="CoordinateConverters\Cartesian2DBarycentricConverter.cs" />
     <Compile Remove="CoordinateConverters\Cartesian2DCartesian3DConverter.cs" />
     <Compile Remove="CoordinateConverters\Cartesian2DTrilinearConverter.cs" />
+    <Compile Remove="CoordinateConverters\Cartesian3DCylindricalConverter.cs" />
     <Compile Remove="CoordinateConverters\Cartesian3DEllipsoidConverter.cs" />
-    <Compile Remove="Coordinates3D\EllipsoidCoordinate.cs" />
+    <Compile Remove="CoordinateConverters\Cartesian3DSphericalConverter.cs" />
+    <Compile Remove="CoordinateConverters\CylindricalSphericalConverter.cs" />
     <Compile Remove="Coordinates\BarycentricCoordinate.cs" />
     <Compile Remove="Coordinates\TrilinearCoordinate.cs" />
+    <Compile Remove="Curves\BezierCurve.cs" />
+    <Compile Remove="Curves\CircularCurve.cs" />
+    <Compile Remove="Curves\ConicSectionCurve.cs" />
+    <Compile Remove="Curves\CubicCurve.cs" />
+    <Compile Remove="Curves\EllipticalCurve.cs" />
+    <Compile Remove="Curves\HyperbolicCurve.cs" />
+    <Compile Remove="Curves\LogarithmicSpiral.cs" />
+    <Compile Remove="Curves\ParabolicCurve.cs" />
+    <Compile Remove="Curves\QuadraticCurve.cs" />
     <Compile Remove="Point.cs" />
+    <Compile Remove="Vectors\Vector3D.cs" />
     <Compile Remove="Vectors\VectorPolar.cs" />
     <Compile Remove="Vectors\VectorSpherical.cs" />
   </ItemGroup>

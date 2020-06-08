@@ -1,5 +1,4 @@
-﻿
-using MPT.Math.NumberTypeExtensions;
+﻿using MPT.Math.NumberTypeExtensions;
 using NMath = System.Math;
 using NUnit.Framework;
 using System;

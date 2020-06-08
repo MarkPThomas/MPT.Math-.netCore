@@ -8,6 +8,14 @@
 <PropertyGroup>
   <DebugType>full</DebugType>
 </PropertyGroup>
+<ItemGroup>
+  <Compile Remove="Coordinates3D\**" />
+  <EmbeddedResource Remove="Coordinates3D\**" />
+  <None Remove="Coordinates3D\**" />
+</ItemGroup>
+<ItemGroup>
+  <Compile Remove="Vectors\Vector3DTests.cs" />
+</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Appveyor.TestLogger" Version="2.0.0" />
     <PackageReference Include="nunit" Version="3.12.0" />

@@ -16,7 +16,13 @@
             <param name="a">Multiplier to x^2.</param>
             <param name="b">Multiplier to x.</param>
             <param name="c">Constant.</param>
-            <returns></returns>
+            <returns>System.Double[].</returns>
+            <exception cref="T:System.ArgumentException">Argument 'a' cannot be 0</exception>
+            <exception cref="T:System.ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
+            <exception cref="T:System.ArgumentException">Argument 'a' cannot be 0</exception>
+            <exception cref="T:System.ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
+            <exception cref="T:System.ArgumentException">Argument 'a' cannot be 0</exception>
+            <exception cref="T:System.ArgumentException">'b^2 - 4 * a * c' cannot be negative</exception>
         </member>
         <member name="M:MPT.Math.Algebra.AlgebraLibrary.CubicCurveLowestRoot(System.Double,System.Double,System.Double,System.Double)">
             <summary>
@@ -27,12 +33,13 @@
             <param name="b">Multiplier to x^2.</param>
             <param name="c">Multiplier to x.</param>
             <param name="d">Constant.</param>
-            <returns></returns>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Algebra.AlgebraLibrary.cubicCurveLeastRootNormalized(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Returns the least positive solution to the equation x^3 + a2x^2 + a1x + a0 = 0.
             </summary>
+            <param name="a0">The a0.</param>
             <param name="a1">Multiplier to x^2.</param>
             <param name="a2">Multiplier to x.</param>
             <param name="B">Derived constant.</param>
@@ -47,7 +54,7 @@
             <param name="b">Multiplier to x^2.</param>
             <param name="c">Multiplier to x.</param>
             <param name="d">Constant.</param>
-            <returns></returns>
+            <returns>System.Double[].</returns>
         </member>
         <member name="M:MPT.Math.Algebra.AlgebraLibrary.cubicCurveRootsNormalized(System.Double,System.Double,System.Double,System.Boolean)">
             <summary>
@@ -56,58 +63,63 @@
             <param name="a0">Constant.</param>
             <param name="a1">Multiplier to x.</param>
             <param name="a2">Multiplier to x^2.</param>
-            <param name="returnFirstRoot"></param>
-            <returns></returns>
+            <param name="returnFirstRoot">if set to <c>true</c> [return first root].</param>
+            <returns>System.Double[].</returns>
         </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear(System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear(System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Linearly interpolates between two values.
+            Interpolates linearly between two values.
             </summary>
-            <param name="value1">First value.</param>
-            <param name="value2">Second value.</param>
-            <param name="point2Weight">Value between 0 and 1 indicating the weight of the second value.</param>
-            <returns>Interpolated value.</returns>
-        </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
-            <summary>
-            Linearly interpolates between two values.
-            </summary>
-            <param name="point1">First point.</param>
-            <param name="point2">Second point.</param>
-            <param name="point2Weight">Value between 0 and 1 indicating the weight of the second point.</param>
-            <returns>Interpolated value.</returns>
-        </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationPolynomial(MPT.Math.Coordinates.CartesianCoordinate[],System.Double)">
-            <summary>
-            Interpolates the polynomial.
-            From: https://en.wikipedia.org/wiki/Polynomial_interpolation
-            </summary>
-            <param name="points">The points.</param>
-            <param name="amount">The amount.</param>
+            <param name="value1">Value 1.</param>
+            <param name="value2">Value 2.</param>
+            <param name="value2Weight">The weight applied to the difference between value 1 and value 2.
+            0 &lt;= weight &lt;= 1</param>
+            <param name="tolerance">The tolerance used for determining if a weight lies within the inclusive range of 0 to 1.</param>
             <returns>System.Double.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Weight must be between 0 and 1. Weight provided was {value2Weight}</exception>
         </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear2D(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
+        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double)">
+            <summary>
+            Interpolates linearly between two points.
+            </summary>
+            <param name="point1">Point 1.</param>
+            <param name="point2">Point 2.</param>
+            <param name="point2Weight">The weight applied to the difference between point 1 and point 2.
+            0 &lt;= weight &lt;= 1</param>
+            <param name="tolerance">The tolerance used for determining if a weight lies within the inclusive range of 0 to 1.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Weight must be between 0 and 1. Weight provided was {point2Weight}</exception>
+        </member>
+        <member name="M:MPT.Math.Algebra.AlgebraLibrary.InterpolationLinear2D(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Lineary interpolates across a 2D plane to return an interpolated third dimensional value.
+            Expected to be used for table interpolation, where x-axis are the columns, and y-axis are the rows.
             </summary>
             <param name="Po">The point in the plane to get the corresponding magnitude of.</param>
-            <param name="ii">Point ii (closest to the origin), where <see cref="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Z" /> is the corresponding magnitude.</param>
-            <param name="ij">Point ij (farthest from the y-axis), where <see cref="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
-            <param name="ji">Point ji (farthest from the x-axis), where <see cref="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
-            <param name="jj">Point jj (farthest from the origin), where <see cref="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Z" /> property is the corresponding magnitude.</param>
+            <param name="ii">Point ii (closest to the origin), where <see paramref="iiValue" /> is the corresponding value.</param>
+            <param name="jj">Point jj (farthest from the origin), where <see paramref="jjValue" /> property is the corresponding value.</param>
+            <param name="iiValue">The value at point ii, which is closest to the origin.</param>
+            <param name="ijValue">The value at point ij, which is in line with point ii but farthest along the x-axis (columns).</param>
+            <param name="jiValue">The value at point ji, which is in line with point ii but farthest along the y-axis (rows).</param>
+            <param name="jjValue">The value at point jj, which is farthest from the origin.</param>
+            <param name="tolerance">The tolerance used for determining if a weight lies within the boundaries of the values being interpolated.</param>
             <returns>System.Double.</returns>
+            <exception cref="T:System.ArgumentException">Different columns must be chosen: Column ii = Column jj = {ii.X}</exception>
+            <exception cref="T:System.ArgumentException">Different rows must be chosen: Row ii = Row jj = {ii.Y}</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Point ({Po.X}, {Po.Y}) must lie within the bounds of values to interpolate within, ({ii.X}, {ii.Y}), ({jj.X}, {jj.Y})</exception>
+            <exception cref="T:System.ArgumentException">Different columns must be chosen: Column ii = Column jj = {ii.X}</exception>
         </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.IntersectionX(System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Algebra.AlgebraLibrary.IntersectionX(System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             X-coordinate of a horizontal line intersecting the line described by the points provided.
             </summary>
             <param name="y">Y-coordinate of the horizontal line.</param>
             <param name="I">First point.</param>
             <param name="J">Second point.</param>
-            <returns></returns>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Algebra.AlgebraLibrary.IntersectionX(System.Double,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Algebra.AlgebraLibrary.IntersectionX(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             X-coordinate of a horizontal line intersecting the line described by the points provided.
             </summary>
@@ -116,14 +128,18 @@
             <param name="y1">Y-coordinate of first point.</param>
             <param name="x2">X-coordinate of second point.</param>
             <param name="y2">Y-coordinate of second point.</param>
-            <returns></returns>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.ArgumentException">Identical points provided. Points need to define a line.</exception>
+            <exception cref="T:System.ArgumentException">Line is collinear to horizontal projection.</exception>
+            <exception cref="T:System.ArgumentException">Line is parallel to horizontal projection.</exception>
         </member>
         <member name="M:MPT.Math.Algebra.AlgebraLibrary.SRSS(System.Double[])">
             <summary>
             Performs the square root of the sum of the squares of the provided values.
             </summary>
-            <param name="values"></param>
-            <returns></returns>
+            <param name="values">The values.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="T:MPT.Math.CoordinateConverters.Cartesian2DPolarConverter">
             <summary>
@@ -141,1128 +157,6 @@
             Converts to Cartesian coordinates.
             </summary>
             <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="T:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter">
-            <summary>
-            Class Cartesian3DCylindricalConverter.
-            </summary>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter.ToCylindrical(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Converts to cylindrical coordinates.
-            </summary>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DCylindricalConverter.ToCartesian(MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Converts to Cartesian coordinates.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="T:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter">
-            <summary>
-            Class Cartesian3DSphericalConverter.
-            </summary>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter.ToSpherical(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Converts to spherical coordinates.
-            </summary>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.Cartesian3DSphericalConverter.ToCartesian(MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Converts to Cartesian coordinates.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="T:MPT.Math.CoordinateConverters.CylindricalSphericalConverter">
-            <summary>
-            Class CylindricalSphericalConverter.
-            </summary>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.CylindricalSphericalConverter.ToSpherical(MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Converts to spherical coordinates.
-            </summary>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.CoordinateConverters.CylindricalSphericalConverter.ToCylindrical(MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Converts to cylindrical coordinates.
-            </summary>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.CartesianCoordinate3D">
-            <summary>
-            A three-dimensional coordinate system that specifies each point uniquely in a plane by a set of numerical coordinates, which are the signed distances to the point from two fixed perpendicular oriented lines, measured in the same unit of length.
-            </summary>
-            <seealso ref="https://en.wikipedia.org/wiki/Cartesian_coordinate_system"/>
-            <seealso ref="https://en.wikipedia.org/wiki/Euclidean_space"/>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.X">
-            <summary>
-            Gets the x.
-            </summary>
-            <value>The x.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Y">
-            <summary>
-            Gets the y.
-            </summary>
-            <value>The y.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianCoordinate3D.Z">
-            <summary>
-            Gets the z.
-            </summary>
-            <value>The z.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.CartesianCoordinate3D"/> struct.
-            </summary>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
-            <param name="z">The z.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.CrossProduct(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Crosses the product.
-            </summary>
-            <param name="point">The point.</param>
-            <returns>Point3D.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.DotProduct(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Dots the product.
-            </summary>
-            <param name="point">The point.</param>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals(MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Equality(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Inequality(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Subtraction(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Addition(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Multiply(MPT.Math.Coordinates3D.CartesianCoordinate3D,System.Double)">
-            <summary>
-            Implements the * operator for a coordinate and a double which represents a multiplier.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianCoordinate3D.op_Division(MPT.Math.Coordinates3D.CartesianCoordinate3D,System.Double)">
-            <summary>
-            Implements the / operator for a coordinate and a double which represents the denominator.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="denominator">Denominator value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.CartesianOffset3D">
-            <summary>
-            Represents the difference between 3D Cartesian coordinates I (first) and J (second) in three-dimensional space.
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianOffset3D.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianOffset3D.I">
-            <summary>
-            Gets or sets the first coordinate value of this Point structure.
-            </summary>
-            <value>The i.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CartesianOffset3D.J">
-            <summary>
-            Gets or sets the second coordinate value of this Point structure.
-            </summary>
-            <value>The j.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.#ctor(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianCoordinate3D,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.CartesianOffset3D"/> struct.
-            </summary>
-            <param name="i">The i.</param>
-            <param name="j">The j.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.X">
-            <summary>
-            Xj - Xi.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.Y">
-            <summary>
-            Yj - Yi.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.Z">
-            <summary>
-            Zj - Zi.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.Length">
-            <summary>
-            The total straight length of the offset.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.ToCartesianCoordinate3D">
-            <summary>
-            Converts to a single <see cref="T:MPT.Math.Coordinates3D.CartesianCoordinate3D"/> coordinate.
-            </summary>
-            <returns>CartesianCoordinate3D.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.Equals(MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Equality(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Inequality(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Subtraction(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition(MPT.Math.Coordinates3D.CartesianCoordinate3D,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Addition(MPT.Math.Coordinates3D.CartesianOffset3D,MPT.Math.Coordinates3D.CartesianCoordinate3D)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply(MPT.Math.Coordinates3D.CartesianOffset3D,System.Double)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="multiplier">The multiplier.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Multiply(System.Double,MPT.Math.Coordinates3D.CartesianOffset3D)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="multiplier">The multiplier.</param>
-            <param name="offset">The offset.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CartesianOffset3D.op_Division(MPT.Math.Coordinates3D.CartesianOffset3D,System.Double)">
-            <summary>
-            Implements the / operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="denominator">The denominator.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.CylindricalCoordinate">
-            <summary>
-            A three-dimensional coordinate system that specifies point positions by the distance from a chosen reference axis, the direction from the axis relative to a chosen reference direction, and the distance from a chosen reference plane perpendicular to the axis. 
-            The latter distance is given as a positive or negative number depending on which side of the reference plane faces the point.
-            </summary>
-            <seealso ref="https://en.wikipedia.org/wiki/Cylindrical_coordinate_system"/>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalCoordinate.Tolerance">
-            <summary>
-            Default zero tolerance for operations.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalCoordinate.Radius">
-            <summary>
-            Gets the radial length, ρ, which is the Euclidean distance from the z-axis to the point P.
-            </summary>
-            <value>The radial length.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalCoordinate.Height">
-            <summary>
-            Gets the height, z, which is the signed distance from the chosen plane to the point P.
-            </summary>
-            <value>The height.</value>
-        </member>
-        <member name="F:MPT.Math.Coordinates3D.CylindricalCoordinate._azimuth">
-            <summary>
-            The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalCoordinate.Azimuth">
-            <summary>
-            Gets or sets the azimuth angle, φ, which is the angle between the reference direction on the chosen plane and the line from the origin to the projection of P on the plane.
-            </summary>
-            <value>The phi.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.SphericalCoordinate" /> struct.
-            </summary>
-            <param name="radius">The distance from a reference point.</param>
-            <param name="height">The height, z, which is the signed distance from the chosen plane to the point P.</param>
-            <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis [radians].</param>
-            <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.#ctor(System.Double,System.Double,MPT.Math.Coordinates.Angle,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.SphericalCoordinate" /> struct.
-            </summary>
-            <param name="radius">The distance from a reference point.</param>
-            <param name="height">The height, z, which is the signed distance from the chosen plane to the point P.</param>
-            <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.</param>
-            <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.AddToHeight(System.Double)">
-            <summary>
-            Adds the value to the height, z, of the current coordinate.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromHeight(System.Double)">
-            <summary>
-            Subtracts the value from the height, z, of the current coordinate.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyHeightBy(System.Double)">
-            <summary>
-            Multiplies the height, z, of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.DivideHeightBy(System.Double)">
-            <summary>
-            Divides the height, z, of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.changeHeight(System.Double)">
-            <summary>
-            Changes the height, z, of the current coordinate to the provided height.
-            </summary>
-            <param name="height">The height.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthRadians(System.Double)">
-            <summary>
-            Adds the angle, in radians, to the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthRadians(System.Double)">
-            <summary>
-            Subtracts the angle, in radians, from the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.AddAngleAzimuthDegrees(System.Double)">
-            <summary>
-            Adds the angle, in degrees, to the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractAngleAzimuthDegrees(System.Double)">
-            <summary>
-            Subtracts the angle, in degrees, from the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyAngleAzimuthBy(System.Double)">
-            <summary>
-            Multiplies the azimuth angle, φ, of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.DivideAngleAzimuthBy(System.Double)">
-            <summary>
-            Divides the azimuth angle, φ, of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.changePhiAngleAzimuthRadians(System.Double)">
-            <summary>
-            Changes the azimuth angle, φ, of the current coordinate to the provided angle, in radians.
-            </summary>
-            <param name="angle">The new angle [radians].</param>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.AddToRadius(System.Double)">
-            <summary>
-            Adds the amount to the radial length of the current coordinate.
-            </summary>
-            <param name="value">The amount to add to the radial length.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.SubtractFromRadius(System.Double)">
-            <summary>
-            Subtracts the amount from the radial length of the current coordinate.
-            </summary>
-            <param name="value">The amount to subtract from the radial length.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.MultiplyRadiusBy(System.Double)">
-            <summary>
-            Multiplies the radial length of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.DivideRadiusBy(System.Double)">
-            <summary>
-            Divides the radial length of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.changeRadius(System.Double)">
-            <summary>
-            Changes the radial length of the current coordinate to the provided radial length.
-            </summary>
-            <param name="radialLength">The new radial length.</param>
-            <returns>CylindricalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.Equals(MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.op_Equality(MPT.Math.Coordinates3D.CylindricalCoordinate,MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.op_Inequality(MPT.Math.Coordinates3D.CylindricalCoordinate,MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply(System.Double,MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Implements the * operator for a coordinate and a double which represents a multiplier.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <param name="coordinate">The coordinate.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.op_Multiply(MPT.Math.Coordinates3D.CylindricalCoordinate,System.Double)">
-            <summary>
-            Implements the * operator for a coordinate and a double which represents a multiplier.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalCoordinate.op_Division(MPT.Math.Coordinates3D.CylindricalCoordinate,System.Double)">
-            <summary>
-            Implements the / operator for a coordinate and a double which represents the denominator.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="denominator">The denominator value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.CylindricalOffset">
-            <summary>
-            Represents the difference between cylindrical coordinates I (first) and J (second) in two-dimensional space.
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalOffset.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalOffset.I">
-            <summary>
-            Gets or sets the first coordinate value.
-            </summary>
-            <value>The first coordinate.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.CylindricalOffset.J">
-            <summary>
-            Gets or sets the second coordinate value.
-            </summary>
-            <value>The second coordinate.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.#ctor(MPT.Math.Coordinates3D.CylindricalCoordinate,MPT.Math.Coordinates3D.CylindricalCoordinate,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.CylindricalOffset"/> struct.
-            </summary>
-            <param name="i">The first coordinate.</param>
-            <param name="j">The second coordinate.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Radius">
-            <summary>
-            Radius_j - Radius_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Azimuth">
-            <summary>
-            Azimuth_j - Azimuth_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Height">
-            <summary>
-            Height_j - Height_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Length">
-            <summary>
-            The total straight length between the offset points.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Equals(MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Equality(MPT.Math.Coordinates3D.CylindricalOffset,MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Inequality(MPT.Math.Coordinates3D.CylindricalOffset,MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction(MPT.Math.Coordinates3D.CylindricalCoordinate,MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Subtraction(MPT.Math.Coordinates3D.CylindricalOffset,MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Addition(MPT.Math.Coordinates3D.CylindricalCoordinate,MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Addition(MPT.Math.Coordinates3D.CylindricalOffset,MPT.Math.Coordinates3D.CylindricalCoordinate)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply(MPT.Math.Coordinates3D.CylindricalOffset,System.Double)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="multiplier">The multiplier.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Multiply(System.Double,MPT.Math.Coordinates3D.CylindricalOffset)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="multiplier">The multiplier.</param>
-            <param name="offset">The offset.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.CylindricalOffset.op_Division(MPT.Math.Coordinates3D.CylindricalOffset,System.Double)">
-            <summary>
-            Implements the / operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="denominator">The denominator.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.ICoordinate3D">
-            <summary>
-            Interface ICoordinate3D
-            </summary>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.SphericalCoordinate">
-            <summary>
-            A coordinate system for three-dimensional space where the position of a point is specified by three numbers: the radial length of that point from a fixed origin, r, its polar angle measured from a fixed zenith direction, θ, and the azimuthal angle, φ, of its orthogonal projection on a reference plane that passes through the origin and is orthogonal to the zenith, measured from a fixed reference direction on that plane. 
-            It can be seen as the three-dimensional version of the polar coordinate system.
-            </summary>
-            <seealso ref="https://en.wikipedia.org/wiki/Spherical_coordinate_system"/>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalCoordinate.Tolerance">
-            <summary>
-            Default zero tolerance for operations.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalCoordinate.Radius">
-            <summary>
-            Gets the radial length, r.
-            </summary>
-            <value>The radial length.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalCoordinate.Inclination">
-            <summary>
-            Gets or sets the inclination angle, θ, which lies in the vertical plane sweeping out from the Z-axis.
-            </summary>
-            <value>The theta.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalCoordinate.Azimuth">
-            <summary>
-            Gets or sets the azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.
-            </summary>
-            <value>The phi.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.SphericalCoordinate" /> struct.
-            </summary>
-            <param name="radius">The distance from a reference point.</param>
-            <param name="inclination">The polar angle, θ, which lies in the vertical plane sweeping out from the Z-axis [radians].</param>
-            <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis [radians].</param>
-            <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.#ctor(System.Double,MPT.Math.Coordinates.Angle,MPT.Math.Coordinates.Angle,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.SphericalCoordinate" /> struct.
-            </summary>
-            <param name="radius">The distance from a reference point.</param>
-            <param name="inclination">The polar angle, θ, which lies in the vertical plane sweeping out from the Z-axis.</param>
-            <param name="azimuth">The azimuth angle, φ, which lies in the x-y plane sweeping out from the X-axis.</param>
-            <param name="tolerance">The tolerance to be used in relating coordinates.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationRadians(System.Double)">
-            <summary>
-            Adds the angle, in radians, to the inclination angle, θ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationRadians(System.Double)">
-            <summary>
-            Subtracts the angle, in radians, from the inclination angle, θ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleInclinationDegrees(System.Double)">
-            <summary>
-            Adds the angle, in degrees, to the inclination angle, θ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleInclinationDegrees(System.Double)">
-            <summary>
-            Subtracts the angle, in degrees, from the inclination angle, θ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleInclinationBy(System.Double)">
-            <summary>
-            Multiplies the inclination angle, θ, of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleInclinationBy(System.Double)">
-            <summary>
-            Divides the inclination angle, θ, of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.changeAngleInclinationRadians(System.Double)">
-            <summary>
-            Changes the inclination angle, θ, of the current coordinate to the provided angle, in radians.
-            </summary>
-            <param name="angle">The new angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthRadians(System.Double)">
-            <summary>
-            Adds the angle, in radians, to the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthRadians(System.Double)">
-            <summary>
-            Subtracts the angle, in radians, from the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddAngleAzimuthDegrees(System.Double)">
-            <summary>
-            Adds the angle, in degrees, to the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.SubtractAngleAzimuthDegrees(System.Double)">
-            <summary>
-            Subtracts the angle, in degrees, from the azimuth angle, φ, of the current coordinate.
-            </summary>
-            <param name="angle">The angle [degrees].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyAngleAzimuthBy(System.Double)">
-            <summary>
-            Multiplies the azimuth angle, φ, of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.DivideAngleAzimuthBy(System.Double)">
-            <summary>
-            Divides the azimuth angle, φ, of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.changePhiAngleAzimuthRadians(System.Double)">
-            <summary>
-            Changes the azimuth angle, φ, of the current coordinate to the provided angle, in radians.
-            </summary>
-            <param name="angle">The new angle [radians].</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.AddToRadialLength(System.Double)">
-            <summary>
-            Adds the amount to the radius of the current coordinate.
-            </summary>
-            <param name="value">The amount to add to the radial length.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.SubtractFromRadialLength(System.Double)">
-            <summary>
-            Subtracts the amount from the radius of the current coordinate.
-            </summary>
-            <param name="value">The amount to subtract from the radius.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.MultiplyRadialLengthBy(System.Double)">
-            <summary>
-            Multiplies the radius of the current coordinate by the amount.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.DivideRadialLengthBy(System.Double)">
-            <summary>
-            Divides the radius of the current coordinate by the amount.
-            </summary>
-            <param name="denominator">The denominator value.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.changeRadialLength(System.Double)">
-            <summary>
-            Changes the radius of the current coordinate to the provided radius.
-            </summary>
-            <param name="radius">The new radius.</param>
-            <returns>SphericalCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.Equals(MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.op_Equality(MPT.Math.Coordinates3D.SphericalCoordinate,MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.op_Inequality(MPT.Math.Coordinates3D.SphericalCoordinate,MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Coordinate a.</param>
-            <param name="b">Coordinate b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply(System.Double,MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Implements the * operator for a coordinate and a double which represents a multiplier.
-            </summary>
-            <param name="multiplier">Multiplier value.</param>
-            <param name="coordinate">The coordinate.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.op_Multiply(MPT.Math.Coordinates3D.SphericalCoordinate,System.Double)">
-            <summary>
-            Implements the * operator for a coordinate and a double which represents a multiplier.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="multiplier">Multiplier value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalCoordinate.op_Division(MPT.Math.Coordinates3D.SphericalCoordinate,System.Double)">
-            <summary>
-            Implements the / operator for a coordinate and a double which represents the denominator.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <param name="denominator">The denominator value.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Coordinates3D.SphericalOffset">
-            <summary>
-            Represents the difference between spherical coordinates I (first) and J (second) in two-dimensional space.
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalOffset.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalOffset.I">
-            <summary>
-            Gets or sets the first coordinate value.
-            </summary>
-            <value>The first coordinate.</value>
-        </member>
-        <member name="P:MPT.Math.Coordinates3D.SphericalOffset.J">
-            <summary>
-            Gets or sets the second coordinate value.
-            </summary>
-            <value>The second coordinate.</value>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.#ctor(MPT.Math.Coordinates3D.SphericalCoordinate,MPT.Math.Coordinates3D.SphericalCoordinate,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Coordinates3D.SphericalOffset"/> struct.
-            </summary>
-            <param name="i">The first coordinate.</param>
-            <param name="j">The second coordinate.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Radius">
-            <summary>
-            Radius_j - Radius_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Azimuth">
-            <summary>
-            Azimuth_j - Azimuth_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Inclination">
-            <summary>
-            Declination_j - Declination_i.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Length">
-            <summary>
-            The total straight length between the offset points.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Equals(MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Equality(MPT.Math.Coordinates3D.SphericalOffset,MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Inequality(MPT.Math.Coordinates3D.SphericalOffset,MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">Offset a.</param>
-            <param name="b">Offset b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction(MPT.Math.Coordinates3D.SphericalCoordinate,MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Subtraction(MPT.Math.Coordinates3D.SphericalOffset,MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Addition(MPT.Math.Coordinates3D.SphericalCoordinate,MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="point1">The point1.</param>
-            <param name="offset2">The offset2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Addition(MPT.Math.Coordinates3D.SphericalOffset,MPT.Math.Coordinates3D.SphericalCoordinate)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="offset1">The offset1.</param>
-            <param name="point2">The point2.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Multiply(MPT.Math.Coordinates3D.SphericalOffset,System.Double)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="multiplier">The multiplier.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Multiply(System.Double,MPT.Math.Coordinates3D.SphericalOffset)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="multiplier">The multiplier.</param>
-            <param name="offset">The offset.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates3D.SphericalOffset.op_Division(MPT.Math.Coordinates3D.SphericalOffset,System.Double)">
-            <summary>
-            Implements the / operator.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="denominator">The denominator.</param>
-            <returns>The result of the operator.</returns>
         </member>
         <member name="T:MPT.Math.Coordinates.Angle">
             <summary>
@@ -2738,6 +1632,12 @@
             <param name="azimuth">The angle from a reference direction [radians].</param>
             <param name="tolerance">The tolerance to be used in relating coordinates.</param>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians(System.Double)">
             <summary>
             Adds the angle, in radians, to the angle of the current coordinate.
@@ -2914,6 +1814,12 @@
             <param name="j">The second coordinate.</param>
             <param name="tolerance">The tolerance.</param>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarOffset.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.PolarOffset.Radius">
             <summary>
             Radius_j - Radius_i.
@@ -2929,6 +1835,7 @@
         <member name="M:MPT.Math.Coordinates.PolarOffset.Length">
             <summary>
             The total straight length between the offset points.
+            <seealso ref="https://www.ck12.org/book/ck-12-trigonometry-concepts/section/6.2/"/>
             </summary>
             <returns>System.Double.</returns>
         </member>
@@ -3024,10 +1931,318 @@
             <param name="denominator">The denominator.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="T:MPT.Math.Curves.LinearCurve">
+            <summary>
+            Class LinearCurve.
+            Implements the <see cref="T:MPT.Math.Curves.ICurve" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.ICurve" />
+        </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.Tolerance">
+            <summary>
+            Tolerance to use in all calculations with double types.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.ControlPointI">
+            <summary>
+            Gets the control point i.
+            </summary>
+            <value>The control point i.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.ControlPointJ">
+            <summary>
+            Gets the control point j.
+            </summary>
+            <value>The control point j.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Initializes the line segment to span between the provided points.
+            </summary>
+            <param name="i">First point of the line.</param>
+            <param name="j">Second point of the line.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsHorizontal">
+            <summary>
+            Determines whether this instance is horizontal.
+            </summary>
+            <returns><c>true</c> if this instance is horizontal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsVertical">
+            <summary>
+            Determines whether this instance is vertical.
+            </summary>
+            <returns><c>true</c> if this instance is vertical; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsParallel(MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Lines are parallel to each other.
+            </summary>
+            <param name="otherLine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsPerpendicular(MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Lines are perpendicular to each other.
+            </summary>
+            <param name="otherLine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on an infinitely long line projecting off of the line segment. 
+            It isn't necessarily intersecting between the defining points.
+            </summary>
+            <param name="coordinate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsIntersectingCurve(MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Provided line segment intersects an infinitely long line projecting off of the line segment. 
+            It isn't necessarily intersecting between the defining points.
+            </summary>
+            <param name="otherLine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Slope">
+            <summary>
+            Slope of the line segment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptX">
+            <summary>
+            X-Intercept of the line segment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptY">
+            <summary>
+            Y-Intercept of the line segment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.TangentVector">
+            <summary>
+            Vector that is tangential to the line connecting the defining points.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.NormalVector">
+            <summary>
+            Vector that is normal to the line connecting the defining points.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.X(System.Double)">
+            <summary>
+            X-coordinate on the line segment that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Y(System.Double)">
+            <summary>
+            Y-coordinate on the line segment that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.LimitMin">
+            <summary>
+            First coordinate control value.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.LimitMax">
+            <summary>
+            Second coordinate control value.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Length">
+            <summary>
+            Length of the line segment.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IntersectionCoordinate(MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Returns a point where the line segment intersects the provided line segment.
+            </summary>
+            <param name="otherLine">Line segment that intersects the current line segment.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsHorizontal(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Determines if the line is horizontal.
+            </summary>
+            <param name="ptI">The point i.</param>
+            <param name="ptJ">The point j.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if the shape segment is horizontal, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsVertical(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Determines if the segment is vertical.
+            </summary>
+            <param name="ptI">The point i.</param>
+            <param name="ptJ">The point j.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns><c>true</c> if the segment is vertical, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsParallel(System.Double,System.Double,System.Double)">
+            <summary>
+            True: Slopes are parallel.
+            </summary>
+            <param name="slope1"></param>
+            <param name="slope2"></param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsPerpendicular(System.Double,System.Double,System.Double)">
+            <summary>
+            True: Slopes are perpendicular.
+            </summary>
+            <param name="slope1"></param>
+            <param name="slope2"></param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Slope(System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the slope of a line (y2-y1)/(x2-x1).
+            </summary>
+            <param name="rise">Difference in y-coordinate values or equivalent.</param>
+            <param name="run">Difference in x-coordinate values or equivalent.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Slope(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the slope of a line (y2-y1)/(x2-x1).
+            </summary>
+            <param name="x1">First x-coordinate.</param>
+            <param name="y1">First y-coordinate.</param>
+            <param name="x2">Second x-coordinate.</param>
+            <param name="y2">Second y-coordinate.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Slope(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns the slope of a line (y2-y1)/(x2-x1).
+            </summary>
+            <param name="point1">First point.</param>
+            <param name="point2">Second point.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Slope(MPT.Math.Coordinates.CartesianOffset,System.Double)">
+            <summary>
+            Returns the slope of a line (y2-y1)/(x2-x1).
+            </summary>
+            <param name="delta">The difference between two points.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptX(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the x-intercept.
+            Returns +infinity if line is horizontal.
+            </summary>
+            <param name="y1">First y-coordinate.</param>
+            <param name="y2">Second y-coordinate.</param>
+            <param name="x1">First x-coordinate.</param>
+            <param name="x2">Second x-coordinate.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptX(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns the x-intercept.
+            </summary>
+            <param name="point1">First point defining a line.</param>
+            <param name="point2">Second point defining a line.</param>
+            <param name="tolerance">>Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptY(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the y-intercept.
+            Returns +infinity if line is vertical.
+            </summary>
+            <param name="y1">First y-coordinate.</param>
+            <param name="y2">Second y-coordinate.</param>
+            <param name="x1">First x-coordinate.</param>
+            <param name="x2">Second x-coordinate.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.InterceptY(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Returns the y-intercept.
+            </summary>
+            <param name="point1">First point defining a line.</param>
+            <param name="point2">Second point defining a line.</param>
+            <param name="tolerance">>Tolerance by which a double is considered to be zero or equal.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.AreLinesIntersecting(System.Double,System.Double,System.Double)">
+            <summary>
+            The lines intersect.
+            </summary>
+            <param name="slope1">Slope of the first line.</param>
+            <param name="slope2">Slope of the second line.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.LineIntersectX(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            The x-coordinate of the intersection of two lines.
+            </summary>
+            <param name="slope1">Slope of the first line.</param>
+            <param name="xIntercept1">X-intercept of the first line.</param>
+            <param name="slope2">Slope of the second line.</param>
+            <param name="xIntercept2">X-intercept of the second line.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.LineIntersectY(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            The y-coordinate of the intersection of two lines.
+            </summary>
+            <param name="slope1">Slope of the first line.</param>
+            <param name="yIntercept1">Y-intercept of the first line.</param>
+            <param name="slope2">Slope of the second line.</param>
+            <param name="yIntercept2">Y-intercept of the second line.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.LineIntersect(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            The coordinates of the intersection of two lines.
+            </summary>
+            <param name="slope1">Slope of the first line.</param>
+            <param name="xIntercept1">X-intercept of the first line.</param>
+            <param name="yIntercept1">Y-intercept of the first line.</param>
+            <param name="slope2">Slope of the second line.</param>
+            <param name="xIntercept2">X-intercept of the second line.</param>
+            <param name="yIntercept2">Y-intercept of the second line.</param>
+            <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
+            <returns></returns>
+        </member>
         <member name="T:MPT.Math.Helper">
             <summary>
             Class Helper.
             </summary>
+        </member>
+        <member name="M:MPT.Math.Helper.GetTolerance``1(``0,System.Double)">
+            <summary>
+            Gets the tolerance between two items.
+            This is the maximum defined, or the overwrite, if provided.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item1">The item1.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Helper.GetTolerance``2(``0,``1,System.Double)">
             <summary>
@@ -3283,6 +2498,46 @@
             <param name="tolerance">The tolerance.</param>
             <returns><c>true</c> if [is less than or equal to] [the specified value2]; otherwise, <c>false</c>.</returns>
         </member>
+        <member name="M:MPT.Math.Numbers.IsWithinInclusive(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Determines whether [is within inclusive] [the specified value].
+            </summary>
+            <param name="value">The value.</param>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.IsWithinInclusive``1(``0,``0,``0)">
+            <summary>
+            Determines whether [is within inclusive] [the specified value].
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value">The value.</param>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.IsWithinExclusive(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Determines whether [is within exclusive] [the specified value].
+            </summary>
+            <param name="value">The value.</param>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.IsWithinExclusive``1(``0,``0,``0)">
+            <summary>
+            Determines whether [is within exclusive] [the specified value].
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value">The value.</param>
+            <param name="value1">The value1.</param>
+            <param name="value2">The value2.</param>
+            <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="M:MPT.Math.Numbers.Max``1(``0[])">
             <summary>
             Determines the maximum of the parameters.
@@ -3292,6 +2547,7 @@
             <returns>T.</returns>
             <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
             <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
         </member>
         <member name="M:MPT.Math.Numbers.Min``1(``0[])">
             <summary>
@@ -3302,6 +2558,7 @@
             <returns>T.</returns>
             <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
             <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
         </member>
         <member name="M:MPT.Math.Numbers.IsOdd(System.Int32)">
             <summary>
@@ -4245,168 +3502,6 @@
             <returns>The result of the operator.</returns>
         </member>
         <member name="M:MPT.Math.Vectors.Vector.op_Division(MPT.Math.Vectors.Vector,System.Double)">
-            <summary>
-            Implements the / operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="T:MPT.Math.Vectors.Vector3D">
-            <summary>
-            Represents a vector in 3D space.
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Vectors.Vector3D.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Vectors.Vector3D.Xcomponent">
-            <summary>
-            Gets the x-component of this vector.
-            </summary>
-            <value>The xcomponent.</value>
-        </member>
-        <member name="P:MPT.Math.Vectors.Vector3D.Ycomponent">
-            <summary>
-            Gets the y-component of this vector.
-            </summary>
-            <value>The ycomponent.</value>
-        </member>
-        <member name="P:MPT.Math.Vectors.Vector3D.Zcomponent">
-            <summary>
-            Gets the z-component of this vector.
-            </summary>
-            <value>The zcomponent.</value>
-        </member>
-        <member name="F:MPT.Math.Vectors.Vector3D._location">
-            <summary>
-            The location
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Vectors.Vector3D.Location">
-            <summary>
-            Gets the location of this vector in Euclidean space.
-            </summary>
-            <value>The location.</value>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.#ctor(System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Initializes the class with a vector structure.
-            </summary>
-            <param name="xMagnitude">The x magnitude.</param>
-            <param name="yMagnitude">The y magnitude.</param>
-            <param name="zMagnitude">The z magnitude.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.#ctor(System.Double,System.Double,System.Double,MPT.Math.Coordinates3D.CartesianCoordinate3D,System.Double)">
-            <summary>
-            Initializes the class with a vector structure and a point coinciding with the location of the vector.
-            </summary>
-            <param name="xMagnitude">The x magnitude.</param>
-            <param name="yMagnitude">The y magnitude.</param>
-            <param name="zMagnitude">The z magnitude.</param>
-            <param name="location">The location.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.Magnitude">
-            <summary>
-            Length of this vector.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.MagnitudeSquared">
-            <summary>
-            Gets the square of the length of this vector.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.CrossProduct(MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Crosses the product.
-            </summary>
-            <param name="point">The point.</param>
-            <returns>Vector3D.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.DotProduct(MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Dots the product.
-            </summary>
-            <param name="point">The point.</param>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.Equals(MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Equality(MPT.Math.Vectors.Vector3D,MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Inequality(MPT.Math.Vectors.Vector3D,MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Addition(MPT.Math.Vectors.Vector3D,MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Subtraction(MPT.Math.Vectors.Vector3D,MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Multiply(MPT.Math.Vectors.Vector3D,System.Double)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Multiply(MPT.Math.Vectors.Vector3D,MPT.Math.Vectors.Vector3D)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Vectors.Vector3D.op_Division(MPT.Math.Vectors.Vector3D,System.Double)">
             <summary>
             Implements the / operator.
             </summary>
