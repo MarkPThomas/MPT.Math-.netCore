@@ -17,12 +17,15 @@
     <Compile Remove="Algebra\bin\**" />
     <Compile Remove="Coordinates3D\**" />
     <Compile Remove="Geometry\**" />
+    <Compile Remove="Matrices\**" />
     <EmbeddedResource Remove="Algebra\bin\**" />
     <EmbeddedResource Remove="Coordinates3D\**" />
     <EmbeddedResource Remove="Geometry\**" />
+    <EmbeddedResource Remove="Matrices\**" />
     <None Remove="Algebra\bin\**" />
     <None Remove="Coordinates3D\**" />
     <None Remove="Geometry\**" />
+    <None Remove="Matrices\**" />
   </ItemGroup>
 
   <ItemGroup>
