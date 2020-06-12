@@ -1018,6 +1018,22 @@
             <param name="b">Coordinate b.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Equality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.ICoordinate)">
+            <summary>
+            Implements the == operator.
+            </summary>
+            <param name="a">Coordinate a.</param>
+            <param name="b">Coordinate b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Inequality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.ICoordinate)">
+            <summary>
+            Implements the != operator.
+            </summary>
+            <param name="a">Coordinate a.</param>
+            <param name="b">Coordinate b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Subtraction(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
             Implements the - operator.
@@ -1077,6 +1093,13 @@
             Returns a hash code for this instance.
             </summary>
             <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(MPT.Math.Coordinates.ICoordinate)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same ICoordinate interface.
+            </summary>
+            <param name="other">The other.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
         <member name="T:MPT.Math.Coordinates.CartesianOffset">
             <summary>
@@ -1742,6 +1765,13 @@
             </summary>
             <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.Equals(MPT.Math.Coordinates.ICoordinate)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same ICoordinate interface.
+            </summary>
+            <param name="other">The other.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Equality(MPT.Math.Coordinates.PolarCoordinate,MPT.Math.Coordinates.PolarCoordinate)">
             <summary>
             Implements the == operator.
@@ -1751,6 +1781,22 @@
             <returns>The result of the operator.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Inequality(MPT.Math.Coordinates.PolarCoordinate,MPT.Math.Coordinates.PolarCoordinate)">
+            <summary>
+            Implements the != operator.
+            </summary>
+            <param name="a">Polar coordinate a.</param>
+            <param name="b">Polar coordinate b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Equality(MPT.Math.Coordinates.PolarCoordinate,MPT.Math.Coordinates.ICoordinate)">
+            <summary>
+            Implements the == operator.
+            </summary>
+            <param name="a">Polar coordinate a.</param>
+            <param name="b">Polar coordinate b.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Inequality(MPT.Math.Coordinates.PolarCoordinate,MPT.Math.Coordinates.ICoordinate)">
             <summary>
             Implements the != operator.
             </summary>
@@ -2266,105 +2312,6 @@
             Tolerance to use in all calculations with double types.
             </summary>
             <value>The tolerance.</value>
-        </member>
-        <member name="T:MPT.Math.Matrices.Matrix">
-            <summary>
-            Struct Matrix
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="P:MPT.Math.Matrices.Matrix.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="P:MPT.Math.Matrices.Matrix.DimensionSize">
-            <summary>
-            Gets the size of the dimension.
-            </summary>
-            <value>The size of the dimension.</value>
-        </member>
-        <member name="F:MPT.Math.Matrices.Matrix._matrix">
-            <summary>
-            The matrix
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Matrices.Matrix.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets the <see cref="T:System.Double"/> with the specified x.
-            </summary>
-            <param name="x">The x.</param>
-            <param name="y">The y.</param>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.#ctor(System.Int32,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Matrices.Matrix"/> struct.
-            </summary>
-            <param name="dimensionSize">Size of the dimension.</param>
-            <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.GetDeterminant">
-            <summary>
-            Gets the determinant.
-            </summary>
-            <returns>System.Double.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.Equals(MPT.Math.Matrices.Matrix)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
-            </summary>
-            <param name="obj">The object to compare with the current instance.</param>
-            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.op_Equality(MPT.Math.Matrices.Matrix,MPT.Math.Matrices.Matrix)">
-            <summary>
-            Implements the == operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.op_Inequality(MPT.Math.Matrices.Matrix,MPT.Math.Matrices.Matrix)">
-            <summary>
-            Implements the != operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.op_Addition(MPT.Math.Matrices.Matrix,MPT.Math.Matrices.Matrix)">
-            <summary>
-            Implements the + operator.
-            </summary>
-            <param name="mat1">The mat1.</param>
-            <param name="mat2">The mat2.</param>
-            <returns>The result of the operator.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
-        </member>
-        <member name="M:MPT.Math.Matrices.Matrix.op_Subtraction(MPT.Math.Matrices.Matrix,MPT.Math.Matrices.Matrix)">
-            <summary>
-            Implements the - operator.
-            </summary>
-            <param name="mat1">The mat1.</param>
-            <param name="mat2">The mat2.</param>
-            <returns>The result of the operator.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
         <member name="T:MPT.Math.Numbers">
             <summary>

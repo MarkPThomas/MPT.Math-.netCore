@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.CoordinateConverters;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using System;
@@ -25,7 +26,7 @@ namespace MPT.Math.Coordinates
     /// <seealso ref="https://en.wikipedia.org/wiki/Cartesian_coordinate_system"/>
     /// <seealso ref="https://en.wikipedia.org/wiki/Euclidean_space"/>
     /// <seealso cref="System.IEquatable{CartesianCoordinate}" />
-    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>, ICoordinate, ITolerance
+    public struct CartesianCoordinate : IEquatable<CartesianCoordinate>, ICoordinate
     {
         #region Properties
         /// <summary>
@@ -163,6 +164,27 @@ namespace MPT.Math.Coordinates
         {
             return !a.Equals(b);
         }
+
+        /// <summary>
+        /// Implements the == operator.
+        /// </summary>
+        /// <param name="a">Coordinate a.</param>
+        /// <param name="b">Coordinate b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(CartesianCoordinate a, ICoordinate b)
+        {
+            return a.Equals(b);
+        }
+        /// <summary>
+        /// Implements the != operator.
+        /// </summary>
+        /// <param name="a">Coordinate a.</param>
+        /// <param name="b">Coordinate b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator !=(CartesianCoordinate a, ICoordinate b)
+        {
+            return !a.Equals(b);
+        }
         #endregion
 
         #region Operators: Combining
@@ -268,6 +290,24 @@ namespace MPT.Math.Coordinates
         public override int GetHashCode()
         {
             return X.GetHashCode() ^ Y.GetHashCode();
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same ICoordinate interface.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        public bool Equals(ICoordinate other)
+        {
+            if (other is CartesianCoordinate)
+            {
+                return Equals((CartesianCoordinate)other);
+            }
+            if (other is PolarCoordinate)
+            {
+                return Equals(Cartesian2DPolarConverter.ToCartesian((PolarCoordinate)other));
+            }
+            return Equals((object)other);
         }
         #endregion
     }

@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.CoordinateConverters;
 using MPT.Math.NumberTypeExtensions;
 using System;
 using NMath = System.Math;
@@ -23,7 +24,7 @@ namespace MPT.Math.Coordinates
     /// </summary>
     /// <seealso ref="https://en.wikipedia.org/wiki/Polar_coordinate_system"/>
     /// <seealso cref="System.IEquatable{PolarCoordinate}" />
-    public struct PolarCoordinate : IEquatable<PolarCoordinate>, ICoordinate, ITolerance
+    public struct PolarCoordinate : IEquatable<PolarCoordinate>, ICoordinate
     {
         // TODO: Handle ability to make polar coordinates unique:
         // Where a unique representation is needed for any point besides the pole, it is usual to limit r to positive numbers (r > 0) and φ to the interval [0, 360°) or (−180°, 180°] (in radians, [0, 2π) or (−π, π]).
@@ -264,6 +265,24 @@ namespace MPT.Math.Coordinates
             return Radius.GetHashCode() ^ Azimuth.GetHashCode();
         }
 
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same ICoordinate interface.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        public bool Equals(ICoordinate other)
+        {
+            if (other is PolarCoordinate)
+            {
+                return Equals((PolarCoordinate)other);
+            }
+            if (other is CartesianCoordinate)
+            {
+                return Equals(Cartesian2DPolarConverter.ToPolar((CartesianCoordinate)other));
+            }
+            return Equals((object)other);
+        }
+
 
         /// <summary>
         /// Implements the == operator.
@@ -282,6 +301,27 @@ namespace MPT.Math.Coordinates
         /// <param name="b">Polar coordinate b.</param>
         /// <returns>The result of the operator.</returns>
         public static bool operator !=(PolarCoordinate a, PolarCoordinate b)
+        {
+            return !a.Equals(b);
+        }
+
+        /// <summary>
+        /// Implements the == operator.
+        /// </summary>
+        /// <param name="a">Polar coordinate a.</param>
+        /// <param name="b">Polar coordinate b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(PolarCoordinate a, ICoordinate b)
+        {
+            return a.Equals(b);
+        }
+        /// <summary>
+        /// Implements the != operator.
+        /// </summary>
+        /// <param name="a">Polar coordinate a.</param>
+        /// <param name="b">Polar coordinate b.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator !=(PolarCoordinate a, ICoordinate b)
         {
             return !a.Equals(b);
         }

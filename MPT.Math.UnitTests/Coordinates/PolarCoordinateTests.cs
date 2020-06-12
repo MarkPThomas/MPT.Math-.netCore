@@ -9,6 +9,16 @@ namespace MPT.Math.UnitTests.Coordinates
     {
         public static double Tolerance = 0.00001;
 
+        public class TestCoordinate : ICoordinate
+        {
+            public double Tolerance { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+            public bool Equals(ICoordinate other)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #region Initialization
         [TestCase(5.3, -2)]
         public static void PolarCoordinate_InitializationWithDefaultTolerance(double radius, double azimuth)
@@ -121,6 +131,52 @@ namespace MPT.Math.UnitTests.Coordinates
 
             coordinate2 = new PolarCoordinate(radius, azimuth, 2 * tolerance);
             Assert.AreEqual(coordinate1.GetHashCode(), coordinate2.GetHashCode());
+        }
+
+        [TestCase(1, Numbers.PiOver4, 1, Numbers.PiOver4, true)]
+        [TestCase(1, Numbers.PiOver4, 3, Numbers.PiOver2, false)]
+        public static void EqualsOverride_of_ICoordinate_for_PolarCoordinate(double radius1, double azimuth1, double radius2, double azimuth2, bool expectedResult)
+        {
+            double tolerance = 0.0002;
+            PolarCoordinate polarCoordinate = new PolarCoordinate(radius1, azimuth1, tolerance);
+            ICoordinate iCoordinate = new PolarCoordinate(radius2, azimuth2, tolerance);
+
+            Assert.AreEqual(expectedResult, polarCoordinate.Equals(iCoordinate));
+            Assert.AreEqual(expectedResult, polarCoordinate == iCoordinate);
+            Assert.AreEqual(!expectedResult, polarCoordinate != iCoordinate);
+        }
+
+        [Test]
+        public static void EqualsOverride_of_ICoordinate_for_Incompatible_Coordinate_Compared_as_Object()
+        {
+            double tolerance = 0.0002;
+            PolarCoordinate polarCoordinate = new PolarCoordinate(2, Numbers.PiOver4, tolerance);
+            ICoordinate iCoordinate = new TestCoordinate();
+
+            Assert.IsFalse(polarCoordinate.Equals(iCoordinate));
+            Assert.IsFalse(polarCoordinate == iCoordinate);
+            Assert.IsTrue(polarCoordinate != iCoordinate);
+        }
+
+        [TestCase(0, 0, 0, 0, true)]
+        [TestCase(2, 0, 2, 0, true)]
+        [TestCase(2, 2, 2.828427125, Numbers.PiOver4, true)]
+        [TestCase(0, 2, 2, Numbers.PiOver2, true)]
+        [TestCase(-2, 2, 2.828427125, (3d / 4) * Numbers.Pi, true)]
+        [TestCase(-2, 0, 2, Numbers.Pi, true)]
+        [TestCase(-2, -2, 2.828427125, -(3d / 4) * Numbers.Pi, true)]
+        [TestCase(0, -2, 2, -Numbers.PiOver2, true)]
+        [TestCase(2, -2, 2.828427125, -Numbers.PiOver4, true)]
+        [TestCase(2, -2, 5, -Numbers.PiOver2, false)]
+        public static void EqualsOverride_of_ICoordinate_for_CartesianCoordinate_with_Differing_Coordinates(double x, double y, double radius, double azimuth, bool expectedResult)
+        {
+            double tolerance = 0.0002;
+            CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, tolerance);
+            PolarCoordinate polarCoordinate = new PolarCoordinate(radius, azimuth, tolerance);
+
+            Assert.AreEqual(expectedResult, polarCoordinate.Equals(cartesianCoordinate));
+            Assert.AreEqual(expectedResult, polarCoordinate == cartesianCoordinate);
+            Assert.AreEqual(!expectedResult, polarCoordinate != cartesianCoordinate);
         }
         #endregion
 
