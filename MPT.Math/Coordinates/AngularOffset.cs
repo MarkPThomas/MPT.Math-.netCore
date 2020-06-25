@@ -59,6 +59,20 @@ namespace MPT.Math.Coordinates
             J = j;
             Tolerance = tolerance;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AngularOffset" /> struct.
+        /// </summary>
+        /// <param name="deltaAngle">The angle offset from the origin axis.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        public AngularOffset(
+            double deltaAngle,
+            double tolerance = Numbers.ZeroTolerance)
+        {
+            I = new Angle(0);
+            J = new Angle(deltaAngle);
+            Tolerance = tolerance;
+        }
         #endregion
 
         #region Conversion

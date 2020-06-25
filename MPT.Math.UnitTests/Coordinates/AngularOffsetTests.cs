@@ -23,7 +23,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
 
         [Test]
-        public static void AngularOffset_Initialization()
+        public static void AngularOffset_Initialization_with_Coordinates()
         {
             Angle angle1 = new Angle(1);
             Angle angle2 = new Angle(3);
@@ -32,6 +32,17 @@ namespace MPT.Math.UnitTests.Coordinates
 
             Assert.AreEqual(angle1.Radians, offset.I.Radians);
             Assert.AreEqual(angle2.Radians, offset.J.Radians);
+            Assert.AreEqual(tolerance, offset.Tolerance);
+        }
+
+        [Test]
+        public static void AngularOffset_Initialization_with_Offsets()
+        {
+            double tolerance = 0.5;
+            AngularOffset offset = new AngularOffset(2, tolerance);
+
+            Assert.AreEqual(0, offset.I.Radians);
+            Assert.AreEqual(2, offset.J.Radians);
             Assert.AreEqual(tolerance, offset.Tolerance);
         }
         #endregion

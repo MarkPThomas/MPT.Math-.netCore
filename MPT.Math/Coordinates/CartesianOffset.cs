@@ -59,6 +59,21 @@ namespace MPT.Math.Coordinates
             J = j;
             Tolerance = tolerance;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CartesianOffset"/> struct.
+        /// </summary>
+        /// <param name="deltaX">The x-axis offset from the origin.</param>
+        /// <param name="deltaY">The y-axis offset from the origin.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        public CartesianOffset(
+            double deltaX, double deltaY,
+            double tolerance = Numbers.ZeroTolerance)
+        {
+            I = new CartesianCoordinate(0, 0);
+            J = new CartesianCoordinate(deltaX, deltaY);
+            Tolerance = tolerance;
+        }
         #endregion
 
         #region Conversion

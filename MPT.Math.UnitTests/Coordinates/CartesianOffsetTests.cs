@@ -25,7 +25,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
 
         [Test]
-        public static void CartesianOffset_Initialization()
+        public static void CartesianOffset_Initialization_with_Coordinates()
         {
             CartesianCoordinate coordinate1 = new CartesianCoordinate(1, 2);
             CartesianCoordinate coordinate2 = new CartesianCoordinate(3, 4);
@@ -36,6 +36,19 @@ namespace MPT.Math.UnitTests.Coordinates
             Assert.AreEqual(coordinate1.Y, offset.I.Y);
             Assert.AreEqual(coordinate2.X, offset.J.X);
             Assert.AreEqual(coordinate2.Y, offset.J.Y);
+            Assert.AreEqual(tolerance, offset.Tolerance);
+        }
+
+        [Test]
+        public static void CartesianOffset_Initialization_with_Offsets()
+        {
+            double tolerance = 0.5;
+            CartesianOffset offset = new CartesianOffset(2, 3, tolerance);
+
+            Assert.AreEqual(0, offset.I.X);
+            Assert.AreEqual(0, offset.I.Y);
+            Assert.AreEqual(2, offset.J.X);
+            Assert.AreEqual(3, offset.J.Y);
             Assert.AreEqual(tolerance, offset.Tolerance);
         }
         #endregion
