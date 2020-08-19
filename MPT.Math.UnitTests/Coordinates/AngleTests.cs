@@ -50,6 +50,9 @@ namespace MPT.Math.UnitTests.Coordinates
 
             double expectedClockwiseDegrees = Angle.RadiansToDegrees(-expectedResult);
             Assert.AreEqual(expectedClockwiseDegrees, angle.ClockwiseDegrees, 0.0005);  // Lowered tolerance due to rounding effects for large decimal numbers
+
+            Assert.AreEqual(radians, angle.RadiansRaw);
+            Assert.AreEqual(radians * (180d / Numbers.Pi), angle.DegreesRaw);
         }
 
         [Test]

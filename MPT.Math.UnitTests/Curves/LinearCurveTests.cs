@@ -314,9 +314,12 @@ namespace MPT.Math.UnitTests.Curves
         [TestCase(-5, 6, -3, -2, -5, 6, -1, 7, -5, 6)] // sloped perpendicular, on i-i points
         [TestCase(-5, 6, -3, -2, -1, 7, -5, 6, -5, 6)] // sloped perpendicular, on i-j points
         [TestCase(-5, 6, -3, -2, -3, -2, 1, -1, -3, -2)] // sloped perpendicular, on j-i points
-        [TestCase(-5, 6, -3, -2, -5, 6, -1, 7, -5, 6)] // sloped perpendicular, on j-j points
         [TestCase(-5, 2, -5, 8, -5, 2, 1, 2, -5, 2)] // aligned perpendicular + vertical, on i-i points
-        [TestCase(-5, 2, -5, 8, -5, 2, 1, 2, -5, 2)] // aligned perpendicular + vertical, on j-j points
+        [TestCase(-5, 6, 5, 6, -5, 2, -5, 8, -5, 6)] // aligned perpendicular + vertical, within points, flipped order
+        [TestCase(1, 3, 4, 6, 2, 1, 2, 8, 2, 4)] // sloped to vertical
+        [TestCase(2, 1, 2, 8, 1, 3, 4, 6, 2, 4)] // vertical to sloped
+        [TestCase(1, 3, 4, 6, 1, 4, 5, 4, 2, 4)] // sloped to horizontal
+        [TestCase(1, 4, 5, 4, 1, 3, 4, 6, 2, 4)] // horizontal to sloped
         public static void IntersectionCoordinate(
            double xi1, double yi1, double xj1, double yj1,
            double xi2, double yi2, double xj2, double yj2, double expectedX, double expectedY)

@@ -26,7 +26,19 @@ namespace MPT.Math.Coordinates
     /// <seealso cref="System.IEquatable{Angle}" />
     public struct Angle : IEquatable<Angle>, IComparable<Angle>, ITolerance
     {
-        #region Properties
+        #region Properties        
+        /// <summary>
+        /// The raw angle as radians, without any modifications done.
+        /// </summary>
+        /// <value>The radians raw.</value>
+        public double RadiansRaw { get; }
+
+        /// <summary>
+        /// The raw angle as degrees, without any modifications done.
+        /// </summary>
+        /// <value>The degrees raw.</value>
+        public double DegreesRaw => RadiansToDegrees(RadiansRaw);
+
         /// <summary>
         /// Default zero tolerance for operations.
         /// </summary>
@@ -68,6 +80,7 @@ namespace MPT.Math.Coordinates
             double radians,
             double tolerance = Numbers.ZeroTolerance)
         {
+            RadiansRaw = radians;
             Radians = WrapAngleWithinPositiveNegativePi(radians);
             Tolerance = tolerance;
         }

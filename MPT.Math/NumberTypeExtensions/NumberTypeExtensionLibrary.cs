@@ -497,6 +497,26 @@ namespace MPT.Math.NumberTypeExtensions
             if (value.IsLessThan(min, tolerance)) { return min; }
             return value;
         }
+
+        /// <summary>
+        /// Returns the absolute value of the number.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.Double.</returns>
+        public static double Abs(this double value)
+        {
+            return NMath.Abs(value);
+        }
+
+        /// <summary>
+        /// Returns the absolute value of the number.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.Double.</returns>
+        public static int Abs(this int value)
+        {
+            return NMath.Abs(value);
+        }
         #endregion
     }
 }

@@ -11,14 +11,9 @@ namespace MPT.Math.Curves
     /// Implements the <see cref="MPT.Math.Curves.ICurve" />
     /// </summary>
     /// <seealso cref="MPT.Math.Curves.ICurve" />
-    public class LinearCurve : ICurve
+    public class LinearCurve : Curve
     {
         #region Properties
-        /// <summary>
-        /// Tolerance to use in all calculations with double types.
-        /// </summary>
-        public double Tolerance { get; set; } = 10E-6;
-
         /// <summary>
         /// Gets the control point i.
         /// </summary>
@@ -44,6 +39,28 @@ namespace MPT.Math.Curves
             ControlPointJ = j;
             LimitMin = i;
             LimitMax = j;
+        }
+
+        /// <summary>
+        /// Returns a curve based on the slope and y-intercept.
+        /// </summary>
+        /// <param name="slope">The slope.</param>
+        /// <param name="yIntercept">The y intercept.</param>
+        /// <returns>LinearCurve.</returns>
+        public static LinearCurve CurveByYIntercept(double slope, double yIntercept)
+        {
+            return new LinearCurve(new CartesianCoordinate(0, yIntercept), new CartesianCoordinate(1, yIntercept + slope));
+        }
+
+        /// <summary>
+        /// Returns a curve based on the slope and x-intercept.
+        /// </summary>
+        /// <param name="slope">The slope.</param>
+        /// <param name="xIntercept">The x intercept.</param>
+        /// <returns>LinearCurve.</returns>
+        public static LinearCurve CurveByXIntercept(double slope, double xIntercept)
+        {
+            return new LinearCurve(new CartesianCoordinate(xIntercept, 0), new CartesianCoordinate(xIntercept + 1, slope));
         }
         #endregion
 
@@ -252,6 +269,16 @@ namespace MPT.Math.Curves
         }
 
         /// <summary>
+        /// Determines whether the specified slope is vertical.
+        /// </summary>
+        /// <param name="slope">The slope.</param>
+        /// <returns><c>true</c> if the specified slope is vertical; otherwise, <c>false</c>.</returns>
+        public static bool IsHorizontal(double slope)
+        {
+            return (slope.IsZeroSign());
+        }
+
+        /// <summary>
         /// Determines if the segment is vertical.
         /// </summary>
         /// <param name="ptI">The point i.</param>
@@ -264,6 +291,16 @@ namespace MPT.Math.Curves
         {
             tolerance = Helper.GetTolerance(ptI, ptJ, tolerance);
             return ptI.X.IsEqualTo(ptJ.X, tolerance); ;
+        }
+
+        /// <summary>
+        /// Determines whether the specified slope is vertical.
+        /// </summary>
+        /// <param name="slope">The slope.</param>
+        /// <returns><c>true</c> if the specified slope is vertical; otherwise, <c>false</c>.</returns>
+        public static bool IsVertical(double slope)
+        {
+            return (slope.IsEqualTo(double.PositiveInfinity) || slope.IsEqualTo(double.NegativeInfinity));
         }
 
         /// <summary>
@@ -417,6 +454,7 @@ namespace MPT.Math.Curves
         #endregion
 
         #region Intersect
+
         /// <summary>
         /// The lines intersect.
         /// </summary>
@@ -444,11 +482,15 @@ namespace MPT.Math.Curves
             {
                 return double.PositiveInfinity;
             }
-            if (xIntercept1.IsEqualTo(double.PositiveInfinity))
+            if (xIntercept1.IsEqualTo(double.PositiveInfinity) || 
+                slope2.IsEqualTo(double.PositiveInfinity) || 
+                slope2.IsEqualTo(double.NegativeInfinity))
             {
                 return xIntercept2;
             }
-            if (xIntercept2.IsEqualTo(double.PositiveInfinity))
+            if (xIntercept2.IsEqualTo(double.PositiveInfinity) ||
+                slope1.IsEqualTo(double.PositiveInfinity) ||
+                slope1.IsEqualTo(double.NegativeInfinity))
             {
                 return xIntercept1;
             }
@@ -470,11 +512,15 @@ namespace MPT.Math.Curves
             {
                 return double.PositiveInfinity;
             }
-            if (yIntercept1.IsEqualTo(double.PositiveInfinity))
+            if (yIntercept1.IsEqualTo(double.PositiveInfinity))// ||
+                                                               //slope2.IsEqualTo(double.PositiveInfinity) ||
+                                                               //slope2.IsEqualTo(double.NegativeInfinity))
             {
                 return yIntercept2;
             }
-            if (yIntercept2.IsEqualTo(double.PositiveInfinity))
+            if (yIntercept2.IsEqualTo(double.PositiveInfinity))// ||
+                //slope1.IsEqualTo(double.PositiveInfinity) ||
+                //slope1.IsEqualTo(double.NegativeInfinity))
             {
                 return yIntercept1;
             }
@@ -496,6 +542,29 @@ namespace MPT.Math.Curves
             double slope1, double xIntercept1, double yIntercept1,
             double slope2, double xIntercept2, double yIntercept2, double tolerance = Numbers.ZeroTolerance)
         {
+            // check for vertical lines and handle those cases here
+            // in sub-functions, throw exceptions
+            if (IsVertical(slope1) && !IsVertical(slope2))
+            {
+                LinearCurve curve2 = CurveByYIntercept(slope2, yIntercept2);
+                return new CartesianCoordinate(xIntercept1, curve2.Y(xIntercept1));
+            }
+            if (!IsVertical(slope1) && IsVertical(slope2))
+            {
+                LinearCurve curve2 = CurveByYIntercept(slope1, yIntercept1);
+                return new CartesianCoordinate(xIntercept2, curve2.Y(xIntercept2));
+            }
+            if (IsHorizontal(slope1) && !IsHorizontal(slope2))
+            {
+                LinearCurve curve2 = CurveByYIntercept(slope2, yIntercept2);
+                return new CartesianCoordinate(curve2.X(yIntercept1), yIntercept1);
+            }
+            if (!IsHorizontal(slope1) && IsHorizontal(slope2))
+            {
+                LinearCurve curve2 = CurveByYIntercept(slope1, yIntercept1);
+                return new CartesianCoordinate(curve2.X(yIntercept2), yIntercept2);
+            }
+
             return new CartesianCoordinate(
                 LineIntersectX(slope1, xIntercept1, slope2, xIntercept2, tolerance),
                 LineIntersectY(slope1, yIntercept1, slope2, yIntercept2, tolerance));

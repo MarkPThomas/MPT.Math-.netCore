@@ -11,9 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using MPT.Math.NumberTypeExtensions;
 using System;
-using System.Collections.Immutable;
 using System.Globalization;
 using NMath = System.Math;
 
@@ -34,24 +32,34 @@ namespace MPT.Math
         public const double ZeroTolerance = 1E-20;
 
         /// <summary>
-        /// Represents the value of pi.
+        /// Represents the value of pi (180&#176;).
         /// </summary>
         public const double Pi = NMath.PI;
 
         /// <summary>
-        /// Represents the value of pi times two.
+        /// Represents the value of pi times two (360&#176;).
         /// </summary>
         public const double TwoPi = 2 * NMath.PI;
 
         /// <summary>
-        /// Represents the value of pi divided by two.
+        /// Represents the value of pi divided by two (90&#176;).
         /// </summary>
         public const double PiOver2 = NMath.PI / 2;
 
         /// <summary>
-        /// Represents the value of pi divided by four.
+        /// Represents the value of pi divided by four (45&#176;).
         /// </summary>
         public const double PiOver4 = NMath.PI / 4;
+
+        /// <summary>
+        /// Represents the value of pi divided by six (30&#176;).
+        /// </summary>
+        public const double PiOver6 = NMath.PI / 6;
+
+        /// <summary>
+        /// Represents the value of pi divided by three (60&#176;).
+        /// </summary>
+        public const double PiOver3 = NMath.PI / 3;
 
         /// <summary>
         /// Represents the mathematical constant e.

@@ -164,6 +164,18 @@
             </summary>
             <seealso cref="T:System.IEquatable`1" />
         </member>
+        <member name="P:MPT.Math.Coordinates.Angle.RadiansRaw">
+            <summary>
+            The raw angle as radians, without any modifications done.
+            </summary>
+            <value>The radians raw.</value>
+        </member>
+        <member name="P:MPT.Math.Coordinates.Angle.DegreesRaw">
+            <summary>
+            The raw angle as degrees, without any modifications done.
+            </summary>
+            <value>The degrees raw.</value>
+        </member>
         <member name="P:MPT.Math.Coordinates.Angle.Tolerance">
             <summary>
             Default zero tolerance for operations.
@@ -998,7 +1010,7 @@
             </summary>
             <param name="coordinate">The coordinate.</param>
             <param name="centerOfRotation">The center of rotation.</param>
-            <param name="degreeRadians">The degree [radians].</param>
+            <param name="angleRadians">The angle [radians], where counter-clockwise is positive.</param>
             <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Rotate(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
@@ -1006,7 +1018,7 @@
             Rotates the specified coordinate by the specifed angle about the origin.
             </summary>
             <param name="coordinate">The coordinate.</param>
-            <param name="degreeRadians">The degree [radians].</param>
+            <param name="angleRadians">The angle [radians], where counter-clockwise is positive.</param>
             <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Equality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
@@ -1992,17 +2004,24 @@
             <param name="denominator">The denominator.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="T:MPT.Math.Curves.Curve">
+            <summary>
+            Class Curve.
+            Implements the <see cref="T:MPT.Math.Curves.ICurve" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.ICurve" />
+        </member>
+        <member name="P:MPT.Math.Curves.Curve.Tolerance">
+            <summary>
+            Tolerance to use in all calculations with double types.
+            </summary>
+        </member>
         <member name="T:MPT.Math.Curves.LinearCurve">
             <summary>
             Class LinearCurve.
             Implements the <see cref="T:MPT.Math.Curves.ICurve" />
             </summary>
             <seealso cref="T:MPT.Math.Curves.ICurve" />
-        </member>
-        <member name="P:MPT.Math.Curves.LinearCurve.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
         </member>
         <member name="P:MPT.Math.Curves.LinearCurve.ControlPointI">
             <summary>
@@ -2022,6 +2041,22 @@
             </summary>
             <param name="i">First point of the line.</param>
             <param name="j">Second point of the line.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CurveByYIntercept(System.Double,System.Double)">
+            <summary>
+            Returns a curve based on the slope and y-intercept.
+            </summary>
+            <param name="slope">The slope.</param>
+            <param name="yIntercept">The y intercept.</param>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CurveByXIntercept(System.Double,System.Double)">
+            <summary>
+            Returns a curve based on the slope and x-intercept.
+            </summary>
+            <param name="slope">The slope.</param>
+            <param name="xIntercept">The x intercept.</param>
+            <returns>LinearCurve.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IsHorizontal">
             <summary>
@@ -2141,6 +2176,13 @@
             <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
             <returns><c>true</c> if the shape segment is horizontal, <c>false</c> otherwise.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsHorizontal(System.Double)">
+            <summary>
+            Determines whether the specified slope is vertical.
+            </summary>
+            <param name="slope">The slope.</param>
+            <returns><c>true</c> if the specified slope is vertical; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IsVertical(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Determines if the segment is vertical.
@@ -2149,6 +2191,13 @@
             <param name="ptJ">The point j.</param>
             <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
             <returns><c>true</c> if the segment is vertical, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.IsVertical(System.Double)">
+            <summary>
+            Determines whether the specified slope is vertical.
+            </summary>
+            <param name="slope">The slope.</param>
+            <returns><c>true</c> if the specified slope is vertical; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IsParallel(System.Double,System.Double,System.Double)">
             <summary>
@@ -2340,22 +2389,32 @@
         </member>
         <member name="F:MPT.Math.Numbers.Pi">
             <summary>
-            Represents the value of pi.
+            Represents the value of pi (180&#176;).
             </summary>
         </member>
         <member name="F:MPT.Math.Numbers.TwoPi">
             <summary>
-            Represents the value of pi times two.
+            Represents the value of pi times two (360&#176;).
             </summary>
         </member>
         <member name="F:MPT.Math.Numbers.PiOver2">
             <summary>
-            Represents the value of pi divided by two.
+            Represents the value of pi divided by two (90&#176;).
             </summary>
         </member>
         <member name="F:MPT.Math.Numbers.PiOver4">
             <summary>
-            Represents the value of pi divided by four.
+            Represents the value of pi divided by four (45&#176;).
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Numbers.PiOver6">
+            <summary>
+            Represents the value of pi divided by six (30&#176;).
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Numbers.PiOver3">
+            <summary>
+            Represents the value of pi divided by three (60&#176;).
             </summary>
         </member>
         <member name="F:MPT.Math.Numbers.E">
@@ -2994,6 +3053,20 @@
             If value &gt; max, max will be returned.
             If value &lt; min, min will be returned.
             If min ≤ value ≥ max, value will be returned.</returns>
+        </member>
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.Abs(System.Double)">
+            <summary>
+            Returns the absolute value of the number.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.NumberTypeExtensions.NumberTypeExtensionLibrary.Abs(System.Int32)">
+            <summary>
+            Returns the absolute value of the number.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="T:MPT.Math.Trigonometry.TrigonometryLibrary">
             <summary>
