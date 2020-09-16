@@ -8,43 +8,9 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
     [TestFixture]
     public static class NumberTypeExtensionTests
     {
+        public static double Tolerance = 0.00001;
 
-        [TestCase(0, ExpectedResult = true)]
-        [TestCase(2, ExpectedResult = true)]
-        [TestCase(6, ExpectedResult = true)]
-        [TestCase(54, ExpectedResult = true)]
-        [TestCase(-2, ExpectedResult = true)]
-        [TestCase(-6, ExpectedResult = true)]
-        [TestCase(-54, ExpectedResult = true)]
-        [TestCase(1, ExpectedResult = false)]
-        [TestCase(3, ExpectedResult = false)]
-        [TestCase(5, ExpectedResult = false)]
-        [TestCase(-1, ExpectedResult = false)]
-        [TestCase(-3, ExpectedResult = false)]
-        [TestCase(-5, ExpectedResult = false)]
-        public static bool IsEven_Int(int number)
-        {
-            return number.IsEven();
-        }
-
-        [TestCase(0, ExpectedResult = false)]
-        [TestCase(2, ExpectedResult = false)]
-        [TestCase(6, ExpectedResult = false)]
-        [TestCase(54, ExpectedResult = false)]
-        [TestCase(-2, ExpectedResult = false)]
-        [TestCase(-6, ExpectedResult = false)]
-        [TestCase(-54, ExpectedResult = false)]
-        [TestCase(1, ExpectedResult = true)]
-        [TestCase(3, ExpectedResult = true)]
-        [TestCase(5, ExpectedResult = true)]
-        [TestCase(-1, ExpectedResult = true)]
-        [TestCase(-3, ExpectedResult = true)]
-        [TestCase(-5, ExpectedResult = true)]
-        public static bool IsOdd_Int(int number)
-        {
-            return number.IsOdd();
-        }
-
+        #region Signs
         [TestCase(-1, ExpectedResult = false)]
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = true)]
@@ -136,7 +102,9 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         {
             return value.IsZeroSign(tolerance);
         }
+        #endregion
 
+        #region Comparisons
         [TestCase(0, 0, ExpectedResult = true)]
         [TestCase(1, 1, ExpectedResult = true)]
         [TestCase(-1, -1, ExpectedResult = true)]
@@ -222,113 +190,175 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
             return value1.IsLessThan(value2, tolerance);
         }
 
-        [TestCase(-1, ExpectedResult = 1)]
-        [TestCase(-97, ExpectedResult = 7)]
-        [TestCase(3, ExpectedResult = 3)]
-        [TestCase(45, ExpectedResult = 5)]
-        [TestCase(63, ExpectedResult = 3)]
-        public static int LastDigit(int number)
+        [TestCase(-1, 0, ExpectedResult = false)]
+        [TestCase(0, 0, ExpectedResult = true)]
+        [TestCase(1, 0, ExpectedResult = true)]
+        [TestCase(-1, 2.3, ExpectedResult = false)]
+        [TestCase(1.5, -2.3, ExpectedResult = true)]
+        [TestCase(0, 2.3, ExpectedResult = false)]
+        [TestCase(2.29, 2.3, ExpectedResult = false)]
+        [TestCase(2.3, 2.3, ExpectedResult = true)]
+        [TestCase(2.31, 2.3, ExpectedResult = true)]
+        [TestCase(-2.29, -2.3, ExpectedResult = true)]
+        [TestCase(-2.3, -2.3, ExpectedResult = true)]
+        [TestCase(-2.31, -2.3, ExpectedResult = false)]
+        public static bool IsGreaterThanOrEqualTo_Default_Tolerance(double value1, double value2)
         {
-            return number.LastDigit();
+            return value1.IsGreaterThanOrEqualTo(value2);
         }
 
-        [TestCase(0, ExpectedResult = 0)]
-        [TestCase(1, ExpectedResult = 1)]
-        [TestCase(2, ExpectedResult = 1 * 2)]
-        [TestCase(3, ExpectedResult = 1 * 2 * 3)]
-        [TestCase(4, ExpectedResult = 1 * 2 * 3 * 4)]
-        public static int Factorial(int number)
+        [TestCase(-1, 0, 0.0001, ExpectedResult = false)]
+        [TestCase(0, 0, 0.0001, ExpectedResult = true)]
+        [TestCase(1, 0, 0.0001, ExpectedResult = true)]
+        [TestCase(-1, 2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(1.5, -2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(0, 2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(2.29, 2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(2.3, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(2.31, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = false)]
+        public static bool IsGreaterThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
         {
-            return number.Factorial();
+            return value1.IsGreaterThanOrEqualTo(value2, tolerance);
         }
 
-        [TestCase(5, 2, ExpectedResult = 25)]
-        [TestCase(5, -2, ExpectedResult = (1D / 25))]
-        [TestCase(0, 2, ExpectedResult = 0)]
-        [TestCase(2, 0, ExpectedResult = 1)]
-        [TestCase(0, 0, ExpectedResult = 1)]
-        [TestCase(-1, 0, ExpectedResult = 1)]
-        public static double Pow_Integer(int number, int power)
+        [TestCase(-1, 0, ExpectedResult = true)]
+        [TestCase(0, 0, ExpectedResult = true)]
+        [TestCase(1, 0, ExpectedResult = false)]
+        [TestCase(-1, 2.3, ExpectedResult = true)]
+        [TestCase(1.5, -2.3, ExpectedResult = false)]
+        [TestCase(0, 2.3, ExpectedResult = true)]
+        [TestCase(2.29, 2.3, ExpectedResult = true)]
+        [TestCase(2.3, 2.3, ExpectedResult = true)]
+        [TestCase(2.31, 2.3, ExpectedResult = false)]
+        [TestCase(-2.29, -2.3, ExpectedResult = false)]
+        [TestCase(-2.3, -2.3, ExpectedResult = true)]
+        [TestCase(-2.31, -2.3, ExpectedResult = true)]
+        public static bool IsLessThanOrEqualTo_Default_Tolerance(double value1, double value2)
         {
-            return number.Pow(power);
+            return value1.IsLessThanOrEqualTo(value2);
         }
 
-        [TestCase(0, -1)]
-        public static void Pow_Integer_Throws_Exception(int number, int power)
+        [TestCase(-1, 0, 0.0001, ExpectedResult = true)]
+        [TestCase(0, 0, 0.0001, ExpectedResult = true)]
+        [TestCase(1, 0, 0.0001, ExpectedResult = false)]
+        [TestCase(-1, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(1.5, -2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(0, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(2.29, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(2.3, 2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(2.31, 2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = false)]
+        [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
+        [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = true)]
+        public static bool IsLessThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
         {
-            Assert.Throws<DivideByZeroException>(() => number.Pow(power));
+            return value1.IsLessThanOrEqualTo(value2, tolerance);
         }
 
-        [TestCase(5, 2, ExpectedResult = 25)]
-        [TestCase(5, -2, ExpectedResult = (1D / 25))]
-        [TestCase(0, 2, ExpectedResult = 0)]
-        [TestCase(2, 0, ExpectedResult = 1)]
-        [TestCase(0, 0, ExpectedResult = 1)]
-        [TestCase(-1, 0, ExpectedResult = 1)]
-        [TestCase(double.PositiveInfinity, 0, ExpectedResult = 1)]
-        [TestCase(double.NegativeInfinity, 0, ExpectedResult = 1)]
-        [TestCase(double.PositiveInfinity, 2, ExpectedResult = double.PositiveInfinity)]
-        [TestCase(double.NegativeInfinity, 2, ExpectedResult = double.PositiveInfinity)]
-        [TestCase(double.NegativeInfinity, 3, ExpectedResult = double.NegativeInfinity)]
-        [TestCase(2, double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
-        [TestCase(2, double.NegativeInfinity, ExpectedResult = 0)]
-        public static double Pow_Double(double number, double power)
+        [TestCase(2, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 3, 1, ExpectedResult = true)]
+        [TestCase(0, 1, 3, ExpectedResult = false)]
+        [TestCase(0, 3, 1, ExpectedResult = false)]
+        [TestCase(3, 1, 3, ExpectedResult = true)]
+        [TestCase(3, 3, 1, ExpectedResult = true)]
+        [TestCase(4, 1, 3, ExpectedResult = false)]
+        [TestCase(4, 3, 1, ExpectedResult = false)]
+        public static bool IsWithinInclusive_Integer(int value, int value1, int value2)
         {
-            return number.Pow(power);
+            return value.IsWithinInclusive(value1, value2);
         }
 
-        [TestCase(0, -1)]
-        public static void Pow_Double_Throws_Exception(double number, double power)
+        [TestCase(2, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 3, 1, ExpectedResult = true)]
+        [TestCase(0.999, 1, 3, ExpectedResult = false)]
+        [TestCase(0.999, 3, 1, ExpectedResult = false)]
+        [TestCase(3, 1, 3, ExpectedResult = true)]
+        [TestCase(3, 3, 1, ExpectedResult = true)]
+        [TestCase(3.001, 1, 3, ExpectedResult = false)]
+        [TestCase(3.001, 3, 1, ExpectedResult = false)]
+        [TestCase(1, 1.1, 3, ExpectedResult = false)]
+        [TestCase(1.2, 1.1, 3, ExpectedResult = true)]
+        [TestCase(3.01, 1, 3.001, ExpectedResult = false)]
+        [TestCase(3.0001, 1, 3.001, ExpectedResult = true)]
+        public static bool IsWithinInclusive_Double(double value, double value1, double value2)
         {
-            Assert.Throws<DivideByZeroException>(() => number.Pow(power));
+            return value.IsWithinInclusive(value1, value2, Tolerance);
         }
 
-        [TestCase(0, ExpectedResult = 0)]
-        [TestCase(1, ExpectedResult = 1)]
-        [TestCase(2, ExpectedResult = 4)]
-        [TestCase(3, ExpectedResult = 9)]
-        public static int Squared_Integer(int value)
+        [TestCase(2, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 1, 3, ExpectedResult = false)]
+        [TestCase(1, 3, 1, ExpectedResult = false)]
+        [TestCase(0, 1, 3, ExpectedResult = false)]
+        [TestCase(0, 3, 1, ExpectedResult = false)]
+        [TestCase(3, 1, 3, ExpectedResult = false)]
+        [TestCase(3, 3, 1, ExpectedResult = false)]
+        [TestCase(4, 1, 3, ExpectedResult = false)]
+        [TestCase(4, 3, 1, ExpectedResult = false)]
+        public static bool IsWithinExclusive_Integer(int value, int value1, int value2)
         {
-            return value.Squared();
+            return value.IsWithinExclusive(value1, value2);
         }
 
-        [TestCase(0, ExpectedResult = 0)]
-        [TestCase(1, ExpectedResult = 1)]
-        [TestCase(2, ExpectedResult = 8)]
-        [TestCase(3, ExpectedResult = 27)]
-        public static int Cubed_Integer(int value)
+        [TestCase(2, 1, 3, ExpectedResult = true)]
+        [TestCase(1, 1, 3, ExpectedResult = false)]
+        [TestCase(1, 3, 1, ExpectedResult = false)]
+        [TestCase(0.999, 1, 3, ExpectedResult = false)]
+        [TestCase(0.999, 3, 1, ExpectedResult = false)]
+        [TestCase(3, 1, 3, ExpectedResult = false)]
+        [TestCase(3, 3, 1, ExpectedResult = false)]
+        [TestCase(3.001, 1, 3, ExpectedResult = false)]
+        [TestCase(3.001, 3, 1, ExpectedResult = false)]
+        [TestCase(1, 1.1, 3, ExpectedResult = false)]
+        [TestCase(1.1, 1.1, 3, ExpectedResult = false)]
+        [TestCase(3.01, 1, 3.001, ExpectedResult = false)]
+        [TestCase(3.001, 1, 3.001, ExpectedResult = false)]
+        public static bool IsWithinExclusive_Double(double value, double value1, double value2)
         {
-            return value.Cubed();
+            return value.IsWithinExclusive(value1, value2, Tolerance);
+        }
+        #endregion
+
+        #region Properties
+        [TestCase(0, ExpectedResult = true)]
+        [TestCase(2, ExpectedResult = true)]
+        [TestCase(6, ExpectedResult = true)]
+        [TestCase(54, ExpectedResult = true)]
+        [TestCase(-2, ExpectedResult = true)]
+        [TestCase(-6, ExpectedResult = true)]
+        [TestCase(-54, ExpectedResult = true)]
+        [TestCase(1, ExpectedResult = false)]
+        [TestCase(3, ExpectedResult = false)]
+        [TestCase(5, ExpectedResult = false)]
+        [TestCase(-1, ExpectedResult = false)]
+        [TestCase(-3, ExpectedResult = false)]
+        [TestCase(-5, ExpectedResult = false)]
+        public static bool IsEven_Int(int number)
+        {
+            return number.IsEven();
         }
 
-        [TestCase(0, ExpectedResult = 0)]
-        [TestCase(1, ExpectedResult = 1)]
-        [TestCase(2, ExpectedResult = 4)]
-        [TestCase(3, ExpectedResult = 9)]
-        [TestCase(4.4, ExpectedResult = 4.4 * 4.4)]
-        [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
-        [TestCase(double.NegativeInfinity, ExpectedResult = double.PositiveInfinity)]
-        public static double Squared_Double(double value)
+        [TestCase(0, ExpectedResult = false)]
+        [TestCase(2, ExpectedResult = false)]
+        [TestCase(6, ExpectedResult = false)]
+        [TestCase(54, ExpectedResult = false)]
+        [TestCase(-2, ExpectedResult = false)]
+        [TestCase(-6, ExpectedResult = false)]
+        [TestCase(-54, ExpectedResult = false)]
+        [TestCase(1, ExpectedResult = true)]
+        [TestCase(3, ExpectedResult = true)]
+        [TestCase(5, ExpectedResult = true)]
+        [TestCase(-1, ExpectedResult = true)]
+        [TestCase(-3, ExpectedResult = true)]
+        [TestCase(-5, ExpectedResult = true)]
+        public static bool IsOdd_Int(int number)
         {
-            return value.Squared();
+            return number.IsOdd();
         }
-
-        [TestCase(0, ExpectedResult = 0)]
-        [TestCase(1, ExpectedResult = 1)]
-        [TestCase(2, ExpectedResult = 8)]
-        [TestCase(3, ExpectedResult = 27)]
-        [TestCase(4.4, ExpectedResult = 4.4 * 4.4 * 4.4)]
-        [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
-        [TestCase(double.NegativeInfinity, ExpectedResult = double.NegativeInfinity)]
-        public static double Cubed_Double(double value)
-        {
-            return value.Cubed();
-        }
-    }
-
-    [TestFixture]
-    public class NumbersTests_IsPrime
-    {
 
         [TestCase(0, ExpectedResult = false)]
         [TestCase(1, ExpectedResult = false)]
@@ -461,72 +491,99 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
             return number.IsComposite();
         }
 
-        [TestCase(-1, 0, ExpectedResult = false)]
-        [TestCase(0, 0, ExpectedResult = true)]
-        [TestCase(1, 0, ExpectedResult = true)]
-        [TestCase(-1, 2.3, ExpectedResult = false)]
-        [TestCase(1.5, -2.3, ExpectedResult = true)]
-        [TestCase(0, 2.3, ExpectedResult = false)]
-        [TestCase(2.29, 2.3, ExpectedResult = false)]
-        [TestCase(2.3, 2.3, ExpectedResult = true)]
-        [TestCase(2.31, 2.3, ExpectedResult = true)]
-        [TestCase(-2.29, -2.3, ExpectedResult = true)]
-        [TestCase(-2.3, -2.3, ExpectedResult = true)]
-        [TestCase(-2.31, -2.3, ExpectedResult = false)]
-        public static bool IsGreaterThanOrEqualTo_Default_Tolerance(double value1, double value2)
+        [TestCase(-1, ExpectedResult = 1)]
+        [TestCase(-97, ExpectedResult = 7)]
+        [TestCase(3, ExpectedResult = 3)]
+        [TestCase(45, ExpectedResult = 5)]
+        [TestCase(63, ExpectedResult = 3)]
+        public static int LastDigit(int number)
         {
-            return value1.IsGreaterThanOrEqualTo(value2);
+            return number.LastDigit();
+        }
+        #endregion
+
+        #region Powers
+        [TestCase(5, 2, ExpectedResult = 25)]
+        [TestCase(5, -2, ExpectedResult = (1D / 25))]
+        [TestCase(0, 2, ExpectedResult = 0)]
+        [TestCase(2, 0, ExpectedResult = 1)]
+        [TestCase(0, 0, ExpectedResult = 1)]
+        [TestCase(-1, 0, ExpectedResult = 1)]
+        public static double Pow_Integer(int number, int power)
+        {
+            return number.Pow(power);
         }
 
-        [TestCase(-1, 0, 0.0001, ExpectedResult = false)]
-        [TestCase(0, 0, 0.0001, ExpectedResult = true)]
-        [TestCase(1, 0, 0.0001, ExpectedResult = true)]
-        [TestCase(-1, 2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(1.5, -2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(0, 2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(2.29, 2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(2.3, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(2.31, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = false)]
-        public static bool IsGreaterThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
+        [TestCase(0, -1)]
+        public static void Pow_Integer_Throws_Exception(int number, int power)
         {
-            return value1.IsGreaterThanOrEqualTo(value2, tolerance);
+            Assert.Throws<DivideByZeroException>(() => number.Pow(power));
         }
 
-        [TestCase(-1, 0, ExpectedResult = true)]
-        [TestCase(0, 0, ExpectedResult = true)]
-        [TestCase(1, 0, ExpectedResult = false)]
-        [TestCase(-1, 2.3, ExpectedResult = true)]
-        [TestCase(1.5, -2.3, ExpectedResult = false)]
-        [TestCase(0, 2.3, ExpectedResult = true)]
-        [TestCase(2.29, 2.3, ExpectedResult = true)]
-        [TestCase(2.3, 2.3, ExpectedResult = true)]
-        [TestCase(2.31, 2.3, ExpectedResult = false)]
-        [TestCase(-2.29, -2.3, ExpectedResult = false)]
-        [TestCase(-2.3, -2.3, ExpectedResult = true)]
-        [TestCase(-2.31, -2.3, ExpectedResult = true)]
-        public static bool IsLessThanOrEqualTo_Default_Tolerance(double value1, double value2)
+        [TestCase(5, 2, ExpectedResult = 25)]
+        [TestCase(5, -2, ExpectedResult = (1D / 25))]
+        [TestCase(0, 2, ExpectedResult = 0)]
+        [TestCase(2, 0, ExpectedResult = 1)]
+        [TestCase(0, 0, ExpectedResult = 1)]
+        [TestCase(-1, 0, ExpectedResult = 1)]
+        [TestCase(double.PositiveInfinity, 0, ExpectedResult = 1)]
+        [TestCase(double.NegativeInfinity, 0, ExpectedResult = 1)]
+        [TestCase(double.PositiveInfinity, 2, ExpectedResult = double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity, 2, ExpectedResult = double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity, 3, ExpectedResult = double.NegativeInfinity)]
+        [TestCase(2, double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
+        [TestCase(2, double.NegativeInfinity, ExpectedResult = 0)]
+        public static double Pow_Double(double number, double power)
         {
-            return value1.IsLessThanOrEqualTo(value2);
+            return number.Pow(power);
         }
 
-        [TestCase(-1, 0, 0.0001, ExpectedResult = true)]
-        [TestCase(0, 0, 0.0001, ExpectedResult = true)]
-        [TestCase(1, 0, 0.0001, ExpectedResult = false)]
-        [TestCase(-1, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(1.5, -2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(0, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(2.29, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(2.3, 2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(2.31, 2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(-2.29, -2.3, 0.0001, ExpectedResult = false)]
-        [TestCase(-2.3, -2.3, 0.0001, ExpectedResult = true)]
-        [TestCase(-2.31, -2.3, 0.0001, ExpectedResult = true)]
-        public static bool IsLessThanOrEqualTo_Custom_Tolerance(double value1, double value2, double tolerance)
+        [TestCase(0, -1)]
+        public static void Pow_Double_Throws_Exception(double number, double power)
         {
-            return value1.IsLessThanOrEqualTo(value2, tolerance);
+            Assert.Throws<DivideByZeroException>(() => number.Pow(power));
+        }
+
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(2, ExpectedResult = 4)]
+        [TestCase(3, ExpectedResult = 9)]
+        public static int Squared_Integer(int value)
+        {
+            return value.Squared();
+        }
+
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(2, ExpectedResult = 8)]
+        [TestCase(3, ExpectedResult = 27)]
+        public static int Cubed_Integer(int value)
+        {
+            return value.Cubed();
+        }
+
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(2, ExpectedResult = 4)]
+        [TestCase(3, ExpectedResult = 9)]
+        [TestCase(4.4, ExpectedResult = 4.4 * 4.4)]
+        [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity, ExpectedResult = double.PositiveInfinity)]
+        public static double Squared_Double(double value)
+        {
+            return value.Squared();
+        }
+
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(2, ExpectedResult = 8)]
+        [TestCase(3, ExpectedResult = 27)]
+        [TestCase(4.4, ExpectedResult = 4.4 * 4.4 * 4.4)]
+        [TestCase(double.PositiveInfinity, ExpectedResult = double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity, ExpectedResult = double.NegativeInfinity)]
+        public static double Cubed_Double(double value)
+        {
+            return value.Cubed();
         }
 
         [TestCase(-2.31)]
@@ -604,6 +661,18 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         {
             Assert.IsNaN(value1.Root(root));
         }
+        #endregion
+
+        #region Other Modifications
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(2, ExpectedResult = 1 * 2)]
+        [TestCase(3, ExpectedResult = 1 * 2 * 3)]
+        [TestCase(4, ExpectedResult = 1 * 2 * 3 * 4)]
+        public static int Factorial(int number)
+        {
+            return number.Factorial();
+        }
 
         [TestCase(0, 0, 0, 0)]
         [TestCase(1, 1, 2, 0)]
@@ -653,7 +722,7 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         [TestCase(3, 2, -1)]   // Flipped max/min
         public static void Limit_Integer_Throws_Argument_Exception_when_MaxMin_Reversed(int value, int min, int max)
         {
-            Assert.Throws<ArgumentException>(() => value.Limit(min, max) );
+            Assert.Throws<ArgumentException>(() => value.Limit(min, max));
         }
 
         [TestCase(1, 0.9, 1.1, 1)]
@@ -705,5 +774,290 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         {
             Assert.AreEqual(valueExpected, value.Limit(min, max));
         }
+
+
+        [TestCase(0.0, ExpectedResult = 0)]
+        [TestCase(1.2, ExpectedResult = 1.2)]
+        [TestCase(-1.2, ExpectedResult = 1.2)]
+        public static double Abs_Double(double value)
+        {
+            return value.Abs();
+        }
+
+
+        [TestCase(0, ExpectedResult = 0)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(-1, ExpectedResult = 1)]
+        public static double Abs_Integer(int value)
+        {
+            return value.Abs();
+        }
+
+        [TestCase(0, 0, 0)]
+        [TestCase(0, 1, 0)]
+        [TestCase(5, 0, 0)]
+        [TestCase(-549, 1, -500)]
+        [TestCase(-551, 1, -600)]
+        [TestCase(12345, 6, 12345)] // technically 123450, but doubles do not retain trailing decimal zeros
+        [TestCase(12345, 5, 12345)]
+        [TestCase(12345, 3, 12300)]
+        [TestCase(12345, 2, 12000)]
+        [TestCase(12345, 1, 10000)]
+        [TestCase(12345, 0, 0)]
+        [TestCase(-12345, 6, -12345)] // technically 123450, but doubles do not retain trailing decimal zeros
+        [TestCase(-12345, 5, -12345)]
+        [TestCase(-12345, 3, -12300)]
+        [TestCase(-12345, 2, -12000)]
+        [TestCase(-12345, 1, -10000)]
+        [TestCase(-12345, 0, 0)]
+        public static void RoundToSignificantFigures_Integer(int value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits), 0.000001);
+        }
+
+        [TestCase(12345, 4, 12350)] // 12340 (even) or 12350 (zero) *******************
+        [TestCase(12355, 4, 12360)] // *******************
+        [TestCase(-12345, 4, -12350)] // -12340 or -12350 *******************
+        [TestCase(-12355, 4, -12360)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_Default_Integer(int value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits), 0.000001);
+        }
+
+        [TestCase(12345, 4, 12350)] // 12340 (even) or 12350 (zero) *******************
+        [TestCase(12355, 4, 12360)] // *******************
+        [TestCase(-12345, 4, -12350)] // -12340 or -12350 *******************
+        [TestCase(-12355, 4, -12360)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_AwayFromZero_Integer(int value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits, RoundingTieBreaker.HalfAwayFromZero), 0.000001);
+        }
+
+        [TestCase(12345, 4, 12340)] // 12340 (even) or 12350 (zero) *******************
+        [TestCase(12355, 4, 12360)] // *******************
+        [TestCase(-12345, 4, -12340)] // -12340 or -12350 *******************
+        [TestCase(-12355, 4, -12360)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_HalfToEven_Integer(int value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits, RoundingTieBreaker.HalfToEven), 0.000001);
+        }
+
+
+        [TestCase(0, 0, 0)]
+        [TestCase(0, 1, 0)]
+        [TestCase(5, 0, 0)]
+        [TestCase(-549, 1, -500)]
+        [TestCase(-551, 1, -600)]
+        [TestCase(12.345, 6, 12.345)] // technically 12.3450, but doubles do not retain trailing decimal zeros
+        [TestCase(12.345, 5, 12.345)]
+        [TestCase(12.345, 3, 12.3)]
+        [TestCase(12.345, 2, 12)]
+        [TestCase(12.345, 1, 10)]
+        [TestCase(12.345, 0, 0)]
+        [TestCase(-12.345, 6, -12.345)] // technically 12.3450, but doubles do not retain trailing decimal zeros
+        [TestCase(-12.345, 5, -12.345)]
+        [TestCase(-12.345, 3, -12.3)]
+        [TestCase(-12.345, 2, -12)]
+        [TestCase(-12.345, 1, -10)]
+        [TestCase(-12.345, 0, 0)]
+        [TestCase(0.012345, 7, 0.012345)] // technically 0.01234500, but doubles do not retain trailing decimal zeros
+        [TestCase(0.012345, 6, 0.012345)] // technically 0.0123450, but doubles do not retain trailing decimal zeros
+        [TestCase(0.012345, 5, 0.012345)]
+        [TestCase(0.012345, 3, 0.0123)]
+        [TestCase(0.012345, 2, 0.012)]
+        [TestCase(0.012345, 1, 0.01)]
+        [TestCase(0.012345, 0, 0)]
+        [TestCase(-0.012345, 7, -0.012345)] // technically 0.01234500, but doubles do not retain trailing decimal zeros
+        [TestCase(-0.012345, 6, -0.012345)] // technically 0.0123450, but doubles do not retain trailing decimal zeros
+        [TestCase(-0.012345, 5, -0.012345)]
+        [TestCase(-0.012345, 3, -0.0123)]
+        [TestCase(-0.012345, 2, -0.012)]
+        [TestCase(-0.012345, 1, -0.01)]
+        [TestCase(-0.012345, 0, 0)]
+        public static void RoundToSignificantFigures_Double(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits), 0.000001);
+        }
+
+        [TestCase(12.345, 4, 12.35)] // 12.34 (even) or 12.35 (zero) *******************
+        [TestCase(12.355, 4, 12.36)] // *******************
+        [TestCase(-12.345, 4, -12.35)] // -12.34 or -12.35 *******************
+        [TestCase(-12.355, 4, -12.36)] // *******************
+        [TestCase(0.012345, 4, 0.01235)] // 0.01234 (even) or 0.01235 (zero) *******************
+        [TestCase(0.012355, 4, 0.01236)] // *******************
+        [TestCase(-0.012345, 4, -0.01235)] // -0.01234 or -0.01235 *******************
+        [TestCase(-0.012355, 4, -0.01236)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_Default_Double(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits), 0.000001);
+        }
+
+        [TestCase(12.345, 4, 12.35)] // 12.34 (even) or 12.35 (zero) *******************
+        [TestCase(12.355, 4, 12.36)] // *******************
+        [TestCase(-12.345, 4, -12.35)] // -12.34 or -12.35 *******************
+        [TestCase(-12.355, 4, -12.36)] // *******************
+        [TestCase(0.012345, 4, 0.01235)] // 0.01234 (even) or 0.01235 (zero) *******************
+        [TestCase(0.012355, 4, 0.01236)] // *******************
+        [TestCase(-0.012345, 4, -0.01235)] // -0.01234 or -0.01235 *******************
+        [TestCase(-0.012355, 4, -0.01236)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_AwayFromZero_Double(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits, RoundingTieBreaker.HalfAwayFromZero), 0.000001);
+        }
+
+        [TestCase(12.345, 4, 12.34)] // 12.34 (even) or 12.35 (zero) *******************
+        [TestCase(12.355, 4, 12.36)] // *******************
+        [TestCase(-12.345, 4, -12.34)] // -12.34 or -12.35 *******************
+        [TestCase(-12.355, 4, -12.36)] // *******************
+        [TestCase(0.012345, 4, 0.01234)] // 0.01234 (even) or 0.01235 (zero) *******************
+        [TestCase(0.012355, 4, 0.01236)] // *******************
+        [TestCase(-0.012345, 4, -0.01234)] // -0.01234 or -0.01235 *******************
+        [TestCase(-0.012355, 4, -0.01236)] // *******************
+        public static void RoundToSignificantFigures_TieBreaker_HalfToEven_Double(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToSignificantFigures(digits, RoundingTieBreaker.HalfToEven), 0.000001);
+        }
+
+        [TestCase(12.345, 6, 12.345)] // technically 12.345000, but doubles do not retain trailing decimal zeros
+        [TestCase(12.345, 5, 12.345)] // technically 12.34500, but doubles do not retain trailing decimal zeros
+        [TestCase(12.345, 4, 12.345)] // technically 12.3450, but doubles do not retain trailing decimal zeros
+        [TestCase(12.345, 3, 12.345)]
+        [TestCase(12.345, 1, 12.3)]
+        [TestCase(12.345, 0, 12)]
+        [TestCase(-12.345, 6, -12.345)] // technically 12.345000, but doubles do not retain trailing decimal zeros
+        [TestCase(-12.345, 5, -12.345)] // technically 12.34500, but doubles do not retain trailing decimal zeros
+        [TestCase(-12.345, 4, -12.345)] // technically 12.3450, but doubles do not retain trailing decimal zeros
+        [TestCase(-12.345, 3, -12.345)]
+        [TestCase(-12.345, 1, -12.3)]
+        [TestCase(-12.345, 0, -12)]
+        [TestCase(0.012345, 7, 0.012345)] // technically 0.0123450, but doubles do not retain trailing decimal zeros
+        [TestCase(0.012345, 6, 0.012345)]
+        [TestCase(0.012345, 4, 0.0123)]
+        [TestCase(0.012345, 3, 0.012)]
+        [TestCase(0.012345, 2, 0.01)]
+        [TestCase(0.012345, 1, 0)] // technically 0.0, but doubles do not retain trailing decimal zeros
+        [TestCase(0.012345, 0, 0)]
+        [TestCase(-0.012345, 7, -0.012345)] // technically 0.0123450, but doubles do not retain trailing decimal zeros
+        [TestCase(-0.012345, 6, -0.012345)]
+        [TestCase(-0.012345, 4, -0.0123)]
+        [TestCase(-0.012345, 3, -0.012)]
+        [TestCase(-0.012345, 2, -0.01)]
+        [TestCase(-0.012345, 1, 0)] // technically 0.0, but doubles do not retain trailing decimal zeros
+        [TestCase(-0.012345, 0, 0)]
+        public static void RoundToDecimalPlaces(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToDecimalPlaces(digits), 0.000001);
+        }
+
+        [TestCase(12.345, 2, 12.35)] // 12.34 (even) or 12.35 (zero) 
+        [TestCase(12.355, 2, 12.36)] // Both methods
+        [TestCase(-12.345, 2, -12.35)] // -12.34 (even) or -12.35 (zero) 
+        [TestCase(-12.355, 2, -12.36)] // Both methods
+        [TestCase(0.012345, 5, 0.01235)] // 0.01234 (even) or 0.01235 (zero) 
+        [TestCase(0.012355, 5, 0.01236)] // Both methods
+        [TestCase(-0.012345, 5, -0.01235)] // -0.01234 (even) or -0.01235 (zero) 
+        [TestCase(-0.012355, 5, -0.01236)] // Both methods
+        public static void RoundToDecimalPlaces_TieBreaker_Default(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToDecimalPlaces(digits), 0.000001);
+        }
+
+        [TestCase(12.345, 2, 12.35)] // 12.34 (even) or 12.35 (zero) 
+        [TestCase(12.355, 2, 12.36)] // Both methods
+        [TestCase(-12.345, 2, -12.35)] // -12.34 (even) or -12.35 (zero) 
+        [TestCase(-12.355, 2, -12.36)] // Both methods
+        [TestCase(0.012345, 5, 0.01235)] // 0.01234 (even) or 0.01235 (zero) 
+        [TestCase(0.012355, 5, 0.01236)] // Both methods
+        [TestCase(-0.012345, 5, -0.01235)] // -0.01234 (even) or -0.01235 (zero) 
+        [TestCase(-0.012355, 5, -0.01236)] // Both methods
+        public static void RoundToDecimalPlaces_TieBreaker_AwayFromZero(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToDecimalPlaces(digits, RoundingTieBreaker.HalfAwayFromZero), 0.000001);
+        }
+
+        [TestCase(12.345, 2, 12.34)] // 12.34 (even) or 12.35 (zero) 
+        [TestCase(12.355, 2, 12.36)] // Both methods
+        [TestCase(-12.345, 2, -12.34)] // -12.34 (even) or -12.35 (zero) 
+        [TestCase(-12.355, 2, -12.36)] // Both methods
+        [TestCase(0.012345, 5, 0.01234)] // 0.01234 (even) or 0.01235 (zero) 
+        [TestCase(0.012355, 5, 0.01236)] // Both methods
+        [TestCase(-0.012345, 5, -0.01234)] // -0.01234 (even) or -0.01235 (zero) 
+        [TestCase(-0.012355, 5, -0.01236)] // Both methods
+        public static void RoundToDecimalPlaces_TieBreaker_HalfToEven(double value, int digits, double expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.RoundToDecimalPlaces(digits, RoundingTieBreaker.HalfToEven), 0.000001);
+        }
+        #endregion
+
+        #region Display
+        [TestCase(0, 0, "0")]
+        [TestCase(0, 1, "0.0")]
+        [TestCase(5, 0, "0")]
+        [TestCase(-549, 1, "-500")]
+        [TestCase(-551, 1, "-600")]
+        [TestCase(12.345, 7, "12.34500")]
+        [TestCase(12.345, 6, "12.3450")]
+        [TestCase(12.345, 5, "12.345")]
+        [TestCase(12.345, 3, "12.3")]
+        [TestCase(12.345, 2, "12")]
+        [TestCase(12.345, 1, "10")]
+        [TestCase(12.345, 0, "0")]
+        [TestCase(-12.345, 7, "-12.34500")]
+        [TestCase(-12.345, 6, "-12.3450")]
+        [TestCase(-12.345, 5, "-12.345")]
+        [TestCase(-12.345, 3, "-12.3")]
+        [TestCase(-12.345, 2, "-12")]
+        [TestCase(-12.345, 1, "-10")]
+        [TestCase(-12.345, 0, "0")]
+        [TestCase(0.012345, 7, "0.01234500")]
+        [TestCase(0.012345, 6, "0.0123450")]
+        [TestCase(0.012345, 5, "0.012345")]
+        [TestCase(0.012345, 3, "0.0123")]
+        [TestCase(0.012345, 2, "0.012")]
+        [TestCase(0.012345, 1, "0.01")]
+        [TestCase(0.012345, 0, "0")]
+        [TestCase(-0.012345, 7, "-0.01234500")]
+        [TestCase(-0.012345, 6, "-0.0123450")]
+        [TestCase(-0.012345, 5, "-0.012345")]
+        [TestCase(-0.012345, 3, "-0.0123")]
+        [TestCase(-0.012345, 2, "-0.012")]
+        [TestCase(-0.012345, 1, "-0.01")]
+        [TestCase(-0.012345, 0, "0")]
+        public static void DisplayRoundedToSignificantFigures(double value, int sigFigs, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.DisplayRoundedToSignificantFigures(sigFigs));
+        }
+
+        [TestCase(12.345, 6, "12.345000")]
+        [TestCase(12.345, 5, "12.34500")]
+        [TestCase(12.345, 4, "12.3450")]
+        [TestCase(12.345, 3, "12.345")]
+        [TestCase(12.345, 1, "12.3")]
+        [TestCase(12.345, 0, "12")]
+        [TestCase(-12.345, 6, "-12.345000")]
+        [TestCase(-12.345, 5, "-12.34500")]
+        [TestCase(-12.345, 4, "-12.3450")]
+        [TestCase(-12.345, 3, "-12.345")]
+        [TestCase(-12.345, 1, "-12.3")]
+        [TestCase(-12.345, 0, "-12")]
+        [TestCase(0.012345, 7, "0.0123450")]
+        [TestCase(0.012345, 6, "0.012345")]
+        [TestCase(0.012345, 4, "0.0123")]
+        [TestCase(0.012345, 3, "0.012")]
+        [TestCase(0.012345, 2, "0.01")]
+        [TestCase(0.012345, 1, "0.0")]
+        [TestCase(0.012345, 0, "0")]
+        [TestCase(-0.012345, 7, "-0.0123450")]
+        [TestCase(-0.012345, 6, "-0.012345")]
+        [TestCase(-0.012345, 4, "-0.0123")]
+        [TestCase(-0.012345, 3, "-0.012")]
+        [TestCase(-0.012345, 2, "-0.01")]
+        [TestCase(-0.012345, 1, "0.0")]
+        [TestCase(-0.012345, 0, "0")]
+        public static void DisplayRoundedToDecimalPlaces(double value, int digits, string expectedResult)
+        {
+            Assert.AreEqual(expectedResult, value.DisplayRoundedToDecimalPlaces(digits));
+        }
+        #endregion
     }
 }

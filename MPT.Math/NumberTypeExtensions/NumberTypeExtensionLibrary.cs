@@ -128,30 +128,55 @@ namespace MPT.Math.NumberTypeExtensions
             return (value1.IsLessThan(value2, tolerance) || value1.IsEqualTo(value2, tolerance));
         }
 
-
-        public static bool IsWithinInclusive(this int value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        /// <summary>
+        /// Determines whether the number is within the value bounds, including the values themselves.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinInclusive(this int value, int valueBound1, int valueBound2)
         {
-            return Numbers.IsWithinInclusive(value, value1, value2, tolerance);
+            return Numbers.IsWithinInclusive(value, valueBound1, valueBound2);
         }
 
-
-        public static bool IsWithinInclusive(this double value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        /// <summary>
+        /// Determines whether the number is within the value bounds, including the values themselves.
+        /// </summary>
+        /// <param name="value">The number.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <param name="tolerance">The tolerance used in comparing against the bounds.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinInclusive(this double value, double valueBound1, double valueBound2, double tolerance = Numbers.ZeroTolerance)
         {
-            return Numbers.IsWithinInclusive(value, value1, value2, tolerance);
+            return Numbers.IsWithinInclusive(value, valueBound1, valueBound2, tolerance);
         }
 
-
-        public static bool IsWithinExclusive(this int value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        /// <summary>
+        /// Determines whether the number is within the value bounds, not including the values bounds themselves.
+        /// </summary>
+        /// <param name="value">The number.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinExclusive(this int value, int valueBound1, int valueBound2)
         {
-            return Numbers.IsWithinExclusive(value, value1, value2, tolerance);
+            return Numbers.IsWithinExclusive(value, valueBound1, valueBound2);
         }
 
-
-        public static bool IsWithinExclusive(this double value, double value1, double value2, double tolerance = Numbers.ZeroTolerance)
+        /// <summary>
+        /// Determines whether the number is within the value bounds, not including the values bounds themselves.
+        /// </summary>
+        /// <param name="value">The number.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <param name="tolerance">The tolerance used in comparing against the bounds.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinExclusive(this double value, double valueBound1, double valueBound2, double tolerance = Numbers.ZeroTolerance)
         {
-            return Numbers.IsWithinExclusive(value, value1, value2, tolerance);
+            return Numbers.IsWithinExclusive(value, valueBound1, valueBound2, tolerance);
         }
-
         #endregion
 
         #region Properties
@@ -517,7 +542,80 @@ namespace MPT.Math.NumberTypeExtensions
         {
             return NMath.Abs(value);
         }
+
+        /// <summary>
+        /// Rounds to significant figures.
+        /// </summary>
+        /// <seealso cref="Numbers.RoundToSignificantFigures">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="significantFigures">The number of significant figures.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static double RoundToSignificantFigures(this int value, int significantFigures, RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            return Numbers.RoundToSignificantFigures(value, significantFigures, roundingTieBreaker);
+        }
+
+        /// <summary>
+        /// Rounds to significant figures.
+        /// </summary>
+        /// <seealso cref="Numbers.RoundToSignificantFigures">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="significantFigures">The number of significant figures.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static double RoundToSignificantFigures(this double value, int significantFigures, RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            return Numbers.RoundToSignificantFigures(value, significantFigures, roundingTieBreaker);
+        }
+
+        /// <summary>
+        /// Rounds to decimal places.
+        /// </summary>
+        /// <seealso cref="Numbers.RoundToDecimalPlaces">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="decimalPlaces">The number of decimal places.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static double RoundToDecimalPlaces(this double value, int decimalPlaces, RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            return Numbers.RoundToDecimalPlaces(value, decimalPlaces, roundingTieBreaker);
+        }
         #endregion
+
+        #region Display
+        /// <summary>
+        /// Rounds to significant figures.
+        /// </summary>
+        /// <seealso cref="Numbers.RoundToSignificantFigures">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="significantFigures">The number of significant figures.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static string DisplayRoundedToSignificantFigures(
+            this double value,
+            int significantFigures,
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            return Numbers.DisplayRoundedToSignificantFigures(value, significantFigures, roundingTieBreaker);
+        }
+
+        /// <summary>
+        /// Rounds to decimal places.
+        /// </summary>
+        /// <seealso cref="Numbers.RoundToDecimalPlaces">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="decimalPlaces">The number of decimal places.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static string DisplayRoundedToDecimalPlaces(
+            this double value,
+            int decimalPlaces,
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            return Numbers.DisplayRoundedToDecimalPlaces(value, decimalPlaces, roundingTieBreaker);
+        }
+        #endregion  
     }
 }
 

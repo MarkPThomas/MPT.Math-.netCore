@@ -339,6 +339,34 @@ namespace MPT.Math.UnitTests.Curves
         }
         #endregion
 
+        #region ICloneable
+        [Test]
+        public static void Clone()
+        {
+            CartesianCoordinate coordI = new CartesianCoordinate(-3, 5);
+            CartesianCoordinate coordJ = new CartesianCoordinate(7, -1);
+            LinearCurve curve1 = new LinearCurve(coordI, coordJ);
+
+            LinearCurve curve2 = curve1.Clone() as LinearCurve;
+
+            Assert.AreEqual(curve1.ControlPointI, curve2.ControlPointI);
+            Assert.AreEqual(curve1.ControlPointJ, curve2.ControlPointJ);
+        }
+
+        [Test]
+        public static void CloneCurve()
+        {
+            CartesianCoordinate coordI = new CartesianCoordinate(-3, 5);
+            CartesianCoordinate coordJ = new CartesianCoordinate(7, -1);
+            LinearCurve curve1 = new LinearCurve(coordI, coordJ);
+
+            LinearCurve curve2 = curve1.CloneCurve();
+
+            Assert.AreEqual(curve1.ControlPointI, curve2.ControlPointI);
+            Assert.AreEqual(curve1.ControlPointJ, curve2.ControlPointJ);
+        }
+        #endregion
+
         #region Methods: Static
 
         #region Alignment
@@ -596,6 +624,34 @@ namespace MPT.Math.UnitTests.Curves
             CartesianCoordinate intersection = LinearCurve.LineIntersect(slope1, xIntercept1, yIntercept1, slope2, xIntercept2, yIntercept2);
             Assert.AreEqual(expectedX, intersection.X, Tolerance);
             Assert.AreEqual(expectedY, intersection.Y, Tolerance);
+        }
+
+        [Test]
+        public static void CurveByYIntercept()
+        {
+            double yIntercept = 2;
+            double slope = -2d / 5;
+            LinearCurve linearCurve = LinearCurve.CurveByYIntercept(slope, yIntercept);
+
+            Assert.AreEqual(0, linearCurve.ControlPointI.X);
+            Assert.AreEqual(yIntercept, linearCurve.ControlPointI.Y);
+
+            Assert.AreEqual(1, linearCurve.ControlPointJ.X);
+            Assert.AreEqual(8d/ 5, linearCurve.ControlPointJ.Y);
+        }
+
+        [Test]
+        public static void CurveByXIntercept()
+        {
+            double xIntercept = 5;
+            double slope = -2d / 5;
+            LinearCurve linearCurve = LinearCurve.CurveByXIntercept(slope, xIntercept);
+
+            Assert.AreEqual(xIntercept, linearCurve.ControlPointI.X);
+            Assert.AreEqual(0, linearCurve.ControlPointI.Y);
+
+            Assert.AreEqual(xIntercept + 1, linearCurve.ControlPointJ.X);
+            Assert.AreEqual(-2d / 5, linearCurve.ControlPointJ.Y);
         }
         #endregion
 

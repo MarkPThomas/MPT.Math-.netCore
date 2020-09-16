@@ -201,67 +201,65 @@ namespace MPT.Math
 
 
         /// <summary>
-        /// Determines whether [is within inclusive] [the specified value].
+        /// Determines whether the specified value is within the value bounds, including the values themselves.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="value2">The value2.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <param name="tolerance">The tolerance used in comparing against the bounds.</param>
         /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinInclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
+        public static bool IsWithinInclusive(double value, double valueBound1, double valueBound2, double tolerance = ZeroTolerance)
         {
-            double maxValue = NMath.Max(value1, value2);
-            double minValue = NMath.Min(value1, value2);
+            double maxValue = NMath.Max(valueBound1, valueBound2);
+            double minValue = NMath.Min(valueBound1, valueBound2);
             return IsLessThanOrEqualTo(minValue, value, tolerance) && IsGreaterThanOrEqualTo(maxValue, value, tolerance);
         }
 
 
         /// <summary>
-        /// Determines whether [is within inclusive] [the specified value].
+        /// Determines whether the specified value is within the value bounds, including the values themselves.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="value">The value.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="value2">The value2.</param>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
         /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinInclusive<T>(T value, T value1, T value2) where T : IComparable<T>
+        public static bool IsWithinInclusive<T>(T value, T valueBound1, T valueBound2) where T : IComparable<T>
         {
-            T maxValue = Max(value1, value2);
-            T minValue = Min(value1, value2);
-            return IsWithinExclusive(value, value1, value2) ||
+            T maxValue = Max(valueBound1, valueBound2);
+            T minValue = Min(valueBound1, valueBound2);
+            return IsWithinExclusive(value, valueBound1, valueBound2) ||
                 minValue.CompareTo(value) == 0 ||
                 maxValue.CompareTo(value) == 0;
         }
 
 
         /// <summary>
-        /// Determines whether [is within exclusive] [the specified value].
+        /// Determines whether the specified value is within the value bounds, not including the values bounds themselves.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="value2">The value2.</param>
-        /// <param name="tolerance">The tolerance.</param>
-        /// <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinExclusive(double value, double value1, double value2, double tolerance = ZeroTolerance)
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <param name="tolerance">The tolerance used in comparing against the bounds.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinExclusive(double value, double valueBound1, double valueBound2, double tolerance = ZeroTolerance)
         {
-            double maxValue = NMath.Max(value1, value2);
-            double minValue = NMath.Min(value1, value2);
+            double maxValue = NMath.Max(valueBound1, valueBound2);
+            double minValue = NMath.Min(valueBound1, valueBound2);
             return IsLessThan(minValue, value, tolerance) && IsGreaterThan(maxValue, value, tolerance);
         }
 
 
         /// <summary>
-        /// Determines whether [is within exclusive] [the specified value].
+        /// Determines whether the specified value is within the value bounds, not including the values bounds themselves.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="value">The value.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="value2">The value2.</param>
-        /// <returns><c>true</c> if [is within exclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinExclusive<T>(T value, T value1, T value2) where T : IComparable<T>
+        /// <param name="valueBound1">First value bound.</param>
+        /// <param name="valueBound2">Second value bound.</param>
+        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        public static bool IsWithinExclusive<T>(T value, T valueBound1, T valueBound2) where T : IComparable<T>
         {
-            T maxValue = Max(value1, value2);
-            T minValue = Min(value1, value2);
+            T maxValue = Max(valueBound1, valueBound2);
+            T minValue = Min(valueBound1, valueBound2);
             return minValue.CompareTo(value) < 0 && maxValue.CompareTo(value) > 0;
         }
 
@@ -302,7 +300,7 @@ namespace MPT.Math
         public static T Min<T>(params T[] items) where T : IComparable<T>
         {
             if (items == null) { throw new ArgumentException("Argument cannot be null."); }
-            if (items.Length < 0) { throw new ArgumentException("Array has not been dimensioned."); }
+            if (items.Length < 1) { throw new ArgumentException("Array has not been dimensioned."); }
 
             T min = items[0]; ;
             for (int i = 0; i < items.Length; i++)
@@ -435,20 +433,46 @@ namespace MPT.Math
 
         /// <summary>
         /// Number of significant figures.
+        /// From: https://en.wikipedia.org/wiki/Significant_figures#Identifying_significant_figures
         /// </summary>
+        /// <seealso cref="SignificantFigures">https://en.wikipedia.org/wiki/Significant_figures#Identifying_significant_figures</seealso>
         /// <param name="value">The value.</param>
+        /// <param name="decimalDigitsTolerance">Tolerance limit to avoid spurious digits, in number of decimal places to include.
+        /// Numbers beyond this are truncated.</param>
         /// <returns>System.Int32.</returns>
-        public static int SignificantFigures(double value)
+        public static int SignificantFigures(double value, int decimalDigitsTolerance = int.MaxValue)
         {
-            // From: https://stackoverflow.com/questions/42264514/get-number-of-significant-digits-to-the-right-of-decimal-point-in-c-sharp-decima
-            // TODO: SignificantFigures: Method below returns number of decimal places with trailing zeros truncated. Develop this further into some different approprate methods.
             string inputStr = value.ToString(CultureInfo.InvariantCulture);
-            int decimalIndex = inputStr.IndexOf(".") + 1;
-            if (decimalIndex == 0)
-            {
-                return 0;
+            string[] numberPortions = inputStr.Split('.');
+            string wholeNumber = numberPortions[0];
+
+            // Remove leading zeros
+            wholeNumber = wholeNumber.TrimStart('0');
+
+            if (numberPortions.Length == 1 || decimalDigitsTolerance == 0)
+            {   // Number has no decimal places. 
+                // Remove trailing zeros as they are all to the left of the decimal point
+                return wholeNumber.TrimEnd('0').Length;
             }
-            return inputStr.Substring(decimalIndex).TrimEnd(new[] { '0' }).Length;
+
+            string decimalNumber = numberPortions[1];
+            if (decimalDigitsTolerance != int.MaxValue && 0 < decimalDigitsTolerance && decimalDigitsTolerance < decimalNumber.Length)
+            {
+                decimalNumber = decimalNumber.Remove(decimalDigitsTolerance);
+            }
+
+            if (wholeNumber.Length == 0)
+            {   // Number has no whole numbers
+                // Remove leading zeros as they are all to the left of the sig figs
+                // Keep trailing zeros since they count as sig figs
+                return decimalNumber.TrimStart('0').Length;
+            }
+
+            // Number contains whole numbers as well as decimals.
+            // Leading zeros have been trimmed
+            // Trailing zeros are in decimal portion
+            // Remaining zeros are all between sig figs
+            return wholeNumber.Length + decimalNumber.Length;
         }
         #endregion
 
@@ -492,6 +516,22 @@ namespace MPT.Math
         }
 
         /// <summary>
+        /// Returns the value raised to the power provided.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="power">The power.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="DivideByZeroException"></exception>
+        public static double Pow(double value, double power)
+        {
+            if (value == 0 && IsNegativeSign(power))
+            {
+                throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
+            }
+            return NMath.Pow(value, power);
+        }
+
+        /// <summary>
         /// Returns the square root of the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -519,6 +559,10 @@ namespace MPT.Math
         /// <returns>System.Double.</returns>
         public static double Root(double value, int root)
         {
+            if (IsZeroSign(root))
+            {
+                throw new DivideByZeroException("Root cannot be zero.");
+            }
             return IsOdd(root) ? NMath.Sign(value) * Pow(NMath.Abs(value), 1d / root) : Pow(value, 1d / root);
         }
 
@@ -530,24 +574,13 @@ namespace MPT.Math
         /// <returns>System.Double.</returns>
         public static double Root(double value, double root)
         {
+            if (IsZeroSign(root))
+            {
+                throw new DivideByZeroException("Root cannot be zero.");
+            }
             return Pow(value, 1d / root);
         }
 
-        /// <summary>
-        /// Returns the value raised to the power provided.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="power">The power.</param>
-        /// <returns>System.Double.</returns>
-        /// <exception cref="DivideByZeroException"></exception>
-        public static double Pow(double value, double power)
-        {
-            if (value == 0 && IsNegativeSign(power))
-            {
-                throw new DivideByZeroException($"{value}^{power} results in a division by zero, which is undefined.");
-            }
-            return NMath.Pow(value, power);
-        }
         #endregion
 
         #region Other Modifications
@@ -644,30 +677,172 @@ namespace MPT.Math
         }
 
         /// <summary>
-        /// Rounds to significant digits.
+        /// Rounds to significant figures.
         /// </summary>
+        /// <seealso cref="RoundToSignificantFigures">https://en.wikipedia.org/wiki/Significant_figures</seealso>
         /// <param name="value">The value.</param>
-        /// <param name="digits">The number of significant digits.</param>
+        /// <param name="significantFigures">The number of significant figures.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
         /// <returns>System.Double.</returns>
-        static double RoundToSignificantDigits(double value, int digits)
+        public static double RoundToSignificantFigures(
+            double value, 
+            int significantFigures, 
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
         {
-            // From: https://stackoverflow.com/questions/374316/round-a-double-to-x-significant-figures
-            if (value == 0) { return 0; }
+            if (value == 0 || significantFigures == 0) { return 0; }
 
-            double scale = NMath.Pow(10, NMath.Floor(NMath.Log10(NMath.Abs(value))) + 1);
-            return scale * NMath.Round(value / scale, digits);
+            // Get value scaled to having sig figs result as an integer e.g. 4th sig fig 12345 = 1234.5 or 0.00012345 = 1234.5, 7th sig fig 12.345 = 1234500
+            double scale = NMath.Pow(10, NMath.Floor(NMath.Log10(NMath.Abs(value))) + 1 - significantFigures);
+            double valueScale = value / scale;
+
+            // Round in case floating point affects number outside of precision (e.g. for 0.545 vs. 0.5449999999 for rounding to 0.6)
+            double valueScaleRounded = NMath.Round(valueScale, 2);
+
+            // scale back up
+            return scale * NMath.Round(valueScaleRounded, midpointRounding(roundingTieBreaker));
         }
 
         /// <summary>
-        /// Removes trailing zeros from value.
+        /// Rounds to decimal places.
         /// </summary>
+        /// <seealso cref="RoundToDecimalPlaces">https://en.wikipedia.org/wiki/Significant_figures</seealso>
         /// <param name="value">The value.</param>
-        /// <returns>System.Decimal.</returns>
-        public static decimal RemoveTrailingZeroes(decimal value)
+        /// <param name="decimalPlaces">The number of decimal places.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static double RoundToDecimalPlaces(
+            double value, 
+            int decimalPlaces, 
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
         {
-            // From: https://stackoverflow.com/questions/4525854/remove-trailing-zeros/7983330#7983330
-            // TODO: RemoveTrailingZeroes Might not work on Mono/Linux? Read more on thread for more robust solutions.
-            return value / 1.000000000000000000000000000000000m;
+            return NMath.Round(value, decimalPlaces, midpointRounding(roundingTieBreaker));
+        }
+
+        /// <summary>
+        /// Returns System.Math enum for the corresponding midpoint rounding method.
+        /// </summary>
+        /// <param name="roundingTieBreaker">The rounding tie breaker.</param>
+        /// <returns>MidpointRounding.</returns>
+        private static MidpointRounding midpointRounding(RoundingTieBreaker roundingTieBreaker)
+        {
+            return (roundingTieBreaker == RoundingTieBreaker.HalfAwayFromZero) ? MidpointRounding.AwayFromZero : MidpointRounding.ToEven;
+        }
+        #endregion
+
+        #region Display
+        /// <summary>
+        /// Rounds to significant figures.
+        /// </summary>
+        /// <seealso cref="RoundToSignificantFigures">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="significantFigures">The number of significant figures.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static string DisplayRoundedToSignificantFigures(
+            double value, 
+            int significantFigures, 
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            value = RoundToSignificantFigures(value, significantFigures, roundingTieBreaker);
+            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
+            if (significantFigures <= 0)
+            {
+                return valueAsString;
+            }
+
+            // Get number of decimal places
+            int prePaddingLength = valueAsString.Length;
+            string wholeNumber;
+            string decimalNumber = "";
+            int wholeNumberLength;
+            if (valueAsString.Contains(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator))
+            {
+                wholeNumber = valueAsString.Split(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator)[0];
+                decimalNumber = valueAsString.Split(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator)[1];
+                wholeNumberLength = (wholeNumber[0] == '-') ? wholeNumber.Length - 1 : wholeNumber.Length;
+            }
+            else
+            {
+                wholeNumber = valueAsString;
+                wholeNumberLength = (wholeNumber[0] == '-') ? wholeNumber.Length - 1 : wholeNumber.Length;
+
+                if (wholeNumber[0] == '0')
+                {
+                    prePaddingLength += 1;
+                }
+                else if(significantFigures <= wholeNumberLength)
+                {
+                    return valueAsString;
+                }
+            }
+            int valueSigFigLength;
+            char firstInteger = (wholeNumber[0] == '-') ? wholeNumber[1] : wholeNumber[0];
+            if (valueAsString.Contains(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator) && firstInteger != '0')
+            {
+                valueSigFigLength = (wholeNumber[0] == '-') ? valueAsString.Length - 2 : valueAsString.Length - 1;
+            }
+            else
+            {
+                string sigFigAsString = valueAsString.TrimStart('-')
+                                                     .TrimStart('0')
+                                                     .Replace(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator, "")
+                                                     .TrimStart('0');
+                valueSigFigLength = sigFigAsString.Length;
+            }
+            string separator = ((significantFigures >= wholeNumberLength) || firstInteger == '0') ? CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator : "";
+
+            string result = wholeNumber + separator + decimalNumber;
+            int zeroPadding = significantFigures - valueSigFigLength;
+            result = result.PadRight(prePaddingLength + zeroPadding, '0');
+            return result;
+        }
+
+        /// <summary>
+        /// Rounds to decimal places.
+        /// </summary>
+        /// <seealso cref="RoundToDecimalPlaces">https://en.wikipedia.org/wiki/Significant_figures</seealso>
+        /// <param name="value">The value.</param>
+        /// <param name="decimalPlaces">The number of decimal places.</param>
+        /// <param name="roundingTieBreaker">Method by which rounding is performed if the triggering rounding number is 5.</param>
+        /// <returns>System.Double.</returns>
+        public static string DisplayRoundedToDecimalPlaces(
+            double value, 
+            int decimalPlaces, 
+            RoundingTieBreaker roundingTieBreaker = RoundingTieBreaker.HalfAwayFromZero)
+        {
+            value = RoundToDecimalPlaces(value, decimalPlaces, roundingTieBreaker);
+            string valueAsString = value.ToString(CultureInfo.InvariantCulture);
+            if (decimalPlaces <= 0)
+            {
+                return valueAsString;
+            }
+
+            // Get number of decimal places
+            int prePaddingLength = valueAsString.Length;
+            string wholeNumber;
+            string decimalNumber = "";
+            int valueDecimalLength = valueAsString.Length;
+            if (valueAsString.Contains(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator))
+            {
+                wholeNumber = valueAsString.Split(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator)[0];
+                decimalNumber = valueAsString.Split(CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator)[1];
+                valueDecimalLength -= (wholeNumber.Length + 1);
+            }
+            else
+            {
+                wholeNumber = valueAsString;
+                valueDecimalLength = 0;
+
+                if (wholeNumber[0] == '0')
+                {
+                    prePaddingLength += 1;
+                }
+            }
+
+            string result = wholeNumber + CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator + decimalNumber;
+            int zeroPadding = decimalPlaces - valueDecimalLength;
+            result = result.PadRight(prePaddingLength + zeroPadding, '0');
+            return result;
         }
         #endregion
     }

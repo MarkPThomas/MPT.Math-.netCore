@@ -512,15 +512,11 @@ namespace MPT.Math.Curves
             {
                 return double.PositiveInfinity;
             }
-            if (yIntercept1.IsEqualTo(double.PositiveInfinity))// ||
-                                                               //slope2.IsEqualTo(double.PositiveInfinity) ||
-                                                               //slope2.IsEqualTo(double.NegativeInfinity))
+            if (yIntercept1.IsEqualTo(double.PositiveInfinity))
             {
                 return yIntercept2;
             }
-            if (yIntercept2.IsEqualTo(double.PositiveInfinity))// ||
-                //slope1.IsEqualTo(double.PositiveInfinity) ||
-                //slope1.IsEqualTo(double.NegativeInfinity))
+            if (yIntercept2.IsEqualTo(double.PositiveInfinity))
             {
                 return yIntercept1;
             }
@@ -572,6 +568,26 @@ namespace MPT.Math.Curves
 
         #endregion
 
+        #endregion
+
+        #region ICloneable
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>A new object that is a copy of this instance.</returns>
+        public override object Clone()
+        {
+            return CloneCurve();
+        }
+
+        /// <summary>
+        /// Clones the curve.
+        /// </summary>
+        /// <returns>LinearCurve.</returns>
+        public LinearCurve CloneCurve()
+        {
+            return new LinearCurve(ControlPointI, ControlPointJ);
+        }
         #endregion
     }
 }
