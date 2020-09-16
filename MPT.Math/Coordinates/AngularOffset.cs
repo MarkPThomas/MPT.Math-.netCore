@@ -339,7 +339,7 @@ namespace MPT.Math.Coordinates
             return new AngularOffset(
                 new Angle(),
                 offset1.ToAngle() - offset2.ToAngle(),
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -373,7 +373,7 @@ namespace MPT.Math.Coordinates
             return new AngularOffset(
                 offset1.I + offset2.I,
                 offset1.J + offset2.J,
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -447,7 +447,7 @@ namespace MPT.Math.Coordinates
         /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
         public bool Equals(AngularOffset other)
         {
-            double tolerance = Helper.GetTolerance(this, other);
+            double tolerance = Generics.GetTolerance(this, other);
             return Delta().Radians.IsEqualTo(other.Delta().Radians, tolerance);
         }
 
@@ -491,7 +491,7 @@ namespace MPT.Math.Coordinates
         {
             if (Equals(other)) { return 0; }
 
-            double tolerance = Helper.GetTolerance(this, other);
+            double tolerance = Generics.GetTolerance(this, other);
             return Delta().Radians.IsLessThan(other.Delta().Radians, tolerance) ? -1 : 1;
         }
         /// <summary>

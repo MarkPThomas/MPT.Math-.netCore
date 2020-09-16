@@ -97,7 +97,7 @@ namespace MPT.Math.Curves
                 return true;
             }
 
-            double tolerance = Helper.GetTolerance(otherLine, Tolerance);
+            double tolerance = Generics.GetTolerance(otherLine, Tolerance);
             return (Slope() - otherLine.Slope()).IsZeroSign(tolerance);
         }
 
@@ -110,7 +110,7 @@ namespace MPT.Math.Curves
         {
             double slope = Slope();
             double otherSlope = otherLine.Slope();
-            double tolerance = Helper.GetTolerance(otherLine, Tolerance);
+            double tolerance = Generics.GetTolerance(otherLine, Tolerance);
             if ((double.IsInfinity(slope) && otherSlope.IsZeroSign(tolerance)) ||
                 (double.IsInfinity(otherSlope) && slope.IsZeroSign(tolerance)))
             {
@@ -128,7 +128,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
         {
-            double tolerance = Helper.GetTolerance(coordinate, Tolerance);
+            double tolerance = Generics.GetTolerance(coordinate, Tolerance);
             double y = Y(coordinate.X);
             if (IsVertical())
             {
@@ -264,7 +264,7 @@ namespace MPT.Math.Curves
             CartesianCoordinate ptJ,
             double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(ptI, ptJ, tolerance);
+            tolerance = Generics.GetTolerance(ptI, ptJ, tolerance);
             return ptI.Y.IsEqualTo(ptJ.Y, tolerance); ;
         }
 
@@ -289,7 +289,7 @@ namespace MPT.Math.Curves
             CartesianCoordinate ptJ,
             double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(ptI, ptJ, tolerance);
+            tolerance = Generics.GetTolerance(ptI, ptJ, tolerance);
             return ptI.X.IsEqualTo(ptJ.X, tolerance); ;
         }
 

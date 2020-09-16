@@ -199,7 +199,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 a.X - b.X,
                 a.Y - b.Y,
-                Helper.GetTolerance(a, b));
+                Generics.GetTolerance(a, b));
         }
 
 
@@ -214,7 +214,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 a.X + b.X,
                 a.Y + b.Y,
-                Helper.GetTolerance(a, b));
+                Generics.GetTolerance(a, b));
         }
 
 

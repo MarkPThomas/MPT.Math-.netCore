@@ -296,7 +296,7 @@ namespace MPT.Math.Vectors
         /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
         public static Vector UnitVector(CartesianCoordinate i, CartesianCoordinate j, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(i, j, tolerance);
+            tolerance = Generics.GetTolerance(i, j, tolerance);
             double xComponent = getXComponent(i, j);
             double yComponent = getYComponent(i, j);
 
@@ -313,7 +313,7 @@ namespace MPT.Math.Vectors
         /// <returns>Vector.</returns>
         public static Vector UnitTangentVector(CartesianCoordinate i, CartesianCoordinate j, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(i, j, tolerance);
+            tolerance = Generics.GetTolerance(i, j, tolerance);
             return UnitVector(i, j, tolerance);
         }
 
@@ -326,7 +326,7 @@ namespace MPT.Math.Vectors
         /// <returns>Vector.</returns>
         public static Vector UnitNormalVector(CartesianCoordinate i, CartesianCoordinate j, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(i, j, tolerance);
+            tolerance = Generics.GetTolerance(i, j, tolerance);
             double xComponent = getXComponent(i, j);
             double yComponent = getYComponent(i, j);
             double magnitude = getMagnitude(xComponent, yComponent, tolerance);
@@ -344,7 +344,7 @@ namespace MPT.Math.Vectors
         /// <returns>System.Double.</returns>
         public static double Angle(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             return NMath.Acos(ConcavityCollinearity(vector1, vector2));
         }
 
@@ -358,8 +358,8 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if [is collinear same direction] [the specified vector1]; otherwise, <c>false</c>.</returns>
         public static bool IsCollinearSameDirection(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
-            return ConcavityCollinearity(vector1, vector2).IsEqualTo(1, Helper.GetTolerance(vector1, vector2, tolerance));
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
+            return ConcavityCollinearity(vector1, vector2).IsEqualTo(1, Generics.GetTolerance(vector1, vector2, tolerance));
         }
 
         /// <summary>
@@ -371,7 +371,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if the specified vector1 is concave; otherwise, <c>false</c>.</returns>
         public static bool IsConcave(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             double concavityCollinearity = ConcavityCollinearity(vector1, vector2);
             return concavityCollinearity.IsPositiveSign(tolerance) && !concavityCollinearity.IsEqualTo(1, tolerance);
         }
@@ -385,7 +385,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if the specified vector1 is orthogonal; otherwise, <c>false</c>.</returns>
         public static bool IsOrthogonal(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             return ConcavityCollinearity(vector1, vector2).IsZeroSign(tolerance);
         }
 
@@ -398,7 +398,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if the specified vector1 is convex; otherwise, <c>false</c>.</returns>
         public static bool IsConvex(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             double concavityCollinearity = ConcavityCollinearity(vector1, vector2);
             return concavityCollinearity.IsNegativeSign(tolerance) && !concavityCollinearity.IsEqualTo(-1, tolerance);
         }
@@ -412,7 +412,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if [is collinear opposite direction] [the specified vector1]; otherwise, <c>false</c>.</returns>
         public static bool IsCollinearOppositeDirection(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             return ConcavityCollinearity(vector1, vector2).IsEqualTo(-1, tolerance);
         }
 
@@ -428,7 +428,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if [is concave inside] [the specified vector1]; otherwise, <c>false</c>.</returns>
         public static bool IsConcaveInside(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             return vector1.Area(vector2).IsPositiveSign(tolerance);
         }
 
@@ -442,7 +442,7 @@ namespace MPT.Math.Vectors
         /// <returns><c>true</c> if [is convex inside] [the specified vector1]; otherwise, <c>false</c>.</returns>
         public static bool IsConvexInside(Vector vector1, Vector vector2, double tolerance = Numbers.ZeroTolerance)
         {
-            tolerance = Helper.GetTolerance(vector1, vector2, tolerance);
+            tolerance = Generics.GetTolerance(vector1, vector2, tolerance);
             return vector1.Area(vector2).IsNegativeSign(tolerance);
         }
 

@@ -215,24 +215,6 @@ namespace MPT.Math
             return IsLessThanOrEqualTo(minValue, value, tolerance) && IsGreaterThanOrEqualTo(maxValue, value, tolerance);
         }
 
-
-        /// <summary>
-        /// Determines whether the specified value is within the value bounds, including the values themselves.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="valueBound1">First value bound.</param>
-        /// <param name="valueBound2">Second value bound.</param>
-        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinInclusive<T>(T value, T valueBound1, T valueBound2) where T : IComparable<T>
-        {
-            T maxValue = Max(valueBound1, valueBound2);
-            T minValue = Min(valueBound1, valueBound2);
-            return IsWithinExclusive(value, valueBound1, valueBound2) ||
-                minValue.CompareTo(value) == 0 ||
-                maxValue.CompareTo(value) == 0;
-        }
-
-
         /// <summary>
         /// Determines whether the specified value is within the value bounds, not including the values bounds themselves.
         /// </summary>
@@ -248,70 +230,6 @@ namespace MPT.Math
             return IsLessThan(minValue, value, tolerance) && IsGreaterThan(maxValue, value, tolerance);
         }
 
-
-        /// <summary>
-        /// Determines whether the specified value is within the value bounds, not including the values bounds themselves.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="valueBound1">First value bound.</param>
-        /// <param name="valueBound2">Second value bound.</param>
-        /// <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        public static bool IsWithinExclusive<T>(T value, T valueBound1, T valueBound2) where T : IComparable<T>
-        {
-            T maxValue = Max(valueBound1, valueBound2);
-            T minValue = Min(valueBound1, valueBound2);
-            return minValue.CompareTo(value) < 0 && maxValue.CompareTo(value) > 0;
-        }
-
-        /// <summary>
-        /// Determines the maximum of the parameters.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items">The items.</param>
-        /// <returns>T.</returns>
-        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
-        /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
-        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
-        public static T Max<T>(params T[] items) where T : IComparable<T>
-        {
-            if (items == null) { throw new ArgumentException("Argument cannot be null."); }
-            if (items.Length < 1) { throw new ArgumentException("Array has not been dimensioned."); }
-
-            T max = items[0]; ;
-            for (int i = 0; i < items.Length; i++)
-            {
-                if (items[i].CompareTo(max) > 0)
-                {
-                    max = items[i];
-                }
-            }
-            return max;
-        }
-
-        /// <summary>
-        /// Determines the minimum of the parameters.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items">The items.</param>
-        /// <returns>T.</returns>
-        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
-        /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
-        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
-        public static T Min<T>(params T[] items) where T : IComparable<T>
-        {
-            if (items == null) { throw new ArgumentException("Argument cannot be null."); }
-            if (items.Length < 1) { throw new ArgumentException("Array has not been dimensioned."); }
-
-            T min = items[0]; ;
-            for (int i = 0; i < items.Length; i++)
-            {
-                if (items[i].CompareTo(min) < 0)
-                {
-                    min = items[i];
-                }
-            }
-            return min;
-        }
         #endregion
 
         #region Properties
@@ -473,6 +391,30 @@ namespace MPT.Math
             // Trailing zeros are in decimal portion
             // Remaining zeros are all between sig figs
             return wholeNumber.Length + decimalNumber.Length;
+        }
+
+        /// <summary>
+        /// Determines the maximum of the parameters.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
+        /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
+        public static double Max(params double[] items)
+        {
+            return Generics.Max(items);
+        }
+
+        /// <summary>
+        /// Determines the minimum of the parameters.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentException">Argument cannot be null.</exception>
+        /// <exception cref="ArgumentException">Array has not been dimensioned.</exception>
+        public static double Min(params double[] items)
+        {
+            return Generics.Min(items);
         }
         #endregion
 

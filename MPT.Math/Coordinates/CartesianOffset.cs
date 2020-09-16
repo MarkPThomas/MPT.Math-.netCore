@@ -194,7 +194,7 @@ namespace MPT.Math.Coordinates
             return new CartesianOffset(
                 new CartesianCoordinate(),
                 offset1.ToCartesianCoordinate() - offset2,
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -207,7 +207,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 point1.X - offset2.X(),
                 point1.Y - offset2.Y(),
-                Helper.GetTolerance(point1, offset2));
+                Generics.GetTolerance(point1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -220,7 +220,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 offset1.X() - point2.X,
                 offset1.Y() - point2.Y,
-                Helper.GetTolerance(offset1, point2));
+                Generics.GetTolerance(offset1, point2));
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace MPT.Math.Coordinates
                 new CartesianCoordinate(
                     offset1.X() + offset2.X(),
                     offset1.Y() + offset2.Y()),
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -249,7 +249,7 @@ namespace MPT.Math.Coordinates
             return new CartesianCoordinate(
                 point1.X + offset2.X(),
                 point1.Y + offset2.Y(),
-                Helper.GetTolerance(point1, offset2));
+                Generics.GetTolerance(point1, offset2));
         }
         /// <summary>
         /// Implements the + operator.

@@ -273,7 +273,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The rotated vector.</returns>
         public Vector RotateVector(Vector vector)
         {
-            double tolerance = Helper.GetTolerance(this, vector);
+            double tolerance = Generics.GetTolerance(this, vector);
             if (Radians.IsZeroSign(tolerance)) { return vector; }
                 
             Angle completeAngle = CreateFromVector(vector) + Radians;
@@ -494,7 +494,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator +(Angle a, Angle b)
         {
-            return new Angle(a.Radians + b.Radians, Helper.GetTolerance(a, b));
+            return new Angle(a.Radians + b.Radians, Generics.GetTolerance(a, b));
         }
         /// <summary>
         /// Implements the operator + for an angle and a double which represents radians.
@@ -525,7 +525,7 @@ namespace MPT.Math.Coordinates
         /// <returns>The result of the operator.</returns>
         public static Angle operator -(Angle a, Angle b)
         {
-            return new Angle(a.Radians - b.Radians, Helper.GetTolerance(a, b));
+            return new Angle(a.Radians - b.Radians, Generics.GetTolerance(a, b));
         }
         /// <summary>
         /// Implements the operator - for an angle and a double which represents radians.
@@ -612,7 +612,7 @@ namespace MPT.Math.Coordinates
         /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
         public bool Equals(Angle other)
         {
-            double tolerance = Helper.GetTolerance(this, other);
+            double tolerance = Generics.GetTolerance(this, other);
             return Radians.IsEqualTo(other.Radians, tolerance);
         }
 
@@ -652,7 +652,7 @@ namespace MPT.Math.Coordinates
         {
             if (Equals(other)) { return 0; }
 
-            double tolerance = Helper.GetTolerance(this, other);
+            double tolerance = Generics.GetTolerance(this, other);
             return Radians.IsLessThan(other.Radians, tolerance) ? -1 : 1;
         }
         /// <summary>

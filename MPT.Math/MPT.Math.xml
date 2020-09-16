@@ -2357,12 +2357,12 @@
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Helper">
+        <member name="T:MPT.Math.Generics">
             <summary>
-            Class Helper.
+            Contains static Math-related methods that deal with generic object types.
             </summary>
         </member>
-        <member name="M:MPT.Math.Helper.GetTolerance``1(``0,System.Double)">
+        <member name="M:MPT.Math.Generics.GetTolerance``1(``0,System.Double)">
             <summary>
             Gets the tolerance between two items.
             This is the maximum defined, or the overwrite, if provided.
@@ -2372,7 +2372,7 @@
             <param name="tolerance">The tolerance.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Helper.GetTolerance``2(``0,``1,System.Double)">
+        <member name="M:MPT.Math.Generics.GetTolerance``2(``0,``1,System.Double)">
             <summary>
             Gets the tolerance between two items.
             This is the maximum defined, or the overwrite, if provided.
@@ -2384,9 +2384,47 @@
             <param name="tolerance">The tolerance.</param>
             <returns>System.Double.</returns>
         </member>
+        <member name="M:MPT.Math.Generics.IsWithinInclusive``1(``0,``0,``0)">
+            <summary>
+            Determines whether the specified value is within the value bounds, including the values themselves.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="valueBound1">First value bound.</param>
+            <param name="valueBound2">Second value bound.</param>
+            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Generics.IsWithinExclusive``1(``0,``0,``0)">
+            <summary>
+            Determines whether the specified value is within the value bounds, not including the values bounds themselves.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="valueBound1">First value bound.</param>
+            <param name="valueBound2">Second value bound.</param>
+            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Generics.Max``1(``0[])">
+            <summary>
+            Determines the maximum of the parameters.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <returns>T.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+        </member>
+        <member name="M:MPT.Math.Generics.Min``1(``0[])">
+            <summary>
+            Determines the minimum of the parameters.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <returns>T.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+        </member>
         <member name="T:MPT.Math.ITolerance">
             <summary>
-            Interface ITolerance
+            Interface for objects that use a tolerance for floating-point numerical operations.
             </summary>
         </member>
         <member name="P:MPT.Math.ITolerance.Tolerance">
@@ -2547,15 +2585,6 @@
             <param name="tolerance">The tolerance used in comparing against the bounds.</param>
             <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:MPT.Math.Numbers.IsWithinInclusive``1(``0,``0,``0)">
-            <summary>
-            Determines whether the specified value is within the value bounds, including the values themselves.
-            </summary>
-            <param name="value">The value.</param>
-            <param name="valueBound1">First value bound.</param>
-            <param name="valueBound2">Second value bound.</param>
-            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        </member>
         <member name="M:MPT.Math.Numbers.IsWithinExclusive(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Determines whether the specified value is within the value bounds, not including the values bounds themselves.
@@ -2565,37 +2594,6 @@
             <param name="valueBound2">Second value bound.</param>
             <param name="tolerance">The tolerance used in comparing against the bounds.</param>
             <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Numbers.IsWithinExclusive``1(``0,``0,``0)">
-            <summary>
-            Determines whether the specified value is within the value bounds, not including the values bounds themselves.
-            </summary>
-            <param name="value">The value.</param>
-            <param name="valueBound1">First value bound.</param>
-            <param name="valueBound2">Second value bound.</param>
-            <returns><c>true</c> if [is within inclusive] [the specified value]; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Numbers.Max``1(``0[])">
-            <summary>
-            Determines the maximum of the parameters.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="items">The items.</param>
-            <returns>T.</returns>
-            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
-            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
-            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
-        </member>
-        <member name="M:MPT.Math.Numbers.Min``1(``0[])">
-            <summary>
-            Determines the minimum of the parameters.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="items">The items.</param>
-            <returns>T.</returns>
-            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
-            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
-            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
         </member>
         <member name="M:MPT.Math.Numbers.IsOdd(System.Int32)">
             <summary>
@@ -2653,6 +2651,24 @@
             <param name="decimalDigitsTolerance">Tolerance limit to avoid spurious digits, in number of decimal places to include.
             Numbers beyond this are truncated.</param>
             <returns>System.Int32.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.Max(System.Double[])">
+            <summary>
+            Determines the maximum of the parameters.
+            </summary>
+            <param name="items">The items.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
+        </member>
+        <member name="M:MPT.Math.Numbers.Min(System.Double[])">
+            <summary>
+            Determines the minimum of the parameters.
+            </summary>
+            <param name="items">The items.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.ArgumentException">Argument cannot be null.</exception>
+            <exception cref="T:System.ArgumentException">Array has not been dimensioned.</exception>
         </member>
         <member name="M:MPT.Math.Numbers.Squared(System.Int32)">
             <summary>

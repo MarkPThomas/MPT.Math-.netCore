@@ -326,7 +326,7 @@ namespace MPT.Math.Coordinates
             return new LinearOffset(
                 offset1.I - offset2.I,
                 offset1.J - offset2.J,
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the - operator.
@@ -360,7 +360,7 @@ namespace MPT.Math.Coordinates
             return new LinearOffset(
                 offset1.I + offset2.I,
                 offset1.J + offset2.J,
-                Helper.GetTolerance(offset1, offset2));
+                Generics.GetTolerance(offset1, offset2));
         }
         /// <summary>
         /// Implements the + operator.
@@ -477,7 +477,7 @@ namespace MPT.Math.Coordinates
         {
             if (Equals(other)) { return 0; }
 
-            double tolerance = Helper.GetTolerance(this, other);
+            double tolerance = Generics.GetTolerance(this, other);
             return Delta().IsLessThan(other.Delta(), tolerance) ? -1 : 1;
         }
         /// <summary>

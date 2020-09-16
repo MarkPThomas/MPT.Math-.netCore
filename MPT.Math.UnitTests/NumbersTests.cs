@@ -5,29 +5,6 @@ using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace MPT.Math.UnitTests
 {
-    public class Comparables : IComparable<Comparables>
-    {
-        public double Number { get; }
-
-        public Comparables(double number)
-        {
-            Number = number;
-        }
-
-        public int CompareTo(Comparables other)
-        {
-            if (Number > other.Number)
-            {
-                return 1;
-            }
-            if (Number < other.Number)
-            {
-                return -1;
-            }
-            return 0;
-        }
-    }
-
     [TestFixture]
     public static class NumbersTests
     {
@@ -329,55 +306,7 @@ namespace MPT.Math.UnitTests
             return Numbers.IsLessThanOrEqualTo(value1, value2, tolerance);
         }
 
-        [Test]
-        public static void Max_Throws_Exception_If_Argument_Is_Null()
-        {
-            Assert.Throws<ArgumentException>(() => Numbers.Max<Comparables>(null));
-        }
-
-        [Test]
-        public static void Max_Throws_Exception_If_Array_Is_Not_Dimensioned()
-        {
-            Comparables[] comparables = new Comparables[0];
-            Assert.Throws<ArgumentException>(() => Numbers.Max(comparables));
-        }
-
-        [Test]
-        public static void Max_Returns_Max_Object_Of_Comparable_Objects()
-        {
-            Comparables[] comparables = new Comparables[3];
-            comparables[0] = new Comparables(6);
-            comparables[1] = new Comparables(-1);
-            comparables[2] = new Comparables(9);
-
-            Comparables maxComparables = Numbers.Max(comparables);
-            Assert.AreEqual(comparables[2], maxComparables);
-        }
-
-        [Test]
-        public static void Min_Throws_Exception_If_Argument_Is_Null()
-        {
-            Assert.Throws<ArgumentException>(() => Numbers.Min<Comparables>(null));
-        }
-
-        [Test]
-        public static void Min_Throws_Exception_If_Array_Is_Not_Dimensioned()
-        {
-            Comparables[] comparables = new Comparables[0];
-            Assert.Throws<ArgumentException>(() => Numbers.Min(comparables));
-        }
-
-        [Test]
-        public static void Min_Returns_Min_Object_Of_Comparable_Objects()
-        {
-            Comparables[] comparables = new Comparables[3];
-            comparables[0] = new Comparables(6);
-            comparables[1] = new Comparables(-1);
-            comparables[2] = new Comparables(9);
-
-            Comparables maxComparables = Numbers.Min(comparables);
-            Assert.AreEqual(comparables[1], maxComparables);
-        }
+       
 
         [TestCase(2, 1, 3, ExpectedResult = true)]
         [TestCase(1, 1, 3, ExpectedResult = true)]
@@ -397,23 +326,7 @@ namespace MPT.Math.UnitTests
             return Numbers.IsWithinInclusive(value, value1, value2, Tolerance);
         }
 
-        [TestCase(2, 1, 3, ExpectedResult = true)]
-        [TestCase(1, 1, 3, ExpectedResult = true)]
-        [TestCase(1, 3, 1, ExpectedResult = true)]
-        [TestCase(0.999, 1, 3, ExpectedResult = false)]
-        [TestCase(0.999, 3, 1, ExpectedResult = false)]
-        [TestCase(3, 1, 3, ExpectedResult = true)]
-        [TestCase(3, 3, 1, ExpectedResult = true)]
-        [TestCase(3.001, 1, 3, ExpectedResult = false)]
-        [TestCase(3.001, 3, 1, ExpectedResult = false)]
-        public static bool IsWithinInclusive_of_Generic_Type(double value, double value1, double value2)
-        {
-            Comparables comparablesValue1 = new Comparables(value1);
-            Comparables comparablesValue = new Comparables(value);
-            Comparables comparablesValue2 = new Comparables(value2);
-
-            return Numbers.IsWithinInclusive(comparablesValue, comparablesValue1, comparablesValue2);
-        }
+        
 
         [TestCase(2, 1, 3, ExpectedResult = true)]
         [TestCase(1, 1, 3, ExpectedResult = false)]
@@ -431,24 +344,6 @@ namespace MPT.Math.UnitTests
         public static bool IsWithinExclusive(double value, double value1, double value2)
         {
             return Numbers.IsWithinExclusive(value, value1, value2, Tolerance);
-        }
-
-        [TestCase(2, 1, 3, ExpectedResult = true)]
-        [TestCase(1, 1, 3, ExpectedResult = false)]
-        [TestCase(1, 3, 1, ExpectedResult = false)]
-        [TestCase(0.999, 1, 3, ExpectedResult = false)]
-        [TestCase(0.999, 3, 1, ExpectedResult = false)]
-        [TestCase(3, 1, 3, ExpectedResult = false)]
-        [TestCase(3, 3, 1, ExpectedResult = false)]
-        [TestCase(3.001, 1, 3, ExpectedResult = false)]
-        [TestCase(3.001, 3, 1, ExpectedResult = false)]
-        public static bool IsWithinExclusive_of_Generic_Type(double value, double value1, double value2)
-        {
-            Comparables comparablesValue1 = new Comparables(value1);
-            Comparables comparablesValue = new Comparables(value);
-            Comparables comparablesValue2 = new Comparables(value2);
-
-            return Numbers.IsWithinExclusive(comparablesValue, comparablesValue1, comparablesValue2);
         }
         #endregion
 
@@ -695,6 +590,20 @@ namespace MPT.Math.UnitTests
         public static int SignificantFigures_with_Limits(double value, int decimalDigitsTolerance)
         {
             return Numbers.SignificantFigures(value, decimalDigitsTolerance);
+        }
+
+        [Test]
+        public static void Max()
+        {
+            double result = Numbers.Max(3, 5.2, 9.1, 0, -1.3);
+            Assert.AreEqual(result, 9.1);
+        }
+
+        [Test]
+        public static void Min()
+        {
+            double result = Numbers.Min(3, 5.2, 9.1, 0, -1.3);
+            Assert.AreEqual(result, -1.3);
         }
         #endregion
 

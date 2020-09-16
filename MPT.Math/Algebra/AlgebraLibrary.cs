@@ -221,7 +221,7 @@ namespace MPT.Math.Algebra
             double jjValue,
             double tolerance = Numbers.ZeroTolerance)
         {
-            double toleranceActual = Helper.GetTolerance(Po, Helper.GetTolerance(ii, jj, tolerance));
+            double toleranceActual = Generics.GetTolerance(Po, Generics.GetTolerance(ii, jj, tolerance));
             if (ii.X.IsEqualTo(jj.X, toleranceActual))
             {
                 throw new ArgumentException($"Different columns must be chosen: Column ii = Column jj = {ii.X}");
@@ -273,7 +273,7 @@ namespace MPT.Math.Algebra
         /// <returns>System.Double.</returns>
         public static double IntersectionX(double y, CartesianCoordinate I, CartesianCoordinate J, double tolerance = Numbers.ZeroTolerance)
         {
-            double actualTolerance = Helper.GetTolerance(I, J, tolerance);
+            double actualTolerance = Generics.GetTolerance(I, J, tolerance);
             return IntersectionX(y, I.X, I.Y, J.X, J.Y, actualTolerance);
         }
         /// <summary>

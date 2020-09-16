@@ -14,7 +14,7 @@
 namespace MPT.Math
 {
     /// <summary>
-    /// Interface ITolerance
+    /// Interface for objects that use a tolerance for floating-point numerical operations.
     /// </summary>
     public interface ITolerance
     {
