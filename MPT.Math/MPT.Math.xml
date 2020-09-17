@@ -2011,6 +2011,11 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ICurve" />
         </member>
+        <member name="F:MPT.Math.Curves.Curve._tolerance">
+            <summary>
+            The tolerance.
+            </summary>
+        </member>
         <member name="P:MPT.Math.Curves.Curve.Tolerance">
             <summary>
             Tolerance to use in all calculations with double types.
@@ -2029,11 +2034,27 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ICurve" />
         </member>
+        <member name="P:MPT.Math.Curves.LinearCurve.Tolerance">
+            <summary>
+            Tolerance to use in all calculations with double types.
+            </summary>
+            <value>The tolerance.</value>
+        </member>
+        <member name="F:MPT.Math.Curves.LinearCurve._controlPointI">
+            <summary>
+            The control point i
+            </summary>
+        </member>
         <member name="P:MPT.Math.Curves.LinearCurve.ControlPointI">
             <summary>
             Gets the control point i.
             </summary>
             <value>The control point i.</value>
+        </member>
+        <member name="F:MPT.Math.Curves.LinearCurve._controlPointJ">
+            <summary>
+            The control point j
+            </summary>
         </member>
         <member name="P:MPT.Math.Curves.LinearCurve.ControlPointJ">
             <summary>
@@ -2150,9 +2171,19 @@
             <param name="x">X-coordinate for which a y-coordinate is desired.</param>
             <returns></returns>
         </member>
+        <member name="F:MPT.Math.Curves.LinearCurve._limitMin">
+            <summary>
+            The limit minimum
+            </summary>
+        </member>
         <member name="P:MPT.Math.Curves.LinearCurve.LimitMin">
             <summary>
             First coordinate control value.
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.LinearCurve._limitMax">
+            <summary>
+            The limit maximum
             </summary>
         </member>
         <member name="P:MPT.Math.Curves.LinearCurve.LimitMax">

@@ -18,12 +18,34 @@ namespace MPT.Math.UnitTests.Curves
         [Test]
         public static void Initialization_with_Coordinates_Results_in_Object_with_Immutable_Coordinates_Properties_List()
         {
-            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(3, 4), new CartesianCoordinate(5, 6));
+            LinearCurve linearCurve = new LinearCurve(new CartesianCoordinate(3, 4), new CartesianCoordinate(5, 6));
 
-            Assert.AreEqual(3, lineSegment.ControlPointI.X);
-            Assert.AreEqual(4, lineSegment.ControlPointI.Y);
-            Assert.AreEqual(5, lineSegment.ControlPointJ.X);
-            Assert.AreEqual(6, lineSegment.ControlPointJ.Y);
+            Assert.AreEqual(3, linearCurve.ControlPointI.X);
+            Assert.AreEqual(4, linearCurve.ControlPointI.Y);
+            Assert.AreEqual(5, linearCurve.ControlPointJ.X);
+            Assert.AreEqual(6, linearCurve.ControlPointJ.Y);
+        }
+
+        [Test]
+        public static void Changing_Tolerance_Cascades_to_Properties()
+        {
+            double defaultTolerance = 10E-6; 
+            LinearCurve linearRuce = new LinearCurve(new CartesianCoordinate(3, 4), new CartesianCoordinate(5, 6));
+
+            Assert.AreEqual(defaultTolerance, linearRuce.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.ControlPointI.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.ControlPointJ.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.LimitMax.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.LimitMin.Tolerance);
+
+            double newTolerance = 10E-3;
+            linearRuce.Tolerance = newTolerance;
+
+            Assert.AreEqual(newTolerance, linearRuce.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.ControlPointI.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.ControlPointJ.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.LimitMax.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.LimitMin.Tolerance);
         }
         #endregion
 

@@ -9,11 +9,19 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ICurve" />
     public abstract class Curve : ICurve, ICloneable
     {
-        #region Properties
+        #region Properties        
+        /// <summary>
+        /// The tolerance.
+        /// </summary>
+        protected double _tolerance = 10E-6;
         /// <summary>
         /// Tolerance to use in all calculations with double types.
         /// </summary>
-        public double Tolerance { get; set; } = 10E-6;
+        public virtual double Tolerance 
+        {
+            get => _tolerance;
+            set => _tolerance = value; 
+        }
 
         /// <summary>
         /// Creates a new object that is a copy of the current instance.

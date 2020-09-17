@@ -13,18 +13,43 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ICurve" />
     public class LinearCurve : Curve
     {
-        #region Properties
+        #region Properties        
+        /// <summary>
+        /// Tolerance to use in all calculations with double types.
+        /// </summary>
+        /// <value>The tolerance.</value>
+        public override double Tolerance 
+        { 
+            get => base.Tolerance; 
+            set
+            {
+                base.Tolerance = value;
+                _controlPointI.Tolerance = _tolerance;
+                _controlPointJ.Tolerance = _tolerance;
+                _limitMin.Tolerance = _tolerance;
+                _limitMax.Tolerance = _tolerance;
+            }
+        }
+
+        /// <summary>
+        /// The control point i
+        /// </summary>
+        protected CartesianCoordinate _controlPointI;
         /// <summary>
         /// Gets the control point i.
         /// </summary>
         /// <value>The control point i.</value>
-        public CartesianCoordinate ControlPointI { get; set; }
+        public CartesianCoordinate ControlPointI => _controlPointI;
 
+        /// <summary>
+        /// The control point j
+        /// </summary>
+        protected CartesianCoordinate _controlPointJ;
         /// <summary>
         /// Gets the control point j.
         /// </summary>
         /// <value>The control point j.</value>
-        public CartesianCoordinate ControlPointJ { get; set; }
+        public CartesianCoordinate ControlPointJ => _controlPointJ;
         #endregion
 
         #region Initialization
@@ -35,10 +60,12 @@ namespace MPT.Math.Curves
         /// <param name="j">Second point of the line.</param>
         public LinearCurve(CartesianCoordinate i, CartesianCoordinate j) 
         {
-            ControlPointI = i;
-            ControlPointJ = j;
-            LimitMin = i;
-            LimitMax = j;
+            i.Tolerance = _tolerance;
+            j.Tolerance = _tolerance;
+            _controlPointI = i;
+            _controlPointJ = j;
+            _limitMin = i;
+            _limitMax = j;
         }
 
         /// <summary>
@@ -216,16 +243,24 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits
+        #region Methods: Properties Derived with Limits        
+        /// <summary>
+        /// The limit minimum
+        /// </summary>
+        protected CartesianCoordinate _limitMin;
         /// <summary>
         /// First coordinate control value.
         /// </summary>
-        public CartesianCoordinate LimitMin { get; }
+        public CartesianCoordinate LimitMin => _limitMin;
 
+        /// <summary>
+        /// The limit maximum
+        /// </summary>
+        protected CartesianCoordinate _limitMax;
         /// <summary>
         /// Second coordinate control value.
         /// </summary>
-        public CartesianCoordinate LimitMax { get; }
+        public CartesianCoordinate LimitMax => _limitMax;
 
         /// <summary>
         /// Length of the line segment.
