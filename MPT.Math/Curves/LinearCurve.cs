@@ -274,6 +274,15 @@ namespace MPT.Math.Curves
 
         #region Methods: Public
         /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - X-Intercept: " + InterceptX() + ", Y-Intercept: " + InterceptY() + ", Slope: " + Slope();
+        }
+
+        /// <summary>
         /// Returns a point where the line segment intersects the provided line segment.
         /// </summary>
         /// <param name="otherLine">Line segment that intersects the current line segment.</param>
@@ -282,6 +291,16 @@ namespace MPT.Math.Curves
         {
             return LineIntersect(Slope(), InterceptX(), InterceptY(),
                                  otherLine.Slope(), otherLine.InterceptX(), otherLine.InterceptY());
+        }
+
+        /// <summary>
+        /// Coordinate of where a perpendicular projection intersects the provided coordinate.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public CartesianCoordinate CoordinateOfPerpendicularProjection(CartesianCoordinate point)
+        {
+            return CoordinateOfPerpendicularProjection(point, this);
         }
         #endregion
 
@@ -603,6 +622,25 @@ namespace MPT.Math.Curves
 
         #endregion
 
+        #region Projection
+        /// <summary>
+        /// Coordinate of where a perpendicular projection intersects the provided coordinate.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <param name="referenceLine">The line to which a perpendicular projection is drawn.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate CoordinateOfPerpendicularProjection(CartesianCoordinate point, LinearCurve referenceLine)
+        {
+            // 1. Get normal vector to curve
+            Vector normalVector = referenceLine.NormalVector();
+
+            // 2. Create new curve B by applying normal vector to point
+            LinearCurve offsetCurve = new LinearCurve(point, point + new CartesianOffset(normalVector.Xcomponent, normalVector.Ycomponent));
+
+            // 3. Return intersection of curve B to current segment curve
+            return referenceLine.IntersectionCoordinate(offsetCurve);
+        }
+        #endregion
         #endregion
 
         #region ICloneable

@@ -330,6 +330,16 @@ namespace MPT.Math.UnitTests.Curves
         #endregion
 
         #region Methods: Public
+        [Test]
+        public static void ToString_Returns_Overridden_Value()
+        {
+            CartesianCoordinate coordinateI = new CartesianCoordinate(2, 2);
+            CartesianCoordinate coordinateJ = new CartesianCoordinate(4, 3);
+            LinearCurve linearCurve = new LinearCurve(coordinateI, coordinateJ);
+
+            Assert.AreEqual("MPT.Math.Curves.LinearCurve - X-Intercept: -2, Y-Intercept: 1, Slope: 0.5", linearCurve.ToString());
+        }
+
         [TestCase(-5, 6, -3, -2, 1, 5, -7, 3, -4.411765, 3.647059)] // sloped perpendicular, within points
         [TestCase(-5, 2, -5, 8, -5, 6, 5, 6, -5, 6)] // aligned perpendicular + vertical, within points
         [TestCase(-5, 8, -5, 2, -5, 6, 5, 6, -5, 6)] // aligned perpendicular - vertical, within points
@@ -358,6 +368,78 @@ namespace MPT.Math.UnitTests.Curves
 
             Assert.AreEqual(expectedX, coordinateResult.X, Tolerance);
             Assert.AreEqual(expectedY, coordinateResult.Y, Tolerance);
+        }
+
+        [TestCase(-7, 7, -6, 4)]
+        [TestCase(-5, 1, -6, 4)]
+        [TestCase(-4, 8, -3, 5)]
+        [TestCase(-2, 2, -3, 5)]
+        [TestCase(-1, 9, 0, 6)]
+        [TestCase(1, 3, 0, 6)]
+        [TestCase(5, 11, 6, 8)]
+        [TestCase(7, 5, 6, 8)]
+        [TestCase(8, 12, 9, 9)]
+        [TestCase(10, 6, 9, 9)]
+        public static void CoordinateOfPerpendicularProjection_Sloped_Line(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(-3, 5), new CartesianCoordinate(6, 8));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = lineSegment.CoordinateOfPerpendicularProjection(coordinate);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
+        }
+
+        [TestCase(2, 10, 5, 10)]
+        [TestCase(8, 10, 5, 10)]
+        [TestCase(2, 8, 5, 8)]
+        [TestCase(8, 8, 5, 8)]
+        [TestCase(2, 6, 5, 6)]
+        [TestCase(8, 6, 5, 6)]
+        [TestCase(2, 4, 5, 4)]
+        [TestCase(8, 4, 5, 4)]
+        [TestCase(2, 2, 5, 2)]
+        [TestCase(8, 2, 5, 2)]
+        public static void CoordinateOfPerpendicularProjection_Vertical_Line(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(5, 4), new CartesianCoordinate(5, 8));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = lineSegment.CoordinateOfPerpendicularProjection(coordinate);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
+        }
+
+        [TestCase(3, 2, 3, 4)]
+        [TestCase(3, 6, 3, 4)]
+        [TestCase(6, 2, 6, 4)]
+        [TestCase(6, 6, 6, 4)]
+        [TestCase(9, 2, 9, 4)]
+        [TestCase(9, 6, 9, 4)]
+        [TestCase(12, 2, 12, 4)]
+        [TestCase(12, 6, 12, 4)]
+        [TestCase(15, 2, 15, 4)]
+        [TestCase(15, 6, 15, 4)]
+        public static void CoordinateOfPerpendicularProjection_Horizontal_Line(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(6, 4), new CartesianCoordinate(12, 4));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = lineSegment.CoordinateOfPerpendicularProjection(coordinate);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
         }
         #endregion
 
@@ -677,6 +759,79 @@ namespace MPT.Math.UnitTests.Curves
         }
         #endregion
 
+        #region Project
+        [TestCase(-7, 7, -6, 4)]
+        [TestCase(-5, 1, -6, 4)]
+        [TestCase(-4, 8, -3, 5)]
+        [TestCase(-2, 2, -3, 5)]
+        [TestCase(-1, 9, 0, 6)]
+        [TestCase(1, 3, 0, 6)]
+        [TestCase(5, 11, 6, 8)]
+        [TestCase(7, 5, 6, 8)]
+        [TestCase(8, 12, 9, 9)]
+        [TestCase(10, 6, 9, 9)]
+        public static void CoordinateOfPerpendicularProjection_Sloped_Line_Static(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(-3, 5), new CartesianCoordinate(6, 8));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = LinearCurve.CoordinateOfPerpendicularProjection(coordinate, lineSegment);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
+        }
+
+        [TestCase(2, 10, 5, 10)]
+        [TestCase(8, 10, 5, 10)]
+        [TestCase(2, 8, 5, 8)]
+        [TestCase(8, 8, 5, 8)]
+        [TestCase(2, 6, 5, 6)]
+        [TestCase(8, 6, 5, 6)]
+        [TestCase(2, 4, 5, 4)]
+        [TestCase(8, 4, 5, 4)]
+        [TestCase(2, 2, 5, 2)]
+        [TestCase(8, 2, 5, 2)]
+        public static void CoordinateOfPerpendicularProjection_Vertical_Line_Static(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(5, 4), new CartesianCoordinate(5, 8));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = LinearCurve.CoordinateOfPerpendicularProjection(coordinate, lineSegment);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
+        }
+
+        [TestCase(3, 2, 3, 4)]
+        [TestCase(3, 6, 3, 4)]
+        [TestCase(6, 2, 6, 4)]
+        [TestCase(6, 6, 6, 4)]
+        [TestCase(9, 2, 9, 4)]
+        [TestCase(9, 6, 9, 4)]
+        [TestCase(12, 2, 12, 4)]
+        [TestCase(12, 6, 12, 4)]
+        [TestCase(15, 2, 15, 4)]
+        [TestCase(15, 6, 15, 4)]
+        public static void CoordinateOfPerpendicularProjection_Horizontal_Line_Static(double x, double y, double xExpected, double yExpected)
+        {
+            LinearCurve lineSegment = new LinearCurve(new CartesianCoordinate(6, 4), new CartesianCoordinate(12, 4));
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedPerpendicularIntersection = new CartesianCoordinate(xExpected, yExpected);
+
+            CartesianCoordinate actualPerpendicularIntersection = LinearCurve.CoordinateOfPerpendicularProjection(coordinate, lineSegment);
+
+            expectedPerpendicularIntersection.Tolerance = Tolerance;
+            actualPerpendicularIntersection.Tolerance = Tolerance;
+
+            Assert.AreEqual(expectedPerpendicularIntersection, actualPerpendicularIntersection);
+        }
+        #endregion
         #endregion
     }
 }
