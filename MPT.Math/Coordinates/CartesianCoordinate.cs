@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.CoordinateConverters;
+using MPT.Math.Curves;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using System;
@@ -108,7 +109,8 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Methods: Public Static        
+
+        #region Methods: Static/ITransform      
         /// <summary>
         /// Rotates the the specified coordinate by the specified angle about a point.
         /// </summary>
@@ -116,7 +118,10 @@ namespace MPT.Math.Coordinates
         /// <param name="centerOfRotation">The center of rotation.</param>
         /// <param name="angleRadians">The angle [radians], where counter-clockwise is positive.</param>
         /// <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
-        public static CartesianCoordinate RotateAboutPoint(CartesianCoordinate coordinate, CartesianCoordinate centerOfRotation, double angleRadians)
+        public static CartesianCoordinate RotateAboutPoint(
+            CartesianCoordinate coordinate, 
+            CartesianCoordinate centerOfRotation, 
+            double angleRadians)
         {
             // Move coordinate such that center of rotation is at origin
             CartesianCoordinate centeredCoordinate = coordinate - centerOfRotation;
@@ -140,6 +145,119 @@ namespace MPT.Math.Coordinates
             double yRotated = coordinate.X * Trig.Sin(angleRadians) + coordinate.Y * Trig.Cos(angleRadians);
 
             return new CartesianCoordinate(xRotated, yRotated);
+        }
+
+        /// <summary>
+        /// Scales the specified coordinate from the specified point.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="referencePoint">The reference point.</param>
+        /// <param name="scale">The scale.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate ScaleFromPoint(
+            CartesianCoordinate coordinate, 
+            CartesianCoordinate referencePoint, 
+            double scale)
+        {
+            // Move coordinate such that reference point is at origin
+            CartesianCoordinate centeredCoordinate = coordinate - referencePoint;
+
+            // Scale coordinate
+            CartesianCoordinate rotatedCoordinate = Scale(centeredCoordinate, scale);
+
+            // Move coordinate such that reference point is back at original coordinate
+            return rotatedCoordinate + referencePoint;
+        }
+
+        /// <summary>
+        /// Scales the specified coordinate about the origin.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="scale">The scale.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate Scale(CartesianCoordinate coordinate, double scale)
+        {
+            return scale * coordinate;
+        }
+
+        /// <summary>
+        /// Skews the specified coordinate scale to the skewing of a containing box.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="stationaryReferencePoint">The stationary reference point of the skew box.</param>
+        /// <param name="skewingReferencePoint">The skewing reference point of the skew box.</param>
+        /// <param name="magnitude">The magnitude to skew along the x-axis and y-axis.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate SkewWithinBox(
+            CartesianCoordinate coordinate, 
+            CartesianCoordinate stationaryReferencePoint,
+            CartesianCoordinate skewingReferencePoint,
+            CartesianOffset magnitude)
+        {
+            CartesianOffset skewBoxOffset = skewingReferencePoint.OffsetFrom(stationaryReferencePoint);
+            double lambdaX = magnitude.X() / skewBoxOffset.Y();
+            double lambdaY = magnitude.Y() / skewBoxOffset.X();
+
+            return Skew(coordinate, lambdaX, lambdaY);
+        }
+
+        /// <summary>
+        /// Skews the specified coordinate about the origin.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="lambda">The magnitude to skew along the x-axis and y-axis.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate Skew(CartesianCoordinate coordinate, CartesianOffset lambda)
+        {
+            return Skew(coordinate, lambda.X(), lambda.Y());
+        }
+
+        /// <summary>
+        /// Skews the specified coordinate about the origin.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="lambdaX">The magnitude to skew along the x-axis.</param>
+        /// <param name="lambdaY">The magnitude to skew along the y-axis.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate Skew(CartesianCoordinate coordinate, double lambdaX, double lambdaY)
+        {
+            return new CartesianCoordinate(coordinate.X + lambdaX * coordinate.Y, coordinate.Y + lambdaY * coordinate.X);
+        }
+
+        /// <summary>
+        /// Mirrors the specified coordinate about the specified line.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="referenceLine">The reference line.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate MirrorAboutLine(
+            CartesianCoordinate coordinate, 
+            LinearCurve referenceLine)
+        {
+            CartesianCoordinate reflectionLinePoint = referenceLine.CoordinateOfPerpendicularProjection(coordinate);
+            CartesianOffset deltaReflection = 2 * reflectionLinePoint.OffsetFrom(coordinate);
+
+            return coordinate + deltaReflection;
+        }
+
+        /// <summary>
+        /// Mirrors the specified coordinate about the x-axis.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate MirrorAboutAxisX(CartesianCoordinate coordinate)
+        {
+            return new CartesianCoordinate(coordinate.X, -coordinate.Y);
+        }
+
+        /// <summary>
+        /// Mirrors the specified coordinate about the y-axis.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate MirrorAboutAxisY(CartesianCoordinate coordinate)
+        {
+            return new CartesianCoordinate(-coordinate.X, coordinate.Y);
         }
         #endregion
 

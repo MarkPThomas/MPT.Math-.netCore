@@ -1,4 +1,5 @@
 ﻿using MPT.Math.Coordinates;
+using MPT.Math.Curves;
 using NUnit.Framework;
 using System;
 
@@ -97,7 +98,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
         #endregion
 
-        #region Methods: Public Static
+        #region Methods: Static/ITransform
         [TestCase(0, 0, Numbers.PiOver2, 0, 0)]
         [TestCase(3, 4, 0, 3, 4)]
         [TestCase(3, 4, 0.785398, -0.707107, 4.949747)]
@@ -108,9 +109,13 @@ namespace MPT.Math.UnitTests.Coordinates
         [TestCase(3, 4, 4.712389, 4, -3)]
         [TestCase(3, 4, 5.497787, 4.949747, 0.707107)]
         [TestCase(3, 4, 6.283185, 3, 4)]
-        public static void Rotate(double x, double y, double angleRadians, double expectedX, double expectedY)
+        public static void Rotate(
+            double x, double y, 
+            double angleRadians, 
+            double expectedX, double expectedY)
         {
             CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+
             CartesianCoordinate cartesianCoordinate = CartesianCoordinate.Rotate(coordinate, angleRadians);
 
             Assert.AreEqual(expectedX, cartesianCoordinate.X, Tolerance);
@@ -126,14 +131,184 @@ namespace MPT.Math.UnitTests.Coordinates
         [TestCase(3, 4, 2, 1, 4.712389, 5, 0)]
         [TestCase(3, 4, 2, 1, 5.497787, 4.828427, 2.414214)]
         [TestCase(3, 4, 2, 1, 6.283185, 3, 4)]
-        public static void RotateAboutPoint(double x, double y, double centerX, double centerY, double angleRadians, double expectedX, double expectedY)
+        public static void RotateAboutPoint(
+            double x, double y,
+            double centerX, double centerY, double angleRadians,
+            double expectedX, double expectedY)
         {
             CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
             CartesianCoordinate centerOfRotation = new CartesianCoordinate(centerX, centerY);
+
             CartesianCoordinate cartesianCoordinate = CartesianCoordinate.RotateAboutPoint(coordinate, centerOfRotation, angleRadians);
 
             Assert.AreEqual(expectedX, cartesianCoordinate.X, Tolerance);
             Assert.AreEqual(expectedY, cartesianCoordinate.Y, Tolerance);
+        }
+
+        [TestCase(3, 2, 2, 6, 4)]    // Default - larger, Quadrant I
+        [TestCase(3, 2, 0.5, 1.5, 1)]    // Smaller
+        [TestCase(3, 2, -2, -6, -4)]    // Negative
+        [TestCase(3, 2, 0, 0, 0)]    // 0
+        [TestCase(-3, 2, 2, -6, 4)]    // Default in Quadrant II
+        [TestCase(-3, -2, 2, -6, -4)]    // Default in Quadrant III
+        [TestCase(3, -2, 2, 6, -4)]    // Default in Quadrant IV
+        public static void Scale(
+            double x, double y,
+            double scale,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.Scale(coordinate, scale);
+
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 2, 6, 4)]    // Default - larger, Quadrant I
+        [TestCase(3, 2, 0.5, 1.5, 1)]    // Smaller
+        [TestCase(3, 2, -2, -6, -4)]    // Negative
+        [TestCase(3, 2, 0, 0, 0)]    // 0
+        [TestCase(-3, 2, 2, -6, 4)]    // Default in Quadrant II
+        [TestCase(-3, -2, 2, -6, -4)]    // Default in Quadrant III
+        [TestCase(3, -2, 2, 6, -4)]    // Default in Quadrant IV
+        public static void ScaleFromPoint(
+            double x, double y,
+            double scale,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate referencePoint = new CartesianCoordinate(2, -3);
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y) + referencePoint;
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY) + referencePoint;
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.ScaleFromPoint(coordinate, referencePoint, scale);
+
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 0.4, 0, 3.8, 2)]    // Shear +x
+        [TestCase(3, 2, -0.4, 0, 2.2, 2)]    // Shear -x
+        [TestCase(3, 2, 0, 0.4, 3, 3.2)]    // Shear +y
+        [TestCase(3, 2, 0, -0.4, 3, 0.8)]    // Shear -y
+        [TestCase(3, 2, 0.4, 0.6, 3.8, 3.8)]    // Shear +x, +y, Quadrant I
+        [TestCase(-3, 2, 0.4, -1.5, -2.2, 6.5)]    // Shear +x, +y, Quadrant II
+        [TestCase(-3, -2, -1, -1.5, -1, 2.5)]    // Shear +x, +y, Quadrant III
+        [TestCase(3, -2, -1, 0.6, 5, -0.2)]    // Shear +x, +y, Quadrant IV
+        public static void Skew_With_Lambdas(
+            double x, double y,
+            double lambdaX, double lambdaY,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.Skew(coordinate, lambdaX, lambdaY);
+            transformedCoordinate.Tolerance = Tolerance;
+            expectedCoordinate.Tolerance = Tolerance;
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 0.4, 0, 3.8, 2)]    // Shear +x
+        [TestCase(3, 2, -0.4, 0, 2.2, 2)]    // Shear -x
+        [TestCase(3, 2, 0, 0.4, 3, 3.2)]    // Shear +y
+        [TestCase(3, 2, 0, -0.4, 3, 0.8)]    // Shear -y
+        [TestCase(3, 2, 0.4, 0.6, 3.8, 3.8)]    // Shear +x, +y, Quadrant I
+        [TestCase(-3, 2, 0.4, -1.5, -2.2, 6.5)]    // Shear +x, +y, Quadrant II
+        [TestCase(-3, -2, -1, -1.5, -1, 2.5)]    // Shear +x, +y, Quadrant III
+        [TestCase(3, -2, -1, 0.6, 5, -0.2)]    // Shear +x, +y, Quadrant IV
+        public static void Skew_With_Lambda_Object(
+            double x, double y,
+            double lambdaX, double lambdaY,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+            CartesianOffset magnitude = new CartesianOffset(lambdaX, lambdaY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.Skew(coordinate, magnitude);
+            transformedCoordinate.Tolerance = Tolerance;
+            expectedCoordinate.Tolerance = Tolerance;
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 0, 0, 5, 5, 2, 0, 3.8, 2)]    // Shear +x
+        [TestCase(3, 2, 0, 0, 5, 5, -2, 0, 2.2, 2)]    // Shear -x
+        [TestCase(3, 2, 0, 0, 5, 5, 0, 2, 3, 3.2)]    // Shear +y
+        [TestCase(3, 2, 0, 0, 5, 5, 0, -2, 3, 0.8)]    // Shear -y
+        [TestCase(3, 2, 0, 0, 5, 5, 2, 3, 3.8, 3.8)]    // Shear +x, +y, Quadrant I
+        [TestCase(-3, 2, 0, 0, -5, 5, 2, 3, -2.2, 3.8)]    // Shear +x, +y, Quadrant II
+        [TestCase(-3, -2, 0, 0, -5, -5, 2, 3, -2.2, -0.2)]    // Shear +x, +y, Quadrant III
+        [TestCase(3, -2, 0, 0, 5, -5, 2, 3, 3.8, -0.2)]    // Shear +x, +y, Quadrant IV
+        [TestCase(3, 2, 2, 2, 5, 5, 2, 0, 4.33333333333333, 2)]    // Bounding box as skew box
+        [TestCase(3, 2, 2, 2, 5, 5, 0, 2, 3, 4)]    // Bounding box as skew box
+        public static void SkewWithinBox(
+            double x, double y,
+            double stationaryPointX, double stationaryPointY,
+            double skewingPointX, double skewingPointY,
+            double magnitudeX, double magnitudeY,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+            CartesianCoordinate stationaryReferencePoint = new CartesianCoordinate(stationaryPointX, stationaryPointY);
+            CartesianCoordinate skewingReferencePoint = new CartesianCoordinate(skewingPointX, skewingPointY);
+            CartesianOffset magnitude = new CartesianOffset(magnitudeX, magnitudeY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.SkewWithinBox(coordinate, stationaryReferencePoint, skewingReferencePoint, magnitude);
+
+            expectedCoordinate.Tolerance = Tolerance;
+            transformedCoordinate.Tolerance = Tolerance;
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 3, -2)]    // Mirror about x-axis to Quadrant IV
+        [TestCase(3, 2, 3, -2)]    // Mirror about x-axis to Quadrant IV, reversed line
+        public static void MirrorAboutAxisX(
+            double x, double y,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.MirrorAboutAxisX(coordinate);
+
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, -3, 2)]    // Mirror about y-axis to Quadrant II
+        [TestCase(3, 2, -3, 2)]    // Mirror about y-axis to Quadrant II, reversed line
+        public static void MirrorAboutAxisY(
+            double x, double y,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.MirrorAboutAxisY(coordinate);
+
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+
+        [TestCase(3, 2, 0, 1, 0, -1, -3, 2)]    // Mirror about y-axis to Quadrant II
+        [TestCase(3, 2, 0, -1, 0, 1, -3, 2)]    // Mirror about y-axis to Quadrant II, reversed line
+        [TestCase(3, 2, 1, 0, -1, 0, 3, -2)]    // Mirror about x-axis to Quadrant IV
+        [TestCase(3, 2, -1, 0, 1, 0, 3, -2)]    // Mirror about x-axis to Quadrant IV, reversed line
+        [TestCase(3, 2, 0, 0, 1, 1, 2, 3)]    // Mirror about 45 deg sloped line about shape center
+        [TestCase(3, 2, 0, 0, -1, -1, 2, 3)]    // Mirror about 45 deg sloped line about shape center, reversed line
+        [TestCase(3, 2, 0, 0, -1, 1, -2, -3)]    // Mirror about 45 deg sloped line to quadrant III
+        [TestCase(3, 2, 0, 0, 1, -1, -2, -3)]    // Mirror about 45 deg sloped line to quadrant III, reversed line
+        public static void MirrorAboutLine(
+            double x, double y,
+            double lineX1, double lineY1, double lineX2, double lineY2,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY);
+            LinearCurve lineOfReflection = new LinearCurve(new CartesianCoordinate(lineX1, lineY1), new CartesianCoordinate(lineX2, lineY2));
+            
+            CartesianCoordinate transformedCoordinate = CartesianCoordinate.MirrorAboutLine(coordinate, lineOfReflection);
+
+            Assert.AreEqual(expectedCoordinate, transformedCoordinate);
         }
         #endregion
 

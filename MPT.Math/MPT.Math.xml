@@ -1021,6 +1021,72 @@
             <param name="angleRadians">The angle [radians], where counter-clockwise is positive.</param>
             <returns>MPT.Math.Coordinates.CartesianCoordinate.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.ScaleFromPoint(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Scales the specified coordinate from the specified point.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="referencePoint">The reference point.</param>
+            <param name="scale">The scale.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Scale(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Scales the specified coordinate about the origin.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="scale">The scale.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.SkewWithinBox(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianOffset)">
+            <summary>
+            Skews the specified coordinate scale to the skewing of a containing box.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="stationaryReferencePoint">The stationary reference point of the skew box.</param>
+            <param name="skewingReferencePoint">The skewing reference point of the skew box.</param>
+            <param name="magnitude">The magnitude to skew along the x-axis and y-axis.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Skew(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianOffset)">
+            <summary>
+            Skews the specified coordinate about the origin.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="lambda">The magnitude to skew along the x-axis and y-axis.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Skew(MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double)">
+            <summary>
+            Skews the specified coordinate about the origin.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="lambdaX">The magnitude to skew along the x-axis.</param>
+            <param name="lambdaY">The magnitude to skew along the y-axis.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.MirrorAboutLine(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Mirrors the specified coordinate about the specified line.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="referenceLine">The reference line.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.MirrorAboutAxisX(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Mirrors the specified coordinate about the x-axis.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.MirrorAboutAxisY(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Mirrors the specified coordinate about the y-axis.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Equality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
             Implements the == operator.
@@ -2197,12 +2263,25 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IntersectionCoordinate(MPT.Math.Curves.LinearCurve)">
             <summary>
             Returns a point where the line segment intersects the provided line segment.
             </summary>
             <param name="otherLine">Line segment that intersects the current line segment.</param>
             <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CoordinateOfPerpendicularProjection(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Coordinate of where a perpendicular projection intersects the provided coordinate.
+            </summary>
+            <param name="point">The point.</param>
+            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IsHorizontal(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
@@ -2375,6 +2454,14 @@
             <param name="yIntercept2">Y-intercept of the second line.</param>
             <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
             <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CoordinateOfPerpendicularProjection(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Coordinate of where a perpendicular projection intersects the provided coordinate.
+            </summary>
+            <param name="point">The point.</param>
+            <param name="referenceLine">The line to which a perpendicular projection is drawn.</param>
+            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.Clone">
             <summary>
