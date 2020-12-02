@@ -13,6 +13,7 @@
 // ***********************************************************************
 using MPT.Math.Algebra;
 using MPT.Math.NumberTypeExtensions;
+using MPT.Math.Trigonometry;
 using System;
 using NMath = System.Math;
 
@@ -101,6 +102,15 @@ namespace MPT.Math.Coordinates
         }
 
         /// <summary>
+        /// Converts to polar offset.
+        /// </summary>
+        /// <returns>PolarOffset.</returns>
+        public PolarOffset ToPolar()
+        {
+            return new PolarOffset(I, J, Tolerance);
+        }
+
+        /// <summary>
         /// Xj - Xi.
         /// </summary>
         /// <returns>System.Double.</returns>
@@ -125,6 +135,15 @@ namespace MPT.Math.Coordinates
         public double Length()
         {
             return AlgebraLibrary.SRSS(X(), Y());
+        }
+
+        /// <summary>
+        /// The slope angle of the offset.
+        /// </summary>
+        /// <returns>Angle.</returns>
+        public Angle SlopeAngle()
+        {
+            return TrigonometryLibrary.ArcTan(Y() / X());
         }
         #endregion
 
@@ -303,6 +322,22 @@ namespace MPT.Math.Coordinates
                 offset.J / denominator,
                 offset.Tolerance);
         }
+        #endregion
+
+        #region Operators: Conversion                
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="CartesianOffset"/> to <see cref="PolarOffset"/>.
+        /// </summary>
+        /// <param name="cartesian">The cartesian.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator PolarOffset(CartesianOffset cartesian) => cartesian.ToPolar();
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="PolarOffset"/> to <see cref="CartesianOffset"/>.
+        /// </summary>
+        /// <param name="polar">The polar.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static explicit operator CartesianOffset(PolarOffset polar) => polar.ToCartesian();
         #endregion
     }
 }

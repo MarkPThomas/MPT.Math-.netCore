@@ -4,14 +4,13 @@
 // Created          : 01-28-2017
 //
 // Last Modified By : Mark Thomas
-// Last Modified On : 05-26-2020
+// Last Modified On : 11-19-2020
 // ***********************************************************************
 // <copyright file="Vector.cs" company="Mark P Thomas, Inc.">
 //     Copyright ©  2020
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
 using MPT.Math.NumberTypeExtensions;
 using System;
@@ -20,9 +19,10 @@ using NMath = System.Math;
 namespace MPT.Math.Vectors
 {
     /// <summary>
-    /// Library of methods related to vectors.
+    /// Represents a linear curve vector in 2D space.
     /// </summary>
-    /// <seealso cref="System.IEquatable{Vector}" />
+    /// Implements the <see cref="IEquatable{Vector}" />
+    /// Implements the <see cref="ITolerance" /><seealso cref="IEquatable{Vector}" /><seealso cref="ITolerance" />
     public class Vector : IEquatable<Vector>, ITolerance
     {
         #region Properties
@@ -60,14 +60,13 @@ namespace MPT.Math.Vectors
         /// <returns>System.Double.</returns>
         public double Magnitude()
         {
-            //=> (Xcomponent.IsZeroSign() && Ycomponent.IsZeroSign()) ? 0 : getMagnitude(Xcomponent, Ycomponent);
-            return getMagnitude(Xcomponent, Ycomponent);
+            return VectorLibrary.Magnitude(Xcomponent, Ycomponent);
         }
 
         /// <summary>
         /// Gets the square of the length of this vector.
         /// </summary>
-        /// <returns>System.Double.</returns>
+        /// <value>The magnitude squared.</value>
         public double MagnitudeSquared => Xcomponent.Squared() + Ycomponent.Squared();
         #endregion
 
@@ -283,11 +282,39 @@ namespace MPT.Math.Vectors
         {
             return (0.5 * (CrossProduct(vector)));
         }
-        #endregion
 
-        #region Methods: Static        
         /// <summary>
         /// Returns a normalized vector.
+        /// </summary>
+        /// <returns>Vector.</returns>
+        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        public Vector UnitVector()
+        {
+            return UnitVector(Xcomponent, Ycomponent, Tolerance);
+        }
+
+        /// <summary>
+        /// Returns the tangent unit vector.
+        /// </summary>
+        /// <returns>Vector.</returns>
+        public Vector UnitTangentVector()
+        {
+            return UnitTangentVector(Xcomponent, Ycomponent, Tolerance);
+        }
+
+        /// <summary>
+        /// Returns a normal unit vector.
+        /// </summary>
+        /// <returns>Vector.</returns>
+        public Vector UnitNormalVector()
+        {
+            return UnitNormalVector(Xcomponent, Ycomponent, Tolerance);
+        }
+        #endregion
+
+        #region Methods: Static     
+        /// <summary>
+        /// Returns a normalized vector to the supplied points.
         /// </summary>
         /// <param name="i">The i.</param>
         /// <param name="j">The j.</param>
@@ -300,12 +327,30 @@ namespace MPT.Math.Vectors
             double xComponent = getXComponent(i, j);
             double yComponent = getYComponent(i, j);
 
-            return getUnitVector(xComponent, yComponent, tolerance);
+            return UnitVector(xComponent, yComponent, tolerance);
+        }
+
+        /// <summary>
+        /// Returns a normalized vector.
+        /// </summary>
+        /// <param name="xComponent">The x component.</param>
+        /// <param name="yComponent">The y component.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>Vector.</returns>
+        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        public static Vector UnitVector(double xComponent, double yComponent, double tolerance = Numbers.ZeroTolerance)
+        {
+            double magnitude = VectorLibrary.Magnitude(xComponent, yComponent);
+
+            xComponent /= magnitude;
+            yComponent /= magnitude;
+
+            return new Vector(xComponent, yComponent, tolerance);
         }
 
 
         /// <summary>
-        /// Returns the tangent vector to the supplied points.
+        /// Returns the tangent unit vector to the supplied points.
         /// </summary>
         /// <param name="i">First point.</param>
         /// <param name="j">Second point.</param>
@@ -318,7 +363,20 @@ namespace MPT.Math.Vectors
         }
 
         /// <summary>
-        /// Returns a normal vector to a line connecting two points.
+        /// Returns the tangent unit vector to the supplied components.
+        /// </summary>
+        /// <param name="xComponent">The x component.</param>
+        /// <param name="yComponent">The y component.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>Vector.</returns>
+        public static Vector UnitTangentVector(double xComponent, double yComponent, double tolerance = Numbers.ZeroTolerance)
+        {
+            return UnitVector(xComponent, yComponent, tolerance);
+        }
+
+
+        /// <summary>
+        /// Returns a normal unit vector to the supplied points.
         /// </summary>
         /// <param name="i">First point.</param>
         /// <param name="j">Second point.</param>
@@ -329,7 +387,20 @@ namespace MPT.Math.Vectors
             tolerance = Generics.GetTolerance(i, j, tolerance);
             double xComponent = getXComponent(i, j);
             double yComponent = getYComponent(i, j);
-            double magnitude = getMagnitude(xComponent, yComponent, tolerance);
+            return UnitNormalVector(xComponent, yComponent, tolerance);
+        }
+
+
+        /// <summary>
+        /// Returns a normal unit vector to the supplied components.
+        /// </summary>
+        /// <param name="xComponent">The x component.</param>
+        /// <param name="yComponent">The y component.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>Vector.</returns>
+        public static Vector UnitNormalVector(double xComponent, double yComponent, double tolerance = Numbers.ZeroTolerance)
+        {
+            double magnitude = VectorLibrary.Magnitude(xComponent, yComponent, tolerance);
 
             return new Vector(-yComponent / magnitude, xComponent / magnitude, tolerance);
         }
@@ -485,39 +556,6 @@ namespace MPT.Math.Vectors
         private static double getYComponent(CartesianCoordinate i, CartesianCoordinate j)
         {
             return j.Y - i.Y;
-        }
-
-        /// <summary>
-        /// Gets the magnitude.
-        /// </summary>
-        /// <param name="xComponent">The x component.</param>
-        /// <param name="yComponent">The y component.</param>
-        /// <param name="tolerance">The tolerance.</param>
-        /// <returns>System.Double.</returns>
-        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
-        private static double getMagnitude(double xComponent, double yComponent, double tolerance = Numbers.ZeroTolerance)
-        {
-            double magnitude = AlgebraLibrary.SRSS(xComponent, yComponent);
-            if (magnitude.IsZeroSign(tolerance)) { throw new Exception("Ill-formed vector. Vector magnitude cannot be zero."); }
-            return magnitude;
-        }
-
-        /// <summary>
-        /// Returns a normalized vector.
-        /// </summary>
-        /// <param name="xComponent">The x component.</param>
-        /// <param name="yComponent">The y component.</param>
-        /// <param name="tolerance">The tolerance.</param>
-        /// <returns>Vector.</returns>
-        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
-        private static Vector getUnitVector(double xComponent, double yComponent, double tolerance = Numbers.ZeroTolerance)
-        {
-            double magnitude = getMagnitude(xComponent, yComponent);
-
-            xComponent /= magnitude;
-            yComponent /= magnitude;
-
-            return new Vector(xComponent, yComponent, tolerance);
         }
         #endregion
 

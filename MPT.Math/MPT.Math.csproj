@@ -15,16 +15,22 @@
 
   <ItemGroup>
     <Compile Remove="Algebra\bin\**" />
+    <Compile Remove="Calculus\**" />
     <Compile Remove="Coordinates3D\**" />
-    <Compile Remove="Geometry\**" />
+    <Compile Remove="Curves\Parametrics\Cubics\**" />
+    <Compile Remove="Curves\Parametrics\Quadratics\**" />
     <Compile Remove="Matrices\**" />
     <EmbeddedResource Remove="Algebra\bin\**" />
+    <EmbeddedResource Remove="Calculus\**" />
     <EmbeddedResource Remove="Coordinates3D\**" />
-    <EmbeddedResource Remove="Geometry\**" />
+    <EmbeddedResource Remove="Curves\Parametrics\Cubics\**" />
+    <EmbeddedResource Remove="Curves\Parametrics\Quadratics\**" />
     <EmbeddedResource Remove="Matrices\**" />
     <None Remove="Algebra\bin\**" />
+    <None Remove="Calculus\**" />
     <None Remove="Coordinates3D\**" />
-    <None Remove="Geometry\**" />
+    <None Remove="Curves\Parametrics\Cubics\**" />
+    <None Remove="Curves\Parametrics\Quadratics\**" />
     <None Remove="Matrices\**" />
   </ItemGroup>
 
@@ -38,15 +44,26 @@
     <Compile Remove="CoordinateConverters\CylindricalSphericalConverter.cs" />
     <Compile Remove="Coordinates\BarycentricCoordinate.cs" />
     <Compile Remove="Coordinates\TrilinearCoordinate.cs" />
-    <Compile Remove="Curves\BezierCurve.cs" />
-    <Compile Remove="Curves\CircularCurve.cs" />
-    <Compile Remove="Curves\ConicSectionCurve.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicX.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicXs.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicXss.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicY.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicYs.cs" />
+    <Compile Remove="Curves\Parametrics\ConicSectionCurves\Hyperbolics\HyperbolicYss.cs" />
+    <Compile Remove="Curves\Parametrics\IParametricCartesian3D.cs" />
+    <Compile Remove="Curves\Parametrics\IParametricCylindrical.cs" />
+    <Compile Remove="Curves\Parametrics\IParametricLinear3D.cs" />
+    <Compile Remove="Curves\Parametrics\IParametricSpherical.cs" />
     <Compile Remove="Curves\CubicCurve.cs" />
-    <Compile Remove="Curves\EllipticalCurve.cs" />
-    <Compile Remove="Curves\HyperbolicCurve.cs" />
-    <Compile Remove="Curves\LogarithmicSpiral.cs" />
-    <Compile Remove="Curves\ParabolicCurve.cs" />
     <Compile Remove="Curves\QuadraticCurve.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionEllipticalElliptical.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearBezier.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearCubic.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearElliptical.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearHyperbolic.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearLogarithmicSpiral.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearParabolic.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionLinearQuadratic.cs" />
     <Compile Remove="Point.cs" />
     <Compile Remove="Vectors\Vector3D.cs" />
     <Compile Remove="Vectors\VectorPolar.cs" />

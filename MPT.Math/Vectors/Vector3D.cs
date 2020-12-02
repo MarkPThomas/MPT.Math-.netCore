@@ -19,9 +19,13 @@ using NMath = System.Math;
 namespace MPT.Math.Vectors
 {
     /// <summary>
-    /// Represents a vector in 3D space.
+    /// Represents a linear curve vector in 3D space.
     /// </summary>
-    /// <seealso cref="System.IEquatable{Vector3D}" />
+    /// Implements the <see cref="IEquatable{Vector3D}" />
+    /// Implements the <see cref="ITolerance" />
+    /// </summary>
+    /// <seealso cref="IEquatable{Vector}" />
+    /// <seealso cref="ITolerance" />
     public class Vector3D : IEquatable<Vector3D>, ITolerance
     {
         #region Properties

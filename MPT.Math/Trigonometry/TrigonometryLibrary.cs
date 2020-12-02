@@ -21,10 +21,10 @@ namespace MPT.Math.Trigonometry
     /// </summary>
     public static class TrigonometryLibrary
     {
-        
+
         // TODO: Work out if better to call System.Math often with this library, or just encapsulate methods.
         #region Functions from System.Math
-
+        #region Sin/Cos/Tan & Arc variations
         /// <summary>
         /// Returns the sine of the specified angle.
         /// </summary>
@@ -57,10 +57,10 @@ namespace MPT.Math.Trigonometry
         /// <returns>System.Double.</returns>
         public static double Tan(double radians, double tolerance = Numbers.ZeroTolerance)
         {
-            if (radians.IsEqualTo(Numbers.PiOver2, tolerance) || 
+            if (radians.IsEqualTo(Numbers.PiOver2, tolerance) ||
                 radians.IsEqualTo(3 * Numbers.PiOver2, tolerance)) { return double.PositiveInfinity; } // 90 deg
 
-            if (radians.IsEqualTo(-Numbers.PiOver2, tolerance) || 
+            if (radians.IsEqualTo(-Numbers.PiOver2, tolerance) ||
                 radians.IsEqualTo(-3 * Numbers.PiOver2, tolerance)) { return double.NegativeInfinity; } // -90 deg
 
             return NMath.Tan(radians);
@@ -96,8 +96,42 @@ namespace MPT.Math.Trigonometry
             return NMath.Atan(ratio);
         }
         #endregion
+        #region Hyperbolics
+        // https://en.wikipedia.org/wiki/Hyperbolic_functions
 
-        #region Angle/Ratio Methods (Sin, Cos, Tan, etc.)
+        /// <summary>
+        /// Returns the hyperbolic sine of the specified angle.
+        /// </summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <returns>System.Double.</returns>
+        public static double SinH(double radians)
+        {
+            return NMath.Sinh(radians);
+        }
+
+        /// <summary>
+        /// Returns the hyperbolic cosine of the specified angle.
+        /// </summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <returns>System.Double.</returns>
+        public static double CosH(double radians)
+        {
+            return NMath.Cosh(radians);
+        }
+
+        /// <summary>
+        /// Returns the hyperbolic tangent of the specified angle.
+        /// </summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <returns>System.Double.</returns>
+        public static double TanH(double radians)
+        {
+            return NMath.Tanh(radians);
+        }
+        #endregion
+        #endregion
+
+        #region Angle/Ratio Methods (Sec, Csc, Cot, etc.)
         /// <summary>
         /// Returns the secant of the specified angle.
         /// Returns <see cref="double.NegativeInfinity" /> if angle is a multiple of +/- π/2.

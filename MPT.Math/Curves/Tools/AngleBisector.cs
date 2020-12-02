@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MPT.Math.Curves
+namespace MPT.Math.Curves.Tools
 {
-    public class LogarithmicSpiral
+    public class AngleBisector
     {
     }
 }

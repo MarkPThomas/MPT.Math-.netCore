@@ -53,7 +53,7 @@ namespace MPT.Math.UnitTests.Coordinates
             double tolerance = 0.0002;
             PolarCoordinate coordinate = new PolarCoordinate(radius, azimuth, tolerance);
 
-            Assert.AreEqual("MPT.Math.Coordinates.PolarCoordinate - r:5.3, a:-2", coordinate.ToString());
+            Assert.AreEqual("MPT.Math.Coordinates.PolarCoordinate - radius:5.3, azimuth:-2", coordinate.ToString());
         }
         #endregion
 

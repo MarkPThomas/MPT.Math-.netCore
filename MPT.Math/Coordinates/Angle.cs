@@ -127,6 +127,19 @@ namespace MPT.Math.Coordinates
         }
 
         /// <summary>
+        /// Creates an Angle from a point.
+        /// The angle is assumed to lie between the origin, point, and positive horizontal axis.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <returns>Angle.</returns>
+        public static Angle CreateFromPoint(CartesianCoordinate point)
+        {
+            Vector vector1 = new Vector(new CartesianCoordinate(1, 0), CartesianCoordinate.Origin());
+            Vector vector2 = new Vector(CartesianCoordinate.Origin(), point);
+            return vector1.Angle(vector2);
+        }
+
+        /// <summary>
         /// Converts radians to degrees.
         /// </summary>
         /// <param name="radians">The angle in radians.</param>
@@ -244,6 +257,15 @@ namespace MPT.Math.Coordinates
             int revolutions = (int)NMath.Round(NMath.Floor(radians / roundedPi), inferredRounding);   
 
             return radians - revolutions * roundedPi;
+        }
+
+        /// <summary>
+        /// Returns a default static coordinate at the origin.
+        /// </summary>
+        /// <returns>Angle.</returns>
+        public static Angle Origin()
+        {
+            return new Angle(0);
         }
         #endregion
 

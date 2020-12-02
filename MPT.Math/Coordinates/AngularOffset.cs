@@ -4,7 +4,7 @@
 // Created          : 05-17-2020
 //
 // Last Modified By : Mark P Thomas
-// Last Modified On : 05-26-2020
+// Last Modified On : 09-16-2020
 // ***********************************************************************
 // <copyright file="AngularOffset.cs" company="Mark P Thomas, Inc.">
 //     Copyright © 2020
@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.NumberTypeExtensions;
+using MPT.Math.Vectors;
 using System;
 using NMath = System.Math;
 
@@ -72,6 +73,26 @@ namespace MPT.Math.Coordinates
             I = new Angle(0);
             J = new Angle(deltaAngle);
             Tolerance = tolerance;
+        }
+        #endregion
+
+        #region Methods: Static
+        /// <summary>
+        /// Creates an angular offset between 3 points.
+        /// The sign of the offset is dependent upon the ordering of the points.
+        /// </summary>
+        /// <param name="point1">The point1.</param>
+        /// <param name="point2">The point2.</param>
+        /// <param name="point3">The point3.</param>
+        /// <returns>Angle.</returns>
+        public static AngularOffset CreateFromPoints(
+            CartesianCoordinate point1,
+            CartesianCoordinate point2,
+            CartesianCoordinate point3)
+        {
+            Angle angle1 = new Vector(point1, point2).Angle();
+            Angle angle2 = new Vector(point2, point3).Angle();
+            return angle2.OffsetFrom(angle1);
         }
         #endregion
 
@@ -157,6 +178,12 @@ namespace MPT.Math.Coordinates
         {
             return a.Equals(b);
         }
+        /// <summary>
+        /// Implements the == operator.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(double a, AngularOffset b)
         {
             return a == b.Delta().Radians;
@@ -182,6 +209,12 @@ namespace MPT.Math.Coordinates
         {
             return !a.Equals(b);
         }
+        /// <summary>
+        /// Implements the != operator.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(double a, AngularOffset b)
         {
             return a != b.Delta().Radians;
@@ -429,6 +462,7 @@ namespace MPT.Math.Coordinates
         /// <param name="offset">The offset.</param>
         /// <param name="denominator">Denominator value.</param>
         /// <returns>The result of the operator.</returns>
+        /// <exception cref="DivideByZeroException"></exception>
         public static AngularOffset operator /(AngularOffset offset, double denominator)
         {
             if (denominator == 0) { throw new DivideByZeroException(); }

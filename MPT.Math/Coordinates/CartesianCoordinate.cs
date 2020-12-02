@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.Algebra;
 using MPT.Math.CoordinateConverters;
 using MPT.Math.Curves;
 using MPT.Math.NumberTypeExtensions;
@@ -107,8 +108,59 @@ namespace MPT.Math.Coordinates
         {
             return new CartesianOffset(coordinateI, this);
         }
+
+        /// <summary>
+        /// Returns a new coordinate offset by the provided parameters.
+        /// </summary>
+        /// <param name="distance">The distance to offset.</param>
+        /// <param name="rotation">The rotation.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public CartesianCoordinate OffsetCoordinate(double distance, Angle rotation)
+        {
+            return OffsetCoordinate(this, distance, rotation);
+        }
+
+        /// <summary>
+        /// The linear distance the coordinate is from the origin.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public double DistanceFromOrigin()
+        {
+            return AlgebraLibrary.SRSS(X, Y);
+        }
+
+        /// <summary>
+        /// The angle that the coordinate lies in from the positive horizontal axis. 
+        /// </summary>
+        /// <returns>Angle.</returns>
+        public Angle AngleFromHorizontalAxis()
+        {
+            return new Angle(Trig.ArcTan(Y / X));
+        }
         #endregion
 
+        #region Methods: Static
+        /// <summary>
+        /// Returns a default static coordinate at the origin.
+        /// </summary>
+        /// <returns></returns>
+        public static CartesianCoordinate Origin()
+        {
+            return new CartesianCoordinate(0, 0);
+        }
+
+        /// <summary>
+        /// Returns a new coordinate offset from the provided coordinate.
+        /// </summary>
+        /// <param name="distance">The distance to offset.</param>
+        /// <param name="center">The center.</param>
+        /// <param name="rotation">The rotation.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public static CartesianCoordinate OffsetCoordinate(CartesianCoordinate center, double distance, Angle rotation)
+        {
+            return new CartesianCoordinate(center.X + distance * Trig.Cos(rotation.Radians), center.Y + distance * Trig.Sin(rotation.Radians));
+        }
+        #endregion
 
         #region Methods: Static/ITransform      
         /// <summary>
@@ -181,7 +233,7 @@ namespace MPT.Math.Coordinates
         }
 
         /// <summary>
-        /// Skews the specified coordinate scale to the skewing of a containing box.
+        /// Skews the specified coordinate to the skewing of a containing box.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <param name="stationaryReferencePoint">The stationary reference point of the skew box.</param>
@@ -258,6 +310,17 @@ namespace MPT.Math.Coordinates
         public static CartesianCoordinate MirrorAboutAxisY(CartesianCoordinate coordinate)
         {
             return new CartesianCoordinate(-coordinate.X, coordinate.Y);
+        }
+        #endregion
+
+        #region Methods: Conversion        
+        /// <summary>
+        /// Converts the cartesian coordinate to a polar coordinate.
+        /// </summary>
+        /// <returns>PolarCoordinate.</returns>
+        public PolarCoordinate ToPolar()
+        {
+            return Cartesian2DPolarConverter.ToPolar(this);
         }
         #endregion
 
@@ -375,6 +438,22 @@ namespace MPT.Math.Coordinates
 
             return new CartesianCoordinate(x, y, coordinate.Tolerance);
         }
+        #endregion
+
+        #region Operators: Conversion        
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="CartesianCoordinate"/> to <see cref="PolarCoordinate"/>.
+        /// </summary>
+        /// <param name="cartesian">The cartesian.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator PolarCoordinate(CartesianCoordinate cartesian) => cartesian.ToPolar();
+
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="PolarCoordinate"/> to <see cref="CartesianCoordinate"/>.
+        /// </summary>
+        /// <param name="polar">The polar.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static explicit operator CartesianCoordinate(PolarCoordinate polar) => polar.ToCartesian();
         #endregion
 
         #region IEquatable

@@ -1,8 +1,25 @@
-﻿using MPT.Math.Algebra;
+﻿// ***********************************************************************
+// Assembly         : MPT.Math
+// Author           : Mark P Thomas
+// Created          : 06-07-2020
+//
+// Last Modified By : Mark P Thomas
+// Last Modified On : 11-22-2020
+// ***********************************************************************
+// <copyright file="LinearCurve.cs" company="Mark P Thomas, Inc.">
+//     Copyright (c) 2020. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
+using MPT.Math.Curves.Parametrics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
+using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
+using MPT.Math.Curves.Parametrics.Linear;
+using MPT.Math.Curves.Tools;
 
 namespace MPT.Math.Curves
 {
@@ -11,7 +28,7 @@ namespace MPT.Math.Curves
     /// Implements the <see cref="MPT.Math.Curves.ICurve" />
     /// </summary>
     /// <seealso cref="MPT.Math.Curves.ICurve" />
-    public class LinearCurve : Curve
+    public class LinearCurve : Curve, ICurveLimits
     {
         #region Properties        
         /// <summary>
@@ -26,8 +43,8 @@ namespace MPT.Math.Curves
                 base.Tolerance = value;
                 _controlPointI.Tolerance = _tolerance;
                 _controlPointJ.Tolerance = _tolerance;
-                _limitMin.Tolerance = _tolerance;
-                _limitMax.Tolerance = _tolerance;
+                _limitStart.Tolerance = _tolerance;
+                _limitEnd.Tolerance = _tolerance;
             }
         }
 
@@ -64,8 +81,17 @@ namespace MPT.Math.Curves
             j.Tolerance = _tolerance;
             _controlPointI = i;
             _controlPointJ = j;
-            _limitMin = i;
-            _limitMax = j;
+            _limitStart = i;
+            _limitEnd = j;
+        }
+
+        /// <summary>
+        /// Creates the parametric vector.
+        /// </summary>
+        /// <returns>VectorParametric.</returns>
+        protected override LinearParametricEquation createParametricEquation()
+        {
+            return new LinearParametric(this);
         }
 
         /// <summary>
@@ -113,8 +139,8 @@ namespace MPT.Math.Curves
         /// <summary>
         /// Lines are parallel to each other.
         /// </summary>
-        /// <param name="otherLine"></param>
-        /// <returns></returns>
+        /// <param name="otherLine">The other line.</param>
+        /// <returns><c>true</c> if the specified other line is parallel; otherwise, <c>false</c>.</returns>
         public bool IsParallel(LinearCurve otherLine)
         {
             double slope = Slope();
@@ -131,8 +157,8 @@ namespace MPT.Math.Curves
         /// <summary>
         /// Lines are perpendicular to each other.
         /// </summary>
-        /// <param name="otherLine"></param>
-        /// <returns></returns>
+        /// <param name="otherLine">The other line.</param>
+        /// <returns><c>true</c> if the specified other line is perpendicular; otherwise, <c>false</c>.</returns>
         public bool IsPerpendicular(LinearCurve otherLine)
         {
             double slope = Slope();
@@ -148,15 +174,15 @@ namespace MPT.Math.Curves
         }
 
         /// <summary>
-        /// Provided point lies on an infinitely long line projecting off of the line segment. 
+        /// Provided point lies on an infinitely long line projecting off of the line segment.
         /// It isn't necessarily intersecting between the defining points.
         /// </summary>
-        /// <param name="coordinate"></param>
-        /// <returns></returns>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
         public bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
         {
             double tolerance = Generics.GetTolerance(coordinate, Tolerance);
-            double y = Y(coordinate.X);
+            double y = YatX(coordinate.X);
             if (IsVertical())
             {
                 return ControlPointI.X.IsEqualTo(coordinate.X, tolerance);
@@ -165,11 +191,11 @@ namespace MPT.Math.Curves
         }
 
         /// <summary>
-        /// Provided line segment intersects an infinitely long line projecting off of the line segment. 
+        /// Provided line segment intersects an infinitely long line projecting off of the line segment.
         /// It isn't necessarily intersecting between the defining points.
         /// </summary>
-        /// <param name="otherLine"></param>
-        /// <returns></returns>
+        /// <param name="otherLine">The other line.</param>
+        /// <returns><c>true</c> if [is intersecting curve] [the specified other line]; otherwise, <c>false</c>.</returns>
         public bool IsIntersectingCurve(LinearCurve otherLine)
         {
             return !IsParallel(otherLine);
@@ -178,27 +204,46 @@ namespace MPT.Math.Curves
 
         #region Methods: Properties
         /// <summary>
-        /// Slope of the line segment.
+        /// The radius measured from the local coordinate origin as a function of the angle in local coordinates.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
+        /// <returns>System.Double.</returns>
+        public double RadiusAboutOrigin(double angleRadians)
+        {
+            return 1 / (Trig.Sin(angleRadians) - Trig.Cos(angleRadians));
+        }
+
+        /// <summary>
+        /// Slope of the line.
+        /// </summary>
+        /// <returns>System.Double.</returns>
         public double Slope()
         {
             return Slope(ControlPointI, ControlPointJ, Tolerance);
         }
 
         /// <summary>
-        /// X-Intercept of the line segment.
+        /// Curvature of the line.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
+        public double Curvature()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// X-Intercept of the line.
+        /// </summary>
+        /// <returns>System.Double.</returns>
         public double InterceptX()
         {
             return InterceptX(ControlPointI, ControlPointJ, Tolerance);
         }
 
         /// <summary>
-        /// Y-Intercept of the line segment.
+        /// Y-Intercept of the line.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public double InterceptY()
         {
             return InterceptY(ControlPointI, ControlPointJ, Tolerance);
@@ -207,7 +252,7 @@ namespace MPT.Math.Curves
         /// <summary>
         /// Vector that is tangential to the line connecting the defining points.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Vector.</returns>
         public Vector TangentVector()
         {
             return Vector.UnitTangentVector(ControlPointI, ControlPointJ);
@@ -216,7 +261,7 @@ namespace MPT.Math.Curves
         /// <summary>
         /// Vector that is normal to the line connecting the defining points.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Vector.</returns>
         public Vector NormalVector()
         {
             return Vector.UnitNormalVector(ControlPointI, ControlPointJ);
@@ -226,8 +271,8 @@ namespace MPT.Math.Curves
         /// X-coordinate on the line segment that corresponds to the y-coordinate given.
         /// </summary>
         /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
-        /// <returns></returns>
-        public double X(double y)
+        /// <returns>System.Double.</returns>
+        public double XatY(double y)
         {
             return (InterceptX() + y / Slope());
         }
@@ -236,39 +281,52 @@ namespace MPT.Math.Curves
         /// Y-coordinate on the line segment that corresponds to the x-coordinate given.
         /// </summary>
         /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
-        /// <returns></returns>
-        public double Y(double x)
+        /// <returns>System.Double.</returns>
+        public double YatX(double x)
         {
             return (InterceptY() + Slope() * x);
         }
         #endregion
 
         #region Methods: Properties Derived with Limits        
-        /// <summary>
-        /// The limit minimum
-        /// </summary>
-        protected CartesianCoordinate _limitMin;
-        /// <summary>
-        /// First coordinate control value.
-        /// </summary>
-        public CartesianCoordinate LimitMin => _limitMin;
+        // Lazy initialization?
+        public CurveRange Range;
+        public void IntializeRange()
+        {
+            Range = new CurveRange(this);
+        }
 
         /// <summary>
-        /// The limit maximum
+        /// The limit where the curve starts.
         /// </summary>
-        protected CartesianCoordinate _limitMax;
+        protected CartesianCoordinate _limitStart;
         /// <summary>
-        /// Second coordinate control value.
+        /// The limit where the curve starts.
         /// </summary>
-        public CartesianCoordinate LimitMax => _limitMax;
+        /// <value>The limit start.</value>
+        public CartesianCoordinate LimitStart => _limitStart;
+
+        /// <summary>
+        /// The limit where the curve ends.
+        /// </summary>
+        protected CartesianCoordinate _limitEnd;
+        /// <summary>
+        /// The limit where the curve ends.
+        /// </summary>
+        /// <value>The limit end.</value>
+        public CartesianCoordinate LimitEnd => _limitEnd;
+
+
+
+
 
         /// <summary>
         /// Length of the line segment.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public double Length()
         {
-            return AlgebraLibrary.SRSS((LimitMax.X - LimitMin.X), (LimitMax.Y - LimitMin.Y));
+            return Length(LimitStart, LimitEnd);
         }
         #endregion
 
@@ -286,7 +344,7 @@ namespace MPT.Math.Curves
         /// Returns a point where the line segment intersects the provided line segment.
         /// </summary>
         /// <param name="otherLine">Line segment that intersects the current line segment.</param>
-        /// <returns></returns>
+        /// <returns>CartesianCoordinate.</returns>
         public CartesianCoordinate IntersectionCoordinate(LinearCurve otherLine)
         {
             return LineIntersect(Slope(), InterceptX(), InterceptY(),
@@ -304,7 +362,17 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Static
+        #region Methods: Static        
+        /// <summary>
+        /// The length between the provided points along a linear curve.
+        /// </summary>
+        /// <param name="pointI">Point i.</param>
+        /// <param name="pointJ">Point j.</param>
+        /// <returns>System.Double.</returns>
+        public static double Length(CartesianCoordinate pointI, CartesianCoordinate pointJ)
+        {
+            return AlgebraLibrary.SRSS((pointJ.X - pointI.X), (pointJ.Y - pointI.Y));
+        }
 
         #region Alignment
         /// <summary>
@@ -360,10 +428,10 @@ namespace MPT.Math.Curves
         /// <summary>
         /// True: Slopes are parallel.
         /// </summary>
-        /// <param name="slope1"></param>
-        /// <param name="slope2"></param>
+        /// <param name="slope1">The slope1.</param>
+        /// <param name="slope2">The slope2.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if the specified slope1 is parallel; otherwise, <c>false</c>.</returns>
         public static bool IsParallel(double slope1, double slope2, double tolerance = Numbers.ZeroTolerance)
         {
             if (double.IsNegativeInfinity(slope1) && double.IsPositiveInfinity(slope2)) { return true; }
@@ -374,10 +442,10 @@ namespace MPT.Math.Curves
         /// <summary>
         /// True: Slopes are perpendicular.
         /// </summary>
-        /// <param name="slope1"></param>
-        /// <param name="slope2"></param>
+        /// <param name="slope1">The slope1.</param>
+        /// <param name="slope2">The slope2.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if the specified slope1 is perpendicular; otherwise, <c>false</c>.</returns>
         public static bool IsPerpendicular(double slope1, double slope2, double tolerance = Numbers.ZeroTolerance)
         {
             if (double.IsNegativeInfinity(slope1) && slope2.IsZeroSign(tolerance)) { return true; }
@@ -395,7 +463,8 @@ namespace MPT.Math.Curves
         /// <param name="rise">Difference in y-coordinate values or equivalent.</param>
         /// <param name="run">Difference in x-coordinate values or equivalent.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="ArgumentException">Rise &amp; run are both zero. Cannot determine a slope for a point.</exception>
         public static double Slope(double rise, double run, double tolerance = Numbers.ZeroTolerance)
         {
             if (run.IsZeroSign(tolerance) && rise.IsPositiveSign()) { return double.PositiveInfinity; }
@@ -426,7 +495,7 @@ namespace MPT.Math.Curves
         /// <param name="point1">First point.</param>
         /// <param name="point2">Second point.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double Slope(CartesianCoordinate point1, CartesianCoordinate point2, double tolerance = Numbers.ZeroTolerance)
         {
             return Slope((point2.Y - point1.Y),
@@ -438,7 +507,7 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="delta">The difference between two points.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double Slope(CartesianOffset delta, double tolerance = Numbers.ZeroTolerance)
         {
             return Slope((delta.J.Y - delta.I.Y),
@@ -451,12 +520,12 @@ namespace MPT.Math.Curves
         /// Returns the x-intercept.
         /// Returns +infinity if line is horizontal.
         /// </summary>
-        /// <param name="y1">First y-coordinate.</param>
-        /// <param name="y2">Second y-coordinate.</param>
         /// <param name="x1">First x-coordinate.</param>
+        /// <param name="y1">First y-coordinate.</param>
         /// <param name="x2">Second x-coordinate.</param>
+        /// <param name="y2">Second y-coordinate.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double InterceptX(double x1, double y1, double x2, double y2, double tolerance = Numbers.ZeroTolerance)
         {
             if (y1.IsZeroSign(tolerance)) { return x1; }
@@ -470,8 +539,8 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="point1">First point defining a line.</param>
         /// <param name="point2">Second point defining a line.</param>
-        /// <param name="tolerance">>Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <param name="tolerance">&gt;Tolerance by which a double is considered to be zero or equal.</param>
+        /// <returns>System.Double.</returns>
         public static double InterceptX(CartesianCoordinate point1, CartesianCoordinate point2, double tolerance = Numbers.ZeroTolerance)
         {
             return InterceptX(point1.X, point1.Y, point2.X, point2.Y, tolerance);
@@ -481,12 +550,12 @@ namespace MPT.Math.Curves
         /// Returns the y-intercept.
         /// Returns +infinity if line is vertical.
         /// </summary>
-        /// <param name="y1">First y-coordinate.</param>
-        /// <param name="y2">Second y-coordinate.</param>
         /// <param name="x1">First x-coordinate.</param>
+        /// <param name="y1">First y-coordinate.</param>
         /// <param name="x2">Second x-coordinate.</param>
+        /// <param name="y2">Second y-coordinate.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double InterceptY(double x1, double y1, double x2, double y2, double tolerance = Numbers.ZeroTolerance)
         {
             if (x1.IsZeroSign(tolerance)) { return y1; }
@@ -500,7 +569,8 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="point1">First point defining a line.</param>
         /// <param name="point2">Second point defining a line.</param>
-        /// <param name="tolerance">>Tolerance by which a double is considered to be zero or equal.</param>
+        /// <param name="tolerance">&gt;Tolerance by which a double is considered to be zero or equal.</param>
+        /// <returns>System.Double.</returns>
         public static double InterceptY(CartesianCoordinate point1, CartesianCoordinate point2, double tolerance = Numbers.ZeroTolerance)
         {
             return InterceptY(point1.X, point1.Y, point2.X, point2.Y, tolerance);
@@ -515,7 +585,7 @@ namespace MPT.Math.Curves
         /// <param name="slope1">Slope of the first line.</param>
         /// <param name="slope2">Slope of the second line.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public static bool AreLinesIntersecting(double slope1, double slope2, double tolerance = Numbers.ZeroTolerance)
         {
             return (!IsParallel(slope1, slope2, tolerance));
@@ -529,7 +599,7 @@ namespace MPT.Math.Curves
         /// <param name="slope2">Slope of the second line.</param>
         /// <param name="xIntercept2">X-intercept of the second line.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double LineIntersectX(double slope1, double xIntercept1, double slope2, double xIntercept2, double tolerance = Numbers.ZeroTolerance)
         {
             if (IsParallel(slope1, slope2, tolerance))
@@ -559,7 +629,7 @@ namespace MPT.Math.Curves
         /// <param name="slope2">Slope of the second line.</param>
         /// <param name="yIntercept2">Y-intercept of the second line.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public static double LineIntersectY(double slope1, double yIntercept1, double slope2, double yIntercept2, double tolerance = Numbers.ZeroTolerance)
         {
             if (IsParallel(slope1, slope2, tolerance))
@@ -587,7 +657,7 @@ namespace MPT.Math.Curves
         /// <param name="xIntercept2">X-intercept of the second line.</param>
         /// <param name="yIntercept2">Y-intercept of the second line.</param>
         /// <param name="tolerance">Tolerance by which a double is considered to be zero or equal.</param>
-        /// <returns></returns>
+        /// <returns>CartesianCoordinate.</returns>
         public static CartesianCoordinate LineIntersect(
             double slope1, double xIntercept1, double yIntercept1,
             double slope2, double xIntercept2, double yIntercept2, double tolerance = Numbers.ZeroTolerance)
@@ -597,22 +667,22 @@ namespace MPT.Math.Curves
             if (IsVertical(slope1) && !IsVertical(slope2))
             {
                 LinearCurve curve2 = CurveByYIntercept(slope2, yIntercept2);
-                return new CartesianCoordinate(xIntercept1, curve2.Y(xIntercept1));
+                return new CartesianCoordinate(xIntercept1, curve2.YatX(xIntercept1));
             }
             if (!IsVertical(slope1) && IsVertical(slope2))
             {
                 LinearCurve curve2 = CurveByYIntercept(slope1, yIntercept1);
-                return new CartesianCoordinate(xIntercept2, curve2.Y(xIntercept2));
+                return new CartesianCoordinate(xIntercept2, curve2.YatX(xIntercept2));
             }
             if (IsHorizontal(slope1) && !IsHorizontal(slope2))
             {
                 LinearCurve curve2 = CurveByYIntercept(slope2, yIntercept2);
-                return new CartesianCoordinate(curve2.X(yIntercept1), yIntercept1);
+                return new CartesianCoordinate(curve2.XatY(yIntercept1), yIntercept1);
             }
             if (!IsHorizontal(slope1) && IsHorizontal(slope2))
             {
                 LinearCurve curve2 = CurveByYIntercept(slope1, yIntercept1);
-                return new CartesianCoordinate(curve2.X(yIntercept2), yIntercept2);
+                return new CartesianCoordinate(curve2.XatY(yIntercept2), yIntercept2);
             }
 
             return new CartesianCoordinate(
@@ -659,7 +729,10 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public LinearCurve CloneCurve()
         {
-            return new LinearCurve(ControlPointI, ControlPointJ);
+            LinearCurve curve = new LinearCurve(ControlPointI, ControlPointJ);
+            curve._limitStart = _limitStart;
+            curve._limitEnd = _limitEnd;
+            return curve;
         }
         #endregion
     }

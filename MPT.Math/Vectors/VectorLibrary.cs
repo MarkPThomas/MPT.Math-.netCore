@@ -14,6 +14,7 @@
 using NMath = System.Math;
 using MPT.Math.NumberTypeExtensions;
 using System;
+using MPT.Math.Algebra;
 
 namespace MPT.Math.Vectors
 {
@@ -22,16 +23,31 @@ namespace MPT.Math.Vectors
     /// </summary>
     public static class VectorLibrary
     {
-        #region 2D Vectors
+        #region 2D Vectors    
+        /// <summary>
+        /// Gets the magnitude from parametric vector components.
+        /// </summary>
+        /// <param name="xComponent">The x component.</param>
+        /// <param name="yComponent">The y component.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        public static double Magnitude(
+            double xComponent, double yComponent, 
+            double tolerance = Numbers.ZeroTolerance)
+        {
+            double magnitude = AlgebraLibrary.SRSS(xComponent, yComponent);
+            return validatedMagnitude(magnitude, tolerance);
+        }
 
         /// <summary>
-        /// Returns the dot product of the points.
+        /// Returns the dot product of parametric vector components.
         /// x1*x2 + y1*y2
         /// </summary>
-        /// <param name="x1">The x1.</param>
-        /// <param name="y1">The y1.</param>
-        /// <param name="x2">The x2.</param>
-        /// <param name="y2">The y2.</param>
+        /// <param name="x1">The x component of the first vector.</param>
+        /// <param name="y1">The y component of the first vector.</param>
+        /// <param name="x2">The x component of the second vector.</param>
+        /// <param name="y2">The y component of the second vector.</param>
         /// <returns>System.Double.</returns>
         public static double DotProduct(
             double x1, double y1,
@@ -41,13 +57,13 @@ namespace MPT.Math.Vectors
         }
 
         /// <summary>
-        /// Returns the cross product/determinant of the points.
+        /// Returns the cross product/determinant of parametric vector components.
         /// x1*y2 - x2*y1
         /// </summary>
-        /// <param name="x1">The x1.</param>
-        /// <param name="y1">The y1.</param>
-        /// <param name="x2">The x2.</param>
-        /// <param name="y2">The y2.</param>
+        /// <param name="x1">The x component of the first vector.</param>
+        /// <param name="y1">The y component of the first vector.</param>
+        /// <param name="x2">The x component of the second vector.</param>
+        /// <param name="y2">The y component of the second vector.</param>
         /// <returns>System.Double.</returns>
         public static double CrossProduct(
             double x1, double y1,
@@ -59,14 +75,31 @@ namespace MPT.Math.Vectors
 
         #region 3D Vectors
         /// <summary>
+        /// Gets the magnitude from parametric vector components.
+        /// </summary>
+        /// <param name="xComponent">The x component.</param>
+        /// <param name="yComponent">The y component.</param>
+        /// <param name="zComponent">The z component.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        public static double Magnitude(
+            double xComponent, double yComponent, double zComponent,
+            double tolerance = Numbers.ZeroTolerance)
+        {
+            double magnitude = AlgebraLibrary.SRSS(xComponent, yComponent, zComponent);
+            return validatedMagnitude(magnitude, tolerance);
+        }
+
+        /// <summary>
         /// Returns the dot product of the points.
         /// </summary>
-        /// <param name="x1">The x1.</param>
-        /// <param name="y1">The y1.</param>
-        /// <param name="z1">The z1.</param>
-        /// <param name="x2">The x2.</param>
-        /// <param name="y2">The y2.</param>
-        /// <param name="z2">The z2.</param>
+        /// <param name="x1">The x component of the first vector.</param>
+        /// <param name="y1">The y component of the first vector.</param>
+        /// <param name="z1">The z component of the first vector.</param>
+        /// <param name="x2">The x component of the second vector.</param>
+        /// <param name="y2">The y component of the second vector.</param>
+        /// <param name="z2">The z component of the second vector.</param>
         /// <returns>System.Double.</returns>
         public static double DotProduct(
             double x1, double y1, double z1,
@@ -79,12 +112,12 @@ namespace MPT.Math.Vectors
         /// <summary>
         /// Returns the cross product/determinant of the points.
         /// </summary>
-        /// <param name="x1">The x1.</param>
-        /// <param name="y1">The y1.</param>
-        /// <param name="z1">The z1.</param>
-        /// <param name="x2">The x2.</param>
-        /// <param name="y2">The y2.</param>
-        /// <param name="z2">The z2.</param>
+        /// <param name="x1">The x component of the first vector.</param>
+        /// <param name="y1">The y component of the first vector.</param>
+        /// <param name="z1">The z component of the first vector.</param>
+        /// <param name="x2">The x component of the second vector.</param>
+        /// <param name="y2">The y component of the second vector.</param>
+        /// <param name="z2">The z component of the second vector.</param>
         /// <returns>System.Double.</returns>
         public static double[] CrossProduct(
             double x1, double y1, double z1,
@@ -97,6 +130,21 @@ namespace MPT.Math.Vectors
             double[] matrix = { x, y, z };
 
             return matrix;
+        }
+        #endregion
+
+        #region Private
+        /// <summary>
+        /// Validateds the magnitude.
+        /// </summary>
+        /// <param name="magnitude">The magnitude.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
+        private static double validatedMagnitude(double magnitude, double tolerance = Numbers.ZeroTolerance)
+        {
+            if (magnitude.IsZeroSign(tolerance)) { throw new Exception("Ill-formed vector. Vector magnitude cannot be zero."); }
+            return magnitude;
         }
         #endregion
     }

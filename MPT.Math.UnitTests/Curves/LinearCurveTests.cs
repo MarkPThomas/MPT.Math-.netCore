@@ -35,8 +35,8 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(defaultTolerance, linearRuce.Tolerance);
             Assert.AreEqual(defaultTolerance, linearRuce.ControlPointI.Tolerance);
             Assert.AreEqual(defaultTolerance, linearRuce.ControlPointJ.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.LimitMax.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.LimitMin.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.LimitEnd.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearRuce.LimitStart.Tolerance);
 
             double newTolerance = 10E-3;
             linearRuce.Tolerance = newTolerance;
@@ -44,8 +44,8 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(newTolerance, linearRuce.Tolerance);
             Assert.AreEqual(newTolerance, linearRuce.ControlPointI.Tolerance);
             Assert.AreEqual(newTolerance, linearRuce.ControlPointJ.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.LimitMax.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.LimitMin.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.LimitEnd.Tolerance);
+            Assert.AreEqual(newTolerance, linearRuce.LimitStart.Tolerance);
         }
         #endregion
 
@@ -294,7 +294,7 @@ namespace MPT.Math.UnitTests.Curves
                 new CartesianCoordinate(x1, y1),
                 new CartesianCoordinate(x2, y2));
 
-            Assert.AreEqual(expectedResult, curve.X(y), Tolerance);
+            Assert.AreEqual(expectedResult, curve.XatY(y), Tolerance);
         }
 
         [TestCase(1, 1, 2, 1, 1.25, 1)] // Horizontal
@@ -309,7 +309,7 @@ namespace MPT.Math.UnitTests.Curves
                 new CartesianCoordinate(x1, y1),
                 new CartesianCoordinate(x2, y2));
 
-            Assert.AreEqual(expectedResult, curve.Y(x), Tolerance);
+            Assert.AreEqual(expectedResult, curve.YatX(x), Tolerance);
         }
         #endregion
 

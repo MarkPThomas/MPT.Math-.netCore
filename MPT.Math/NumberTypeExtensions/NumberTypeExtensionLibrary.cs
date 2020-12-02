@@ -64,6 +64,31 @@ namespace MPT.Math.NumberTypeExtensions
         {
             return (NMath.Abs(value) < NMath.Abs(tolerance));
         }
+
+
+        /// <summary>
+        /// Returns the sign of a value as either 1 (positive or 0), or -1 (negative).
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Int32.</returns>
+        public static int Sign(this int value, double tolerance = Numbers.ZeroTolerance)
+        {
+            if (IsZeroSign(value, tolerance)) { return 1; }
+            return (value > NMath.Abs(tolerance) ? 1 : -1);
+        }
+
+        /// <summary>
+        /// Returns the sign of a value as either 1 (positive or 0), or -1 (negative).
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Int32.</returns>
+        public static int Sign(this double value, double tolerance = Numbers.ZeroTolerance)
+        {
+            if (IsZeroSign(value, tolerance)) { return 1; }
+            return (value > NMath.Abs(tolerance) ? 1 : -1);
+        }
         #endregion
 
         #region Comparisons

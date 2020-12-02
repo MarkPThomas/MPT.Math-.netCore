@@ -1,0 +1,87 @@
+﻿// ***********************************************************************
+// Assembly         : MPT.Math
+// Author           : Mark P Thomas
+// Created          : 11-20-2020
+//
+// Last Modified By : Mark P Thomas
+// Last Modified On : 11-20-2020
+// ***********************************************************************
+// <copyright file="Transformations.cs" company="Mark P Thomas, Inc.">
+//     Copyright (c) 2020. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using MPT.Math.Coordinates;
+using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
+
+namespace MPT.Math
+{
+    /// <summary>
+    /// Class Transformations.
+    /// </summary>
+    public class Transformations
+    {
+        /// <summary>
+        /// Gets the local origin.
+        /// </summary>
+        /// <value>The local origin.</value>
+        public CartesianCoordinate LocalOrigin { get; }
+        /// <summary>
+        /// Gets the local axis x.
+        /// </summary>
+        /// <value>The local axis x.</value>
+        public CartesianCoordinate LocalAxisX { get; }
+
+        /// <summary>
+        /// Gets the rotation.
+        /// </summary>
+        /// <value>The rotation.</value>
+        public AngularOffset Rotation { get; }
+
+        /// <summary>
+        /// Gets the displacement.
+        /// </summary>
+        /// <value>The displacement.</value>
+        public CartesianOffset Displacement { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Transformations"/> class.
+        /// </summary>
+        /// <param name="localOriginInGlobal">The local origin in global.</param>
+        /// <param name="localAxisXPtInGlobal">The local axis x pt in global.</param>
+        public Transformations(CartesianCoordinate localOriginInGlobal, CartesianCoordinate localAxisXPtInGlobal)
+        {
+            LocalOrigin = localOriginInGlobal;
+            LocalAxisX = localAxisXPtInGlobal;
+
+            Displacement = localOriginInGlobal.OffsetFrom(CartesianCoordinate.Origin());
+            Rotation = AngularOffset.CreateFromPoints(
+                new CartesianCoordinate(localOriginInGlobal.X + 1, localOriginInGlobal.Y),
+                localOriginInGlobal, 
+                localAxisXPtInGlobal
+                );
+        }
+
+        /// <summary>
+        /// Transforms to global.
+        /// </summary>
+        /// <param name="localCoordinate">The local coordinate.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public CartesianCoordinate TransformToGlobal(CartesianCoordinate localCoordinate)
+        {
+            CartesianCoordinate rotatedCoordinate = CartesianCoordinate.RotateAboutPoint(localCoordinate, LocalOrigin, Rotation.ToAngle().Radians);
+            return new CartesianCoordinate(LocalOrigin.X + rotatedCoordinate.X, LocalOrigin.Y + rotatedCoordinate.Y);
+        }
+
+        /// <summary>
+        /// Transforms to local.
+        /// </summary>
+        /// <param name="globalCoordinate">The global coordinate.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public CartesianCoordinate TransformToLocal(CartesianCoordinate globalCoordinate)
+        {
+            CartesianCoordinate translatedCoordinate = globalCoordinate - LocalOrigin;
+            return CartesianCoordinate.RotateAboutPoint(translatedCoordinate, LocalOrigin, -1 * Rotation.ToAngle().Radians);
+        }
+    }
+}
