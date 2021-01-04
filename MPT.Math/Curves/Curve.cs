@@ -11,7 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Tools;
 using MPT.Math.Vectors;
 using System;
 
@@ -59,6 +61,33 @@ namespace MPT.Math.Curves
             }
         }
 
+        /// <summary>
+        /// The range
+        /// </summary>
+        protected CurveRange _range;
+        /// <summary>
+        /// The default limit start coordinate.
+        /// </summary>
+        protected CartesianCoordinate _limitStartDefault;
+        /// <summary>
+        /// The default limit end coordinate.
+        /// </summary>
+        protected CartesianCoordinate _limitEndDefault;
+        /// <summary>
+        /// The range of max/min limits that apply to the curve.
+        /// </summary>
+        /// <value>The range.</value>
+        public CurveRange Range 
+        {
+            get
+            {
+                if (_range == null)
+                {
+                    _range = new CurveRange(this, _limitStartDefault, _limitEndDefault);
+                }
+                return _range;
+            }
+        }
         #endregion
 
         #region Curve Position

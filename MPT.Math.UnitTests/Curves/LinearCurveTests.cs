@@ -30,22 +30,18 @@ namespace MPT.Math.UnitTests.Curves
         public static void Changing_Tolerance_Cascades_to_Properties()
         {
             double defaultTolerance = 10E-6; 
-            LinearCurve linearRuce = new LinearCurve(new CartesianCoordinate(3, 4), new CartesianCoordinate(5, 6));
+            LinearCurve linearCurve = new LinearCurve(new CartesianCoordinate(3, 4), new CartesianCoordinate(5, 6));
 
-            Assert.AreEqual(defaultTolerance, linearRuce.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.ControlPointI.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.ControlPointJ.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.LimitEnd.Tolerance);
-            Assert.AreEqual(defaultTolerance, linearRuce.LimitStart.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearCurve.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearCurve.ControlPointI.Tolerance);
+            Assert.AreEqual(defaultTolerance, linearCurve.ControlPointJ.Tolerance);
 
             double newTolerance = 10E-3;
-            linearRuce.Tolerance = newTolerance;
+            linearCurve.Tolerance = newTolerance;
 
-            Assert.AreEqual(newTolerance, linearRuce.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.ControlPointI.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.ControlPointJ.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.LimitEnd.Tolerance);
-            Assert.AreEqual(newTolerance, linearRuce.LimitStart.Tolerance);
+            Assert.AreEqual(newTolerance, linearCurve.Tolerance);
+            Assert.AreEqual(newTolerance, linearCurve.ControlPointI.Tolerance);
+            Assert.AreEqual(newTolerance, linearCurve.ControlPointJ.Tolerance);
         }
         #endregion
 

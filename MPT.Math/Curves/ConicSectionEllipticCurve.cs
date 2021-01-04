@@ -40,8 +40,6 @@ namespace MPT.Math.Curves
             set
             {
                 base.Tolerance = value;
-                _limitStart.Tolerance = _tolerance;
-                _limitEnd.Tolerance = _tolerance;
             }
         }
         #endregion
@@ -79,52 +77,18 @@ namespace MPT.Math.Curves
         /// <returns><c>true</c> if [is closed curve]; otherwise, <c>false</c>.</returns>
         public bool IsClosedCurve()
         {
-            return LimitStart == LimitEnd;
+            return Range.Start.Limit == Range.End.Limit;
         }
         #endregion
 
         #region Methods: Properties Derived with Limits  
         /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        protected CartesianCoordinate _limitStart;
-        /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        /// <value>The limit start.</value>
-        public CartesianCoordinate LimitStart => _limitStart;
-
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        protected CartesianCoordinate _limitEnd;
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        /// <value>The limit end.</value>
-        public CartesianCoordinate LimitEnd => _limitEnd;
-
-        /// <summary>
-        /// Length of the curve between the limits.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        public abstract double Length();
-
-        /// <summary>
-        /// Length of the curve between two points.
-        /// </summary>
-        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
-        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
-        /// <returns>System.Double.</returns>
-        public abstract double LengthBetween(double relativePositionStart, double relativePositionEnd);
-
-        /// <summary>
         /// The length of the chord connecting the start and end limits.
         /// </summary>
         /// <returns>System.Double.</returns>
-        public double ChordLength()
+        public override double ChordLength()
         {
-            return LinearCurve.Length(LimitStart, LimitEnd);
+            return LinearCurve.Length(Range.Start.Limit, Range.End.Limit);
         }
         /// <summary>
         /// The length of the chord connecting the start and end limits.
@@ -132,7 +96,7 @@ namespace MPT.Math.Curves
         /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
         /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
         /// <returns>System.Double.</returns>
-        public double ChordLengthBetween(double relativePositionStart, double relativePositionEnd)
+        public override double ChordLengthBetween(double relativePositionStart, double relativePositionEnd)
         {
             return LinearCurve.Length(CoordinateCartesian(relativePositionStart), CoordinateCartesian(relativePositionEnd));
         }
@@ -141,9 +105,9 @@ namespace MPT.Math.Curves
         /// The chord connecting the start and end limits.
         /// </summary>
         /// <returns>LinearCurve.</returns>
-        public LinearCurve Chord()
+        public override LinearCurve Chord()
         {
-            return new LinearCurve(LimitStart, LimitEnd);
+            return new LinearCurve(Range.Start.Limit, Range.End.Limit);
         }
 
         /// <summary>
@@ -152,42 +116,10 @@ namespace MPT.Math.Curves
         /// <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
         /// <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
         /// <returns>LinearCurve.</returns>
-        public LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
+        public override LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
         {
             return new LinearCurve(CoordinateCartesian(relativePositionStart), CoordinateCartesian(relativePositionEnd));
         }
-
-        /// <summary>
-        /// Vector that is tangential to the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
-        /// <returns>Vector.</returns>
-        public abstract Vector TangentVector(double relativePosition);
-
-        /// <summary>
-        /// Vector that is tangential to the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
-        /// <returns>Vector.</returns>
-        public abstract Vector NormalVector(double relativePosition);
-
-        /// <summary>
-        /// Coordinate of the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-        /// <returns>CartesianCoordinate.</returns>
-        public abstract CartesianCoordinate CoordinateCartesian(double relativePosition);
-
-        /// <summary>
-        /// Coordinate of the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-        /// <returns>CartesianCoordinate.</returns>
-        public abstract PolarCoordinate CoordinatePolar(double relativePosition);
         #endregion
 
         #region Methods: Properties

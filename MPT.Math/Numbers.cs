@@ -131,7 +131,7 @@ namespace MPT.Math
         public static int Sign(double value, double tolerance = ZeroTolerance)
         {
             if (IsZeroSign(value, tolerance)) { return 1; }
-            return (value > NMath.Abs(tolerance) ? 1 : -1);
+            return (value > -NMath.Abs(tolerance) ? 1 : -1);
         }
         #endregion
 

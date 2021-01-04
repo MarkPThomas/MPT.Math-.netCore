@@ -140,7 +140,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
 
         [Test]
-        public static void CreateFromRadian_Creates_Angle_from_Specified_Vector()
+        public static void CreateFromVector_Creates_Angle_from_Specified_Vector()
         {
             Vector vector = new Vector(2, 3);
             double expectedAngle = vector.Angle();
@@ -149,6 +149,16 @@ namespace MPT.Math.UnitTests.Coordinates
 
             Assert.AreEqual(expectedAngle, angle.Radians, Tolerance);
             Assert.AreEqual(tolerance, angle.Tolerance);
+        }
+
+        [Test]
+        public static void CreateFromPoint_Creates_Angle_from_Origin_to_Specified_Point()
+        {
+            CartesianCoordinate point = new CartesianCoordinate(2, 3);
+            double expectedAngle = System.Math.Atan(3d / 2);
+            Angle angle = Angle.CreateFromPoint(point);
+
+            Assert.AreEqual(expectedAngle, angle.Radians, Tolerance);
         }
 
         [TestCase(0, 0)]
@@ -371,6 +381,13 @@ namespace MPT.Math.UnitTests.Coordinates
 
             Assert.AreEqual(radiansI, offset.I.Radians, Tolerance);
             Assert.AreEqual(radiansJ, offset.J.Radians, Tolerance);
+        }
+
+        [Test]
+        public static void Origin_Returns_Angle_Aligned_with_Origin_Axis()
+        {
+            Angle angle = Angle.Origin();
+            Assert.AreEqual(0, angle.Degrees);
         }
         #endregion
 

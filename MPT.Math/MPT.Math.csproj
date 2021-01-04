@@ -19,18 +19,21 @@
     <Compile Remove="Coordinates3D\**" />
     <Compile Remove="Curves\Parametrics\Cubics\**" />
     <Compile Remove="Curves\Parametrics\Quadratics\**" />
+    <Compile Remove="Curves\Tools\Foci\**" />
     <Compile Remove="Matrices\**" />
     <EmbeddedResource Remove="Algebra\bin\**" />
     <EmbeddedResource Remove="Calculus\**" />
     <EmbeddedResource Remove="Coordinates3D\**" />
     <EmbeddedResource Remove="Curves\Parametrics\Cubics\**" />
     <EmbeddedResource Remove="Curves\Parametrics\Quadratics\**" />
+    <EmbeddedResource Remove="Curves\Tools\Foci\**" />
     <EmbeddedResource Remove="Matrices\**" />
     <None Remove="Algebra\bin\**" />
     <None Remove="Calculus\**" />
     <None Remove="Coordinates3D\**" />
     <None Remove="Curves\Parametrics\Cubics\**" />
     <None Remove="Curves\Parametrics\Quadratics\**" />
+    <None Remove="Curves\Tools\Foci\**" />
     <None Remove="Matrices\**" />
   </ItemGroup>
 

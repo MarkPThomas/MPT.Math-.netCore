@@ -38,8 +38,8 @@ namespace MPT.Math.Curves
             CartesianCoordinate localOrigin) 
             : base(vertexMajor, distanceFromFocusToLocalOrigin, localOrigin)
         {
-            _limitStart = vertexMajor;
-            _limitEnd = _limitStart;
+            _limitStartDefault = vertexMajor;
+            _limitEndDefault = _limitStartDefault;
         }
 
         /// <summary>
@@ -56,12 +56,62 @@ namespace MPT.Math.Curves
             Angle rotation) 
             : base(center.OffsetCoordinate(a, rotation), distanceFromFocusToOrigin(a, b), center)
         {
-            _limitStart = center.OffsetCoordinate(a, rotation);
-            _limitEnd = _limitStart;
+            _limitStartDefault = center.OffsetCoordinate(a, rotation);
+            _limitEndDefault = _limitStartDefault;
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits 
+        #region Curve Position
+        /// <summary>
+        /// +X-coordinate on the curve that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+        /// <returns></returns>
+        public override double XatY(double y)
+        {
+            return DistanceFromVertexMajorToOrigin * (1 - (y / DistanceFromVertexMinorToOrigin).Squared()).Sqrt();
+        }
+
+        /// <summary>
+        /// +Y-coordinate on the curve that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns></returns>
+        public override double YatX(double x)
+        {
+            return DistanceFromVertexMinorToOrigin * (1 - (x / DistanceFromVertexMajorToOrigin).Squared()).Sqrt();
+        }
+        #endregion
+
+        #region Methods: Properties
+        /// <summary>
+        /// The length within the provided rotation along an elliptical curve.
+        /// </summary>
+        /// <param name="rotation">Rotation to get arc length between.</param>
+        /// <returns>System.Double.</returns>
+        public override double LengthBetween(AngularOffset rotation)
+        {
+            return LengthBetween(rotation, DistanceFromVertexMajorToOrigin, DistanceFromVertexMinorToOrigin);
+        }
+        #endregion
+
+        #region Methods: Public
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return base.ToString() 
+                + " - Center: " + _originLocal
+                + ", - Rotation: " + _localRotation
+                + ", a: " + DistanceFromVertexMajorToOrigin
+                + ", b: " + DistanceFromVertexMinorToOrigin
+                + ", I: " + _limitStartDefault + ", J: " + _limitEndDefault;
+        }
+        #endregion
+
+        #region ICurveLimits 
         /// <summary>
         /// Length of the curve between the limits.
         /// <a href="https://www.mathsisfun.com/geometry/ellipse-perimeter.html">Reference</a>.
@@ -115,49 +165,57 @@ namespace MPT.Math.Curves
         /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
         /// <returns>CartesianCoordinate.</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public override CartesianCoordinate CoordinateCartesian(double relativePosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Coordinate of the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-        /// <returns>CartesianCoordinate.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public override PolarCoordinate CoordinatePolar(double relativePosition)
         {
             throw new NotImplementedException();
         }
         #endregion
 
-        #region Properties
+        #region ICurvePositionCartesian
         /// <summary>
-        /// The length within the provided rotation along an elliptical curve.
+        /// X-coordinates on the curve that corresponds to the y-coordinate given.
         /// </summary>
-        /// <param name="rotation">Rotation to get arc length between.</param>
+        /// <param name="y">Y-coordinate for which x-coordinates are desired.</param>
         /// <returns>System.Double.</returns>
-        public override double LengthBetween(AngularOffset rotation)
+        public override double[] XsAtY(double y)
         {
-            return LengthBetween(rotation, DistanceFromVertexMajorToOrigin, DistanceFromVertexMinorToOrigin);
+            double x = XatY(y);
+            return new[] { x, -x };
+        }
+
+        /// <summary>
+        /// Y-coordinates on the curve that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which y-coordinates are desired.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] YsAtX(double x)
+        {
+            double y = YatX(x);
+            return new[] { y, -y };
+        }
+
+        /// <summary>
+        /// Provided point lies on the curve.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
-        #region Methods: Public
+        #region ICurvePositionPolar
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// The radii measured from the local coordinate origin as a function of the angle in local coordinates.
         /// </summary>
-        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString()
+        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] RadiiAboutOrigin(double angleRadians)
         {
-            return base.ToString() 
-                + " - Center: " + _originLocal
-                + ", - Rotation: " + _localRotation
-                + ", a: " + DistanceFromVertexMajorToOrigin
-                + ", b: " + DistanceFromVertexMinorToOrigin
-                + ", I: " + LimitStart + ", I: " + LimitEnd;
+            double radiusLeft = RadiusAboutFocusLeft(RotationAboutFocusLeftByRotationAboutOrigin(angleRadians));
+            double radiusRight = RadiusAboutFocusRight(RotationAboutFocusRightByRotationAboutOrigin(angleRadians));
+            return new[] { radiusLeft, radiusRight };
         }
         #endregion
 
@@ -206,8 +264,7 @@ namespace MPT.Math.Curves
         public EllipticalCurve CloneCurve()
         {
             EllipticalCurve curve = new EllipticalCurve(_vertexMajorLocal, DistanceFromFocusToOrigin, _originLocal);
-            curve._limitStart = _limitStart;
-            curve._limitEnd = _limitEnd;
+            curve._range = Range.CloneRange();
             return curve;
         }
         #endregion

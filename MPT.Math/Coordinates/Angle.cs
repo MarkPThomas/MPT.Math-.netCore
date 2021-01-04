@@ -134,9 +134,8 @@ namespace MPT.Math.Coordinates
         /// <returns>Angle.</returns>
         public static Angle CreateFromPoint(CartesianCoordinate point)
         {
-            Vector vector1 = new Vector(new CartesianCoordinate(1, 0), CartesianCoordinate.Origin());
-            Vector vector2 = new Vector(CartesianCoordinate.Origin(), point);
-            return vector1.Angle(vector2);
+            Vector vector = new Vector(CartesianCoordinate.Origin(), point);
+            return vector.Angle();
         }
 
         /// <summary>

@@ -47,20 +47,6 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-        #region Conversion
-        /// <summary>
-        /// Converts to a single <see cref="PolarCoordinate"/> coordinate.
-        /// </summary>
-        /// <returns>CartesianCoordinate.</returns>
-        public PolarCoordinate ToPolarCoordinate()
-        {
-            return new PolarCoordinate(
-                Radius(),
-                Azimuth(),
-                Tolerance);
-        }
-        #endregion
-
         #region Methods: Public        
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -256,21 +242,13 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
-
-        #region Operators: Conversion                        
-        ///// <summary>
-        ///// Performs an implicit conversion from <see cref="PolarOffset"/> to <see cref="CartesianOffset"/>.
-        ///// </summary>
-        ///// <param name="polar">The polar.</param>
-        ///// <returns>The result of the conversion.</returns>
-        //public static implicit operator CartesianOffset(PolarOffset polar) => polar.ToCartesian();
-
-        ///// <summary>
-        ///// Performs an explicit conversion from <see cref="CartesianOffset"/> to <see cref="PolarOffset"/>.
-        ///// </summary>
-        ///// <param name="cartesian">The cartesian.</param>
-        ///// <returns>The result of the conversion.</returns>
-        //public static explicit operator PolarOffset(CartesianOffset cartesian) => cartesian.ToPolar();
+        #region Operators: Conversion                
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="PolarOffset"/> to <see cref="CartesianOffset"/>.
+        /// </summary>
+        /// <param name="polar">The polar.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator CartesianOffset(PolarOffset polar) => polar.ToCartesian();
         #endregion
     }
 }

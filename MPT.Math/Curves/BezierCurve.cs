@@ -26,7 +26,9 @@ namespace MPT.Math.Curves
     /// Implements the <see cref="MPT.Math.Curves.Curve" />
     /// </summary>
     /// <seealso cref="MPT.Math.Curves.Curve" />
-    public class BezierCurve : Curve
+    public class BezierCurve : Curve,
+        ICurveLimits,
+        ICurvePositionCartesian
     {
         #region Properties          
         /// <summary>
@@ -67,9 +69,6 @@ namespace MPT.Math.Curves
 
             HandleI = handleStart;
             HandleJ = handleEnd;
-
-            _limitStart = HandleI.ControlPoint;
-            _limitEnd = HandleJ.ControlPoint;
         }
 
         /// <summary>
@@ -85,9 +84,6 @@ namespace MPT.Math.Curves
             double handleLength = getHandleLength(pointI, pointJ);
             HandleI = new BezierCurveHandle(pointI, handleLength);
             HandleJ = getBezierCurveHandleJ(pointJ, handleLength);
-
-            _limitStart = HandleI.ControlPoint;
-            _limitEnd = HandleJ.ControlPoint;
         }
 
         /// <summary>
@@ -104,9 +100,6 @@ namespace MPT.Math.Curves
             double handleLength = getHandleLength(pointI, pointJ);
             HandleI = new BezierCurveHandle(pointI, handleLength);
             HandleJ = getBezierCurveHandleJ(pointJ, handleLength);
-
-            _limitStart = HandleI.ControlPoint;
-            _limitEnd = HandleJ.ControlPoint;
         }
 
         /// <summary>
@@ -219,26 +212,7 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits 
-        /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        protected CartesianCoordinate _limitStart;
-        /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        /// <value>The limit start.</value>
-        public CartesianCoordinate LimitStart => _limitStart;
-
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        protected CartesianCoordinate _limitEnd;
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        /// <value>The limit end.</value>
-        public CartesianCoordinate LimitEnd => _limitEnd;
+        #region ICurveLimits
 
         /// <summary>
         /// Length of the curve between the limits.
@@ -267,7 +241,7 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public double ChordLength()
         {
-            return LinearCurve.Length(LimitStart, LimitEnd);
+            return LinearCurve.Length(Range.Start.Limit, Range.End.Limit);
         }
         /// <summary>
         /// The length of the chord connecting the start and end limits.
@@ -286,7 +260,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public LinearCurve Chord()
         {
-            return new LinearCurve(LimitStart, LimitEnd);
+            return new LinearCurve(Range.Start.Limit, Range.End.Limit);
         }
 
         /// <summary>
@@ -328,6 +302,72 @@ namespace MPT.Math.Curves
         public CartesianCoordinate CoordinateCartesian(double relativePosition)
         {
             return CoordinateByPosition(relativePosition);
+        }
+
+        /// <summary>
+        /// Coordinate of the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public PolarCoordinate CoordinatePolar(double relativePosition)
+        {
+            return CoordinateCartesian(relativePosition);
+        }
+        #endregion
+
+        #region ICurvePositionCartesian
+        /// <summary>
+        /// X-coordinate on the line segment that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public double XatY(double y)
+        {
+            return XsAtY(y)[0];
+        }
+
+        /// <summary>
+        /// Y-coordinate on the line segment that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public double YatX(double x)
+        {
+            return YsAtX(x)[0];
+        }
+
+        /// <summary>
+        /// X-coordinate on the line segment that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public double[] XsAtY(double y)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Y-coordinate on the line segment that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public double[] YsAtX(double x)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Provided point lies on the curve.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        public bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
+        {
+            double tolerance = Generics.GetTolerance(coordinate, Tolerance);
+            double[] yIntersections = YsAtX(coordinate.X);
+            return Array.Exists(yIntersections, element => element == coordinate.Y);
         }
         #endregion
 
@@ -404,6 +444,7 @@ namespace MPT.Math.Curves
         public BezierCurve CloneCurve()
         {
             BezierCurve curve = new BezierCurve(HandleI.CloneCurve(), HandleJ.CloneCurve(), NumberOfControlPoints);
+            curve._range = Range.CloneRange();
             return curve;
         }
         #endregion

@@ -115,11 +115,10 @@ namespace MPT.Math.Curves.Tools.Intersections
         {
             double D = linearCurve.ControlPointI.CrossProduct(linearCurve.ControlPointJ);
             double r = circularCurve.Radius;
-            CartesianOffset offset = linearCurve.LimitEnd.OffsetFrom(linearCurve.LimitStart);
+            CartesianOffset offset = linearCurve.Range.End.Limit.OffsetFrom(linearCurve.Range.Start.Limit);
             double dx = offset.X();
             double dy = offset.Y();
             double dr = AlgebraLibrary.SRSS(dx, dy);
-
 
             double incidenceDeltaSqrt = ((r * dr).Squared() - D.Squared()).Sqrt();
 
@@ -143,7 +142,7 @@ namespace MPT.Math.Curves.Tools.Intersections
         {
             double D = linearCurve.ControlPointI.CrossProduct(linearCurve.ControlPointJ);
             double r = circularCurve.Radius;
-            CartesianOffset offset = linearCurve.LimitEnd.OffsetFrom(linearCurve.LimitStart);
+            CartesianOffset offset = linearCurve.Range.End.Limit.OffsetFrom(linearCurve.Range.Start.Limit);
             double dx = offset.X();
             double dy = offset.Y();
             double dr = AlgebraLibrary.SRSS(dx, dy);

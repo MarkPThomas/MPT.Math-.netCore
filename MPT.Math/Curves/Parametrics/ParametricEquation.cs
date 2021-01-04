@@ -28,7 +28,7 @@ namespace MPT.Math.Curves.Parametrics
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="IParametricEquation{T}" />
-    public class ParametricEquation<T> : IParametricEquation<T>
+    public abstract class ParametricEquation<T> : IParametricEquation<T>
     {
         /// <summary>
         /// The constant value that is returned, regardless of the parametric position.

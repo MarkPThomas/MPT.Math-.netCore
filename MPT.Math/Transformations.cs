@@ -12,12 +12,11 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Coordinates;
-using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 
 namespace MPT.Math
 {
     /// <summary>
-    /// Class Transformations.
+    /// Handles transformations between global coordinates and local coordinates.
     /// </summary>
     public class Transformations
     {
@@ -47,8 +46,8 @@ namespace MPT.Math
         /// <summary>
         /// Initializes a new instance of the <see cref="Transformations"/> class.
         /// </summary>
-        /// <param name="localOriginInGlobal">The local origin in global.</param>
-        /// <param name="localAxisXPtInGlobal">The local axis x pt in global.</param>
+        /// <param name="localOriginInGlobal">The local origin in global coordinates.</param>
+        /// <param name="localAxisXPtInGlobal">Any point along the local x-axis in global coordinates.</param>
         public Transformations(CartesianCoordinate localOriginInGlobal, CartesianCoordinate localAxisXPtInGlobal)
         {
             LocalOrigin = localOriginInGlobal;
@@ -56,9 +55,9 @@ namespace MPT.Math
 
             Displacement = localOriginInGlobal.OffsetFrom(CartesianCoordinate.Origin());
             Rotation = AngularOffset.CreateFromPoints(
-                new CartesianCoordinate(localOriginInGlobal.X + 1, localOriginInGlobal.Y),
-                localOriginInGlobal, 
-                localAxisXPtInGlobal
+                localAxisXPtInGlobal,
+                localOriginInGlobal,
+                new CartesianCoordinate(localOriginInGlobal.X - 1, localOriginInGlobal.Y)
                 );
         }
 
@@ -70,7 +69,8 @@ namespace MPT.Math
         public CartesianCoordinate TransformToGlobal(CartesianCoordinate localCoordinate)
         {
             CartesianCoordinate rotatedCoordinate = CartesianCoordinate.RotateAboutPoint(localCoordinate, LocalOrigin, Rotation.ToAngle().Radians);
-            return new CartesianCoordinate(LocalOrigin.X + rotatedCoordinate.X, LocalOrigin.Y + rotatedCoordinate.Y);
+            CartesianCoordinate translatedCoordinate = new CartesianCoordinate(LocalOrigin.X + localCoordinate.X, LocalOrigin.Y + localCoordinate.Y);
+            return CartesianCoordinate.RotateAboutPoint(translatedCoordinate, LocalOrigin, Rotation.ToAngle().Radians); ;
         }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace MPT.Math
         /// <returns>CartesianCoordinate.</returns>
         public CartesianCoordinate TransformToLocal(CartesianCoordinate globalCoordinate)
         {
-            CartesianCoordinate translatedCoordinate = globalCoordinate - LocalOrigin;
-            return CartesianCoordinate.RotateAboutPoint(translatedCoordinate, LocalOrigin, -1 * Rotation.ToAngle().Radians);
+            CartesianCoordinate rotatedCoordinate = CartesianCoordinate.RotateAboutPoint(globalCoordinate, LocalOrigin, -1 * Rotation.ToAngle().Radians);
+            return rotatedCoordinate - LocalOrigin;
         }
     }
 }

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace MPT.Math.Curves.Tools
 {
+    /// <summary>
+    /// Class AngleBisector.
+    /// </summary>
     public class AngleBisector
     {
     }

@@ -1,6 +1,7 @@
 ﻿using MPT.Math.Coordinates;
 using NUnit.Framework;
 using System;
+using System.Numerics;
 
 namespace MPT.Math.Vectors.UnitTests
 {
@@ -148,10 +149,10 @@ namespace MPT.Math.Vectors.UnitTests
         }
 
         [Test]
-        public static void Magnitude_Throws_Exception_for_Empty_Vector()
+        public static void Magnitude_Throws_ArgumentException_for_Empty_Vector()
         {
             Vector vector = new Vector(0, 0);
-            Assert.Throws<Exception>(() => vector.Magnitude());
+            Assert.Throws<ArgumentException>(() => vector.Magnitude());
         }
 
         [TestCase(0, 0, 0)]
@@ -372,14 +373,14 @@ namespace MPT.Math.Vectors.UnitTests
         [TestCase(0, 0, 0, 0)]
         [TestCase(0, 0, 1, 1)]
         [TestCase(1, 1, 0, 0)]
-        public static void ConcavityCollinearity_Throws_Exception_for_Vector_without_Magnitude(
+        public static void ConcavityCollinearity_Throws_ArgumentException_for_Vector_without_Magnitude(
             double magnitudeX1, double magnitudeY1,
             double magnitudeX2, double magnitudeY2)
         {
             Vector vector1 = new Vector(magnitudeX1, magnitudeY1);
             Vector vector2 = new Vector(magnitudeX2, magnitudeY2);
 
-            Assert.Throws<Exception>(() => vector1.ConcavityCollinearity(vector2));
+            Assert.Throws<ArgumentException>(() => vector1.ConcavityCollinearity(vector2));
         }
 
         [TestCase(0, 0, 0, 0, 0)]
@@ -463,14 +464,14 @@ namespace MPT.Math.Vectors.UnitTests
         [TestCase(0, 0, 0, 0)]
         [TestCase(0, 0, 1, 1)]
         [TestCase(1, 1, 0, 0)]
-        public static void Angle_Throws_Exception_for_Vector_without_Magnitude(
+        public static void Angle_Throws_ArgumentException_for_Vector_without_Magnitude(
             double magnitudeX1, double magnitudeY1,
             double magnitudeX2, double magnitudeY2)
         {
             Vector vector1 = new Vector(magnitudeX1, magnitudeY1);
             Vector vector2 = new Vector(magnitudeX2, magnitudeY2);
 
-            Assert.Throws<Exception>(() => vector1.Angle(vector2));
+            Assert.Throws<ArgumentException>(() => vector1.Angle(vector2));
         }
 
         [TestCase(0, 0, 0, 0, 0)]
@@ -493,30 +494,43 @@ namespace MPT.Math.Vectors.UnitTests
 
             Assert.AreEqual(expectedResult, vector1.Area(vector2));
         }
-        #endregion
 
-        #region Methods: Static
 
-        [TestCase(1, 0, 1, 0)]
-        [TestCase(1, 1, 0.707107, 0.707107)]
-        [TestCase(0, 1, 0, 1)]
-        [TestCase(-1, 1, -0.707107, 0.707107)]
-        [TestCase(-1, 0, -1, 0)]
-        [TestCase(-1, -1, -0.707107, -0.707107)]
-        [TestCase(0, -1, 0, -1)]
-        [TestCase(1, -1, 0.707107, -0.707107)]
-        public static void UnitVector_Static(double magnitudeX, double magnitudeY, double expectedMagnitudeX, double expectedMagnitudeY)
+        [TestCase(0, 0, 1, 0, 1, 0)]
+        [TestCase(0, 0, 1, 1, 0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, 0, 1)]
+        [TestCase(0, 0, -1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, -1, 0, -1, 0)]
+        [TestCase(0, 0, -1, -1, -0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 0, -1)]
+        [TestCase(0, 0, 1, -1, 0.707107, -0.707107)]
+        [TestCase(2, 3, 0, 0, -0.5547, -0.83205)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, 0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, 0, 1)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 0, -1)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, -0.5547, -0.83205)]
+        public static void UnitVector(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
         {
-            Vector unitVector = Vector.UnitVector(new CartesianCoordinate(), new CartesianCoordinate(magnitudeX, magnitudeY));
+            Vector vector = new Vector(new CartesianCoordinate(x1, y1), new CartesianCoordinate(x2, y2));
+            Vector unitVector = vector.UnitVector();
 
             Assert.AreEqual(expectedMagnitudeX, unitVector.Xcomponent, Tolerance);
             Assert.AreEqual(expectedMagnitudeY, unitVector.Ycomponent, Tolerance);
         }
 
         [Test]
-        public static void UnitVector_Static_Throws_Exception_for_Empty_Vector()
+        public static void UnitVector_Throws_ArgumentException_for_Empty_Vector()
         {
-            Assert.Throws<Exception>(() => Vector.UnitVector(new CartesianCoordinate(), new CartesianCoordinate()));
+            Vector vector = new Vector(new CartesianCoordinate(0, 0), new CartesianCoordinate(0, 0));
+            Assert.Throws<ArgumentException>(() => vector.UnitVector());
         }
 
         [TestCase(0, 0, 1, 0, 1, 0)]
@@ -542,20 +556,21 @@ namespace MPT.Math.Vectors.UnitTests
             double x2, double y2,
             double expectedMagnitudeX, double expectedMagnitudeY)
         {
-            Vector vector = Vector.UnitTangentVector(
-                new CartesianCoordinate(x1, y1),
-                new CartesianCoordinate(x2, y2));
+            Vector vector = new Vector(new CartesianCoordinate(x1, y1), new CartesianCoordinate(x2, y2));
+            Vector unitTangentVector = vector.UnitTangentVector();
 
-            Assert.AreEqual(expectedMagnitudeX, vector.Xcomponent, Tolerance);
-            Assert.AreEqual(expectedMagnitudeY, vector.Ycomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeX, unitTangentVector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, unitTangentVector.Ycomponent, Tolerance);
         }
 
 
         [Test]
-        public static void UnitTangentVector_Throws_Exception_for_Empty_Vector()
+        public static void UnitTangentVector_Throws_ArgumentException_for_Empty_Vector()
         {
-            Assert.Throws<Exception>(() => Vector.UnitTangentVector(new CartesianCoordinate(), new CartesianCoordinate()));
+            Vector vector = new Vector(new CartesianCoordinate(0, 0), new CartesianCoordinate(0, 0));
+            Assert.Throws<ArgumentException>(() => vector.UnitTangentVector());
         }
+
 
         [TestCase(0, 0, 1, 0, 0, 1)]
         [TestCase(0, 0, 1, 1, -0.707107, 0.707107)]
@@ -580,7 +595,126 @@ namespace MPT.Math.Vectors.UnitTests
             double x2, double y2,
             double expectedMagnitudeX, double expectedMagnitudeY)
         {
-            Vector vector = Vector.UnitNormalVector(
+            Vector vector = new Vector(new CartesianCoordinate(x1, y1), new CartesianCoordinate(x2, y2));
+            Vector unitNormalVector = vector.UnitNormalVector();
+
+            Assert.AreEqual(expectedMagnitudeX, unitNormalVector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, unitNormalVector.Ycomponent, Tolerance);
+        }
+
+        [Test]
+        public static void UnitNormalVector_Throws_ArgumentException_for_Empty_Vector()
+        {
+            Vector vector = new Vector(new CartesianCoordinate(0, 0), new CartesianCoordinate(0, 0));
+            Assert.Throws<ArgumentException>(() => vector.UnitNormalVector());
+        }
+        #endregion
+
+        #region Methods: Static
+        [TestCase(0, 0, 1, 0, 1, 0)]
+        [TestCase(0, 0, 1, 1, 0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, 0, 1)]
+        [TestCase(0, 0, -1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, -1, 0, -1, 0)]
+        [TestCase(0, 0, -1, -1, -0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 0, -1)]
+        [TestCase(0, 0, 1, -1, 0.707107, -0.707107)]
+        [TestCase(2, 3, 0, 0, -0.5547, -0.83205)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, 0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, 0, 1)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 0, -1)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, -0.5547, -0.83205)]
+        public static void UnitVector_Static(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector unitVector = Vector.UnitVector((x2-x1), (y2-y1));
+
+            Assert.AreEqual(expectedMagnitudeX, unitVector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, unitVector.Ycomponent, Tolerance);
+        }
+
+        [TestCase(1, 0, 1, 0)]
+        [TestCase(1, 1, 0.707107, 0.707107)]
+        [TestCase(0, 1, 0, 1)]
+        [TestCase(-1, 1, -0.707107, 0.707107)]
+        [TestCase(-1, 0, -1, 0)]
+        [TestCase(-1, -1, -0.707107, -0.707107)]
+        [TestCase(0, -1, 0, -1)]
+        [TestCase(1, -1, 0.707107, -0.707107)]
+        public static void UnitVector_Static_by_Component(double magnitudeX, double magnitudeY, double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector unitVector = Vector.UnitVector(new CartesianCoordinate(), new CartesianCoordinate(magnitudeX, magnitudeY));
+
+            Assert.AreEqual(expectedMagnitudeX, unitVector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, unitVector.Ycomponent, Tolerance);
+        }
+
+        [Test]
+        public static void UnitVector_Static_Throws_ArgumentException_for_Empty_Vector()
+        {
+            Assert.Throws<ArgumentException>(() => Vector.UnitVector(new CartesianCoordinate(), new CartesianCoordinate()));
+        }
+
+        [TestCase(0, 0, 1, 0, 1, 0)]
+        [TestCase(0, 0, 1, 1, 0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, 0, 1)]
+        [TestCase(0, 0, -1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, -1, 0, -1, 0)]
+        [TestCase(0, 0, -1, -1, -0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 0, -1)]
+        [TestCase(0, 0, 1, -1, 0.707107, -0.707107)]
+        [TestCase(2, 3, 0, 0, -0.5547, -0.83205)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, 0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, 0, 1)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 0, -1)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, -0.5547, -0.83205)]
+        public static void UnitTangentVector_Static(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector vector = Vector.UnitTangentVector((x2-x1), (y2-y1));
+
+            Assert.AreEqual(expectedMagnitudeX, vector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, vector.Ycomponent, Tolerance);
+        }
+
+        [TestCase(0, 0, 1, 0, 1, 0)]
+        [TestCase(0, 0, 1, 1, 0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, 0, 1)]
+        [TestCase(0, 0, -1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, -1, 0, -1, 0)]
+        [TestCase(0, 0, -1, -1, -0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 0, -1)]
+        [TestCase(0, 0, 1, -1, 0.707107, -0.707107)]
+        [TestCase(2, 3, 0, 0, -0.5547, -0.83205)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, 0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, 0, 1)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 0, -1)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, -0.5547, -0.83205)]
+        public static void UnitTangentVector_Static_by_Component(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector vector = Vector.UnitTangentVector(
                 new CartesianCoordinate(x1, y1),
                 new CartesianCoordinate(x2, y2));
 
@@ -590,9 +724,76 @@ namespace MPT.Math.Vectors.UnitTests
 
 
         [Test]
-        public static void UnitNormalVector_Throws_Exception_for_Empty_Vector()
+        public static void UnitTangentVector_Static_Throws_ArgumentException_for_Empty_Vector()
         {
-            Assert.Throws<Exception>(() => Vector.UnitNormalVector(new CartesianCoordinate(), new CartesianCoordinate()));
+            Assert.Throws<ArgumentException>(() => Vector.UnitTangentVector(new CartesianCoordinate(), new CartesianCoordinate()));
+        }
+
+
+        [TestCase(0, 0, 1, 0, 0, 1)]
+        [TestCase(0, 0, 1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, -1, 0)]
+        [TestCase(0, 0, -1, 1, -0.707107, -0.707107)]
+        [TestCase(0, 0, -1, 0, 0, -1)]
+        [TestCase(0, 0, -1, -1, 0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 1, 0)]
+        [TestCase(0, 0, 1, -1, 0.707107, 0.707107)]
+        [TestCase(2, 3, 0, 0, 0.83205, -0.5547)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 0, 1)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, 0, -1)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, 0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, 0.83205, -0.5547)]
+        public static void UnitNormalVector_Static(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector vector = Vector.UnitNormalVector((x2 - x1), (y2 - y1));
+
+            Assert.AreEqual(expectedMagnitudeX, vector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, vector.Ycomponent, Tolerance);
+        }
+
+        [TestCase(0, 0, 1, 0, 0, 1)]
+        [TestCase(0, 0, 1, 1, -0.707107, 0.707107)]
+        [TestCase(0, 0, 0, 1, -1, 0)]
+        [TestCase(0, 0, -1, 1, -0.707107, -0.707107)]
+        [TestCase(0, 0, -1, 0, 0, -1)]
+        [TestCase(0, 0, -1, -1, 0.707107, -0.707107)]
+        [TestCase(0, 0, 0, -1, 1, 0)]
+        [TestCase(0, 0, 1, -1, 0.707107, 0.707107)]
+        [TestCase(2, 3, 0, 0, 0.83205, -0.5547)]
+        [TestCase(0.5, 0.5, 1.5, 0.5, 0, 1)]
+        [TestCase(0.5, 0.5, 1.5, 1.5, -0.707107, 0.707107)]
+        [TestCase(0.5, 0.5, 0.5, 1.5, -1, 0)]
+        [TestCase(0.5, 0.5, -0.5, 1.5, -0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, -0.5, 0.5, 0, -1)]
+        [TestCase(0.5, 0.5, -0.5, -0.5, 0.707107, -0.707107)]
+        [TestCase(0.5, 0.5, 0.5, -0.5, 1, 0)]
+        [TestCase(0.5, 0.5, 1.5, -0.5, 0.707107, 0.707107)]
+        [TestCase(2.5, 3.5, 0.5, 0.5, 0.83205, -0.5547)]
+        public static void UnitNormalVector_Static_by_Components(
+            double x1, double y1,
+            double x2, double y2,
+            double expectedMagnitudeX, double expectedMagnitudeY)
+        {
+            Vector vector = Vector.UnitNormalVector(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            Assert.AreEqual(expectedMagnitudeX, vector.Xcomponent, Tolerance);
+            Assert.AreEqual(expectedMagnitudeY, vector.Ycomponent, Tolerance);
+        }
+
+        [Test]
+        public static void UnitNormalVector_Static_Throws_ArgumentException_for_Empty_Vector()
+        {
+            Assert.Throws<ArgumentException>(() => Vector.UnitNormalVector(new CartesianCoordinate(), new CartesianCoordinate()));
         }
 
         [TestCase(1, 0, 2, 0, 0)]
@@ -626,14 +827,14 @@ namespace MPT.Math.Vectors.UnitTests
         [TestCase(0, 0, 0, 0)]
         [TestCase(0, 0, 1, 1)]
         [TestCase(1, 1, 0, 0)]
-        public static void Angle_Static_Throws_Exception_for_Vector_without_Magnitude(
+        public static void Angle_Static_Throws_ArgumentException_for_Vector_without_Magnitude(
             double magnitudeX1, double magnitudeY1,
             double magnitudeX2, double magnitudeY2)
         {
             Vector vector1 = new Vector(magnitudeX1, magnitudeY1);
             Vector vector2 = new Vector(magnitudeX2, magnitudeY2);
 
-            Assert.Throws<Exception>(() => Vector.Angle(vector1, vector2, Tolerance));
+            Assert.Throws<ArgumentException>(() => Vector.Angle(vector1, vector2, Tolerance));
         }
 
         [TestCase(1, 0, 2, 0, true)]  // X Pointing Same Way
@@ -841,14 +1042,14 @@ namespace MPT.Math.Vectors.UnitTests
         [TestCase(0, 0, 0, 0)]
         [TestCase(0, 0, 1, 1)]
         [TestCase(1, 1, 0, 0)]
-        public static void ConcavityCollinearity_Static_Throws_Exception_for_Vector_without_Magnitude(
+        public static void ConcavityCollinearity_Static_Throws_ArgumentException_for_Vector_without_Magnitude(
             double magnitudeX1, double magnitudeY1,
             double magnitudeX2, double magnitudeY2)
         {
             Vector vector1 = new Vector(magnitudeX1, magnitudeY1);
             Vector vector2 = new Vector(magnitudeX2, magnitudeY2);
 
-            Assert.Throws<Exception>(() => Vector.ConcavityCollinearity(vector1, vector2));
+            Assert.Throws<ArgumentException>(() => Vector.ConcavityCollinearity(vector1, vector2));
         }
         #endregion
 

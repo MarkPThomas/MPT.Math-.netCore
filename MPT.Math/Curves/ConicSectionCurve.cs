@@ -21,6 +21,7 @@ using MPT.Math.Vectors;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves;
+using MPT.Math.Trigonometry;
 
 namespace MPT.Math.Curves
 {
@@ -32,7 +33,9 @@ namespace MPT.Math.Curves
     /// Implements the <see cref="MPT.Math.Curves.Curve" />
     /// </summary>
     /// <seealso cref="MPT.Math.Curves.Curve" />
-    public abstract class ConicSectionCurve : Curve
+    public abstract class ConicSectionCurve : Curve,
+        ICurveLimits,
+        ICurvePositionCartesian, ICurvePositionPolar
     {
         #region Properties              
         /// <summary>
@@ -175,7 +178,9 @@ namespace MPT.Math.Curves
         /// Distance from the focus to the directrix, p.
         /// </summary>
         /// <value>The distance from focus to directrix.</value>
-        public virtual double DistanceFromFocusToDirectrix => Eccentricity == 0 ? double.PositiveInfinity : DistanceFromFocusToOrigin - DistanceFromDirectrixToOrigin;
+        public virtual double DistanceFromFocusToDirectrix => Eccentricity == 0 ? 
+            double.PositiveInfinity : 
+            DistanceFromFocusToOrigin - DistanceFromDirectrixToOrigin;
 
 
         /// <summary>
@@ -288,15 +293,6 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        /// <summary>
-        /// The radius measured from the local coordinate origin as a function of the angle in local coordinates.
-        /// </summary>
-        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
-        /// <returns>System.Double.</returns>
-        public virtual double RadiusAboutOrigin(double angleRadians)
-        {
-            return (XbyRotationAboutOrigin(angleRadians).Squared() + YbyRotationAboutOrigin(angleRadians).Squared()).Sqrt();
-        }
 
         /// <summary>
         /// The radius measured from the local coordinate origin as a function of the angle in local coordinates.
@@ -419,20 +415,6 @@ namespace MPT.Math.Curves
             return new CartesianCoordinate(x, y);
         }
 
-        /// <summary>
-        /// X-coordinate on the line segment that corresponds to the y-coordinate given.
-        /// </summary>
-        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
-        /// <returns></returns>
-        public abstract double XatY(double y);
-
-        /// <summary>
-        /// Y-coordinate on the line segment that corresponds to the x-coordinate given.
-        /// </summary>
-        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
-        /// <returns></returns>
-        public abstract double YatX(double x);
-
         #region Focus, Right
         /// <summary>
         /// X-coordinate on the curve in local coordinates about the right (+X) focus that corresponds to the parametric coordinate given.
@@ -449,6 +431,30 @@ namespace MPT.Math.Curves
         public double YbyRotationAboutFocusRight(double angleRadians)
         {
             return RadiusAboutFocusRight((Angle)angleRadians) * Trig.Sin(angleRadians);
+        }
+
+        /// <summary>
+        /// The angle about the origin, in radians, determined by the angle about the right focus.
+        /// </summary>
+        /// <param name="angleRadians">Angle of rotation about the right (+X) focus, in radians.</param>
+        /// <returns>System.Double.</returns>
+        public double RotationAboutOriginByRotationAboutFocusRight(double angleRadians)
+        {
+            double x = XbyRotationAboutFocusRight(angleRadians);
+            double y = YbyRotationAboutFocusRight(angleRadians);
+            return Trig.ArcTan(y / x);
+        }
+
+        /// <summary>
+        /// The angle about the right (+X) focus, in radians, determined by the angle about the origin.
+        /// </summary>
+        /// <param name="angleRadians">The angle radians.</param>
+        /// <returns>System.Double.</returns>
+        public double RotationAboutFocusRightByRotationAboutOrigin(double angleRadians)
+        {
+            double x = XbyRotationAboutOrigin(angleRadians);
+            double y = XbyRotationAboutOrigin(angleRadians);
+            return Trig.ArcTan(y / (x - DistanceFromFocusToOrigin));
         }
         #endregion
         #region Focus, Left
@@ -468,6 +474,30 @@ namespace MPT.Math.Curves
         {
             return RadiusAboutFocusLeft((Angle)angleRadians) * Trig.Sin(angleRadians);
         }
+
+        /// <summary>
+        /// The angle about the origin, in radians, determined by the angle about the right focus.
+        /// </summary>
+        /// <param name="angleRadians">Angle of rotation about the left (-X) focus, in radians.</param>
+        /// <returns>System.Double.</returns>
+        public double RotationAboutOriginByRotationAboutFocusLeft(double angleRadians)
+        {
+            double x = XbyRotationAboutFocusLeft(angleRadians);
+            double y = YbyRotationAboutFocusLeft(angleRadians);
+            return Trig.ArcTan(y / x);
+        }
+
+        /// <summary>
+        /// The angle about the left (-X) focus, in radians, determined by the angle about the origin.
+        /// </summary>
+        /// <param name="angleRadians">The angle radians.</param>
+        /// <returns>System.Double.</returns>
+        public double RotationAboutFocusLeftByRotationAboutOrigin(double angleRadians)
+        {
+            double x = XbyRotationAboutOrigin(angleRadians);
+            double y = XbyRotationAboutOrigin(angleRadians);
+            return Trig.ArcTan(y / (x + DistanceFromFocusToOrigin));
+        }
         #endregion
         #endregion
 
@@ -479,6 +509,149 @@ namespace MPT.Math.Curves
         /// <param name="c">Distance from local origin to the focus, c.</param>
         /// <returns>System.Double.</returns>
         protected abstract double distanceFromVertexMinorToOrigin(double a, double c);
+        #endregion
+
+        #region ICurvePositionPolar   
+        /// <summary>
+        /// The radius measured from the local coordinate origin as a function of the angle in local coordinates.
+        /// </summary>
+        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
+        /// <returns>System.Double.</returns>
+        public virtual double RadiusAboutOrigin(double angleRadians)
+        {
+            return (XbyRotationAboutOrigin(angleRadians).Squared() + YbyRotationAboutOrigin(angleRadians).Squared()).Sqrt();
+        }
+
+        /// <summary>
+        /// The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+        /// </summary>
+        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
+        /// <returns>System.Double.</returns>
+        public virtual double[] RadiiAboutOrigin(double angleRadians)
+        {
+            double radiusLeft = RadiusAboutFocusLeft(RotationAboutFocusLeftByRotationAboutOrigin(angleRadians));
+            double radiusRight = RadiusAboutFocusRight(RotationAboutFocusRightByRotationAboutOrigin(angleRadians));
+            return new[] { radiusLeft, radiusRight };
+        }
+        #endregion
+
+        #region ICurvePositionCartesian
+        /// <summary>
+        /// X-coordinate on the curve that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+        /// <returns></returns>
+        public abstract double XatY(double y);
+
+        /// <summary>
+        /// Y-coordinate on the curve that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which y-coordinates are desired.</param>
+        /// <returns></returns>
+        public abstract double YatX(double x);
+
+        /// <summary>
+        /// X-coordinates on the curve that correspond to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+        /// <returns>System.Double.</returns>
+        public abstract double[] XsAtY(double y);
+
+        /// <summary>
+        /// Y-coordinates on the curve that correspond to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public abstract double[] YsAtX(double x);
+
+        /// <summary>
+        /// Provided point lies on the curve.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        public abstract bool IsIntersectingCoordinate(CartesianCoordinate coordinate);
+        #endregion
+
+        #region ICurveLimits
+        /// <summary>
+        /// Length of the line segment.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public abstract double Length();
+
+        /// <summary>
+        /// Length of the curve between two points.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public abstract double LengthBetween(double relativePositionStart, double relativePositionEnd);
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public abstract double ChordLength();
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        public abstract double ChordLengthBetween(double relativePositionStart, double relativePositionEnd);
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>LinearCurve.</returns>
+        public abstract LinearCurve Chord();
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+        /// <returns>LinearCurve.</returns>
+        public abstract LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd);
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public abstract Vector TangentVector(double relativePosition);
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public abstract Vector NormalVector(double relativePosition);
+
+        /// <summary>
+        /// Coordinate of the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public CartesianCoordinate CoordinateCartesian(double relativePosition)
+        {
+            return CoordinatePolar(relativePosition);
+        }
+
+        /// <summary>
+        /// Coordinate of the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public abstract PolarCoordinate CoordinatePolar(double relativePosition);
         #endregion
     }
 }

@@ -2,6 +2,7 @@
 using MPT.Math.Curves;
 using NUnit.Framework;
 using System;
+using System.Transactions;
 
 namespace MPT.Math.UnitTests.Coordinates
 {
@@ -95,6 +96,71 @@ namespace MPT.Math.UnitTests.Coordinates
             Assert.AreEqual(yi, offset.I.Y);
             Assert.AreEqual(xj, offset.J.X);
             Assert.AreEqual(yj, offset.J.Y);
+        }
+
+        [TestCase(2, 3, 0, 0, 2, 3)]  // No offset
+        [TestCase(2, 3, 0, 45, 2, 3)]  // Rotation of coordinate about itself
+        [TestCase(2, 3, 0, -45, 2, 3)]  // Negative Rotation of coordinate about itself
+        [TestCase(2, 3, 1, 0, 3, 3)]  // Linear offset with default rotation
+        [TestCase(2, 3, -1, 0, 1, 3)]  // Negative linear offset with default rotation
+        [TestCase(2, 3, 1, 60, 2.5, 3.866025)]
+        [TestCase(2, 3, -1, 60, 1.5, 2.133975)]
+        [TestCase(2, 3, -1, -60, 1.5, 3.866025)]
+        [TestCase(2, 3, 1, -60, 2.5, 2.133975)]
+        public static void OffsetCoordinate_Returns_Coordinate_Offset_by_Rotation_and_Displacement(
+            double x, double y, double distance, double rotationDegrees,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y, Tolerance);
+            Angle rotation = Angle.CreateFromDegree(rotationDegrees);
+            CartesianCoordinate offsetCoordinate = coordinate.OffsetCoordinate(distance, rotation);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY, Tolerance);
+
+            Assert.AreEqual(expectedCoordinate, offsetCoordinate);
+        }
+
+        [TestCase(2, 3, 3.605551)]
+        [TestCase(-2, 3, 3.605551)]
+        [TestCase(-2, -3, 3.605551)]
+        [TestCase(2, -3, 3.605551)]
+        [TestCase(0, 0, 0)]
+        public static void DistanceFromOrigin_Returns_Coordinate_Distance_from_Origin(double x, double y, double expectedDistance)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y);
+            double distance = coordinate.DistanceFromOrigin();
+            Assert.AreEqual(expectedDistance, distance, Tolerance);
+        }
+        #endregion
+
+        #region Methods: Static
+        [Test]
+        public static void Origin_Returns_Cartesian_Coordinate_at_Origin()
+        {
+            CartesianCoordinate coordinate = CartesianCoordinate.Origin();
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(0, 0);
+
+            Assert.AreEqual(expectedCoordinate, coordinate);
+        }
+
+        [TestCase(2, 3, 0, 0, 2, 3)]  // No offset
+        [TestCase(2, 3, 0, 45, 2, 3)]  // Rotation of coordinate about itself
+        [TestCase(2, 3, 0, -45, 2, 3)]  // Negative Rotation of coordinate about itself
+        [TestCase(2, 3, 1, 0, 3, 3)]  // Linear offset with default rotation
+        [TestCase(2, 3, -1, 0, 1, 3)]  // Negative linear offset with default rotation
+        [TestCase(2, 3, 1, 60, 2.5, 3.866025)]
+        [TestCase(2, 3, -1, 60, 1.5, 2.133975)]
+        [TestCase(2, 3, -1, -60, 1.5, 3.866025)]
+        [TestCase(2, 3, 1, -60, 2.5, 2.133975)]
+        public static void OffsetCoordinate_Returns_Coordinate_Offset_by_Rotation_and_Displacement_Static(
+            double x, double y, double distance, double rotationDegrees,
+            double expectedX, double expectedY)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y, Tolerance);
+            Angle rotation = Angle.CreateFromDegree(rotationDegrees);
+            CartesianCoordinate offsetCoordinate = CartesianCoordinate.OffsetCoordinate(coordinate, distance, rotation);
+            CartesianCoordinate expectedCoordinate = new CartesianCoordinate(expectedX, expectedY, Tolerance);
+
+            Assert.AreEqual(expectedCoordinate, offsetCoordinate);
         }
         #endregion
 
@@ -262,7 +328,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
 
         [TestCase(3, 2, 3, -2)]    // Mirror about x-axis to Quadrant IV
-        [TestCase(3, 2, 3, -2)]    // Mirror about x-axis to Quadrant IV, reversed line
+        [TestCase(-3, -2, -3, 2)]    // Mirror about x-axis to Quadrant IV, reversed line
         public static void MirrorAboutAxisX(
             double x, double y,
             double expectedX, double expectedY)
@@ -276,7 +342,7 @@ namespace MPT.Math.UnitTests.Coordinates
         }
 
         [TestCase(3, 2, -3, 2)]    // Mirror about y-axis to Quadrant II
-        [TestCase(3, 2, -3, 2)]    // Mirror about y-axis to Quadrant II, reversed line
+        [TestCase(-3, -2, 3, -2)]    // Mirror about y-axis to Quadrant II, reversed line
         public static void MirrorAboutAxisY(
             double x, double y,
             double expectedX, double expectedY)
@@ -309,6 +375,18 @@ namespace MPT.Math.UnitTests.Coordinates
             CartesianCoordinate transformedCoordinate = CartesianCoordinate.MirrorAboutLine(coordinate, lineOfReflection);
 
             Assert.AreEqual(expectedCoordinate, transformedCoordinate);
+        }
+        #endregion
+
+        #region Methods: Conversion        
+        [Test]
+        public static void ToPolar_Converts_Cartesian_Coordinate_to_Polar_Coordinate()
+        {
+            CartesianCoordinate cartesian = new CartesianCoordinate(1, 1.73205081, Tolerance);
+            PolarCoordinate polar = cartesian.ToPolar();
+            PolarCoordinate polarExpected = new PolarCoordinate(2, Angle.CreateFromDegree(60), Tolerance);
+
+            Assert.AreEqual(polarExpected, polar);
         }
         #endregion
 
@@ -427,11 +505,9 @@ namespace MPT.Math.UnitTests.Coordinates
         {
             double tolerance = 0.0002;
             CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(x, y, tolerance);
-            PolarCoordinate polarCoordinate = new PolarCoordinate(radius, azimuth, tolerance);
+            ICoordinate polarCoordinate = new PolarCoordinate(radius, azimuth, tolerance);
 
             Assert.AreEqual(expectedResult, cartesianCoordinate.Equals(polarCoordinate));
-            Assert.AreEqual(expectedResult, cartesianCoordinate == polarCoordinate);
-            Assert.AreEqual(!expectedResult, cartesianCoordinate != polarCoordinate);
         }
         #endregion
 
@@ -504,6 +580,18 @@ namespace MPT.Math.UnitTests.Coordinates
         {
             CartesianCoordinate coordinate = new CartesianCoordinate(2, -3);
             Assert.Throws<DivideByZeroException>(() => { CartesianCoordinate coordinateNew = coordinate / 0; });
+        }
+        #endregion
+
+        #region Operators: Conversion
+        [Test]
+        public static void Implicit_Conversion_Between_Cartesian_And_Polar_Coordinates()
+        {
+            CartesianCoordinate cartesian = new CartesianCoordinate(1, 1.73205081, Tolerance);
+            PolarCoordinate polar = cartesian;
+            PolarCoordinate polarExpected = new PolarCoordinate(2, Angle.CreateFromDegree(60), Tolerance);
+
+            Assert.AreEqual(polarExpected, polar);
         }
         #endregion
     }

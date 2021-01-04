@@ -20,7 +20,7 @@ namespace MPT.Math.Curves.Tools
     /// <summary>
     /// Handles limit ranges applied to curves.
     /// </summary>
-    public class CurveRange
+    public class CurveRange : ICloneable
     {
         #region Properties
         /// <summary>
@@ -44,6 +44,7 @@ namespace MPT.Math.Curves.Tools
         public CurveLimit End => _limitEnd;
         #endregion
 
+        #region Initialize
         /// <summary>
         /// Initializes a new instance of the <see cref="CurveRange"/> class.
         /// </summary>
@@ -53,6 +54,30 @@ namespace MPT.Math.Curves.Tools
             _limitStart = new CurveLimit(curve);
             _limitEnd = new CurveLimit(curve);
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CurveRange"/> class.
+        /// </summary>
+        /// <param name="curve">The curve.</param>
+        /// <param name="defaultStartLimit">The default start limit.</param>
+        /// <param name="defaultEndLimit">The default end limit.</param>
+        internal CurveRange(
+            Curve curve, 
+            CartesianCoordinate defaultStartLimit, 
+            CartesianCoordinate defaultEndLimit)
+        {
+            _limitStart = new CurveLimit(curve, defaultStartLimit);
+            _limitEnd = new CurveLimit(curve, defaultEndLimit);
+        }
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="CurveRange"/> class from being created.
+        /// </summary>
+        private CurveRange()
+        {
+
+        }
+        #endregion
 
         #region Methods         
         /// <summary>
@@ -164,6 +189,29 @@ namespace MPT.Math.Curves.Tools
             {
                 throw new ArgumentOutOfRangeException($"Position must be between 0 and +2π, but was {position}.");
             }
+        }
+        #endregion
+
+        #region ICloneable
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>A new object that is a copy of this instance.</returns>
+        public object Clone()
+        {
+            return CloneRange();
+        }
+
+        /// <summary>
+        /// Clones the range limit.
+        /// </summary>
+        /// <returns>LinearCurve.</returns>
+        public CurveRange CloneRange()
+        {
+            CurveRange curveRange = new CurveRange();
+            curveRange._limitStart = _limitStart.CloneLimit();
+            curveRange._limitEnd = _limitEnd.CloneLimit();
+            return curveRange;
         }
         #endregion
     }

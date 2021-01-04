@@ -91,27 +91,9 @@ namespace MPT.Math.Coordinates
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString() + " - radius:" + NMath.Round(Radius,6) + ", azimuth:" + NMath.Round(Azimuth.Radians, 6);
-        }
-
-        /// <summary>
-        /// Converts the polar coordinate to a cartesian coordinate.
-        /// </summary>
-        /// <returns>PolarCoordinate.</returns>
-        public CartesianCoordinate ToCartesian()
-        {
-            return Cartesian2DPolarConverter.ToCartesian(this);
-        }
-        #endregion
-
-        #region Methods: Static        
-        /// <summary>
-        /// Returns a default static coordinate at the origin.
-        /// </summary>
-        /// <returns>PolarCoordinate.</returns>
-        public static PolarCoordinate Origin()
-        {
-            return new PolarCoordinate(0, 0);
+            return base.ToString() 
+                + " - radius:" + NMath.Round(Radius,6) 
+                + ", azimuth:" + NMath.Round(Azimuth.Radians, 6);
         }
         #endregion
 
@@ -253,6 +235,28 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
+        #region Methods: Conversion       
+        /// <summary>
+        /// Converts the polar coordinate to a cartesian coordinate.
+        /// </summary>
+        /// <returns>PolarCoordinate.</returns>
+        public CartesianCoordinate ToCartesian()
+        {
+            return Cartesian2DPolarConverter.ToCartesian(this);
+        }
+        #endregion
+
+        #region Methods: Static        
+        /// <summary>
+        /// Returns a default static coordinate at the origin.
+        /// </summary>
+        /// <returns>PolarCoordinate.</returns>
+        public static PolarCoordinate Origin()
+        {
+            return new PolarCoordinate(0, 0);
+        }
+        #endregion
+
         #region Operators & Equals
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
@@ -391,13 +395,6 @@ namespace MPT.Math.Coordinates
         /// <param name="polar">The polar.</param>
         /// <returns>The result of the conversion.</returns>
         public static implicit operator CartesianCoordinate(PolarCoordinate polar) => polar.ToCartesian();
-
-        /// <summary>
-        /// Performs an explicit conversion from <see cref="CartesianCoordinate"/> to <see cref="PolarCoordinate"/>.
-        /// </summary>
-        /// <param name="cartesian">The cartesian.</param>
-        /// <returns>The result of the conversion.</returns>
-        public static explicit operator PolarCoordinate(CartesianCoordinate cartesian) => cartesian.ToPolar();
         #endregion
     }
 }

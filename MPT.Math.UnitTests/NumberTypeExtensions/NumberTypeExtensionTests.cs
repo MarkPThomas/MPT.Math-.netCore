@@ -102,6 +102,47 @@ namespace MPT.Math.UnitTests.NumberTypeExtensions
         {
             return value.IsZeroSign(tolerance);
         }
+
+        [TestCase(0, ExpectedResult = 1)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(-1, ExpectedResult = -1)]
+        [TestCase(5, ExpectedResult = 1)]
+        [TestCase(-5, ExpectedResult = -1)]
+        public static int Sign_Int(int value)
+        {
+            return value.Sign();
+        }
+
+
+        [TestCase(1, 0.1, ExpectedResult = 1)]
+        [TestCase(1, 10, ExpectedResult = 1)]
+        [TestCase(-1, 0.001, ExpectedResult = -1)]
+        [TestCase(-1, 1.1, ExpectedResult = 1)] // Near zero on the negative end, within tolerance
+        public static int Sign_Int_Custom_Tolerance(int value, double tolerance)
+        {
+            return value.Sign(tolerance);
+        }
+
+
+        [TestCase(0, ExpectedResult = 1)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(-1, ExpectedResult = -1)]
+        [TestCase(5.5, ExpectedResult = 1)]
+        [TestCase(-5.5, ExpectedResult = -1)]
+        public static int Sign_Double(double value)
+        {
+            return value.Sign();
+        }
+
+
+        [TestCase(0.01, 0.001, ExpectedResult = 1)]
+        [TestCase(0.001, 0.001, ExpectedResult = 1)]
+        [TestCase(-0.01, 0.001, ExpectedResult = -1)]
+        [TestCase(-0.0001, 0.001, ExpectedResult = 1)] // Near zero on the negative end, within tolerance
+        public static int Sign_Double_Custom_Tolerance(double value, double tolerance)
+        {
+            return value.Sign(tolerance);
+        }
         #endregion
 
         #region Comparisons

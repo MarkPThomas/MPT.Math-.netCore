@@ -145,14 +145,6 @@ namespace MPT.Math.Vectors
             return unitTangentVectorPrime / unitTangentVectorPrime.Magnitude(angleRadians);
         }
 
-        //public VectorParametric UnitBinormalVector(double angleRadians)
-        //{
-        //    VectorParametric unitTangentVector = UnitTangentVector(angleRadians);
-        //    VectorParametric unitNormalVector = UnitNormalVector(angleRadians);
-
-        //    return unitTangentVector.CrossProduct(unitNormalVector, angleRadians);
-        //}
-
         /// <summary>
         /// Converts to vectorat.
         /// </summary>
@@ -198,29 +190,6 @@ namespace MPT.Math.Vectors
         #endregion
 
         #region Operators
-        ///// <summary>
-        ///// Implements the + operator.
-        ///// </summary>
-        ///// <param name="a">a.</param>
-        ///// <param name="b">The b.</param>
-        ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator +(VectorParametric a, VectorParametric b)
-        //{
-        //    return new VectorParametric(a.Xcomponent + b.Xcomponent, a.Ycomponent + b.Ycomponent);
-        //}
-
-        ///// <summary>
-        ///// Implements the - operator.
-        ///// </summary>
-        ///// <param name="a">a.</param>
-        ///// <param name="b">The b.</param>
-        ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator -(VectorParametric a, VectorParametric b)
-        //{
-        //    return new VectorParametric(a.Xcomponent - b.Xcomponent, a.Ycomponent - b.Ycomponent);
-        //}
-
-
         /// <summary>
         /// Implements the * operator.
         /// </summary>
@@ -252,7 +221,6 @@ namespace MPT.Math.Vectors
         {
             return new VectorParametric(a._curveParametric / b);
         }
-
         #endregion
     }
 }

@@ -92,7 +92,7 @@ namespace MPT.Math.Coordinates
         {
             Angle angle1 = new Vector(point1, point2).Angle();
             Angle angle2 = new Vector(point2, point3).Angle();
-            return angle2.OffsetFrom(angle1);
+            return angle1.OffsetFrom(angle2);
         }
         #endregion
 

@@ -232,6 +232,7 @@ namespace MPT.Math.Vectors
             return ConcavityCollinearity(this, vector);
         }
 
+
         /// <summary>
         /// Dot product of two vectors.
         /// </summary>
@@ -251,7 +252,6 @@ namespace MPT.Math.Vectors
         {
             return VectorLibrary.CrossProduct(Xcomponent, Ycomponent, vector.Xcomponent, vector.Ycomponent);
         }
-
 
 
         /// <summary>
@@ -488,7 +488,6 @@ namespace MPT.Math.Vectors
         }
 
 
-
         /// <summary>
         /// True: The concave side of the vector is inside the shape.
         /// This is determined by the direction of the vector.
@@ -560,8 +559,6 @@ namespace MPT.Math.Vectors
         #endregion
 
         #region Operators & Equals
-
-
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
@@ -671,8 +668,6 @@ namespace MPT.Math.Vectors
         {
             return new Vector(a.Xcomponent / b, a.Ycomponent / b);
         }
-
-        
         #endregion
     }
 }

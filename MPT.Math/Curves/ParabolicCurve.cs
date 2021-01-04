@@ -16,6 +16,7 @@ using MPT.Math.Curves.Parametrics;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
+using MPT.Math.Vectors;
 using System;
 
 namespace MPT.Math.Curves
@@ -124,57 +125,6 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits   
-        /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        protected CartesianCoordinate _limitStart;
-        /// <summary>
-        /// The limit where the curve starts.
-        /// </summary>
-        /// <value>The limit start.</value>
-        public CartesianCoordinate LimitStart => _limitStart;
-
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        protected CartesianCoordinate _limitEnd;
-        /// <summary>
-        /// The limit where the curve ends.
-        /// </summary>
-        /// <value>The limit end.</value>
-        public CartesianCoordinate LimitEnd => _limitEnd;
-
-        /// <summary>
-        /// Length of the curve.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public double Length()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        /// <summary>
-        /// The length of the chord connecting the start and end limits.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        public double ChordLength()
-        {
-            return LinearCurve.Length(LimitStart, LimitEnd);
-        }
-
-        /// <summary>
-        /// The chord connecting the start and end limits.
-        /// </summary>
-        /// <returns>LinearCurve.</returns>
-        public LinearCurve Chord()
-        {
-            return new LinearCurve(LimitStart, LimitEnd);
-        }
-        #endregion
-
         #region Curve Position
         /// <summary>
         /// X-coordinate on the line segment that corresponds to the y-coordinate given.
@@ -227,7 +177,137 @@ namespace MPT.Math.Curves
             return base.ToString()
                 + " - Center: " + _originLocal
                 + ", - Rotation: " + _localRotation
-                + ", a: " + DistanceFromVertexMajorToOrigin;
+                + ", a: " + DistanceFromVertexMajorToOrigin
+                +", I: " + _limitStartDefault + ", J: " + _limitEndDefault;
+        }
+        #endregion
+        
+        #region ICurveLimits  
+        /// <summary>
+        /// Length of the curve.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public override double Length()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Length of the curve between two points.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        public override double LengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public override double ChordLength()
+        {
+            return LinearCurve.Length(_range.Start.Limit, _range.End.Limit);
+        }
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        public override double ChordLengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>LinearCurve.</returns>
+        public override LinearCurve Chord()
+        {
+            return new LinearCurve(_range.Start.Limit, _range.End.Limit);
+        }
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+        /// <returns>LinearCurve.</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public override LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public override Vector TangentVector(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public override Vector NormalVector(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Coordinate of the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public override PolarCoordinate CoordinatePolar(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region ICurvePositionCartesian        
+        /// <summary>
+        /// X-coordinates on the curve that correspond to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] XsAtY(double y)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Y-coordinates on the curve that correspond to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] YsAtX(double x)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Provided point lies on the curve.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -267,8 +347,7 @@ namespace MPT.Math.Curves
         public ParabolicCurve CloneCurve()
         {
             ParabolicCurve curve = new ParabolicCurve(_vertexMajorLocal, DistanceFromFocusToOrigin, _originLocal);
-            curve._limitStart = _limitStart;
-            curve._limitEnd = _limitEnd;
+            curve._range = Range.CloneRange();
             return curve;
         }
         #endregion

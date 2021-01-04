@@ -128,15 +128,6 @@ namespace MPT.Math.Coordinates
         {
             return AlgebraLibrary.SRSS(X, Y);
         }
-
-        /// <summary>
-        /// The angle that the coordinate lies in from the positive horizontal axis. 
-        /// </summary>
-        /// <returns>Angle.</returns>
-        public Angle AngleFromHorizontalAxis()
-        {
-            return new Angle(Trig.ArcTan(Y / X));
-        }
         #endregion
 
         #region Methods: Static
@@ -158,7 +149,10 @@ namespace MPT.Math.Coordinates
         /// <returns>CartesianCoordinate.</returns>
         public static CartesianCoordinate OffsetCoordinate(CartesianCoordinate center, double distance, Angle rotation)
         {
-            return new CartesianCoordinate(center.X + distance * Trig.Cos(rotation.Radians), center.Y + distance * Trig.Sin(rotation.Radians));
+            return new CartesianCoordinate(
+                center.X + distance * Trig.Cos(rotation.Radians), 
+                center.Y + distance * Trig.Sin(rotation.Radians), 
+                center.Tolerance);
         }
         #endregion
 
@@ -447,13 +441,6 @@ namespace MPT.Math.Coordinates
         /// <param name="cartesian">The cartesian.</param>
         /// <returns>The result of the conversion.</returns>
         public static implicit operator PolarCoordinate(CartesianCoordinate cartesian) => cartesian.ToPolar();
-
-        /// <summary>
-        /// Performs an explicit conversion from <see cref="PolarCoordinate"/> to <see cref="CartesianCoordinate"/>.
-        /// </summary>
-        /// <param name="polar">The polar.</param>
-        /// <returns>The result of the conversion.</returns>
-        public static explicit operator CartesianCoordinate(PolarCoordinate polar) => polar.ToCartesian();
         #endregion
 
         #region IEquatable

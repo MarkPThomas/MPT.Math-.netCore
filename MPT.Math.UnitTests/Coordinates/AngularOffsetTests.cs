@@ -47,6 +47,28 @@ namespace MPT.Math.UnitTests.Coordinates
         }
         #endregion
 
+        #region Methods: Static
+        [TestCase(1, 2, 0, 1, -1, 2, 90)] // 90 deg rotated
+        [TestCase(4, 2, 3, 2, 3, 4, 90)] // 90 deg aligned
+        [TestCase(4, 2, 3, 2, 5, 4, 135)] // acute deg aligned
+        [TestCase(5, 4, 3, 2, 3, 4, 135)] // acute deg rotated
+        [TestCase(4, 2, 3, 2, 2, 3, 45)] // obtuse deg aligned
+        [TestCase(4, 3, 3, 2, 1, 2, 45)] // obtuse deg rotated
+        public static void CreateFromPoints_Creates_Angular_Offset_Formed_by_3_Points(
+            double x1, double y1,
+            double x2, double y2,
+            double x3, double y3,
+            double expectedAngleDegrees)
+        {
+            CartesianCoordinate point1 = new CartesianCoordinate(x1, y1);
+            CartesianCoordinate point2 = new CartesianCoordinate(x2, y2);
+            CartesianCoordinate point3 = new CartesianCoordinate(x3, y3);
+            AngularOffset offset = AngularOffset.CreateFromPoints(point1, point2, point3);
+
+            Assert.AreEqual(expectedAngleDegrees, offset.ToAngle().Degrees, Tolerance);
+        }
+        #endregion
+
         #region Conversion
         [Test]
         public static void ToAngle_Returns_Angle_of_Offset()

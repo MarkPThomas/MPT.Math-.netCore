@@ -143,7 +143,7 @@ namespace MPT.Math.Coordinates
         /// <returns>Angle.</returns>
         public Angle SlopeAngle()
         {
-            return TrigonometryLibrary.ArcTan(Y() / X());
+            return Angle.CreateFromPoint(ToCartesianCoordinate());
         }
         #endregion
 
@@ -331,13 +331,6 @@ namespace MPT.Math.Coordinates
         /// <param name="cartesian">The cartesian.</param>
         /// <returns>The result of the conversion.</returns>
         public static implicit operator PolarOffset(CartesianOffset cartesian) => cartesian.ToPolar();
-
-        /// <summary>
-        /// Performs an explicit conversion from <see cref="PolarOffset"/> to <see cref="CartesianOffset"/>.
-        /// </summary>
-        /// <param name="polar">The polar.</param>
-        /// <returns>The result of the conversion.</returns>
-        public static explicit operator CartesianOffset(PolarOffset polar) => polar.ToCartesian();
         #endregion
     }
 }

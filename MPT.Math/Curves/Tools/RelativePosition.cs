@@ -60,7 +60,7 @@ namespace MPT.Math.Curves.Tools
         public static CartesianCoordinate CoordinateInterpolatedPolar(double sRelative, CurveRange range, double tolerance = Numbers.ZeroTolerance)
         {
             ValidateRangeLimitRelativePosition(sRelative, tolerance);
-            return (sRelative * range.ToOffsetPolar()).ToPolarCoordinate();
+            return (sRelative * range.ToOffset()).ToCartesianCoordinate();
         }
 
         ///// <summary>

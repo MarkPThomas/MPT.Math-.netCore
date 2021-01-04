@@ -199,5 +199,82 @@ namespace MPT.Math.UnitTests.Trigonometry
             Assert.AreEqual(expectedResult, TrigonometryLibrary.Cot(radians), Tolerance);
         }
         #endregion
+
+        #region Hyperbolics
+        [TestCase(0, 0)]
+        [TestCase(45, 0.868671)]
+        [TestCase(90, 2.301299)]
+        [TestCase(135, 5.227972)]
+        [TestCase(180, 11.548739)]
+        [TestCase(225, 25.367158)]
+        [TestCase(270, 55.654398)]
+        [TestCase(315, 122.073484)]
+        [TestCase(360, 267.744894)]
+        [TestCase(30, 0.547853)]
+        [TestCase(60, 1.249367)]
+        [TestCase(-45, -0.868671)]
+        [TestCase(-90, -2.301299)]
+        [TestCase(-135, -5.227972)]
+        [TestCase(-180, -11.548739)]
+        [TestCase(-225, -25.367158)]
+        [TestCase(-270, -55.654398)]
+        [TestCase(-315, -122.073484)]
+        [TestCase(-360, -267.744894)]
+        public static void SinH(double degrees, double expectedResult)
+        {
+            double radians = Angle.DegreesToRadians(degrees);
+            Assert.AreEqual(expectedResult, TrigonometryLibrary.SinH(radians), Tolerance);
+        }
+
+        [TestCase(0, 1)]
+        [TestCase(45, 1.324609)]
+        [TestCase(90, 2.509178)]
+        [TestCase(135, 5.322752)]
+        [TestCase(180, 11.591953)]
+        [TestCase(225, 25.386861)]
+        [TestCase(270, 55.663381)]
+        [TestCase(315, 122.077579)]
+        [TestCase(360, 267.746761)]
+        [TestCase(30, 1.140238)]
+        [TestCase(60, 1.600287)]
+        [TestCase(-45, 1.324609)]
+        [TestCase(-90, 2.509178)]
+        [TestCase(-135, 5.322752)]
+        [TestCase(-180, 11.591953)]
+        [TestCase(-225, 25.386861)]
+        [TestCase(-270, 55.663381)]
+        [TestCase(-315, 122.077579)]
+        [TestCase(-360, 267.746761)]
+        public static void CosH(double degrees, double expectedResult)
+        {
+            double radians = Angle.DegreesToRadians(degrees);
+            Assert.AreEqual(expectedResult, TrigonometryLibrary.CosH(radians), Tolerance);
+        }
+
+        [TestCase(0, 0)]
+        [TestCase(45, 0.655794)]
+        [TestCase(90, 0.917152)]
+        [TestCase(135, 0.982193)]
+        [TestCase(180, 0.996272)]
+        [TestCase(225, 0.999224)]
+        [TestCase(270, 0.999839)]
+        [TestCase(315, 0.999966)]
+        [TestCase(360, 0.999993)]
+        [TestCase(30, 0.480473)]
+        [TestCase(60, 0.780714)]
+        [TestCase(-45, -0.655794)]
+        [TestCase(-90, -0.917152)]
+        [TestCase(-135, -0.982193)]
+        [TestCase(-180, -0.996272)]
+        [TestCase(-225, -0.999224)]
+        [TestCase(-270, -0.999839)]
+        [TestCase(-315, -0.999966)]
+        [TestCase(-360, -0.999993)]
+        public static void TanH(double degrees, double expectedResult)
+        {
+            double radians = Angle.DegreesToRadians(degrees);
+            Assert.AreEqual(expectedResult, TrigonometryLibrary.TanH(radians), Tolerance);
+        }
+        #endregion
     }
 }

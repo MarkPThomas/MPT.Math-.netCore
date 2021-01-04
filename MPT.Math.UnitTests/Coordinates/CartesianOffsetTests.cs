@@ -68,7 +68,7 @@ namespace MPT.Math.UnitTests.Coordinates
         [TestCase(1.1, -2.3, -3.3, -4.4, -4.4, -2.1)]
         [TestCase(-1.1, -2.3, -3.3, 4.4, -2.2, 6.7)]
         [TestCase(-1.1, -2.3, 3.3, -4.4, 4.4, -2.1)]
-        public static void ToCartesianCoordinate_Returns_Cartesian_Coordinate_Offset_from_Orgin_by_Equal_Amounts(
+        public static void ToCartesianCoordinate_Returns_Cartesian_Coordinate_Offset_from_Orgin(
             double xI, double yI, double xJ, double yJ,
             double xNew, double yNew)
         {
@@ -125,6 +125,32 @@ namespace MPT.Math.UnitTests.Coordinates
                 new CartesianCoordinate(xI, yI),
                 new CartesianCoordinate(xJ, yJ));
             Assert.AreEqual(distance, offset.Length(), Tolerance);
+        }
+
+        [TestCase(0, 0, 1, 1, 45)]
+        [TestCase(0, 0, -1, 1, 135)]
+        [TestCase(0, 0, -1, -1, -135)]
+        [TestCase(0, 0, 1, -1, -45)]
+        public static void SlopeAngle_Returns_Angle_of_Slope_Between_Offset_Points(
+            double xI, double yI, 
+            double xJ, double yJ, 
+            double angleDegreesExpected)
+        {
+            CartesianOffset offset = new CartesianOffset(new CartesianCoordinate(xI, yI), new CartesianCoordinate(xJ, yJ));
+            Angle slope = offset.SlopeAngle();
+            Assert.AreEqual(angleDegreesExpected, slope.Degrees);
+        }
+        #endregion
+
+        #region Methods: Conversion        
+        [Test]
+        public static void ToPolar_Converts_Cartesian_Offset_to_Polar_Offset()
+        {
+            CartesianOffset cartesian = new CartesianOffset(1, 1.73205081, Tolerance);
+            PolarOffset polar = cartesian.ToPolar();
+            PolarOffset polarExpected = new PolarOffset(new PolarCoordinate(0, 0), new PolarCoordinate(2, Angle.CreateFromDegree(60)), Tolerance);
+
+            Assert.AreEqual(polarExpected, polar);
         }
         #endregion
 
@@ -432,6 +458,18 @@ namespace MPT.Math.UnitTests.Coordinates
                 new CartesianCoordinate(1, 2),
                 new CartesianCoordinate(-2, 3));
             Assert.Throws<DivideByZeroException>(() => { CartesianOffset offsetNew = offset / 0; });
+        }
+        #endregion
+
+        #region Operators: Conversion
+        [Test]
+        public static void Implicit_Conversion_Between_Cartesian_And_Polar_Offsets()
+        {
+            CartesianOffset cartesian = new CartesianOffset(1, 1.73205081, Tolerance);
+            PolarOffset polar = cartesian;
+            PolarOffset polarExpected = new PolarOffset(new PolarCoordinate(0, 0), new PolarCoordinate(2, Angle.CreateFromDegree(60)), Tolerance);
+
+            Assert.AreEqual(polarExpected, polar);
         }
         #endregion
     }

@@ -125,6 +125,25 @@ namespace MPT.Math.UnitTests
         {
             return Numbers.IsZeroSign(value, tolerance);
         }
+
+        [TestCase(0, ExpectedResult = 1)]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(-1, ExpectedResult = -1)]
+        [TestCase(5.5, ExpectedResult = 1)]
+        [TestCase(-5.5, ExpectedResult = -1)]
+        public static int Sign(double value)
+        {
+            return Numbers.Sign(value);
+        }
+
+        [TestCase(0.01, 0.001, ExpectedResult = 1)]
+        [TestCase(0.001, 0.001, ExpectedResult = 1)]
+        [TestCase(-0.01, 0.001, ExpectedResult = -1)]
+        [TestCase(-0.0001, 0.001, ExpectedResult = 1)] // Near zero on the negative end, within tolerance
+        public static int Sign_Custom_Tolerance(double value, double tolerance)
+        {
+            return Numbers.Sign(value, tolerance);
+        }
         #endregion
 
         #region Comparisons

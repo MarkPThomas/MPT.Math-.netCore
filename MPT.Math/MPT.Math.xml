@@ -1053,6 +1053,18 @@
             <param name="rotation">The rotation.</param>
             <returns>CartesianCoordinate.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.DistanceFromOrigin">
+            <summary>
+            The linear distance the coordinate is from the origin.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.AngleFromHorizontalAxis">
+            <summary>
+            The angle that the coordinate lies in from the positive horizontal axis. 
+            </summary>
+            <returns>Angle.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Origin">
             <summary>
             Returns a default static coordinate at the origin.
@@ -1151,6 +1163,12 @@
             <param name="coordinate">The coordinate.</param>
             <returns>CartesianCoordinate.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.ToPolar">
+            <summary>
+            Converts the cartesian coordinate to a polar coordinate.
+            </summary>
+            <returns>PolarCoordinate.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Equality(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
             Implements the == operator.
@@ -1222,6 +1240,20 @@
             <param name="coordinate">The coordinate.</param>
             <param name="denominator">The denominator value.</param>
             <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Implicit(MPT.Math.Coordinates.CartesianCoordinate)~MPT.Math.Coordinates.PolarCoordinate">
+            <summary>
+            Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> to <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/>.
+            </summary>
+            <param name="cartesian">The cartesian.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Explicit(MPT.Math.Coordinates.PolarCoordinate)~MPT.Math.Coordinates.CartesianCoordinate">
+            <summary>
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/> to <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/>.
+            </summary>
+            <param name="polar">The polar.</param>
+            <returns>The result of the conversion.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
@@ -1301,6 +1333,12 @@
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianOffset.ToPolar">
+            <summary>
+            Converts to polar offset.
+            </summary>
+            <returns>PolarOffset.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianOffset.X">
             <summary>
@@ -1433,6 +1471,20 @@
             <param name="offset">The offset.</param>
             <param name="denominator">Denominator value.</param>
             <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianOffset.op_Implicit(MPT.Math.Coordinates.CartesianOffset)~MPT.Math.Coordinates.PolarOffset">
+            <summary>
+            Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianOffset"/> to <see cref="T:MPT.Math.Coordinates.PolarOffset"/>.
+            </summary>
+            <param name="cartesian">The cartesian.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.CartesianOffset.op_Explicit(MPT.Math.Coordinates.PolarOffset)~MPT.Math.Coordinates.CartesianOffset">
+            <summary>
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.PolarOffset"/> to <see cref="T:MPT.Math.Coordinates.CartesianOffset"/>.
+            </summary>
+            <param name="polar">The polar.</param>
+            <returns>The result of the conversion.</returns>
         </member>
         <member name="T:MPT.Math.Coordinates.ICoordinate">
             <summary>
@@ -1824,6 +1876,12 @@
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.ToCartesian">
+            <summary>
+            Converts the polar coordinate to a cartesian coordinate.
+            </summary>
+            <returns>PolarCoordinate.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.Origin">
             <summary>
             Returns a default static coordinate at the origin.
@@ -1997,6 +2055,20 @@
             <param name="denominator">The denominator value.</param>
             <returns>The result of the operator.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Implicit(MPT.Math.Coordinates.PolarCoordinate)~MPT.Math.Coordinates.CartesianCoordinate">
+            <summary>
+            Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/> to <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/>.
+            </summary>
+            <param name="polar">The polar.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Explicit(MPT.Math.Coordinates.CartesianCoordinate)~MPT.Math.Coordinates.PolarCoordinate">
+            <summary>
+            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> to <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/>.
+            </summary>
+            <param name="cartesian">The cartesian.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
         <member name="T:MPT.Math.Coordinates.PolarOffset">
             <summary>
             Represents the difference between polar coordinates I (first) and J (second) in two-dimensional space.
@@ -2029,11 +2101,23 @@
             <param name="j">The second coordinate.</param>
             <param name="tolerance">The tolerance.</param>
         </member>
+        <member name="M:MPT.Math.Coordinates.PolarOffset.ToPolarCoordinate">
+            <summary>
+            Converts to a single <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/> coordinate.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.PolarOffset.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarOffset.ToCartesian">
+            <summary>
+            Converts to cartesian offset.
+            </summary>
+            <returns>CartesianOffset.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.PolarOffset.Radius">
             <summary>
@@ -2176,7 +2260,7 @@
             </summary>
             <value>The handle j.</value>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.BezierCurveHandle,MPT.Math.Curves.BezierCurveHandle,System.Int32)">
+        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.Tools.BezierCurveHandle,MPT.Math.Curves.Tools.BezierCurveHandle,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurve"/> class.
             </summary>
@@ -2256,28 +2340,6 @@
             <param name="relativePosition">The relative position, s. Relative position must be between 0 and 1.</param>
             <returns>Vector.</returns>
         </member>
-        <member name="F:MPT.Math.Curves.BezierCurve._limitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.BezierCurve.LimitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-            <value>The limit start.</value>
-        </member>
-        <member name="F:MPT.Math.Curves.BezierCurve._limitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.BezierCurve.LimitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-            <value>The limit end.</value>
-        </member>
         <member name="M:MPT.Math.Curves.BezierCurve.Length">
             <summary>
             Length of the curve between the limits.
@@ -2342,6 +2404,50 @@
             <param name="relativePosition">The relative position, s. Relative position must be between 0 and 1.</param>
             <returns>CartesianCoordinate.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.XatY(System.Double)">
+            <summary>
+            X-coordinate on the line segment that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.YatX(System.Double)">
+            <summary>
+            Y-coordinate on the line segment that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.XsAtY(System.Double)">
+            <summary>
+            X-coordinate on the line segment that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.YsAtX(System.Double)">
+            <summary>
+            Y-coordinate on the line segment that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.BezierCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.BezierCurve.CoordinateByPosition(System.Double)">
             <summary>
             The cartesian coordinate on the curve in local coordinates about the local origin that corresponds to the parametric coordinate given.
@@ -2386,74 +2492,6 @@
             <returns>A new object that is a copy of this instance.</returns>
         </member>
         <member name="M:MPT.Math.Curves.BezierCurve.CloneCurve">
-            <summary>
-            Clones the curve.
-            </summary>
-            <returns>LinearCurve.</returns>
-        </member>
-        <member name="T:MPT.Math.Curves.BezierCurveHandle">
-            <summary>
-            Class BezierCurveHandle.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.BezierCurveHandle.ControlPoint">
-            <summary>
-            Gets the control point.
-            </summary>
-            <value>The control point.</value>
-        </member>
-        <member name="P:MPT.Math.Curves.BezierCurveHandle.Rotation">
-            <summary>
-            Gets or sets the rotation.
-            </summary>
-            <value>The rotation.</value>
-        </member>
-        <member name="P:MPT.Math.Curves.BezierCurveHandle.Radius">
-            <summary>
-            Gets or sets the radius.
-            </summary>
-            <value>The radius.</value>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurveHandle" /> class.
-            </summary>
-            <param name="controlPoint">The control point, at the center of the handle.</param>
-            <param name="radius">The radius of the handle.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.Angle)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurveHandle" /> class.
-            </summary>
-            <param name="controlPoint">The control point, at the center of the handle.</param>
-            <param name="radius">The radius of the handle.</param>
-            <param name="rotation">The rotation of the handle.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.ToString">
-            <summary>
-            Returns a <see cref="T:System.String" /> that represents this instance.
-            </summary>
-            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.GetHandleTip">
-            <summary>
-            The coordinate of the handle tip.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.SetHandleTip(MPT.Math.Coordinates.CartesianCoordinate)">
-            <summary>
-            Sets the handle tip to the provided coordinate.
-            </summary>
-            <param name="handleTip">The handle tip.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.Clone">
-            <summary>
-            Creates a new object that is a copy of the current instance.
-            </summary>
-            <returns>A new object that is a copy of this instance.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.BezierCurveHandle.CloneCurve">
             <summary>
             Clones the curve.
             </summary>
@@ -2505,6 +2543,20 @@
             </summary>
             <param name="radius">The radius.</param>
             <param name="center">The center.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.XatY(System.Double)">
+            <summary>
+            +X-coordinate on the line segment that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.YatX(System.Double)">
+            <summary>
+            +Y-coordinate on the line segment that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns></returns>
         </member>
         <member name="M:MPT.Math.Curves.CircularCurve.HasChord">
             <summary>
@@ -2581,52 +2633,6 @@
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.Length">
-            <summary>
-            Length of the curve between the limits.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.LengthBetween(System.Double,System.Double)">
-            <summary>
-            Length of the curve between two points.
-            </summary>
-            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
-            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.TangentVector(System.Double)">
-            <summary>
-            Vector that is tangential to the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.NormalVector(System.Double)">
-            <summary>
-            Vector that is tangential to the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.CoordinateCartesian(System.Double)">
-            <summary>
-            Coordinate of the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.CoordinatePolar(System.Double)">
-            <summary>
-            Coordinate of the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-            <returns>CartesianCoordinate.</returns>
-        </member>
         <member name="M:MPT.Math.Curves.CircularCurve.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
@@ -2660,6 +2666,72 @@
             The length within the provided rotation along a circular curve.
             </summary>
             <param name="rotation">Rotation to get arc length between.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.Length">
+            <summary>
+            Length of the curve between the limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.XsAtY(System.Double)">
+            <summary>
+            X-coordinates on the curve that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.YsAtX(System.Double)">
+            <summary>
+            Y-coordinates on the curve that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which y-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.RadiiAboutOrigin(System.Double)">
+            <summary>
+            The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.CircularCurve.LengthBetween(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
@@ -2922,13 +2994,6 @@
             <param name="angleRadians">The angle in radians in local coordinates.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiusAboutOrigin(System.Double)">
-            <summary>
-            The radius measured from the local coordinate origin as a function of the angle in local coordinates.
-            </summary>
-            <param name="angleRadians">The angle in radians in local coordinates.</param>
-            <returns>System.Double.</returns>
-        </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiusAboutOffset(System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
             The radius measured from the local coordinate origin as a function of the angle in local coordinates.
@@ -2995,20 +3060,6 @@
             <param name="angleRadians">Angle of rotation about the local origin, in radians.</param>
             <returns>CartesianCoordinate.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.ConicSectionCurve.XatY(System.Double)">
-            <summary>
-            X-coordinate on the line segment that corresponds to the y-coordinate given.
-            </summary>
-            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionCurve.YatX(System.Double)">
-            <summary>
-            Y-coordinate on the line segment that corresponds to the x-coordinate given.
-            </summary>
-            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
-            <returns></returns>
-        </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.XbyRotationAboutFocusRight(System.Double)">
             <summary>
             X-coordinate on the curve in local coordinates about the right (+X) focus that corresponds to the parametric coordinate given.
@@ -3022,6 +3073,20 @@
             </summary>
             <param name="angleRadians">Angle of rotation about the right (+X) focus, in radians.</param>
             <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RotationAboutOriginByRotationAboutFocusRight(System.Double)">
+            <summary>
+            The angle about the origin, in radians, determined by the angle about the right focus.
+            </summary>
+            <param name="angleRadians">Angle of rotation about the right (+X) focus, in radians.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RotationAboutFocusRightByRotationAboutOrigin(System.Double)">
+            <summary>
+            The angle about the right (+X) focus, in radians, determined by the angle about the origin.
+            </summary>
+            <param name="angleRadians">The angle radians.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.XbyRotationAboutFocusLeft(System.Double)">
             <summary>
@@ -3037,6 +3102,20 @@
             <param name="angleRadians">Angle of rotation about the left (-X) focus, in radians.</param>
             <returns></returns>
         </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RotationAboutOriginByRotationAboutFocusLeft(System.Double)">
+            <summary>
+            The angle about the origin, in radians, determined by the angle about the right focus.
+            </summary>
+            <param name="angleRadians">Angle of rotation about the left (-X) focus, in radians.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RotationAboutFocusLeftByRotationAboutOrigin(System.Double)">
+            <summary>
+            The angle about the left (-X) focus, in radians, determined by the angle about the origin.
+            </summary>
+            <param name="angleRadians">The angle radians.</param>
+            <returns>System.Double.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
             <summary>
             Distance from local origin to minor Vertex, b.
@@ -3044,6 +3123,132 @@
             <param name="a">Distance from local origin to major vertex, a.</param>
             <param name="c">Distance from local origin to the focus, c.</param>
             <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiusAboutOrigin(System.Double)">
+            <summary>
+            The radius measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiiAboutOrigin(System.Double)">
+            <summary>
+            The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.XatY(System.Double)">
+            <summary>
+            X-coordinate on the curve that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.YatX(System.Double)">
+            <summary>
+            Y-coordinate on the curve that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which y-coordinates are desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.XsAtY(System.Double)">
+            <summary>
+            X-coordinates on the curve that correspond to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.YsAtX(System.Double)">
+            <summary>
+            Y-coordinates on the curve that correspond to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.Length">
+            <summary>
+            Length of the line segment.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.CoordinateCartesian(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:MPT.Math.Curves.ConicSectionEllipticCurve">
             <summary>
@@ -3080,42 +3285,6 @@
             </summary>
             <returns><c>true</c> if [is closed curve]; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionEllipticCurve._limitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.ConicSectionEllipticCurve.LimitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-            <value>The limit start.</value>
-        </member>
-        <member name="F:MPT.Math.Curves.ConicSectionEllipticCurve._limitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.ConicSectionEllipticCurve.LimitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-            <value>The limit end.</value>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.Length">
-            <summary>
-            Length of the curve between the limits.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.LengthBetween(System.Double,System.Double)">
-            <summary>
-            Length of the curve between two points.
-            </summary>
-            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
-            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
-            <returns>System.Double.</returns>
-        </member>
         <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.ChordLength">
             <summary>
             The length of the chord connecting the start and end limits.
@@ -3143,38 +3312,6 @@
             <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
             <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
             <returns>LinearCurve.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.TangentVector(System.Double)">
-            <summary>
-            Vector that is tangential to the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.NormalVector(System.Double)">
-            <summary>
-            Vector that is tangential to the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.CoordinateCartesian(System.Double)">
-            <summary>
-            Coordinate of the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.CoordinatePolar(System.Double)">
-            <summary>
-            Coordinate of the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.RadiusAboutFocusRight(System.Double)">
             <summary>
@@ -3318,6 +3455,27 @@
             </summary>
             <value>The vector parametric.</value>
         </member>
+        <member name="F:MPT.Math.Curves.Curve._range">
+            <summary>
+            The range
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.Curve._limitStartDefault">
+            <summary>
+            The default limit start coordinate.
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.Curve._limitEndDefault">
+            <summary>
+            The default limit end coordinate.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Curve.Range">
+            <summary>
+            The range of max/min limits that apply to the curve.
+            </summary>
+            <value>The range.</value>
+        </member>
         <member name="M:MPT.Math.Curves.Curve.XbyRotationAboutOrigin(System.Double)">
             <summary>
             X-coordinate on the right curve in local coordinates about the local origin that corresponds to the parametric coordinate given.
@@ -3331,20 +3489,6 @@
             </summary>
             <param name="angleRadians">Angle of rotation about the local origin, in radians.</param>
             <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Curve.validateRelativeLinearPosition(System.Double)">
-            <summary>
-            Validates the relative position provided.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between 0 and 1, but was {sRelative}.</exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Curve.validateRelativeRotationalPosition(System.Double)">
-            <summary>
-            Validates the relative position provided.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between -π and +π.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between -π and +π, but was {sRelative}.</exception>
         </member>
         <member name="M:MPT.Math.Curves.Curve.xByParameter(System.Double)">
             <summary>
@@ -3424,6 +3568,33 @@
             <param name="center">The center.</param>
             <param name="rotation">The rotation.</param>
         </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.XatY(System.Double)">
+            <summary>
+            +X-coordinate on the curve that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.YatX(System.Double)">
+            <summary>
+            +Y-coordinate on the curve that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.LengthBetween(MPT.Math.Coordinates.AngularOffset)">
+            <summary>
+            The length within the provided rotation along an elliptical curve.
+            </summary>
+            <param name="rotation">Rotation to get arc length between.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.EllipticalCurve.Length">
             <summary>
             Length of the curve between the limits.
@@ -3457,15 +3628,6 @@
             <returns>Vector.</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.Curves.EllipticalCurve.CoordinateCartesian(System.Double)">
-            <summary>
-            Coordinate of the curve at the specified position.
-            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-            </summary>
-            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-            <returns>CartesianCoordinate.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
         <member name="M:MPT.Math.Curves.EllipticalCurve.CoordinatePolar(System.Double)">
             <summary>
             Coordinate of the curve at the specified position.
@@ -3475,18 +3637,33 @@
             <returns>CartesianCoordinate.</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.Curves.EllipticalCurve.LengthBetween(MPT.Math.Coordinates.AngularOffset)">
+        <member name="M:MPT.Math.Curves.EllipticalCurve.XsAtY(System.Double)">
             <summary>
-            The length within the provided rotation along an elliptical curve.
+            X-coordinates on the curve that corresponds to the y-coordinate given.
             </summary>
-            <param name="rotation">Rotation to get arc length between.</param>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.EllipticalCurve.ToString">
+        <member name="M:MPT.Math.Curves.EllipticalCurve.YsAtX(System.Double)">
             <summary>
-            Returns a <see cref="T:System.String" /> that represents this instance.
+            Y-coordinates on the curve that corresponds to the x-coordinate given.
             </summary>
-            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+            <param name="x">X-coordinate for which y-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.RadiiAboutOrigin(System.Double)">
+            <summary>
+            The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.EllipticalCurve.LengthBetween(MPT.Math.Coordinates.AngularOffset,System.Double,System.Double)">
             <summary>
@@ -3614,6 +3791,93 @@
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.Length">
+            <summary>
+            Length of the curve.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.XsAtY(System.Double)">
+            <summary>
+            X-coordinates on the curve that correspond to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.YsAtX(System.Double)">
+            <summary>
+            Y-coordinates on the curve that correspond to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.HyperbolicCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
             <summary>
             Distance from local origin to minor Vertex, b.
@@ -3651,26 +3915,159 @@
         </member>
         <member name="T:MPT.Math.Curves.ICurveLimits">
             <summary>
-            Interface for a curve that is comprised of a singular path.
+            Interface for a curve that is comprised of a path with some form of bounding limits.
             </summary>
         </member>
-        <member name="P:MPT.Math.Curves.ICurveLimits.LimitStart">
+        <member name="P:MPT.Math.Curves.ICurveLimits.Range">
             <summary>
-            The limit where the curve starts.
+            The range of max/min limits that apply to the curve.
             </summary>
-            <value>The limit start.</value>
-        </member>
-        <member name="P:MPT.Math.Curves.ICurveLimits.LimitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-            <value>The limit end.</value>
+            <value>The range.</value>
         </member>
         <member name="M:MPT.Math.Curves.ICurveLimits.Length">
             <summary>
             Length of the curve.
             </summary>
             <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.CoordinateCartesian(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurveLimits.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.ICurvePositionCartesian">
+            <summary>
+            Curve position can be represented in cartesian coordinates.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionCartesian.XatY(System.Double)">
+            <summary>
+            X-coordinate on the curve that corresponds to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionCartesian.YatX(System.Double)">
+            <summary>
+            Y-coordinate on the curve that corresponds to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionCartesian.XsAtY(System.Double)">
+            <summary>
+            X-coordinates on the curve that correspond to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionCartesian.YsAtX(System.Double)">
+            <summary>
+            Y-coordinates on the curve that correspond to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which y-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionCartesian.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.ICurvePositionPolar">
+            <summary>
+            Curve position can be represented in polar coordinates.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionPolar.RadiusAboutOrigin(System.Double)">
+            <summary>
+            The radius measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ICurvePositionPolar.RadiiAboutOrigin(System.Double)">
+            <summary>
+            The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.IPerpendicularProjections">
+            <summary>
+            Interface IPerpendicularProjections
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.IPerpendicularProjections.CoordinateOfPerpendicularProjection(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Coordinate of where a perpendicular projection from a curve tangent intersects the provided coordinate.
+            </summary>
+            <param name="point">The point.</param>
+            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="T:MPT.Math.Curves.LinearCurve">
             <summary>
@@ -3762,14 +4159,6 @@
             <param name="otherLine">The other line.</param>
             <returns><c>true</c> if the specified other line is perpendicular; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.LinearCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
-            <summary>
-            Provided point lies on an infinitely long line projecting off of the line segment.
-            It isn't necessarily intersecting between the defining points.
-            </summary>
-            <param name="coordinate">The coordinate.</param>
-            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        </member>
         <member name="M:MPT.Math.Curves.LinearCurve.IsIntersectingCurve(MPT.Math.Curves.LinearCurve)">
             <summary>
             Provided line segment intersects an infinitely long line projecting off of the line segment.
@@ -3777,13 +4166,6 @@
             </summary>
             <param name="otherLine">The other line.</param>
             <returns><c>true</c> if [is intersecting curve] [the specified other line]; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.LinearCurve.RadiusAboutOrigin(System.Double)">
-            <summary>
-            The radius measured from the local coordinate origin as a function of the angle in local coordinates.
-            </summary>
-            <param name="angleRadians">The angle in radians in local coordinates.</param>
-            <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.Slope">
             <summary>
@@ -3821,6 +4203,20 @@
             </summary>
             <returns>Vector.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.RadiusAboutOrigin(System.Double)">
+            <summary>
+            The radius measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.RadiiAboutOrigin(System.Double)">
+            <summary>
+            The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+            </summary>
+            <param name="angleRadians">The angle in radians in local coordinates.</param>
+            <returns>System.Double.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.LinearCurve.XatY(System.Double)">
             <summary>
             X-coordinate on the line segment that corresponds to the y-coordinate given.
@@ -3835,33 +4231,103 @@
             <param name="x">X-coordinate for which a y-coordinate is desired.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="F:MPT.Math.Curves.LinearCurve._limitStart">
+        <member name="M:MPT.Math.Curves.LinearCurve.XsAtY(System.Double)">
             <summary>
-            The limit where the curve starts.
+            X-coordinate on the line segment that corresponds to the y-coordinate given.
             </summary>
+            <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+            <returns>System.Double.</returns>
         </member>
-        <member name="P:MPT.Math.Curves.LinearCurve.LimitStart">
+        <member name="M:MPT.Math.Curves.LinearCurve.YsAtX(System.Double)">
             <summary>
-            The limit where the curve starts.
+            Y-coordinate on the line segment that corresponds to the x-coordinate given.
             </summary>
-            <value>The limit start.</value>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
         </member>
-        <member name="F:MPT.Math.Curves.LinearCurve._limitEnd">
+        <member name="M:MPT.Math.Curves.LinearCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
-            The limit where the curve ends.
+            Provided point lies on the curve.
             </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.LinearCurve.LimitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-            <value>The limit end.</value>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.Length">
             <summary>
             Length of the line segment.
             </summary>
             <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CoordinateCartesian(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.ToString">
             <summary>
@@ -4193,6 +4659,34 @@
             <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
             <returns>System.Double.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+        </member>
         <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.TangentVector(System.Double)">
             <summary>
             Vector that is tangential to the curve at the specified position.
@@ -4338,47 +4832,6 @@
             </summary>
             <returns>VectorParametric.</returns>
         </member>
-        <member name="F:MPT.Math.Curves.ParabolicCurve._limitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.ParabolicCurve.LimitStart">
-            <summary>
-            The limit where the curve starts.
-            </summary>
-            <value>The limit start.</value>
-        </member>
-        <member name="F:MPT.Math.Curves.ParabolicCurve._limitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.ParabolicCurve.LimitEnd">
-            <summary>
-            The limit where the curve ends.
-            </summary>
-            <value>The limit end.</value>
-        </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.Length">
-            <summary>
-            Length of the curve.
-            </summary>
-            <returns>System.Double.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.ChordLength">
-            <summary>
-            The length of the chord connecting the start and end limits.
-            </summary>
-            <returns>System.Double.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.Chord">
-            <summary>
-            The chord connecting the start and end limits.
-            </summary>
-            <returns>LinearCurve.</returns>
-        </member>
         <member name="M:MPT.Math.Curves.ParabolicCurve.XatY(System.Double)">
             <summary>
             X-coordinate on the line segment that corresponds to the y-coordinate given.
@@ -4412,6 +4865,94 @@
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.Length">
+            <summary>
+            Length of the curve.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.LengthBetween(System.Double,System.Double)">
+            <summary>
+            Length of the curve between two points.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.ChordLength">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.ChordLengthBetween(System.Double,System.Double)">
+            <summary>
+            The length of the chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.Chord">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.ChordBetween(System.Double,System.Double)">
+            <summary>
+            The chord connecting the start and end limits.
+            </summary>
+            <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+            <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+            <returns>LinearCurve.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.TangentVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.NormalVector(System.Double)">
+            <summary>
+            Vector that is tangential to the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the tangent vector is desired.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.CoordinatePolar(System.Double)">
+            <summary>
+            Coordinate of the curve at the specified position.
+            If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+            </summary>
+            <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.XsAtY(System.Double)">
+            <summary>
+            X-coordinates on the curve that correspond to the y-coordinate given.
+            </summary>
+            <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.YsAtX(System.Double)">
+            <summary>
+            Y-coordinates on the curve that correspond to the x-coordinate given.
+            </summary>
+            <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.IsIntersectingCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Provided point lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:MPT.Math.Curves.ParabolicCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
             <summary>
@@ -6611,100 +7152,444 @@
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.CurveIntersections.ICurveIntersection`2">
+        <member name="T:MPT.Math.Curves.Tools.AngleBisector">
+            <summary>
+            Class AngleBisector.
+            </summary>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.BezierCurveHandle">
+            <summary>
+            Class BezierCurveHandle.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.ControlPoint">
+            <summary>
+            Gets the control point.
+            </summary>
+            <value>The control point.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.Rotation">
+            <summary>
+            Gets or sets the rotation.
+            </summary>
+            <value>The rotation.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.Radius">
+            <summary>
+            Gets or sets the radius.
+            </summary>
+            <value>The radius.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.BezierCurveHandle" /> class.
+            </summary>
+            <param name="controlPoint">The control point, at the center of the handle.</param>
+            <param name="radius">The radius of the handle.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.Angle)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.BezierCurveHandle" /> class.
+            </summary>
+            <param name="controlPoint">The control point, at the center of the handle.</param>
+            <param name="radius">The radius of the handle.</param>
+            <param name="rotation">The rotation of the handle.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.GetHandleTip">
+            <summary>
+            The coordinate of the handle tip.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.SetHandleTip(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Sets the handle tip to the provided coordinate.
+            </summary>
+            <param name="handleTip">The handle tip.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.CloneCurve">
+            <summary>
+            Clones the curve.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.CurveLimit">
+            <summary>
+            Handles limits applied to curves.
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.Tools.CurveLimit._curve">
+            <summary>
+            The curve
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.Tools.CurveLimit._limit">
+            <summary>
+            The limit on a cruve
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.CurveLimit.Limit">
+            <summary>
+            The limit on a cruve.
+            </summary>
+            <value>The limit on a cruve.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.#ctor(MPT.Math.Curves.Curve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveLimit"/> class.
+            </summary>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.#ctor(MPT.Math.Curves.Curve,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveLimit"/> class.
+            </summary>
+            <param name="curve">The curve.</param>
+            <param name="defaultLimit">The default limit.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:MPT.Math.Curves.Tools.CurveLimit"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.SetLimitByX(System.Double)">
+            <summary>
+            Sets the limit by the x-coordinate.
+            </summary>
+            <param name="xCoordinate">The x coordinate.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.SetLimitByY(System.Double)">
+            <summary>
+            Sets the limit by the y-coordinate.
+            </summary>
+            <param name="yCoordinate">The y coordinate.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.SetLimitByRotation(System.Double)">
+            <summary>
+            Sets the limit by rotation.
+            </summary>
+            <param name="angleRadians">The angle in radians.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.SetLimitByCoordinate(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Sets the limit by coordinate, if the coordinate lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.LimitPolar">
+            <summary>
+            The limit in polar coordinates.
+            </summary>
+            <returns>PolarCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.GetLimitByX(System.Double,MPT.Math.Curves.ICurvePositionCartesian)">
+            <summary>
+            Gets the limit by the x-coordinate.
+            </summary>
+            <param name="xCoordinate">The x coordinate.</param>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.GetLimitByY(System.Double,MPT.Math.Curves.ICurvePositionCartesian)">
+            <summary>
+            Gets the limit by the y-coordinate.
+            </summary>
+            <param name="yCoordinate">The y coordinate.</param>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.GetLimitByRotation(System.Double,MPT.Math.Curves.Curve)">
+            <summary>
+            Gets the limit by rotation.
+            </summary>
+            <param name="angleRadians">The angle in radians.</param>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.GetLimitByCoordinate(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Curves.ICurvePositionCartesian)">
+            <summary>
+            Gets the limit by coordinate, if the coordinate lies on the curve.
+            </summary>
+            <param name="coordinate">The coordinate.</param>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveLimit.CloneLimit">
+            <summary>
+            Clones the limit.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.CurveRange">
+            <summary>
+            Handles limit ranges applied to curves.
+            </summary>
+        </member>
+        <member name="F:MPT.Math.Curves.Tools.CurveRange._limitStart">
+            <summary>
+            The limit where the curve starts.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.CurveRange.Start">
+            <summary>
+            The limit where the curve starts.
+            </summary>
+            <value>The limit start.</value>
+        </member>
+        <member name="F:MPT.Math.Curves.Tools.CurveRange._limitEnd">
+            <summary>
+            The limit where the curve ends.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.CurveRange.End">
+            <summary>
+            The limit where the curve ends.
+            </summary>
+            <value>The limit end.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.#ctor(MPT.Math.Curves.Curve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveRange"/> class.
+            </summary>
+            <param name="curve">The curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.#ctor(MPT.Math.Curves.Curve,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveRange"/> class.
+            </summary>
+            <param name="curve">The curve.</param>
+            <param name="defaultStartLimit">The default start limit.</param>
+            <param name="defaultEndLimit">The default end limit.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:MPT.Math.Curves.Tools.CurveRange"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.ToOffset">
+            <summary>
+            Converts to cartesian offset.
+            </summary>
+            <returns>CartesianOffset.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.ToOffsetPolar">
+            <summary>
+            Converts to polar offset.
+            </summary>
+            <returns>PolarOffset.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthLinear">
+            <summary>
+            The linear distance of the range.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthX">
+            <summary>
+            The x-axis distance of the range.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthY">
+            <summary>
+            The y-axis distance of the range.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthRadius">
+            <summary>
+            The radial distance of the range.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthRotation">
+            <summary>
+            The rotational distance of the range.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthRotationRadians">
+            <summary>
+            The rotational distance of the range, in radians.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.LengthRotationDegrees">
+            <summary>
+            The rotational distance of the range, in degrees.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.ValidateRangeLimitRotationalHalfCirclePosition(System.Double,System.Double)">
+            <summary>
+            Validates the angular position provided based on +/- values of a half circle.
+            </summary>
+            <param name="position">The angular position, must be between -π and +π.</param>
+            <param name="tolerance">The tolerance.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between -π and +π, but was {sRelative}.</exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.ValidateRangeLimitRotationalFullCirclePosition(System.Double,System.Double)">
+            <summary>
+            Validates the angular position provided based on + values of a full circle.
+            </summary>
+            <param name="position">The relative position, s. Relative position must be between 0 and +2π.</param>
+            <param name="tolerance">The tolerance.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between 0 and +2π, but was {sRelative}.</exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.CloneRange">
+            <summary>
+            Clones the range limit.
+            </summary>
+            <returns>LinearCurve.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2">
             <summary>
             Interface ICurveIntersection
             </summary>
             <typeparam name="T1">The type of curve 1.</typeparam>
             <typeparam name="T2">The type of curve 2.</typeparam>
         </member>
-        <member name="P:MPT.Math.CurveIntersections.ICurveIntersection`2.Curve1">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2.Curve1">
             <summary>
             Gets the curve1.
             </summary>
             <value>The curve1.</value>
         </member>
-        <member name="P:MPT.Math.CurveIntersections.ICurveIntersection`2.Curve2">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2.Curve2">
             <summary>
             Gets the curve2.
             </summary>
             <value>The curve2.</value>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.ICurveIntersection`2.AreTangent">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2.AreTangent">
             <summary>
             The curves are tangent to each other.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.ICurveIntersection`2.AreIntersecting">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2.AreIntersecting">
             <summary>
             The curves intersect.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.ICurveIntersection`2.IntersectionCoordinates">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2.IntersectionCoordinates">
             <summary>
             The coordinate(s) of the intersection(s) of two curves.
             </summary>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="T:MPT.Math.CurveIntersections.IntersectionCircularCircular">
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2">
             <summary>
-            Class IntersectionLinearLinear.
-            Implements the <see cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            Class IntersectionAbstract.
+            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
             </summary>
-            <seealso cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            <typeparam name="T1">The type of the t1.</typeparam>
+            <typeparam name="T2">The type of the t2.</typeparam>
+            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
         </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionCircularCircular.Curve1">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.Curve1">
             <summary>
             Gets the curve1.
             </summary>
             <value>The curve1.</value>
         </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionCircularCircular.Curve2">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.Curve2">
             <summary>
             Gets the curve2.
             </summary>
             <value>The curve2.</value>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.#ctor(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.#ctor(`0,`1)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.CurveIntersections.IntersectionLinearLinear"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2" /> class.
             </summary>
             <param name="curve1">The first curve.</param>
             <param name="curve2">The second curve.</param>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.AreTangent">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.AreTangent">
             <summary>
             The curves are tangent to each other.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.AreIntersecting">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.AreIntersecting">
             <summary>
             The curves intersect and are not tangent.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.IntersectionCoordinates">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2.IntersectionCoordinates">
             <summary>
             The coordinate of the intersection of two curves.
             </summary>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.CenterSeparations">
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular">
+            <summary>
+            Class IntersectionLinearLinear.
+            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.#ctor(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear"/> class.
+            </summary>
+            <param name="curve1">The first curve.</param>
+            <param name="curve2">The second curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.AreTangent">
+            <summary>
+            The curves are tangent to each other.
+            </summary>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.AreIntersecting">
+            <summary>
+            The curves intersect and are not tangent.
+            </summary>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.IntersectionCoordinates">
+            <summary>
+            The coordinate of the intersection of two curves.
+            </summary>
+            <returns>CartesianCoordinate[].</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.CenterSeparations">
             <summary>
             The separation of the centers of the curves.
             </summary>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.RadicalLineLength">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.RadicalLineLength">
             <summary>
             The length of the radical line, which is the straight line connecting the two intersection points.
             </summary>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.CenterSeparations(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.CenterSeparations(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The separation of the centers of the curves.
             </summary>
@@ -6712,16 +7597,15 @@
             <param name="curve2">The curve2.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.AreTangent(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.AreTangent(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             Determines if the curves are tangent to each other.
             </summary>
             <param name="curve1">The curve1.</param>
             <param name="curve2">The curve2.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.AreIntersecting(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.AreIntersecting(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The curves intersect.
             </summary>
@@ -6729,22 +7613,21 @@
             <param name="curve2">The first curve.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.IntersectionCoordinates(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.IntersectionCoordinates(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The coordinate(s) of the intersection(s) of two curves.
             </summary>
             <param name="curve1">The first curve.</param>
             <param name="curve2">The first curve.</param>
             <returns>CartesianCoordinate[].</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.RadicalLineLength(System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.RadicalLineLength(System.Double,System.Double,System.Double)">
             <summary>
             The length of the radical line, which is the straight line connecting the two intersection points.
             </summary>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionCircularCircular.factor(System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.factor(System.Double,System.Double,System.Double)">
             <summary>
             Factors the specified separation.
             </summary>
@@ -6753,87 +7636,143 @@
             <param name="radius2">The radius2.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="T:MPT.Math.CurveIntersections.IntersectionLinearCircular">
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve">
+            <summary>
+            Class IntersectionCurveCurve.
+            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2" />
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.#ctor(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve" /> class.
+            </summary>
+            <param name="curve1">The first curve.</param>
+            <param name="curve2">The second curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreTangent">
+            <summary>
+            The curves are tangent to each other.
+            </summary>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreIntersecting">
+            <summary>
+            The curves intersect and are not tangent.
+            </summary>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.IntersectionCoordinates">
+            <summary>
+            The coordinate of the intersection of two curves.
+            </summary>
+            <returns>CartesianCoordinate[].</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.CenterSeparations(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
+            <summary>
+            The separation of the centers of the curves.
+            </summary>
+            <param name="curve1">The curve1.</param>
+            <param name="curve2">The curve2.</param>
+            <returns>System.Double.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreTangent(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
+            <summary>
+            Determines if the curves are tangent to each other.
+            </summary>
+            <param name="curve1">The curve1.</param>
+            <param name="curve2">The curve2.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreIntersecting(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
+            <summary>
+            The curves intersect.
+            </summary>
+            <param name="curve1">The first curve.</param>
+            <param name="curve2">The first curve.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.IntersectionCoordinates(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
+            <summary>
+            The coordinate(s) of the intersection(s) of two curves.
+            </summary>
+            <param name="curve1">The first curve.</param>
+            <param name="curve2">The first curve.</param>
+            <returns>CartesianCoordinate[].</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular">
             <summary>
             Class IntersectionLinearLinear.
-            Implements the <see cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
             </summary>
-            <seealso cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
         </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearCircular.Curve1">
-            <summary>
-            Gets the curve1.
-            </summary>
-            <value>The curve1.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearCircular.Curve2">
-            <summary>
-            Gets the curve2.
-            </summary>
-            <value>The curve2.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearCircular.LinearCurve">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.LinearCurve">
             <summary>
             Gets the linear curve.
             </summary>
             <value>The linear curve.</value>
         </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearCircular.CircularCurve">
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.CircularCurve">
             <summary>
             Gets the circular curve.
             </summary>
             <value>The circular curve.</value>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.CurveIntersections.IntersectionLinearCircular"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular"/> class.
             </summary>
             <param name="linearCurve">The linear curve.</param>
             <param name="circularCurve">The circular curve.</param>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.AreTangent">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreTangent">
             <summary>
             The curves are tangent to each other.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.AreIntersecting">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreIntersecting">
             <summary>
             The curves intersect and are not tangent.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.IntersectionCoordinates">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionCoordinates">
             <summary>
             The coordinate of the intersection of two curves.
             </summary>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.AreTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The curves are tangent to each other.
             </summary>
-            <param name="linearCurve">The first curve.</param>
-            <param name="circularCurve">The first curve.</param>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The curves intersect and are not tangent.
             </summary>
-            <param name="linearCurve">The first curve.</param>
-            <param name="circularCurve">The first curve.</param>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.IntersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The coordinate of the intersection of two curves.
             </summary>
-            <param name="linearCurve">The first curve.</param>
-            <param name="circularCurve">The first curve.</param>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearCircular.incidenceDelta(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.incidenceDelta(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             The incidence delta.
             </summary>
@@ -6841,131 +7780,39 @@
             <param name="circularCurve">The circular curve.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="T:MPT.Math.CurveIntersections.IntersectionLinearElliptical">
-            <summary>
-            Class IntersectionLinearElliptical.
-            Implements the <see cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
-            </summary>
-            <seealso cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearElliptical.Curve1">
-            <summary>
-            Gets the curve1.
-            </summary>
-            <value>The curve1.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearElliptical.Curve2">
-            <summary>
-            Gets the curve2.
-            </summary>
-            <value>The curve2.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearElliptical.LinearCurve">
-            <summary>
-            Gets the linear curve.
-            </summary>
-            <value>The linear curve.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearElliptical.EllipticalCurve">
-            <summary>
-            Gets the circular curve.
-            </summary>
-            <value>The circular curve.</value>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.EllipticalCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.CurveIntersections.IntersectionLinearElliptical"/> class.
-            </summary>
-            <param name="linearCurve">The linear curve.</param>
-            <param name="ellipticalCurve">The circular curve.</param>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.AreTangent">
-            <summary>
-            The curves are tangent to each other.
-            </summary>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.AreIntersecting">
-            <summary>
-            The curves intersect and are not tangent.
-            </summary>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.IntersectionCoordinates">
-            <summary>
-            The coordinate of the intersection of two curves.
-            </summary>
-            <returns>CartesianCoordinate[].</returns>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.AreTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.EllipticalCurve)">
-            <summary>
-            The curves are tangent to each other.
-            </summary>
-            <param name="linearCurve">The linear curve.</param>
-            <param name="ellipticalCurve">The elliptical curve.</param>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.EllipticalCurve)">
-            <summary>
-            The curves intersect and are not tangent.
-            </summary>
-            <param name="linearCurve">The linear curve.</param>
-            <param name="ellipticalCurve">The elliptical curve.</param>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearElliptical.IntersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.EllipticalCurve)">
-            <summary>
-            The coordinate of the intersection of two curves.
-            </summary>
-            <param name="linearCurve">The linear curve.</param>
-            <param name="ellipticalCurve">The elliptical curve.</param>
-            <returns>CartesianCoordinate[].</returns>
-        </member>
-        <member name="T:MPT.Math.CurveIntersections.IntersectionLinearLinear">
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear">
             <summary>
             Class IntersectionLinearLinear.
-            Implements the <see cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
             </summary>
-            <seealso cref="T:MPT.Math.CurveIntersections.ICurveIntersection`2" />
+            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
         </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearLinear.Curve1">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
             <summary>
-            Gets the curve1.
-            </summary>
-            <value>The curve1.</value>
-        </member>
-        <member name="P:MPT.Math.CurveIntersections.IntersectionLinearLinear.Curve2">
-            <summary>
-            Gets the curve2.
-            </summary>
-            <value>The curve2.</value>
-        </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.CurveIntersections.IntersectionLinearLinear"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear"/> class.
             </summary>
             <param name="curve1">The first curve.</param>
             <param name="curve2">The second curve.</param>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.AreTangent">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.AreTangent">
             <summary>
             The curves are tangent to each other.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.AreIntersecting">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.AreIntersecting">
             <summary>
             The curves intersect and are not tangent.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.IntersectionCoordinates">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.IntersectionCoordinates">
             <summary>
             The coordinate of the intersection of two curves.
             </summary>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.AreTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.AreTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
             <summary>
             The curves are tangent to each other.
             </summary>
@@ -6973,7 +7820,7 @@
             <param name="curve2">The first curve.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
             <summary>
             The curves intersect and are not tangent.
             </summary>
@@ -6981,13 +7828,54 @@
             <param name="curve2">The first curve.</param>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:MPT.Math.CurveIntersections.IntersectionLinearLinear.IntersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear.IntersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.LinearCurve)">
             <summary>
             The coordinate of the intersection of two curves.
             </summary>
             <param name="curve1">The first curve.</param>
             <param name="curve2">The first curve.</param>
             <returns>CartesianCoordinate[].</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.RelativePosition">
+            <summary>
+            Returns coordinates on a curve for the relative position provided.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.RelativePosition.ValidateRangeLimitRelativePosition(System.Double,System.Double)">
+            <summary>
+            Validates the relative position provided.
+            </summary>
+            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
+            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between 0 and 1, but was {sRelative}.</exception>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.RelativePosition.CoordinateInterpolated(System.Double,MPT.Math.Curves.Tools.CurveRange,System.Double)">
+            <summary>
+            Returns a coordinate that is a linear interpolation in cartesian coordinates within the range provided.
+            </summary>
+            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
+            <param name="range">The range.</param>
+            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.RelativePosition.CoordinateInterpolatedPolar(System.Double,MPT.Math.Curves.Tools.CurveRange,System.Double)">
+            <summary>
+            Returns a coordinate that is a linear interpolation in polar coordinates within the range provided.
+            </summary>
+            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
+            <param name="range">The range.</param>
+            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.RelativePosition.Coordinate(System.Double,MPT.Math.Curves.Curve,System.Double)">
+            <summary>
+            Returns a coordinate that is at the relative position on the curve provided within ranges specified for the curve.
+            </summary>
+            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
+            <param name="curve">The curve.</param>
+            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
+            <returns>CartesianCoordinate.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:MPT.Math.Generics">
             <summary>

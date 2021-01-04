@@ -1,5 +1,18 @@
-﻿using MPT.Math.Coordinates;
+﻿// ***********************************************************************
+// Assembly         : MPT.Math
+// Author           : Mark P Thomas
+// Created          : 05-20-2020
+//
+// Last Modified By : Mark P Thomas
+// Last Modified On : 01-03-2021
+// ***********************************************************************
+// <copyright file="GeometryLibrary.cs" company="Mark P Thomas, Inc.">
+//     Copyright (c) 2020. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using MPT.Math.NumberTypeExtensions;
+using System;
 using NMath = System.Math;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 
@@ -23,6 +36,7 @@ namespace MPT.Math.Geometry
         /// <returns>System.Double.</returns>
         public static double SlopeParametric(double xPrime, double yPrime)
         {
+            if (xPrime == 0) { throw new DivideByZeroException("xPrime cannot be zero."); }
             return yPrime / xPrime;
         }
 
@@ -35,8 +49,11 @@ namespace MPT.Math.Geometry
         /// <param name="xPrimeDouble">The second differential of x w.r.t. some parameter.</param>
         /// <param name="yPrimeDouble">The second differential of y w.r.t. some parameter.</param>
         /// <returns>System.Double.</returns>
-        public static double CurvatureParametric(double xPrime, double yPrime, double xPrimeDouble, double yPrimeDouble)
+        public static double CurvatureParametric(
+            double xPrime, double yPrime, 
+            double xPrimeDouble, double yPrimeDouble)
         {
+            if (xPrime == 0 && yPrime == 0) { throw new DivideByZeroException("xPrime & yPrime cannot both be zero."); }
             return (xPrime * yPrimeDouble - yPrime * xPrimeDouble) / (xPrime.Squared() + yPrime.Squared()).Pow(3d / 2);
         }
         #endregion
@@ -80,7 +97,8 @@ namespace MPT.Math.Geometry
         /// <returns>System.Double.</returns>
         public static double SlopePolar(double thetaRadians, double radius, double radiusPrime)
         {
-            return (radiusPrime * Trig.Sin(thetaRadians) + radius * Trig.Cos(thetaRadians))/ (radiusPrime * Trig.Cos(thetaRadians) - radius * Trig.Sin(thetaRadians));
+            if ((radius == 0 && radiusPrime == 0) || (thetaRadians == 0 && radiusPrime == 0)) { throw new DivideByZeroException("radius & radiusPrime cannot both be zero."); }
+            return (radiusPrime * Trig.Sin(thetaRadians) + radius * Trig.Cos(thetaRadians)) / (radiusPrime * Trig.Cos(thetaRadians) - radius * Trig.Sin(thetaRadians));
         }
 
         /// <summary>
@@ -93,6 +111,7 @@ namespace MPT.Math.Geometry
         /// <returns>System.Double.</returns>
         public static double CurvaturePolar(double radius, double radiusPrime, double radiusPrimeDouble)
         {
+            if (radius == 0 && radiusPrime == 0) { throw new DivideByZeroException("radius & radiusPrime cannot both be zero."); }
             return NMath.Abs(radius.Squared() + 2 * radiusPrime.Squared() - radius * radiusPrimeDouble) / (radius.Squared() + radiusPrime.Squared()).Pow(3d / 2);
         }
         #endregion
@@ -110,6 +129,7 @@ namespace MPT.Math.Geometry
         /// <returns>System.Double.</returns>
         public static double SlopeImplicit(double Fx, double Fy)
         {
+            if (Fy == 0) { throw new DivideByZeroException("Fy cannot be zero."); }
             return -1 * Fx / Fy;
         }
 
@@ -120,12 +140,15 @@ namespace MPT.Math.Geometry
         /// <param name="Fx">For function F(x,y), partial derivative dF/dx</param>
         /// <param name="Fy">For function F(x,y), partial derivative dF/dy</param>
         /// <param name="Fxx">For function F(x,y), partial derivative (dF/dx)/dx</param>
-        /// <param name="Fyy">For function F(x,y), partial derivative (dF/dy)/dy</param>
         /// <param name="Fxy">For function F(x,y), partial derivative (dF/dx)/dy</param>
+        /// <param name="Fyy">For function F(x,y), partial derivative (dF/dy)/dy</param>
         /// <returns>System.Double.</returns>
-        public static double CurvatureImplicit(double Fx, double Fy, double Fxx, double Fxy, double Fyy)
+        public static double CurvatureImplicit(
+            double Fx, double Fy, 
+            double Fxx, double Fxy, double Fyy)
         {
-            return NMath.Abs(Fy.Squared() * Fxx - 2 * Fx * Fy * Fxy + Fx.Squared() * Fyy )/ (Fx.Squared() + Fy.Squared()).Pow(3d / 2);
+            if (Fx == 0 && Fy == 0) { throw new DivideByZeroException("Fx & Fy cannot both be zero."); }
+            return NMath.Abs(Fy.Squared() * Fxx - 2 * Fx * Fy * Fxy + Fx.Squared() * Fyy ) / (Fx.Squared() + Fy.Squared()).Pow(3d / 2);
         }
         #endregion
     }

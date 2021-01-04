@@ -95,6 +95,18 @@ namespace MPT.Math.UnitTests.Coordinates
         }
         #endregion
 
+        #region Methods: Conversion       
+        [Test]
+        public static void ToCartesian_Converts_Polar_Offset_to_Cartesian_Offset()
+        {
+            PolarOffset polar = new PolarOffset(new PolarCoordinate(0, 0), new PolarCoordinate(2, Angle.CreateFromDegree(60)), Tolerance);
+            CartesianOffset cartesian = polar.ToCartesian();
+            CartesianOffset cartesianExpected = new CartesianOffset(1, 1.73205081, Tolerance);
+
+            Assert.AreEqual(cartesianExpected, cartesian);
+        }
+        #endregion
+
         #region Operators: Equals & IEquatable
         [Test]
         public static void EqualsOverride_Is_True_for_Object_with_Identical_Coordinates()
@@ -335,6 +347,18 @@ namespace MPT.Math.UnitTests.Coordinates
                 new PolarCoordinate(1, 2),
                 new PolarCoordinate(-2, 3));
             Assert.Throws<DivideByZeroException>(() => { PolarOffset offsetNew = offset / 0; });
+        }
+        #endregion
+
+        #region Operators: Conversion
+        [Test]
+        public static void Implicit_Conversion_Between_Polar_And_Cartesian_Offsets()
+        {
+            PolarOffset polar = new PolarOffset(new PolarCoordinate(0, 0), new PolarCoordinate(2, Angle.CreateFromDegree(60)), Tolerance);
+            CartesianOffset cartesian = polar;
+            CartesianOffset cartesianExpected = new CartesianOffset(1, 1.73205081, Tolerance);
+
+            Assert.AreEqual(cartesianExpected, cartesian);
         }
         #endregion
     }

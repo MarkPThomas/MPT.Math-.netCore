@@ -14,6 +14,7 @@
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
 using MPT.Math.Curves.Parametrics.LogarithmicSpirals;
+using MPT.Math.Curves.Tools;
 using MPT.Math.Geometry;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
@@ -24,7 +25,8 @@ namespace MPT.Math.Curves
     /// <summary>
     /// A curve whose polar tangential angle is constant.
     /// </summary>
-    public class LogarithmicSpiralCurve : Curve
+    public class LogarithmicSpiralCurve : Curve,
+        ICurveLimits
     {
         #region Properties        
         /// <summary>
@@ -172,7 +174,8 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits 
+        #region ICurveLimits
+
         /// <summary>
         /// Length of the curve between the limits.
         /// </summary>
@@ -189,6 +192,46 @@ namespace MPT.Math.Curves
         /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
         /// <returns>System.Double.</returns>
         public double LengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public double ChordLength()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The length of the chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        public double ChordLengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <returns>LinearCurve.</returns>
+        public LinearCurve Chord()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// The chord connecting the start and end limits.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
+        /// <returns>LinearCurve.</returns>
+        public LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
         {
             throw new NotImplementedException();
         }
@@ -289,7 +332,7 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public double LengthBetween(AngularOffset rotation)
         {
-            return LengthTo(rotation.J.Radians) - LengthTo(rotation.I.Radians);
+            return LengthTo(rotation.J.RadiansRaw) - LengthTo(rotation.I.RadiansRaw);
         }
         #endregion
 
@@ -310,8 +353,7 @@ namespace MPT.Math.Curves
         public LogarithmicSpiralCurve CloneCurve()
         {
             LogarithmicSpiralCurve curve = new LogarithmicSpiralCurve(RadiusAtOrigin, RadiusChangeWithRotation);
-            //curve._limitStart = _limitStart;
-            //curve._limitEnd = _limitEnd;
+            curve._range = Range.CloneRange();
             return curve;
         }
         #endregion

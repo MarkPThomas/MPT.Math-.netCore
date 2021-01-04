@@ -13,6 +13,7 @@
 // ***********************************************************************
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Tools.Intersections;
+using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
 using MPT.Math.Vectors;
 using System;
@@ -63,8 +64,8 @@ namespace MPT.Math.Curves
         /// <param name="center">The center.</param>
         public CircularCurve(CartesianCoordinate vertex, CartesianCoordinate center) : base(vertex, 0, center)
         {
-            _limitStart = vertex;
-            _limitEnd = _limitStart;
+            _limitStartDefault = vertex;
+            _limitEndDefault = _limitStartDefault;
         }
 
         /// <summary>
@@ -74,9 +75,32 @@ namespace MPT.Math.Curves
         /// <param name="center">The center.</param>
         public CircularCurve(double radius, CartesianCoordinate center) : base(vertexMajor(radius, center), 0, center)
         {
-            _limitStart = vertexMajor(radius, center);
-            _limitEnd = _limitStart;
+            _limitStartDefault = vertexMajor(radius, center);
+            _limitEndDefault = _limitStartDefault;
         }
+        #endregion
+
+        #region Curve Position
+        /// <summary>
+        /// +X-coordinate on the line segment that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which an x-coordinate is desired.</param>
+        /// <returns></returns>
+        public override double XatY(double y)
+        {
+            return XsAtY(y)[0];
+        }
+
+        /// <summary>
+        /// +Y-coordinate on the line segment that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which a y-coordinate is desired.</param>
+        /// <returns></returns>
+        public override double YatX(double x)
+        {
+            return YsAtX(x)[0];
+        }
+
         #endregion
 
         #region Methods: Query            
@@ -195,72 +219,6 @@ namespace MPT.Math.Curves
         }
         #endregion
 
-        #region Methods: Properties Derived with Limits 
-        /// <summary>
-        /// Length of the curve between the limits.
-        /// </summary>
-        /// <returns>System.Double.</returns>
-        public override double Length()
-        {
-            return 2 * Numbers.Pi * Radius;
-        }
-
-        /// <summary>
-        /// Length of the curve between two points.
-        /// </summary>
-        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
-        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
-        /// <returns>System.Double.</returns>
-        public override double LengthBetween(double relativePositionStart, double relativePositionEnd)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Vector that is tangential to the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
-        /// <returns>Vector.</returns>
-        public override Vector TangentVector(double relativePosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Vector that is tangential to the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
-        /// <returns>Vector.</returns>
-        public override Vector NormalVector(double relativePosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Coordinate of the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-        /// <returns>CartesianCoordinate.</returns>
-        public override CartesianCoordinate CoordinateCartesian(double relativePosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Coordinate of the curve at the specified position.
-        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
-        /// </summary>
-        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
-        /// <returns>CartesianCoordinate.</returns>
-        public override PolarCoordinate CoordinatePolar(double relativePosition)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
         #region Methods: Public
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -268,10 +226,10 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString() 
-                + " - Center: " + Center 
-                + ", Radius: " + Radius 
-                + ", I: " + LimitStart + ", I: " + LimitEnd;
+            return base.ToString()
+                + " - Center: " + Center
+                + ", Radius: " + Radius
+                + ", I: " + _limitStartDefault + ", I: " + _limitEndDefault;
         }
 
         /// <summary>
@@ -313,6 +271,106 @@ namespace MPT.Math.Curves
         public override double LengthBetween(AngularOffset rotation)
         {
             return LengthBetween(rotation, Radius);
+        }
+        #endregion
+
+        #region ICurveLimits
+        /// <summary>
+        /// Length of the curve between the limits.
+        /// </summary>
+        /// <returns>System.Double.</returns>
+        public override double Length()
+        {
+            return 2 * Numbers.Pi * Radius;
+        }
+
+        /// <summary>
+        /// Length of the curve between two points.
+        /// </summary>
+        /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
+        /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
+        /// <returns>System.Double.</returns>
+        public override double LengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public override Vector TangentVector(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Vector that is tangential to the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative length along the path at which the tangent vector is desired.</param>
+        /// <returns>Vector.</returns>
+        public override Vector NormalVector(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Coordinate of the curve at the specified position.
+        /// If the shape is a closed shape, <paramref name="relativePosition" /> = {any integer} where <paramref name="relativePosition" /> = 0.
+        /// </summary>
+        /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public override PolarCoordinate CoordinatePolar(double relativePosition)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region ICurvePositionCartesian
+        /// <summary>
+        /// X-coordinates on the curve that corresponds to the y-coordinate given.
+        /// </summary>
+        /// <param name="y">Y-coordinate for which x-coordinates are desired.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] XsAtY(double y)
+        {
+            double x = (Radius.Squared() - y.Squared()).Sqrt();
+            return new[] { x, -x };
+        }
+
+        /// <summary>
+        /// Y-coordinates on the curve that corresponds to the x-coordinate given.
+        /// </summary>
+        /// <param name="x">X-coordinate for which y-coordinates are desired.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] YsAtX(double x)
+        {
+            double y = (Radius.Squared() - x.Squared()).Sqrt();
+            return new[] { y, -y };
+        }
+
+        /// <summary>
+        /// Provided point lies on the curve.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
+        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region ICurvePositionPolar
+        /// <summary>
+        /// The radii measured from the local coordinate origin as a function of the angle in local coordinates.
+        /// </summary>
+        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
+        /// <returns>System.Double.</returns>
+        public override double[] RadiiAboutOrigin(double angleRadians)
+        {
+            return new[] { Radius };
         }
         #endregion
 
@@ -444,8 +502,7 @@ namespace MPT.Math.Curves
         public CircularCurve CloneCurve()
         {
             CircularCurve curve = new CircularCurve(_vertexMajorLocal, _focusLocal);
-            curve._limitStart = _limitStart;
-            curve._limitEnd = _limitEnd;
+            curve._range = Range.CloneRange();
             return curve;
         }
         #endregion

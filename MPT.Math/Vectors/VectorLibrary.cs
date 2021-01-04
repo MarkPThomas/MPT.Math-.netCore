@@ -11,7 +11,6 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using NMath = System.Math;
 using MPT.Math.NumberTypeExtensions;
 using System;
 using MPT.Math.Algebra;
@@ -83,7 +82,7 @@ namespace MPT.Math.Vectors
         /// <param name="tolerance">The tolerance.</param>
         /// <returns>System.Double.</returns>
         /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
-        public static double Magnitude(
+        public static double Magnitude3D(
             double xComponent, double yComponent, double zComponent,
             double tolerance = Numbers.ZeroTolerance)
         {
@@ -101,7 +100,7 @@ namespace MPT.Math.Vectors
         /// <param name="y2">The y component of the second vector.</param>
         /// <param name="z2">The z component of the second vector.</param>
         /// <returns>System.Double.</returns>
-        public static double DotProduct(
+        public static double DotProduct3D(
             double x1, double y1, double z1,
             double x2, double y2, double z2)
         {
@@ -119,7 +118,7 @@ namespace MPT.Math.Vectors
         /// <param name="y2">The y component of the second vector.</param>
         /// <param name="z2">The z component of the second vector.</param>
         /// <returns>System.Double.</returns>
-        public static double[] CrossProduct(
+        public static double[] CrossProduct3D(
             double x1, double y1, double z1,
             double x2, double y2, double z2)
         {
@@ -143,7 +142,7 @@ namespace MPT.Math.Vectors
         /// <exception cref="Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
         private static double validatedMagnitude(double magnitude, double tolerance = Numbers.ZeroTolerance)
         {
-            if (magnitude.IsZeroSign(tolerance)) { throw new Exception("Ill-formed vector. Vector magnitude cannot be zero."); }
+            if (magnitude.IsZeroSign(tolerance)) { throw new ArgumentException("Ill-formed vector. Vector magnitude cannot be zero."); }
             return magnitude;
         }
         #endregion

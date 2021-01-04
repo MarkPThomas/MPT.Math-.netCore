@@ -75,7 +75,7 @@ namespace MPT.Math.NumberTypeExtensions
         public static int Sign(this int value, double tolerance = Numbers.ZeroTolerance)
         {
             if (IsZeroSign(value, tolerance)) { return 1; }
-            return (value > NMath.Abs(tolerance) ? 1 : -1);
+            return (value > -NMath.Abs(tolerance) ? 1 : -1);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace MPT.Math.NumberTypeExtensions
         public static int Sign(this double value, double tolerance = Numbers.ZeroTolerance)
         {
             if (IsZeroSign(value, tolerance)) { return 1; }
-            return (value > NMath.Abs(tolerance) ? 1 : -1);
+            return (value > -NMath.Abs(tolerance) ? 1 : -1);
         }
         #endregion
 
