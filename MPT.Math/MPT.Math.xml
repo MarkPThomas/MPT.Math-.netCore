@@ -2260,7 +2260,7 @@
             </summary>
             <value>The handle j.</value>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.Tools.BezierCurveHandle,MPT.Math.Curves.Tools.BezierCurveHandle,System.Int32)">
+        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.Tools.CurveHandle,MPT.Math.Curves.Tools.CurveHandle,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurve"/> class.
             </summary>
@@ -2283,13 +2283,13 @@
             <param name="length">The length.</param>
             <param name="numberOfControlPoints">The number of control points.</param>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.getBezierCurveHandleJ(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+        <member name="M:MPT.Math.Curves.BezierCurve.getCurveHandleJ(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Gets the bezier curve handle j, with appropriate slope defaults.
             </summary>
             <param name="pointJ">The point j.</param>
             <param name="handleLength">Length of the handle.</param>
-            <returns>BezierCurveHandle.</returns>
+            <returns>CurveHandle.</returns>
         </member>
         <member name="M:MPT.Math.Curves.BezierCurve.getHandleLength(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
@@ -7157,69 +7157,69 @@
             Class AngleBisector.
             </summary>
         </member>
-        <member name="T:MPT.Math.Curves.Tools.BezierCurveHandle">
+        <member name="T:MPT.Math.Curves.Tools.CurveHandle">
             <summary>
-            Class BezierCurveHandle.
+            Class CurveHandle.
             </summary>
         </member>
-        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.ControlPoint">
+        <member name="P:MPT.Math.Curves.Tools.CurveHandle.ControlPoint">
             <summary>
             Gets the control point.
             </summary>
             <value>The control point.</value>
         </member>
-        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.Rotation">
+        <member name="P:MPT.Math.Curves.Tools.CurveHandle.Rotation">
             <summary>
             Gets or sets the rotation.
             </summary>
             <value>The rotation.</value>
         </member>
-        <member name="P:MPT.Math.Curves.Tools.BezierCurveHandle.Radius">
+        <member name="P:MPT.Math.Curves.Tools.CurveHandle.Radius">
             <summary>
             Gets or sets the radius.
             </summary>
             <value>The radius.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.BezierCurveHandle" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveHandle" /> class.
             </summary>
             <param name="controlPoint">The control point, at the center of the handle.</param>
             <param name="radius">The radius of the handle.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.Angle)">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.Angle)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.BezierCurveHandle" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.CurveHandle" /> class.
             </summary>
             <param name="controlPoint">The control point, at the center of the handle.</param>
             <param name="radius">The radius of the handle.</param>
             <param name="rotation">The rotation of the handle.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.ToString">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.GetHandleTip">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.GetHandleTip">
             <summary>
             The coordinate of the handle tip.
             </summary>
             <returns>CartesianCoordinate.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.SetHandleTip(MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.SetHandleTip(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
             Sets the handle tip to the provided coordinate.
             </summary>
             <param name="handleTip">The handle tip.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.Clone">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.BezierCurveHandle.CloneCurve">
+        <member name="M:MPT.Math.Curves.Tools.CurveHandle.CloneCurve">
             <summary>
             Clones the curve.
             </summary>

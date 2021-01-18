@@ -20,7 +20,7 @@ namespace MPT.Math.Curves
     /// Implements the <see cref="System.Exception" />
     /// </summary>
     /// <seealso cref="System.Exception" />
-    public class IntersectingCurveException : Exception
+    public class IntersectingCurveException : ArgumentException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IntersectingCurveException"/> class.

@@ -46,6 +46,8 @@ namespace MPT.Math.Curves.Tools
         public CurveLimit(Curve curve)
         {
             _curve = curve;
+            _limit = new CartesianCoordinate();
+            _limit.Tolerance = curve.Tolerance;
         }
 
         /// <summary>
@@ -57,14 +59,6 @@ namespace MPT.Math.Curves.Tools
         {
             _curve = curve;
             _limit = defaultLimit;
-        }
-
-        /// <summary>
-        /// Prevents a default instance of the <see cref="CurveLimit"/> class from being created.
-        /// </summary>
-        private CurveLimit()
-        {
-
         }
         #endregion
 
@@ -79,7 +73,9 @@ namespace MPT.Math.Curves.Tools
             {
                 throw new NotSupportedException($"Curve {_curve} cannot be represented in cartesian coordinates.");
             }
+            double tolerance = _limit.Tolerance;
             _limit = GetLimitByX(xCoordinate, _curve as ICurvePositionCartesian);
+            _limit.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -92,7 +88,9 @@ namespace MPT.Math.Curves.Tools
             {
                 throw new NotSupportedException($"Curve {_curve} cannot be represented in cartesian coordinates.");
             }
+            double tolerance = _limit.Tolerance;
             _limit = GetLimitByY(yCoordinate, _curve as ICurvePositionCartesian);
+            _limit.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -105,7 +103,9 @@ namespace MPT.Math.Curves.Tools
             {
                 throw new NotSupportedException($"Curve {_curve} cannot be represented in polar coordinates.");
             }
+            double tolerance = _limit.Tolerance;
             _limit = GetLimitByRotation(angleRadians, _curve);
+            _limit.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -118,7 +118,9 @@ namespace MPT.Math.Curves.Tools
             {
                 throw new NotSupportedException($"Curve {_curve} cannot be represented in cartesian coordinates.");
             }
+            double tolerance = _limit.Tolerance;
             _limit = GetLimitByCoordinate(coordinate, _curve as ICurvePositionCartesian);
+            _limit.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -137,9 +139,8 @@ namespace MPT.Math.Curves.Tools
         /// </summary>
         /// <param name="xCoordinate">The x coordinate.</param>
         /// <param name="curve">The curve.</param>
-        public static CartesianCoordinate GetLimitByX(double xCoordinate, ICurvePositionCartesian curve)
+        public static CartesianCoordinate GetLimitByX(double xCoordinate, ICurvePositionCartesian curve) 
         {
-            // TODO: Throw exception if the coordinate does not exist
             double yCoordinate = curve.YatX(xCoordinate);
             return new CartesianCoordinate(xCoordinate, yCoordinate);
         }
@@ -151,7 +152,6 @@ namespace MPT.Math.Curves.Tools
         /// <param name="curve">The curve.</param>
         public static CartesianCoordinate GetLimitByY(double yCoordinate, ICurvePositionCartesian curve)
         {
-            // TODO: Throw exception if the coordinate does not exist
             double xCoordinate = curve.XatY(yCoordinate);
             return new CartesianCoordinate(xCoordinate, yCoordinate);
         }

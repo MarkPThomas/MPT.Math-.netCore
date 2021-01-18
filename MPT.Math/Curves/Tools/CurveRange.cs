@@ -79,7 +79,16 @@ namespace MPT.Math.Curves.Tools
         }
         #endregion
 
-        #region Methods         
+        #region Methods          
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return base.ToString() + " - Start: {X: " + _limitStart.Limit.X + ", Y: " + _limitStart.Limit.Y + "}, End: {X: " + _limitEnd.Limit.X + ", Y: " + _limitEnd.Limit.Y + "}";
+        }
+
         /// <summary>
         /// Converts to cartesian offset.
         /// </summary>
@@ -104,7 +113,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>System.Double.</returns>
         public double LengthLinear()
         {
-            return Start.Limit.OffsetFrom(End.Limit).Length();
+            return ToOffset().Length();
         }
 
         /// <summary>
@@ -113,7 +122,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>System.Double.</returns>
         public double LengthX()
         {
-            return Start.Limit.OffsetFrom(End.Limit).X();
+            return ToOffset().X();
         }
 
         /// <summary>
@@ -122,7 +131,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>System.Double.</returns>
         public double LengthY()
         {
-            return Start.Limit.OffsetFrom(End.Limit).Y();
+            return ToOffset().Y();
         }
 
         /// <summary>
@@ -131,7 +140,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>System.Double.</returns>
         public double LengthRadius()
         {
-            return ((PolarOffset)Start.Limit.OffsetFrom(End.Limit)).Radius();
+            return ToOffsetPolar().Radius();
         }
 
         /// <summary>
@@ -140,7 +149,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>System.Double.</returns>
         public Angle LengthRotation()
         {
-            return ((PolarOffset)Start.Limit.OffsetFrom(End.Limit)).Azimuth();
+            return ToOffsetPolar().Azimuth();
         }
 
         /// <summary>

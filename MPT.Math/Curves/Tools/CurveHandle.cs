@@ -74,7 +74,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString() + " - Center: " + ControlPoint + " - Radius: " + Radius + ", Rotation: " + Rotation;
+            return base.ToString() + " - Center: {X: " + ControlPoint.X + ", Y: " + ControlPoint.Y + "} - Radius: " + Radius + ", Rotation: " + Rotation.Degrees + " deg";
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace MPT.Math.Curves.Tools
         /// <returns>CartesianCoordinate.</returns>
         public CartesianCoordinate GetHandleTip()
         {
-            return ControlPoint + new CartesianCoordinate(Radius * Trig.Cos(Rotation.Radians), Radius * Trig.Sin(Rotation.Radians));
+            return ControlPoint + new CartesianCoordinate(Radius * Trig.Cos(Rotation.Radians), Radius * Trig.Sin(Rotation.Radians), ControlPoint.Tolerance);
         }
 
         /// <summary>

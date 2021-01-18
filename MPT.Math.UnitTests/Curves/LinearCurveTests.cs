@@ -279,12 +279,11 @@ namespace MPT.Math.UnitTests.Curves
         }
 
         [TestCase(1, 1, 2, 1, 1, double.PositiveInfinity)] // Horizontal, on line
-        [TestCase(1, 1, 2, 1, 2, double.PositiveInfinity)] // Horizontal, off line
         [TestCase(1, 1, 1, 2, 1.25, 1)] // Vertical
         [TestCase(1, 2, 3, 4, 2.5, 1.5)] // + slope
         [TestCase(-1, -2, -3, -4, -2.5, -1.5)] // - slope
         [TestCase(1, 2, -3, -4, 0.2, -0.2)] // - slope
-        public static void X(double x1, double y1, double x2, double y2, double y, double expectedResult)
+        public static void XatY(double x1, double y1, double x2, double y2, double y, double expectedResult)
         {
             LinearCurve curve = new LinearCurve(
                 new CartesianCoordinate(x1, y1),
@@ -293,13 +292,23 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(expectedResult, curve.XatY(y), Tolerance);
         }
 
+        [TestCase(1, 1, 2, 1, 2)] // Horizontal, off line
+        public static void XatY_Throws_ArgumentOutOfRangeException_for_Y_Not_On_Curve(double x1, double y1, double x2, double y2, double y)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => curve.XatY(y));
+        }
+
         [TestCase(1, 1, 2, 1, 1.25, 1)] // Horizontal
         [TestCase(1, 1, 1, 2, 1, double.PositiveInfinity)] // Vertical, on line
         [TestCase(1, 1, 1, 2, 2, double.PositiveInfinity)] // Vertical, off line
         [TestCase(1, 2, 3, 4, 1.5, 2.5)] // + slope
         [TestCase(-1, -2, -3, -4, -1.5, -2.5)] // - slope
         [TestCase(1, 2, -3, -4, -0.2, 0.2)] // - slope
-        public static void Y(double x1, double y1, double x2, double y2, double x, double expectedResult)
+        public static void YatX(double x1, double y1, double x2, double y2, double x, double expectedResult)
         {
             LinearCurve curve = new LinearCurve(
                 new CartesianCoordinate(x1, y1),

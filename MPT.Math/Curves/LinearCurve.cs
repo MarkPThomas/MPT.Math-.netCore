@@ -292,6 +292,10 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public double[] XsAtY(double y)
         {
+            if (IsHorizontal() && !y.IsEqualTo(InterceptY(), Tolerance))
+            {
+                throw new ArgumentOutOfRangeException($"Coordinate {y} does not lie on horizontal line {this}");
+            }
             return new double[] { (InterceptX() + y / Slope()) };
         }
 

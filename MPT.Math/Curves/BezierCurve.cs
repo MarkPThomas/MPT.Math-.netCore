@@ -47,12 +47,12 @@ namespace MPT.Math.Curves
         /// Gets the handle at starting point, i.
         /// </summary>
         /// <value>The handle i.</value>
-        public BezierCurveHandle HandleI { get; }
+        public CurveHandle HandleI { get; }
         /// <summary>
         /// Gets the handle at ending point, j.
         /// </summary>
         /// <value>The handle j.</value>
-        public BezierCurveHandle HandleJ { get; }
+        public CurveHandle HandleJ { get; }
         #endregion
 
         #region Initialization
@@ -63,7 +63,7 @@ namespace MPT.Math.Curves
         /// <param name="handleStart">The handle start.</param>
         /// <param name="handleEnd">The handle end.</param>
         /// <param name="numberOfControlPoints">The number of control points.</param>
-        public BezierCurve(BezierCurveHandle handleStart, BezierCurveHandle handleEnd, int numberOfControlPoints = _maxNumberOfControlPoints)
+        public BezierCurve(CurveHandle handleStart, CurveHandle handleEnd, int numberOfControlPoints = _maxNumberOfControlPoints)
         {
             NumberOfControlPoints = getNumberOfControlPoints(numberOfControlPoints);
 
@@ -82,8 +82,8 @@ namespace MPT.Math.Curves
             NumberOfControlPoints = getNumberOfControlPoints(numberOfControlPoints);
 
             double handleLength = getHandleLength(pointI, pointJ);
-            HandleI = new BezierCurveHandle(pointI, handleLength);
-            HandleJ = getBezierCurveHandleJ(pointJ, handleLength);
+            HandleI = new CurveHandle(pointI, handleLength);
+            HandleJ = getCurveHandleJ(pointJ, handleLength);
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace MPT.Math.Curves
             CartesianCoordinate pointI = CartesianCoordinate.Origin();
             CartesianCoordinate pointJ = new CartesianCoordinate(length, 0);
             double handleLength = getHandleLength(pointI, pointJ);
-            HandleI = new BezierCurveHandle(pointI, handleLength);
-            HandleJ = getBezierCurveHandleJ(pointJ, handleLength);
+            HandleI = new CurveHandle(pointI, handleLength);
+            HandleJ = getCurveHandleJ(pointJ, handleLength);
         }
 
         /// <summary>
@@ -107,10 +107,10 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="pointJ">The point j.</param>
         /// <param name="handleLength">Length of the handle.</param>
-        /// <returns>BezierCurveHandle.</returns>
-        private BezierCurveHandle getBezierCurveHandleJ(CartesianCoordinate pointJ, double handleLength)
+        /// <returns>CurveHandle.</returns>
+        private CurveHandle getCurveHandleJ(CartesianCoordinate pointJ, double handleLength)
         {
-            return new BezierCurveHandle(pointJ, handleLength, new Angle(-1 * Numbers.Pi));
+            return new CurveHandle(pointJ, handleLength, new Angle(-1 * Numbers.Pi));
         }
 
         /// <summary>
