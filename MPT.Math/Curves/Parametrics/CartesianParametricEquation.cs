@@ -56,8 +56,8 @@ namespace MPT.Math.Curves.Parametrics
         public CartesianParametricEquation Differentiate()
         {
             CartesianParametricEquation differential = CloneParametric();
-            differential._component.Differentiate();
-            _differentiationIndex++;
+            differential._component = _component.Differentiate(_differentiationIndex) as CartesianParametricComponentBase;
+            differential._differentiationIndex++;
             return differential;
         }
 
@@ -69,8 +69,8 @@ namespace MPT.Math.Curves.Parametrics
         public CartesianParametricEquation DifferentiateBy(int index)
         {
             CartesianParametricEquation differential = CloneParametric();
-            differential._component.DifferentiateBy(index);
-            _differentiationIndex = index;
+            differential._component = _component.DifferentiateBy(index) as CartesianParametricComponentBase;
+            differential._differentiationIndex = index;
             return differential;
         }
 

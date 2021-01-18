@@ -67,9 +67,9 @@ namespace MPT.Math.Curves.Parametrics
         public PolarParametricEquation Differentiate()
         {
             PolarParametricEquation differential = CloneParametric();
-            differential._radius.Differentiate();
-            differential._azimuth.Differentiate();
-            _differentiationIndex++;
+            differential._radius = _radius.Differentiate(_differentiationIndex) as LinearParametricComponentBase;
+            differential._azimuth = _azimuth.Differentiate(_differentiationIndex) as AngularParametricComponentBase;
+            differential._differentiationIndex++;
             return differential;
         }
 
@@ -81,9 +81,9 @@ namespace MPT.Math.Curves.Parametrics
         public PolarParametricEquation DifferentiateBy(int index)
         {
             PolarParametricEquation differential = CloneParametric();
-            differential._radius.DifferentiateBy(index);
-            differential._azimuth.DifferentiateBy(index);
-            _differentiationIndex = index;
+            differential._radius = _radius.DifferentiateBy(index) as LinearParametricComponentBase;
+            differential._azimuth = _azimuth.DifferentiateBy(index) as AngularParametricComponentBase;
+            differential._differentiationIndex = index;
             return differential;
         }
 

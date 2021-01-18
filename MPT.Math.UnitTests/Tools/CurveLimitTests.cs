@@ -72,7 +72,7 @@ namespace MPT.Math.UnitTests.Tools
 
         [Test]
         public static void SetLimitByRotation()
-        {
+        {  // Currently made to work with curves that have parametric equations in rotations. Need to flesh this out more. Parametric vector has polar transformation?
             curveLimit.SetLimitByRotation(-Numbers.PiOver2);
 
             CartesianCoordinate limitExpected = new CartesianCoordinate(0, -1, Tolerance);
@@ -154,9 +154,9 @@ namespace MPT.Math.UnitTests.Tools
 
         [Test]
         public static void GetLimitByRotation()
-        {
+        {  // Currently made to work with curves that have parametric equations in rotations. Need to flesh this out more. Parametric vector has polar transformation?
             Curve curve = new LinearCurve(new CartesianCoordinate(-1, -2, Tolerance), new CartesianCoordinate(4, 3, Tolerance));
-            CartesianCoordinate limit = CurveLimit.GetLimitByRotation(-Numbers.PiOver2, curve);
+            CartesianCoordinate limit = CurveLimit.GetLimitByRotation(3 * Numbers.PiOver2, curve);
 
             CartesianCoordinate expectedLimit = new CartesianCoordinate(0, -1, Tolerance);
 

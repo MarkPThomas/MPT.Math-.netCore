@@ -66,9 +66,9 @@ namespace MPT.Math.Curves.Parametrics
         public LinearParametricEquation Differentiate()
         {
             LinearParametricEquation differential = CloneParametric();
-            differential._x.Differentiate();
-            differential._y.Differentiate();
-            _differentiationIndex++;
+            differential._x = _x.Differentiate(_differentiationIndex) as LinearParametricComponentBase;
+            differential._y = _y.Differentiate(_differentiationIndex) as LinearParametricComponentBase;
+            differential._differentiationIndex++;
             return differential;
         }
 
@@ -80,9 +80,9 @@ namespace MPT.Math.Curves.Parametrics
         public LinearParametricEquation DifferentiateBy(int index)
         {
             LinearParametricEquation differential = CloneParametric();
-            differential._x.DifferentiateBy(index);
-            differential._y.DifferentiateBy(index);
-            _differentiationIndex = index;
+            differential._x = _x.DifferentiateBy(index) as LinearParametricComponentBase;
+            differential._y = _y.DifferentiateBy(index) as LinearParametricComponentBase;
+            differential._differentiationIndex = index;
             return differential;
         }
 
@@ -112,33 +112,9 @@ namespace MPT.Math.Curves.Parametrics
         {
             return (_x.HasDifferential() || _y.HasDifferential());
         }
-
         #endregion
 
         #region Operators
-        ///// <summary>
-        ///// Implements the + operator.
-        ///// </summary>
-        ///// <param name="a">a.</param>
-        ///// <param name="b">The b.</param>
-        ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator +(VectorParametric a, VectorParametric b)
-        //{
-        //    return new VectorParametric(a.Xcomponent + b.Xcomponent, a.Ycomponent + b.Ycomponent);
-        //}
-
-        ///// <summary>
-        ///// Implements the - operator.
-        ///// </summary>
-        ///// <param name="a">a.</param>
-        ///// <param name="b">The b.</param>
-        ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator -(VectorParametric a, VectorParametric b)
-        //{
-        //    return new VectorParametric(a.Xcomponent - b.Xcomponent, a.Ycomponent - b.Ycomponent);
-        //}
-
-
         /// <summary>
         /// Implements the * operator.
         /// </summary>
@@ -153,7 +129,6 @@ namespace MPT.Math.Curves.Parametrics
             return parametric;
         }
 
-
         /// <summary>
         /// Implements the / operator.
         /// </summary>
@@ -167,7 +142,6 @@ namespace MPT.Math.Curves.Parametrics
             parametric._y /= b;
             return parametric;
         }
-
         #endregion
 
         #region ICloneable
@@ -187,8 +161,8 @@ namespace MPT.Math.Curves.Parametrics
         public LinearParametricEquation CloneParametric()
         {
             LinearParametricEquation parametric = new LinearParametricEquation();
-            parametric._x.Clone();
-            parametric._y.Clone();
+            parametric._x = _x;
+            parametric._y = _y;
             parametric._differentiationIndex = _differentiationIndex;
             return parametric;
         }

@@ -98,7 +98,7 @@ namespace MPT.Math.Curves.Tools
         /// </summary>
         /// <param name="angleRadians">The angle in radians.</param>
         public void SetLimitByRotation(double angleRadians)
-        {
+        {   // Currently made to work with curves that have parametric equations in rotations. Need to flesh this out more. Parametric vector has polar transformation?
             if (!(_curve is ICurvePositionPolar))
             {
                 throw new NotSupportedException($"Curve {_curve} cannot be represented in polar coordinates.");
@@ -162,7 +162,7 @@ namespace MPT.Math.Curves.Tools
         /// <param name="angleRadians">The angle in radians.</param>
         /// <param name="curve">The curve.</param>
         public static CartesianCoordinate GetLimitByRotation(double angleRadians, Curve curve)
-        {
+        {   // Currently made to work with curves that have parametric equations in rotations. Need to flesh this out more. Parametric vector has polar transformation?
             double xCoordinate = curve.XbyRotationAboutOrigin(angleRadians);
             double yCoordinate = curve.YbyRotationAboutOrigin(angleRadians);
             return new CartesianCoordinate(xCoordinate, yCoordinate);

@@ -78,7 +78,10 @@ namespace MPT.Math.Curves.Parametrics
         protected CurveParametricComponents(T3 parent)
         {
             _parentCurve = parent;
+        }
 
+        protected void initializeComponentList()
+        {
             _components.Add(_base);
             _components.Add(_prime);
             _components.Add(_doublePrime);
@@ -88,16 +91,18 @@ namespace MPT.Math.Curves.Parametrics
         /// <summary>
         /// Returns the differential of the current parametric function.
         /// </summary>
+        /// <param name="index">The index to differentiate to, which must be greater than 0.</param>
         /// <returns>HyperbolicParametric.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Index must not be greater than {_components.Count - 1} in order to differentiate.</exception>
-        public CurveParametricComponents<T1, T2, T3> Differentiate()
+        public CurveParametricComponents<T1, T2, T3> Differentiate(int index)
         {
-            if (_components.Count == _differentiationIndex - 1)
+            index++;
+            if (_components.Count <= index)
             {
-                throw new ArgumentOutOfRangeException($"Index must not be greater than {_components.Count - 1} in order to differentiate.");
+                throw new ArgumentOutOfRangeException($"Index: {index} must not be greater than {_components.Count - 1} in order to differentiate.");
             }
             CurveParametricComponents<T1, T2, T3> differential = Clone() as CurveParametricComponents<T1, T2, T3>;
-            differential._differentiationIndex++;
+            differential._differentiationIndex = index;
             return differential;
         }
 
@@ -110,7 +115,13 @@ namespace MPT.Math.Curves.Parametrics
         /// <exception cref="ArgumentOutOfRangeException">Index: {index} must not be greater than {_components.Count - 1} in order to differentiate.</exception>
         public CurveParametricComponents<T1, T2, T3> DifferentiateBy(int index)
         {
-            if (index < 0) { throw new ArgumentOutOfRangeException($"Index: {index} must not be less than 0."); }
+            if (index < 0) { 
+                throw new ArgumentOutOfRangeException($"Index: {index} must not be less than 0."); 
+            }
+            if (index < _differentiationIndex)
+            {
+                throw new ArgumentOutOfRangeException($"Differentiation index {index} cannot be less than than current index {_differentiationIndex}.");
+            }
             if (_components.Count <= index)
             {
                 throw new ArgumentOutOfRangeException($"Index: {index} must not be greater than {_components.Count - 1} in order to differentiate.");
@@ -121,23 +132,24 @@ namespace MPT.Math.Curves.Parametrics
             return differential;
         }
 
-        /// <summary>
-        /// Returns the first differential of the parametric function.
-        /// </summary>
-        /// <returns>HyperbolicParametric.</returns>
-        public CurveParametricComponents<T1, T2, T3> DifferentialFirst()
-        {
-            return DifferentiateBy(1);
-        }
+        // TODO: Might not be used. Consider removing.
+        ///// <summary>
+        ///// Returns the first differential of the parametric function.
+        ///// </summary>
+        ///// <returns>HyperbolicParametric.</returns>
+        //public CurveParametricComponents<T1, T2, T3> DifferentialFirst()
+        //{
+        //    return DifferentiateBy(1);
+        //}
 
-        /// <summary>
-        /// Returns the second differential of the parametric function.
-        /// </summary>
-        /// <returns>HyperbolicParametric.</returns>
-        public CurveParametricComponents<T1, T2, T3> DifferentialSecond()
-        {
-            return DifferentiateBy(2);
-        }
+        ///// <summary>
+        ///// Returns the second differential of the parametric function.
+        ///// </summary>
+        ///// <returns>HyperbolicParametric.</returns>
+        //public CurveParametricComponents<T1, T2, T3> DifferentialSecond()
+        //{
+        //    return DifferentiateBy(2);
+        //}
 
         /// <summary>
         /// Determines whether this instance can be differentiated further.
@@ -145,9 +157,8 @@ namespace MPT.Math.Curves.Parametrics
         /// <returns><c>true</c> if this instance has differential; otherwise, <c>false</c>.</returns>
         public bool HasDifferential()
         {
-            return _differentiationIndex < _components.Count;
+            return _differentiationIndex < _components.Count - 1;
         }
-
         #endregion
 
         #region Methods: Parametric Equations and Differentials
@@ -196,56 +207,33 @@ namespace MPT.Math.Curves.Parametrics
         #endregion
 
         #region Operators
+        // TODO: Might not be used. Consider removing.
         ///// <summary>
-        ///// Implements the + operator.
+        ///// Implements the * operator.
         ///// </summary>
         ///// <param name="a">a.</param>
         ///// <param name="b">The b.</param>
         ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator +(VectorParametric a, VectorParametric b)
+        //public static CurveParametricComponents<T1, T2, T3> operator *(CurveParametricComponents<T1, T2, T3> a, double b)
         //{
-        //    return new VectorParametric(a.Xcomponent + b.Xcomponent, a.Ycomponent + b.Ycomponent);
+        //    CurveParametricComponents<T1, T2, T3> parametric = a.Clone() as CurveParametricComponents<T1, T2, T3>;
+        //    parametric._scale = b;
+        //    return parametric;
         //}
 
+
         ///// <summary>
-        ///// Implements the - operator.
+        ///// Implements the / operator.
         ///// </summary>
         ///// <param name="a">a.</param>
         ///// <param name="b">The b.</param>
         ///// <returns>The result of the operator.</returns>
-        //public static VectorParametric operator -(VectorParametric a, VectorParametric b)
+        //public static CurveParametricComponents<T1, T2, T3> operator /(CurveParametricComponents<T1, T2, T3> a, double b)
         //{
-        //    return new VectorParametric(a.Xcomponent - b.Xcomponent, a.Ycomponent - b.Ycomponent);
+        //    CurveParametricComponents<T1, T2, T3> parametric = a.Clone() as CurveParametricComponents<T1, T2, T3>;
+        //    parametric._scale = 1d / b;
+        //    return parametric;
         //}
-
-
-        /// <summary>
-        /// Implements the * operator.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="b">The b.</param>
-        /// <returns>The result of the operator.</returns>
-        public static CurveParametricComponents<T1, T2, T3> operator *(CurveParametricComponents<T1, T2, T3> a, double b)
-        {
-            CurveParametricComponents<T1, T2, T3> parametric = a.Clone() as CurveParametricComponents<T1, T2, T3>;
-            parametric._scale = b;
-            return parametric;
-        }
-
-
-        /// <summary>
-        /// Implements the / operator.
-        /// </summary>
-        /// <param name="a">a.</param>
-        /// <param name="b">The b.</param>
-        /// <returns>The result of the operator.</returns>
-        public static CurveParametricComponents<T1, T2, T3> operator /(CurveParametricComponents<T1, T2, T3> a, double b)
-        {
-            CurveParametricComponents<T1, T2, T3> parametric = a.Clone() as CurveParametricComponents<T1, T2, T3>;
-            parametric._scale = 1d / b;
-            return parametric;
-        }
-
         #endregion
 
         #region ICloneable

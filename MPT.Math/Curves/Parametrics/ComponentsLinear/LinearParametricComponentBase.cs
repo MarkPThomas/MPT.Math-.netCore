@@ -38,6 +38,8 @@ namespace MPT.Math.Curves.Parametrics.ComponentsLinear
             _doublePrime = new LinearParametricComponent(primeDoubleByParameterScaled);
             _prime = new LinearParametricComponent(primeByParameterScaled, _doublePrime);
             _base = new LinearParametricComponent(baseByParameterScaled, _prime);
+
+            initializeComponentList();
         }
 
         #region Operators

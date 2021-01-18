@@ -1059,12 +1059,6 @@
             </summary>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.AngleFromHorizontalAxis">
-            <summary>
-            The angle that the coordinate lies in from the positive horizontal axis. 
-            </summary>
-            <returns>Angle.</returns>
-        </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Origin">
             <summary>
             Returns a default static coordinate at the origin.
@@ -1246,13 +1240,6 @@
             Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> to <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/>.
             </summary>
             <param name="cartesian">The cartesian.</param>
-            <returns>The result of the conversion.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.CartesianCoordinate.op_Explicit(MPT.Math.Coordinates.PolarCoordinate)~MPT.Math.Coordinates.CartesianCoordinate">
-            <summary>
-            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/> to <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/>.
-            </summary>
-            <param name="polar">The polar.</param>
             <returns>The result of the conversion.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.CartesianCoordinate.Equals(MPT.Math.Coordinates.CartesianCoordinate)">
@@ -1477,13 +1464,6 @@
             Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianOffset"/> to <see cref="T:MPT.Math.Coordinates.PolarOffset"/>.
             </summary>
             <param name="cartesian">The cartesian.</param>
-            <returns>The result of the conversion.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.CartesianOffset.op_Explicit(MPT.Math.Coordinates.PolarOffset)~MPT.Math.Coordinates.CartesianOffset">
-            <summary>
-            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.PolarOffset"/> to <see cref="T:MPT.Math.Coordinates.CartesianOffset"/>.
-            </summary>
-            <param name="polar">The polar.</param>
             <returns>The result of the conversion.</returns>
         </member>
         <member name="T:MPT.Math.Coordinates.ICoordinate">
@@ -1876,18 +1856,6 @@
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.PolarCoordinate.ToCartesian">
-            <summary>
-            Converts the polar coordinate to a cartesian coordinate.
-            </summary>
-            <returns>PolarCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Coordinates.PolarCoordinate.Origin">
-            <summary>
-            Returns a default static coordinate at the origin.
-            </summary>
-            <returns>PolarCoordinate.</returns>
-        </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.AddAngleAzimuthRadians(System.Double)">
             <summary>
             Adds the angle, in radians, to the angle of the current coordinate.
@@ -1970,6 +1938,18 @@
             Changes the radius of the current coordinate to the provided radius.
             </summary>
             <param name="radius">The new radius.</param>
+            <returns>PolarCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.ToCartesian">
+            <summary>
+            Converts the polar coordinate to a cartesian coordinate.
+            </summary>
+            <returns>PolarCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarCoordinate.Origin">
+            <summary>
+            Returns a default static coordinate at the origin.
+            </summary>
             <returns>PolarCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.PolarCoordinate.Equals(MPT.Math.Coordinates.PolarCoordinate)">
@@ -2062,13 +2042,6 @@
             <param name="polar">The polar.</param>
             <returns>The result of the conversion.</returns>
         </member>
-        <member name="M:MPT.Math.Coordinates.PolarCoordinate.op_Explicit(MPT.Math.Coordinates.CartesianCoordinate)~MPT.Math.Coordinates.PolarCoordinate">
-            <summary>
-            Performs an explicit conversion from <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> to <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/>.
-            </summary>
-            <param name="cartesian">The cartesian.</param>
-            <returns>The result of the conversion.</returns>
-        </member>
         <member name="T:MPT.Math.Coordinates.PolarOffset">
             <summary>
             Represents the difference between polar coordinates I (first) and J (second) in two-dimensional space.
@@ -2100,12 +2073,6 @@
             <param name="i">The first coordinate.</param>
             <param name="j">The second coordinate.</param>
             <param name="tolerance">The tolerance.</param>
-        </member>
-        <member name="M:MPT.Math.Coordinates.PolarOffset.ToPolarCoordinate">
-            <summary>
-            Converts to a single <see cref="T:MPT.Math.Coordinates.PolarCoordinate"/> coordinate.
-            </summary>
-            <returns>CartesianCoordinate.</returns>
         </member>
         <member name="M:MPT.Math.Coordinates.PolarOffset.ToString">
             <summary>
@@ -2229,6 +2196,13 @@
             <param name="offset">The offset.</param>
             <param name="denominator">The denominator.</param>
             <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:MPT.Math.Coordinates.PolarOffset.op_Implicit(MPT.Math.Coordinates.PolarOffset)~MPT.Math.Coordinates.CartesianOffset">
+            <summary>
+            Performs an implicit conversion from <see cref="T:MPT.Math.Coordinates.PolarOffset"/> to <see cref="T:MPT.Math.Coordinates.CartesianOffset"/>.
+            </summary>
+            <param name="polar">The polar.</param>
+            <returns>The result of the conversion.</returns>
         </member>
         <member name="T:MPT.Math.Curves.BezierCurve">
             <summary>
@@ -2848,7 +2822,7 @@
             <summary>
             The coordinate of the local origin.
             </summary>
-            <value>The local offset translation.</value>
+            <value>The local origin.</value>
         </member>
         <member name="F:MPT.Math.Curves.ConicSectionCurve._directrixILocal">
             <summary>
@@ -4057,6 +4031,31 @@
             <param name="angleRadians">The angle in radians in local coordinates.</param>
             <returns>System.Double.</returns>
         </member>
+        <member name="T:MPT.Math.Curves.IntersectingCurveException">
+            <summary>
+            Class IntersectingCurveException.
+            Implements the <see cref="T:System.Exception" />
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:MPT.Math.Curves.IntersectingCurveException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.IntersectingCurveException"/> class.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.IntersectingCurveException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.IntersectingCurveException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.IntersectingCurveException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.IntersectingCurveException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
         <member name="T:MPT.Math.Curves.IPerpendicularProjections">
             <summary>
             Interface IPerpendicularProjections
@@ -4265,7 +4264,6 @@
             <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
             <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
             <returns>System.Double.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.ChordLength">
             <summary>
@@ -4318,7 +4316,6 @@
             </summary>
             <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
             <returns>CartesianCoordinate.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.CoordinatePolar(System.Double)">
             <summary>
@@ -4327,7 +4324,6 @@
             </summary>
             <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
             <returns>CartesianCoordinate.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.ToString">
             <summary>
@@ -4764,6 +4760,31 @@
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.OverlappingCurvesException">
+            <summary>
+            Class OverlappingCurvesException.
+            Implements the <see cref="T:System.Exception" />
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:MPT.Math.Curves.OverlappingCurvesException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.OverlappingCurvesException"/> class.
+            </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.OverlappingCurvesException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.OverlappingCurvesException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.OverlappingCurvesException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.OverlappingCurvesException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
         </member>
         <member name="T:MPT.Math.Curves.ParabolicCurve">
             <summary>
@@ -7259,11 +7280,6 @@
             <param name="curve">The curve.</param>
             <param name="defaultLimit">The default limit.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.CurveLimit.#ctor">
-            <summary>
-            Prevents a default instance of the <see cref="T:MPT.Math.Curves.Tools.CurveLimit"/> class from being created.
-            </summary>
-        </member>
         <member name="M:MPT.Math.Curves.Tools.CurveLimit.SetLimitByX(System.Double)">
             <summary>
             Sets the limit by the x-coordinate.
@@ -7379,6 +7395,12 @@
             <summary>
             Prevents a default instance of the <see cref="T:MPT.Math.Curves.Tools.CurveRange"/> class from being created.
             </summary>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.CurveRange.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:MPT.Math.Curves.Tools.CurveRange.ToOffset">
             <summary>
@@ -7552,6 +7574,12 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Tools.Intersections.ICurveIntersection`2" />
         </member>
+        <member name="F:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular._transformations">
+            <summary>
+            Gets the transformations object.
+            </summary>
+            <value>The transformations.</value>
+        </member>
         <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.#ctor(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear"/> class.
@@ -7621,7 +7649,16 @@
             <param name="curve2">The first curve.</param>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.RadicalLineLength(System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular._intersectionCoordinates(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve,MPT.Math.Transformations)">
+            <summary>
+            The coordinate(s) of the intersection(s) of two curves.
+            </summary>
+            <param name="curve1">The first curve.</param>
+            <param name="curve2">The first curve.</param>
+            <param name="converter">The converter.</param>
+            <returns>CartesianCoordinate[].</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.RadicalLineLength(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             The length of the radical line, which is the straight line connecting the two intersection points.
             </summary>
@@ -7636,73 +7673,13 @@
             <param name="radius2">The radius2.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCircularCircular.getTransformations(MPT.Math.Curves.CircularCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
-            Class IntersectionCurveCurve.
-            Implements the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2" />
+            Gets the transformations to use for local vs. global coordinates.
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionAbstract`2" />
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.#ctor(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve" /> class.
-            </summary>
-            <param name="curve1">The first curve.</param>
-            <param name="curve2">The second curve.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreTangent">
-            <summary>
-            The curves are tangent to each other.
-            </summary>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreIntersecting">
-            <summary>
-            The curves intersect and are not tangent.
-            </summary>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.IntersectionCoordinates">
-            <summary>
-            The coordinate of the intersection of two curves.
-            </summary>
-            <returns>CartesianCoordinate[].</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.CenterSeparations(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
-            <summary>
-            The separation of the centers of the curves.
-            </summary>
-            <param name="curve1">The curve1.</param>
-            <param name="curve2">The curve2.</param>
-            <returns>System.Double.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreTangent(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
-            <summary>
-            Determines if the curves are tangent to each other.
-            </summary>
-            <param name="curve1">The curve1.</param>
-            <param name="curve2">The curve2.</param>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.AreIntersecting(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
-            <summary>
-            The curves intersect.
-            </summary>
-            <param name="curve1">The first curve.</param>
-            <param name="curve2">The first curve.</param>
-            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionCurveCurve.IntersectionCoordinates(MPT.Math.Curves.Curve,MPT.Math.Curves.Curve)">
-            <summary>
-            The coordinate(s) of the intersection(s) of two curves.
-            </summary>
-            <param name="curve1">The first curve.</param>
-            <param name="curve2">The first curve.</param>
-            <returns>CartesianCoordinate[].</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
+            <param name="circleAtOrigin">The circular curve set to the local origin.</param>
+            <param name="otherCircle">The other circular curve set to the local x-axis.</param>
+            <returns>Transformations.</returns>
         </member>
         <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular">
             <summary>
@@ -7723,9 +7700,14 @@
             </summary>
             <value>The circular curve.</value>
         </member>
+        <member name="F:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular._properties">
+            <summary>
+            The properties
+            </summary>
+        </member>
         <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular" /> class.
             </summary>
             <param name="linearCurve">The linear curve.</param>
             <param name="circularCurve">The circular curve.</param>
@@ -7738,7 +7720,7 @@
         </member>
         <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreIntersecting">
             <summary>
-            The curves intersect and are not tangent.
+            The curves intersect.
             </summary>
             <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         </member>
@@ -7758,7 +7740,7 @@
         </member>
         <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.AreIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
             <summary>
-            The curves intersect and are not tangent.
+            The curves intersect.
             </summary>
             <param name="linearCurve">The linear curve.</param>
             <param name="circularCurve">The circular curve.</param>
@@ -7772,13 +7754,93 @@
             <param name="circularCurve">The circular curve.</param>
             <returns>CartesianCoordinate[].</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.incidenceDelta(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular._areTangent(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve,MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties)">
             <summary>
-            The incidence delta.
+            The curves are tangent to each other.
             </summary>
             <param name="linearCurve">The linear curve.</param>
             <param name="circularCurve">The circular curve.</param>
-            <returns>System.Double.</returns>
+            <param name="_properties">Pre-calculated properties to be used for convenience.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular._areIntersecting(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve,MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties)">
+            <summary>
+            The curves intersect.
+            </summary>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
+            <param name="_properties">Pre-calculated properties to be used for convenience.</param>
+            <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular._intersectionCoordinates(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve,MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties)">
+            <summary>
+            The coordinate of the intersection of two curves.
+            </summary>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
+            <param name="_properties">Pre-calculated properties to be used for convenience.</param>
+            <returns>CartesianCoordinate[].</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties">
+            <summary>
+            Class IntersectionProperties.
+            </summary>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.Tolerance">
+            <summary>
+            Gets the tolerance.
+            </summary>
+            <value>The tolerance.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.D">
+            <summary>
+            Cross-product of two points defining the linear curve.
+            </summary>
+            <value>The d.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.dx">
+            <summary>
+            X-axis distance between two points defining the linear curve.
+            </summary>
+            <value>The dx.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.dy">
+            <summary>
+            Y-axis distance between two points defining the linear curve.
+            </summary>
+            <value>The dy.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.dr">
+            <summary>
+            Distance between two points defining the linear curve.
+            </summary>
+            <value>The dr.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.IncidenceDelta">
+            <summary>
+            Gets the incidence delta.
+            </summary>
+            <value>The incidence delta.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.Transformations">
+            <summary>
+            Gets the transformations object.
+            </summary>
+            <value>The transformations.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.#ctor(MPT.Math.Curves.LinearCurve,MPT.Math.Curves.CircularCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties"/> class.
+            </summary>
+            <param name="linearCurve">The linear curve.</param>
+            <param name="circularCurve">The circular curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.Tools.Intersections.IntersectionLinearCircular.IntersectionProperties.transformToLocal(MPT.Math.Curves.LinearCurve)">
+            <summary>
+            Returns new linear curve transformed to the local coordinates of the provided circular curve.
+            </summary>
+            <param name="linearCurve">The linear curve.</param>
+            <returns>LinearCurve.</returns>
         </member>
         <member name="T:MPT.Math.Curves.Tools.Intersections.IntersectionLinearLinear">
             <summary>
@@ -7835,47 +7897,6 @@
             <param name="curve1">The first curve.</param>
             <param name="curve2">The first curve.</param>
             <returns>CartesianCoordinate[].</returns>
-        </member>
-        <member name="T:MPT.Math.Curves.Tools.RelativePosition">
-            <summary>
-            Returns coordinates on a curve for the relative position provided.
-            </summary>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.RelativePosition.ValidateRangeLimitRelativePosition(System.Double,System.Double)">
-            <summary>
-            Validates the relative position provided.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
-            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Relative position must be between 0 and 1, but was {sRelative}.</exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.RelativePosition.CoordinateInterpolated(System.Double,MPT.Math.Curves.Tools.CurveRange,System.Double)">
-            <summary>
-            Returns a coordinate that is a linear interpolation in cartesian coordinates within the range provided.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
-            <param name="range">The range.</param>
-            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.RelativePosition.CoordinateInterpolatedPolar(System.Double,MPT.Math.Curves.Tools.CurveRange,System.Double)">
-            <summary>
-            Returns a coordinate that is a linear interpolation in polar coordinates within the range provided.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
-            <param name="range">The range.</param>
-            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
-            <returns>CartesianCoordinate.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Tools.RelativePosition.Coordinate(System.Double,MPT.Math.Curves.Curve,System.Double)">
-            <summary>
-            Returns a coordinate that is at the relative position on the curve provided within ranges specified for the curve.
-            </summary>
-            <param name="sRelative">The relative position, s. Relative position must be between 0 and 1.</param>
-            <param name="curve">The curve.</param>
-            <param name="tolerance">The tolerance used for relative comparisons of floating point numbers.</param>
-            <returns>CartesianCoordinate.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:MPT.Math.Generics">
             <summary>
@@ -8020,8 +8041,8 @@
             <param name="Fx">For function F(x,y), partial derivative dF/dx</param>
             <param name="Fy">For function F(x,y), partial derivative dF/dy</param>
             <param name="Fxx">For function F(x,y), partial derivative (dF/dx)/dx</param>
-            <param name="Fyy">For function F(x,y), partial derivative (dF/dy)/dy</param>
             <param name="Fxy">For function F(x,y), partial derivative (dF/dx)/dy</param>
+            <param name="Fyy">For function F(x,y), partial derivative (dF/dy)/dy</param>
             <returns>System.Double.</returns>
         </member>
         <member name="T:MPT.Math.ITolerance">
@@ -8345,6 +8366,14 @@
             </summary>
             <param name="value">The value.</param>
             <param name="root">The root.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Numbers.ValueAsZeroIfWithinAbsoluteTolerance(System.Double,System.Double)">
+            <summary>
+            Sets value to zero if within absolute tolerance (exclusive), otherwise returns value.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="tolerance">The tolerance.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Numbers.Factorial(System.Int32)">
@@ -8868,7 +8897,7 @@
         </member>
         <member name="T:MPT.Math.Transformations">
             <summary>
-            Class Transformations.
+            Handles transformations between global coordinates and local coordinates.
             </summary>
         </member>
         <member name="P:MPT.Math.Transformations.LocalOrigin">
@@ -8899,8 +8928,8 @@
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Transformations"/> class.
             </summary>
-            <param name="localOriginInGlobal">The local origin in global.</param>
-            <param name="localAxisXPtInGlobal">The local axis x pt in global.</param>
+            <param name="localOriginInGlobal">The local origin in global coordinates.</param>
+            <param name="localAxisXPtInGlobal">Any point along the local x-axis in global coordinates.</param>
         </member>
         <member name="M:MPT.Math.Transformations.TransformToGlobal(MPT.Math.Coordinates.CartesianCoordinate)">
             <summary>
@@ -9478,7 +9507,7 @@
             <param name="y2">The y component of the second vector.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.Magnitude(System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Vectors.VectorLibrary.Magnitude3D(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Gets the magnitude from parametric vector components.
             </summary>
@@ -9489,7 +9518,7 @@
             <returns>System.Double.</returns>
             <exception cref="T:System.Exception">Ill-formed vector. Vector magnitude cannot be zero.</exception>
         </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.DotProduct(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Vectors.VectorLibrary.DotProduct3D(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Returns the dot product of the points.
             </summary>
@@ -9501,7 +9530,7 @@
             <param name="z2">The z component of the second vector.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Vectors.VectorLibrary.CrossProduct(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:MPT.Math.Vectors.VectorLibrary.CrossProduct3D(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Returns the cross product/determinant of the points.
             </summary>

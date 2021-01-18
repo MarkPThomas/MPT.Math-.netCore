@@ -70,25 +70,15 @@ namespace MPT.Math.Curves.Parametrics.Linear
         }
         #endregion
 
-        #region ICloneable
+        //ncrunch: no coverage start
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
         public override object Clone()
-        {
-            return CloneParametric();
+        {  // This is placed here due to LinearParametricP not needing a cloning method in usage or access, but derives from base classes that require it.
+            return null;
         }
-
-        /// <summary>
-        /// Clones the curve.
-        /// </summary>
-        /// <returns>LinearCurve.</returns>
-        public LinearParametricP CloneParametric()
-        {
-            LinearParametricP parametric = new LinearParametricP(_parent as LinearCurve);
-            return parametric;
-        }
-        #endregion
+        //ncrunch: no coverage end 
     }
 }
