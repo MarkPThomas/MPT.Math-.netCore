@@ -260,7 +260,12 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public double[] RadiiAboutOrigin(double angleRadians)
         {
-            return new double[] { 1 / (Trig.Sin(angleRadians) - Trig.Cos(angleRadians)) };
+            if (Numbers.IsEqualTo(Trig.Sin(angleRadians) - Trig.Cos(angleRadians), 0, Tolerance) ||
+                Numbers.IsNegativeSign(Trig.Sin(angleRadians) - Trig.Cos(angleRadians), Tolerance))
+            {
+                throw new ArgumentOutOfRangeException($"Angle {angleRadians} provided will never intersect line.");
+            }
+            return new double[] { System.Math.Abs(InterceptY() / (Trig.Sin(angleRadians) - Slope() * Trig.Cos(angleRadians))) };
         }
         #endregion
 
@@ -342,7 +347,6 @@ namespace MPT.Math.Curves
         /// <param name="relativePositionStart">Relative position along the path at which the length measurement is started.</param>
         /// <param name="relativePositionEnd">Relative position along the path at which the length measurement is ended.</param>
         /// <returns>System.Double.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public double LengthBetween(double relativePositionStart, double relativePositionEnd)
         {
             throw new NotImplementedException();
@@ -385,7 +389,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
         {
-            return Chord();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -416,7 +420,6 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
         /// <returns>CartesianCoordinate.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public CartesianCoordinate CoordinateCartesian(double relativePosition)
         {
             throw new NotImplementedException();
@@ -428,7 +431,6 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="relativePosition">Relative position along the path at which the coordinate is desired.</param>
         /// <returns>CartesianCoordinate.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public PolarCoordinate CoordinatePolar(double relativePosition)
         {
             return CoordinateCartesian(relativePosition);
@@ -835,6 +837,7 @@ namespace MPT.Math.Curves
         public LinearCurve CloneCurve()
         {
             LinearCurve curve = new LinearCurve(ControlPointI, ControlPointJ);
+            curve.Tolerance = Tolerance;
             curve._range = Range.CloneRange();
             return curve;
         }

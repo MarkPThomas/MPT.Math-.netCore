@@ -136,22 +136,6 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(expectedResult, curve1.IsPerpendicular(curve2));
         }
 
-        [TestCase(1, 1, 3, 1, 2, 1, true)]  // Horizontal
-        [TestCase(1, 2, 1, 4, 1, 3, true)]  // Vertical
-        [TestCase(1, 2, 3, 4, 2, 3, true)]  // Sloped
-        [TestCase(1.2, 3.4, 6.7, 9.1, 3.95, 6.25, true)]  // Sloped
-        public static void IsIntersectingCoordinate(
-            double x1, double y1, double x2, double y2,
-            double pointX, double pointY, bool expectedResult)
-        {
-            LinearCurve curve = new LinearCurve(
-                new CartesianCoordinate(x1, y1),
-                new CartesianCoordinate(x2, y2));
-            CartesianCoordinate coordinate = new CartesianCoordinate(pointX, pointY);
-
-            Assert.AreEqual(expectedResult, curve.IsIntersectingCoordinate(coordinate));
-        }
-
         [TestCase(-5, 6, -3, -1, 5.2, 6.1, 7.7, -1.3, true)] // slope
         [TestCase(-5, 6, -3, -2, 5, 6, 1, 5, true)] // sloped perpendicular
         [TestCase(-5, -2, -5, 2, -5, 6, 5, 6, true)] // aligned perpendicular + vertical
@@ -205,6 +189,12 @@ namespace MPT.Math.UnitTests.Curves
             return curve.Slope();
         }
 
+        [Test]
+        public static void Curvature_Returns_Zero()
+        {
+            LinearCurve curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(3, 4));
+            Assert.AreEqual(0, curve.Curvature());
+        }
 
         [TestCase(1, 0, 2, 3, 1)]    // i coordinate at x-intercept
         [TestCase(1, 2, -4, 0, -4)]    // j coordinate at x-intercept
@@ -277,7 +267,67 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(expectedXMagnitude, vector.Xcomponent, Tolerance);
             Assert.AreEqual(expectedYMagnitude, vector.Ycomponent, Tolerance);
         }
+        #endregion
 
+        #region ICurvePositionPolar
+        [TestCase(1, 2, 3, 4, Numbers.PiOver2, 1)] // 45 deg line
+        [TestCase(1, 2, 3, 4, Numbers.Pi, 1)] // 45 deg line
+        [TestCase(1, 2, 3, 4, 1.107149, 2.236068)] // Intersects starting coord of 45 deg line
+        [TestCase(1, 2, 3, 4, 0.927295, 5)] // Intersects ending coord of 45 deg line
+        [TestCase(0, 1, -1, -2, Numbers.PiOver2, 1)]
+        [TestCase(0, 1, -1, -2, 1.32581766, 4.123106)]
+        [TestCase(0, 1, -1, -2, 1.107149, 2.236068)]
+        public static void RadiusAboutOrigin(double x1, double y1, double x2, double y2, double angleRadians, double expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+            curve.Tolerance = Tolerance;
+
+            double radius = curve.RadiusAboutOrigin(angleRadians);
+
+            Assert.AreEqual(expectedResult, radius, Tolerance);
+        }
+
+        [TestCase(1, 2, 3, 4, Numbers.PiOver2, 1)] // 45 deg line
+        [TestCase(1, 2, 3, 4, Numbers.Pi, 1)] // 45 deg line
+        [TestCase(1, 2, 3, 4, 1.107149, 2.236068)] // Intersects starting coord of 45 deg line
+        [TestCase(1, 2, 3, 4, 0.927295, 5)] // Intersects ending coord of 45 deg line
+        [TestCase(0, 1, -1, -2, Numbers.PiOver2, 1)]
+        [TestCase(0, 1, -1, -2, 1.32581766, 4.123106)]
+        [TestCase(0, 1, -1, -2, 1.107149, 2.236068)]
+        public static void RadiiAboutOrigin(double x1, double y1, double x2, double y2, double angleRadians, double expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+            curve.Tolerance = Tolerance;
+
+            double[] radii = curve.RadiiAboutOrigin(angleRadians);
+
+            Assert.AreEqual(1, radii.Length);
+            Assert.AreEqual(expectedResult, radii[0], Tolerance);
+        }
+
+        [TestCase(1, 2, 3, 4, 0)] // Ray never intersects
+        [TestCase(1, 2, 3, 4, Numbers.PiOver4)] // Parallel to line. Ray never intersects
+        [TestCase(1, 2, 3, 4, 5 * Numbers.PiOver4)] // Parallel to line. Ray never intersects
+        [TestCase(1, 2, 3, 4, 6 * Numbers.PiOver4)] // Ray never intersects
+        [TestCase(1, 2, 3, 4, 7 * Numbers.PiOver4)] // Ray never intersects
+        public static void RadiiAboutOrigin_Throws_ArgumentOutOfRangeException_for_Rotations_that_Never_Intersect_Line(
+            double x1, double y1, double x2, double y2, 
+            double angleRadians)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+            curve.Tolerance = Tolerance;
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => curve.RadiiAboutOrigin(angleRadians));
+        }
+        #endregion
+
+        #region ICurvePositionCartesian
         [TestCase(1, 1, 2, 1, 1, double.PositiveInfinity)] // Horizontal, on line
         [TestCase(1, 1, 1, 2, 1.25, 1)] // Vertical
         [TestCase(1, 2, 3, 4, 2.5, 1.5)] // + slope
@@ -290,16 +340,6 @@ namespace MPT.Math.UnitTests.Curves
                 new CartesianCoordinate(x2, y2));
 
             Assert.AreEqual(expectedResult, curve.XatY(y), Tolerance);
-        }
-
-        [TestCase(1, 1, 2, 1, 2)] // Horizontal, off line
-        public static void XatY_Throws_ArgumentOutOfRangeException_for_Y_Not_On_Curve(double x1, double y1, double x2, double y2, double y)
-        {
-            LinearCurve curve = new LinearCurve(
-                new CartesianCoordinate(x1, y1),
-                new CartesianCoordinate(x2, y2));
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => curve.XatY(y));
         }
 
         [TestCase(1, 1, 2, 1, 1.25, 1)] // Horizontal
@@ -316,9 +356,71 @@ namespace MPT.Math.UnitTests.Curves
 
             Assert.AreEqual(expectedResult, curve.YatX(x), Tolerance);
         }
+
+        [TestCase(1, 1, 2, 1, 1, double.PositiveInfinity)] // Horizontal, on line
+        [TestCase(1, 1, 1, 2, 1.25, 1)] // Vertical
+        [TestCase(1, 2, 3, 4, 2.5, 1.5)] // + slope
+        [TestCase(-1, -2, -3, -4, -2.5, -1.5)] // - slope
+        [TestCase(1, 2, -3, -4, 0.2, -0.2)] // - slope
+        public static void XsAtY_Returns_Array_of_All_X_Coordinates_at_Position_Y(double x1, double y1, double x2, double y2, double y, double expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            double[] coordinates = curve.XsAtY(y);
+
+            Assert.AreEqual(1, coordinates.Length);
+            Assert.AreEqual(expectedResult, coordinates[0], Tolerance);
+        }
+
+        [TestCase(1, 1, 2, 1, 2)] // Horizontal, off line
+        public static void XsAtY_Throws_ArgumentOutOfRangeException_for_Y_Not_On_Curve(double x1, double y1, double x2, double y2, double y)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => curve.XsAtY(y));
+        }
+
+        [TestCase(1, 1, 2, 1, 1.25, 1)] // Horizontal
+        [TestCase(1, 1, 1, 2, 1, double.PositiveInfinity)] // Vertical, on line
+        [TestCase(1, 1, 1, 2, 2, double.PositiveInfinity)] // Vertical, off line
+        [TestCase(1, 2, 3, 4, 1.5, 2.5)] // + slope
+        [TestCase(-1, -2, -3, -4, -1.5, -2.5)] // - slope
+        [TestCase(1, 2, -3, -4, -0.2, 0.2)] // - slope
+        public static void YsAtX_Returns_Array_of_All_Y_Coordinates_at_Position_X(double x1, double y1, double x2, double y2, double x, double expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            double[] coordinates = curve.YsAtX(x);
+
+            Assert.AreEqual(1, coordinates.Length);
+            Assert.AreEqual(expectedResult, coordinates[0], Tolerance);
+        }
+
+        [TestCase(1, 1, 3, 1, 2, 1, true)]  // Horizontal
+        [TestCase(1, 2, 1, 4, 1, 3, true)]  // Vertical
+        [TestCase(1, 2, 3, 4, 2, 3, true)]  // Sloped
+        [TestCase(1.2, 3.4, 6.7, 9.1, 3.95, 6.25, true)]  // Sloped
+        public static void IsIntersectingCoordinate(
+            double x1, double y1, double x2, double y2,
+            double pointX, double pointY, bool expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+            CartesianCoordinate coordinate = new CartesianCoordinate(pointX, pointY);
+
+            Assert.AreEqual(expectedResult, curve.IsIntersectingCoordinate(coordinate));
+        }
+
         #endregion
 
-        #region Methods: Properties Derived with Limits
+        #region ICurveLimits
         [TestCase(1, 1, 2, 1, 1)] // Horizontal
         [TestCase(1, 1, 1, 2, 1)] // Vertical
         [TestCase(1, 2, 3, 4, 2.828427)] // + slope
@@ -331,6 +433,100 @@ namespace MPT.Math.UnitTests.Curves
                 new CartesianCoordinate(x2, y2));
 
             Assert.AreEqual(expectedResult, curve.Length(), Tolerance);
+        }
+
+        public static void LengthBetween_Returns_Length_Between_Relative_Positions(double relativePositionStart, double relativePositionEnd)
+        {
+
+        }
+
+        [TestCase(1, 1, 2, 1, 1)] // Horizontal
+        [TestCase(1, 1, 1, 2, 1)] // Vertical
+        [TestCase(1, 2, 3, 4, 2.828427)] // + slope
+        [TestCase(-1, -2, -3, -4, 2.828427)] // - slope
+        [TestCase(1, 2, -3, -4, 7.2111103)] // - slope
+        public static void ChordLength(double x1, double y1, double x2, double y2, double expectedResult)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(x1, y1),
+                new CartesianCoordinate(x2, y2));
+
+            Assert.AreEqual(expectedResult, curve.ChordLength(), Tolerance);
+        }
+
+        //[TestCase(0, 0)]
+        //[TestCase(0, 1)]
+        //[TestCase(0, 0)]
+        public static void ChordLengthBetween_Returns_Chord_Length_Between_Relative_Positions(double relativePositionStart, double relativePositionEnd)
+        {
+            //LinearCurve curve = new LinearCurve(
+            //    new CartesianCoordinate(1, 2),
+            //    new CartesianCoordinate(3, 4));
+
+            //Assert.AreEqual(2.828427, curve.ChordLengthBetween(relativePositionStart, relativePositionEnd), Tolerance);
+        }
+
+        [Test]
+        public static void Chord_Returns_Line_Segment()
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(1, 2),
+                new CartesianCoordinate(3, 4));
+            curve.Tolerance = Tolerance;
+
+            LinearCurve chord = curve.Chord();
+
+            Assert.AreEqual(curve.ControlPointI, chord.ControlPointI);
+            Assert.AreEqual(curve.ControlPointJ, chord.ControlPointJ);
+        }
+
+
+        public static void ChordBetween_Returns_Chord_Between_Relative_Positions(double relativePositionStart, double relativePositionEnd)
+        {
+            LinearCurve curve;
+        }
+
+        [TestCase(-1)]
+        [TestCase(0)]
+        [TestCase(0.5)]
+        [TestCase(1)]
+        [TestCase(2)]
+        public static void TangentVector_Returns_Vector_Based_On_Relative_Position(double relativePosition)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(1, 2),
+                new CartesianCoordinate(3, 4));
+            Vector vector = curve.TangentVector(relativePosition);
+
+            Assert.AreEqual(0.707107, vector.Xcomponent, Tolerance);
+            Assert.AreEqual(0.707107, vector.Ycomponent, Tolerance);
+        }
+
+        [TestCase(-1)]
+        [TestCase(0)]
+        [TestCase(0.5)]
+        [TestCase(1)]
+        [TestCase(2)]
+        public static void NormalVector_Returns_Vector_Based_On_Relative_Position(double relativePosition)
+        {
+            LinearCurve curve = new LinearCurve(
+                new CartesianCoordinate(1, 2),
+                new CartesianCoordinate(3, 4));
+            Vector vector = curve.NormalVector(relativePosition);
+
+            Assert.AreEqual(-0.707107, vector.Xcomponent, Tolerance);
+            Assert.AreEqual(0.707107, vector.Ycomponent, Tolerance);
+        }
+
+        public static void CoordinateCartesian(double relativePosition)
+        {
+            CartesianCoordinate coordinate;
+        }
+
+
+        public static void CoordinatePolar(double relativePosition)
+        {
+            PolarCoordinate coordinate;
         }
         #endregion
 
