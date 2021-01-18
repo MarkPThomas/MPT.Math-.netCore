@@ -1,5 +1,5 @@
 # MPT.Math
-A library and classes for mathematical operations, written in C# for .Net Core.
+A library and classes for mathematical operations and function curves, written in C# for .Net Core.
 
 **Travis CI** (Ubuntu Linux OS): [![Build Status](https://travis-ci.org/MarkPThomas/MPT.Math-.netCore.svg?branch=master&kill_cache=1)](https://travis-ci.org/MarkPThomas/MPT.Math-.netCore)
 
