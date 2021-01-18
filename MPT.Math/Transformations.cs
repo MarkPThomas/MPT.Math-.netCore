@@ -54,11 +54,18 @@ namespace MPT.Math
             LocalAxisX = localAxisXPtInGlobal;
 
             Displacement = localOriginInGlobal.OffsetFrom(CartesianCoordinate.Origin());
-            Rotation = AngularOffset.CreateFromPoints(
-                localAxisXPtInGlobal,
-                localOriginInGlobal,
-                new CartesianCoordinate(localOriginInGlobal.X - 1, localOriginInGlobal.Y)
-                );
+            if (localAxisXPtInGlobal.Y == localOriginInGlobal.Y)
+            {
+                Rotation = new AngularOffset();
+            }
+            else
+            {
+                Rotation = AngularOffset.CreateFromPoints(
+                    localAxisXPtInGlobal,
+                    localOriginInGlobal,
+                    new CartesianCoordinate(localOriginInGlobal.X - 1, localOriginInGlobal.Y)
+                    );
+            }
         }
 
         /// <summary>
@@ -68,7 +75,6 @@ namespace MPT.Math
         /// <returns>CartesianCoordinate.</returns>
         public CartesianCoordinate TransformToGlobal(CartesianCoordinate localCoordinate)
         {
-            CartesianCoordinate rotatedCoordinate = CartesianCoordinate.RotateAboutPoint(localCoordinate, LocalOrigin, Rotation.ToAngle().Radians);
             CartesianCoordinate translatedCoordinate = new CartesianCoordinate(LocalOrigin.X + localCoordinate.X, LocalOrigin.Y + localCoordinate.Y);
             return CartesianCoordinate.RotateAboutPoint(translatedCoordinate, LocalOrigin, Rotation.ToAngle().Radians); ;
         }

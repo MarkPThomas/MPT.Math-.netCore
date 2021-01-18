@@ -323,7 +323,6 @@ namespace MPT.Math.Curves
         #endregion
 
         #region ICurveLimits
-
         /// <summary>
         /// Length of the line segment.
         /// </summary>

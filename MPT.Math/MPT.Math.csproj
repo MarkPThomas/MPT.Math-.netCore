@@ -59,6 +59,7 @@
     <Compile Remove="Curves\Parametrics\IParametricSpherical.cs" />
     <Compile Remove="Curves\CubicCurve.cs" />
     <Compile Remove="Curves\QuadraticCurve.cs" />
+    <Compile Remove="Curves\Tools\Intersections\IntersectionCurveCurve.cs" />
     <Compile Remove="Curves\Tools\Intersections\IntersectionEllipticalElliptical.cs" />
     <Compile Remove="Curves\Tools\Intersections\IntersectionLinearBezier.cs" />
     <Compile Remove="Curves\Tools\Intersections\IntersectionLinearCubic.cs" />
@@ -67,6 +68,7 @@
     <Compile Remove="Curves\Tools\Intersections\IntersectionLinearLogarithmicSpiral.cs" />
     <Compile Remove="Curves\Tools\Intersections\IntersectionLinearParabolic.cs" />
     <Compile Remove="Curves\Tools\Intersections\IntersectionLinearQuadratic.cs" />
+    <Compile Remove="Curves\Tools\RelativePosition.cs" />
     <Compile Remove="Point.cs" />
     <Compile Remove="Vectors\Vector3D.cs" />
     <Compile Remove="Vectors\VectorPolar.cs" />

@@ -6,7 +6,7 @@ using System;
 namespace MPT.Math.UnitTests.Tools.Intersections
 {
     [TestFixture]
-    public static class BezierCurveHandleTests
+    public static class CurveHandleTests
     {
     }
 }

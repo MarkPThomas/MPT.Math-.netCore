@@ -75,7 +75,7 @@ namespace MPT.Math.Curves
         /// <param name="center">The center.</param>
         public CircularCurve(double radius, CartesianCoordinate center) : base(vertexMajor(radius, center), 0, center)
         {
-            _limitStartDefault = vertexMajor(radius, center);
+            _limitStartDefault = vertexMajor(radius, CartesianCoordinate.Origin()); //center);
             _limitEndDefault = _limitStartDefault;
         }
         #endregion
@@ -480,7 +480,7 @@ namespace MPT.Math.Curves
         /// <returns>CartesianCoordinate.</returns>
         protected static CartesianCoordinate vertexMajor(double radius, CartesianCoordinate center)
         {
-            return new CartesianCoordinate(center.X + radius, center.Y + radius);
+            return new CartesianCoordinate(center.X + radius, center.Y);
         }
         #endregion
         #endregion

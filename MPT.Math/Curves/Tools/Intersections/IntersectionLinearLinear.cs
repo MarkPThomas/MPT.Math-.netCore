@@ -70,9 +70,12 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <param name="curve1">The first curve.</param>
         /// <param name="curve2">The first curve.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public bool AreTangent(LinearCurve curve1, LinearCurve curve2)
+        public static bool AreTangent(LinearCurve curve1, LinearCurve curve2)
         {
-            return (curve1.InterceptY() == curve2.InterceptY()) && curve1.IsParallel(curve2);
+            double tolerance = Generics.GetTolerance(curve1, curve2);
+            bool yInterceptsMatch = Numbers.AreEqual(curve1.InterceptY(), curve2.InterceptY(), tolerance) && !curve1.IsVertical();
+            bool xInterceptsMatch = Numbers.AreEqual(curve1.InterceptX(), curve2.InterceptX(), tolerance) && !curve1.IsHorizontal();
+            return (yInterceptsMatch || xInterceptsMatch) && curve1.IsParallel(curve2);
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <param name="curve1">The first curve.</param>
         /// <param name="curve2">The first curve.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public bool AreIntersecting(LinearCurve curve1, LinearCurve curve2)
+        public static bool AreIntersecting(LinearCurve curve1, LinearCurve curve2)
         {
             return !curve1.IsParallel(curve2);
         }
@@ -92,8 +95,13 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <param name="curve1">The first curve.</param>
         /// <param name="curve2">The first curve.</param>
         /// <returns>CartesianCoordinate[].</returns>
-        public CartesianCoordinate[] IntersectionCoordinates(LinearCurve curve1, LinearCurve curve2)
+        public static CartesianCoordinate[] IntersectionCoordinates(LinearCurve curve1, LinearCurve curve2)
         {
+            CartesianCoordinate[] intersectionCoordinates = { curve2.IntersectionCoordinate(curve1) };
+            if (intersectionCoordinates.Length > 0 && double.IsInfinity(intersectionCoordinates[0].X) && double.IsInfinity(intersectionCoordinates[0].Y))
+            {
+                return new CartesianCoordinate[0];
+            }
             return new CartesianCoordinate[] { curve2.IntersectionCoordinate(curve1) };
         }
         #endregion

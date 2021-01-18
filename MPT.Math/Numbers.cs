@@ -538,6 +538,19 @@ namespace MPT.Math
         #endregion
 
         #region Other Modifications
+
+
+        /// <summary>
+        /// Sets value to zero if within absolute tolerance (exclusive), otherwise returns value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>System.Double.</returns>
+        public static double ValueAsZeroIfWithinAbsoluteTolerance(double value, double tolerance = ZeroTolerance)
+        {
+            return IsZeroSign(value, tolerance) ? 0 : value;
+        }
+
         /// <summary>
         /// The product of an integer and all the integers below it; e.g., factorial four ( 4! ) is equal to 24.
         /// </summary>

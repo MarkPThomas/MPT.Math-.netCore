@@ -79,7 +79,7 @@ namespace MPT.Math.Curves
         /// <summary>
         /// The coordinate of the local origin.
         /// </summary>
-        /// <value>The local offset translation.</value>
+        /// <value>The local origin.</value>
         public CartesianCoordinate LocalOrigin => _originLocal;
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace MPT.Math.Curves
         /// <param name="localOrigin">The coordinate of the local origin.</param>
         protected ConicSectionCurve(CartesianCoordinate vertexMajor, double distanceFromFocusToLocalOrigin, CartesianCoordinate localOrigin)
         {
-            DistanceFromVertexMajorToOrigin = AlgebraLibrary.SRSS(vertexMajor.X, vertexMajor.Y);
+            DistanceFromVertexMajorToOrigin = AlgebraLibrary.SRSS(vertexMajor.X - localOrigin.X, vertexMajor.Y - localOrigin.Y);
             DistanceFromFocusToOrigin = distanceFromFocusToLocalOrigin;
             DistanceFromVertexMinorToOrigin = distanceFromVertexMinorToOrigin(DistanceFromVertexMajorToOrigin, DistanceFromFocusToOrigin);
 

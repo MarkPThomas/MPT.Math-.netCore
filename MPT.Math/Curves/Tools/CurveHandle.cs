@@ -6,7 +6,7 @@
 // Last Modified By : Mark P Thomas
 // Last Modified On : 11-22-2020
 // ***********************************************************************
-// <copyright file="BezierCurveHandle.cs" company="Mark P Thomas, Inc.">
+// <copyright file="CurveHandle.cs" company="Mark P Thomas, Inc.">
 //     Copyright (c) 2020. All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -18,9 +18,9 @@ using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 namespace MPT.Math.Curves.Tools
 {
     /// <summary>
-    /// Class BezierCurveHandle.
+    /// Class CurveHandle.
     /// </summary>
-    public class BezierCurveHandle : ICloneable
+    public class CurveHandle : ICloneable
     {
         #region Properties
         /// <summary>
@@ -42,11 +42,11 @@ namespace MPT.Math.Curves.Tools
 
         #region Initialization        
         /// <summary>
-        /// Initializes a new instance of the <see cref="BezierCurveHandle" /> class.
+        /// Initializes a new instance of the <see cref="CurveHandle" /> class.
         /// </summary>
         /// <param name="controlPoint">The control point, at the center of the handle.</param>
         /// <param name="radius">The radius of the handle.</param>
-        public BezierCurveHandle(CartesianCoordinate controlPoint, double radius)
+        public CurveHandle(CartesianCoordinate controlPoint, double radius)
         {
             ControlPoint = controlPoint;
             Radius = radius;
@@ -54,12 +54,12 @@ namespace MPT.Math.Curves.Tools
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BezierCurveHandle" /> class.
+        /// Initializes a new instance of the <see cref="CurveHandle" /> class.
         /// </summary>
         /// <param name="controlPoint">The control point, at the center of the handle.</param>
         /// <param name="radius">The radius of the handle.</param>
         /// <param name="rotation">The rotation of the handle.</param>
-        public BezierCurveHandle(CartesianCoordinate controlPoint, double radius, Angle rotation)
+        public CurveHandle(CartesianCoordinate controlPoint, double radius, Angle rotation)
         {
             ControlPoint = controlPoint;
             Radius = radius;
@@ -112,9 +112,9 @@ namespace MPT.Math.Curves.Tools
         /// Clones the curve.
         /// </summary>
         /// <returns>LinearCurve.</returns>
-        public BezierCurveHandle CloneCurve()
+        public CurveHandle CloneCurve()
         {
-            BezierCurveHandle curve = new BezierCurveHandle(ControlPoint, Radius, Rotation);
+            CurveHandle curve = new CurveHandle(ControlPoint, Radius, Rotation);
             return curve;
         }
         #endregion

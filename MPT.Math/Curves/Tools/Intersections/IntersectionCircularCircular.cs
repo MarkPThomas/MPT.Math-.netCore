@@ -23,6 +23,12 @@ namespace MPT.Math.Curves.Tools.Intersections
     /// <seealso cref="ICurveIntersection{CircularCurve, CircularCurve}" />
     public class IntersectionCircularCircular : IntersectionAbstract<CircularCurve, CircularCurve>
     {
+        /// <summary>
+        /// Gets the transformations object.
+        /// </summary>
+        /// <value>The transformations.</value>
+        private Transformations _transformations = null;
+
         #region Initialization
         /// <summary>
         /// Initializes a new instance of the <see cref="IntersectionLinearLinear"/> class.
@@ -31,7 +37,7 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <param name="curve2">The second curve.</param>
         public IntersectionCircularCircular(CircularCurve curve1, CircularCurve curve2) : base(curve1, curve2)
         {
-
+            _transformations = getTransformations(curve1, curve2);
         }
         #endregion
 
@@ -60,7 +66,7 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <returns>CartesianCoordinate[].</returns>
         public override CartesianCoordinate[] IntersectionCoordinates()
         {
-            return IntersectionCoordinates(Curve1, Curve2);
+            return _intersectionCoordinates(Curve1, Curve2, _transformations);
         }
         
         /// <summary>
@@ -78,7 +84,11 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <returns>System.Double.</returns>
         public double RadicalLineLength()
         {
-            return RadicalLineLength(CenterSeparations(), Curve1.Radius, Curve2.Radius);
+            double separation = CenterSeparations();
+            if (separation == 0) throw new OverlappingCurvesException($"Circles must have different origins in order to calculate radical line length. {Curve1}, {Curve2}");
+            if (separation > Curve1.Radius + Curve2.Radius) throw new IntersectingCurveException($"Circles must intersect in order to calculate radical line length. {Curve1}, {Curve2}");
+
+            return RadicalLineLength(separation, Curve1.Radius, Curve2.Radius);
         }
         #endregion
 
@@ -91,7 +101,7 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <returns>System.Double.</returns>
         public static double CenterSeparations(CircularCurve curve1, CircularCurve curve2)
         {
-            return curve1.Center.OffsetFrom(curve2.Center).Length();
+            return curve1.LocalOrigin.OffsetFrom(curve2.LocalOrigin).Length();
         }
 
         /// <summary>
@@ -116,9 +126,9 @@ namespace MPT.Math.Curves.Tools.Intersections
         public static bool AreIntersecting(CircularCurve curve1, CircularCurve curve2)
         {
             double tolerance = Generics.GetTolerance(curve1, curve2);
-            double centerSeparation = curve1.Center.OffsetFrom(curve2.Center).Length();
+            double centerSeparation = curve1.LocalOrigin.OffsetFrom(curve2.LocalOrigin).Length();
 
-            return (curve1.Radius + curve2.Radius).IsGreaterThan(centerSeparation, tolerance);
+            return (curve1.Radius + curve2.Radius).IsGreaterThanOrEqualTo(centerSeparation, tolerance);
         }
 
         /// <summary>
@@ -129,21 +139,45 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <returns>CartesianCoordinate[].</returns>
         public static CartesianCoordinate[] IntersectionCoordinates(CircularCurve curve1, CircularCurve curve2)
         {
+            Transformations transformations = getTransformations(curve1, curve2);
+            return _intersectionCoordinates(curve1, curve2, transformations);
+        }
+
+        /// <summary>
+        /// The coordinate(s) of the intersection(s) of two curves.
+        /// </summary>
+        /// <param name="curve1">The first curve.</param>
+        /// <param name="curve2">The first curve.</param>
+        /// <param name="converter">The converter.</param>
+        /// <returns>CartesianCoordinate[].</returns>
+        private static CartesianCoordinate[] _intersectionCoordinates(CircularCurve curve1, CircularCurve curve2, Transformations converter)
+        {
+            if (!AreIntersecting(curve1, curve2))
+            {
+                return new CartesianCoordinate[0];
+            }
+
             double separation = CenterSeparations(curve1, curve2);
             double radius1 = curve1.Radius;
             double radius2 = curve2.Radius;
+            double tolerance = Generics.GetTolerance(curve1, curve2);
 
-            double x = factor(separation, radius1, radius2) / (2 * separation);
-            double[] y = Numbers.PlusMinus(0, RadicalLineLength(separation, radius1, radius2) / 2);
+            double xIntersection = factor(separation, radius1, radius2) / (2 * separation);
+            double[] yIntersection = Numbers.PlusMinus(0, RadicalLineLength(separation, radius1, radius2, tolerance) / 2);
 
-            CartesianCoordinate localPoint1 = new CartesianCoordinate(x, y[0]);
-            CartesianCoordinate localPoint2 = new CartesianCoordinate(x, y[1]);
-            Transformations transformation = new Transformations(curve1.Center, curve2.Center);
+            CartesianCoordinate localPoint1 = converter.TransformToGlobal(new CartesianCoordinate(xIntersection, yIntersection[0]));
+
+            if (AreTangent(curve1, curve2))
+            {
+                return new CartesianCoordinate[] { localPoint1 };
+            }
+
+            CartesianCoordinate localPoint2 = converter.TransformToGlobal(new CartesianCoordinate(xIntersection, yIntersection[1]));
 
             return new CartesianCoordinate[]
                 {
-                    transformation.TransformToGlobal(localPoint1),
-                    transformation.TransformToGlobal(localPoint2)
+                    localPoint1,
+                    localPoint2
                 };
         }
 
@@ -151,9 +185,13 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// The length of the radical line, which is the straight line connecting the two intersection points.
         /// </summary>
         /// <returns>System.Double.</returns>
-        public static double RadicalLineLength(double separation, double radius1, double radius2)
+        public static double RadicalLineLength(double separation, double radius1, double radius2, double tolerance = Numbers.ZeroTolerance)
         {
-            return (4 * (separation * radius1).Squared() - factor(separation, radius1, radius2).Squared()).Sqrt() / separation;
+            if (separation == 0) throw new OverlappingCurvesException("Circles must have different origins in order to calculate radical line length.");
+            if (separation.IsGreaterThan(radius1 + radius2, tolerance)) throw new IntersectingCurveException("Circles must intersect in order to calculate radical line length.");
+
+            double component = Numbers.ValueAsZeroIfWithinAbsoluteTolerance(4 * (separation * radius1).Squared() - factor(separation, radius1, radius2).Squared(), tolerance);
+            return component.Sqrt() / separation;
         }
 
         /// <summary>
@@ -163,9 +201,20 @@ namespace MPT.Math.Curves.Tools.Intersections
         /// <param name="radius1">The radius1.</param>
         /// <param name="radius2">The radius2.</param>
         /// <returns>System.Double.</returns>
-        protected static double factor(double separation, double radius1, double radius2)
+        private static double factor(double separation, double radius1, double radius2)
         {
             return separation.Squared() - radius2.Squared() + radius1.Squared();
+        }
+
+        /// <summary>
+        /// Gets the transformations to use for local vs. global coordinates.
+        /// </summary>
+        /// <param name="circleAtOrigin">The circular curve set to the local origin.</param>
+        /// <param name="otherCircle">The other circular curve set to the local x-axis.</param>
+        /// <returns>Transformations.</returns>
+        private static Transformations getTransformations(CircularCurve circleAtOrigin, CircularCurve otherCircle)
+        {
+            return new Transformations(circleAtOrigin.LocalOrigin, otherCircle.LocalOrigin);
         }
         #endregion
     }

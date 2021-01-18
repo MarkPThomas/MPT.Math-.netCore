@@ -810,6 +810,23 @@ namespace MPT.Math.UnitTests
         #endregion
 
         #region Other Modifications
+        [TestCase(1, 1.1, ExpectedResult = 0)]
+        [TestCase(-1, 1.1, ExpectedResult = 0)]
+        [TestCase(1, -1.1, ExpectedResult = 0)]
+        [TestCase(-1, -1.1, ExpectedResult = 0)]
+        [TestCase(1, 0.9, ExpectedResult = 1)]
+        [TestCase(-1, 0.9, ExpectedResult = -1)]
+        [TestCase(1, -0.9, ExpectedResult = 1)]
+        [TestCase(-1, -0.9, ExpectedResult = -1)]
+        [TestCase(1, 1, ExpectedResult = 1)]
+        [TestCase(-1, 1, ExpectedResult = -1)]
+        [TestCase(1, -1, ExpectedResult = 1)]
+        [TestCase(-1, -1, ExpectedResult = -1)]
+        public static double ValueAsZeroIfWithinAbsoluteTolerance(double value, double tolerance)
+        {
+            return Numbers.ValueAsZeroIfWithinAbsoluteTolerance(value, tolerance);
+        }
+
         [TestCase(0, ExpectedResult = 0)]
         [TestCase(1, ExpectedResult = 1)]
         [TestCase(2, ExpectedResult = 1 * 2)]

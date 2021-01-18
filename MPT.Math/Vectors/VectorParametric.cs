@@ -201,16 +201,6 @@ namespace MPT.Math.Vectors
             return new VectorParametric(a._curveParametric * b);
         }
 
-        ///// <summary>
-        ///// Implements the * operator.
-        ///// </summary>
-        ///// <param name="a">a.</param>
-        ///// <param name="b">The b.</param>
-        ///// <returns>The result of the operator.</returns>
-        //public static double operator *(VectorParametric a, VectorParametric b)
-        //{
-        //    return a.DotProduct(b);
-        //}
         /// <summary>
         /// Implements the / operator.
         /// </summary>
