@@ -8,7 +8,7 @@ using System;
 namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
 {
     [TestFixture]
-    public static class LinearParametricTests
+    public static class LinearCurveParametricTests
     {
         public static LinearCurve curve;
         public static LinearCurveParametric parametric;

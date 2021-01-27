@@ -1,13 +1,14 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Curves;
 using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Parametrics.LinearCurves;
 using NUnit.Framework;
 
 namespace MPT.Math.UnitTests.Curves.Parametrics
 {
     [TestFixture]
-    public static class LinearParametricEquationTests
+    public static class LinearCurveParametricTests
     {
         [Test]
         public static void Clone()
@@ -16,7 +17,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double xExpected = 5;
             double yExpected = 4;
             LinearCurve curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(5, 4));
-            LinearParametricEquation parametric = new LinearCurveParametric(curve);
+            LinearCurveParametric parametric = new LinearCurveParametric(curve);
 
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValue);
@@ -24,7 +25,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double yValue = parametric.Ycomponent.ValueAt(position);
             Assert.AreEqual(yExpected, yValue);
 
-            LinearParametricEquation parametricClone = parametric.Clone() as LinearParametricEquation;
+            CartesianParametricEquationXY parametricClone = parametric.Clone() as CartesianParametricEquationXY;
 
             double xValueClone = parametricClone.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValueClone);
@@ -41,7 +42,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double xExpected = 5;
             double yExpected = 4;
             LinearCurve curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(5, 4));
-            LinearParametricEquation parametric = new LinearCurveParametric(curve);
+            LinearCurveParametric parametric = new LinearCurveParametric(curve);
 
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValue);
@@ -49,7 +50,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double yValue = parametric.Ycomponent.ValueAt(position);
             Assert.AreEqual(yExpected, yValue);
 
-            LinearParametricEquation parametricClone = parametric.CloneParametric();
+            CartesianParametricEquationXY parametricClone = parametric.CloneParametric();
 
             double xValueClone = parametricClone.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValueClone);
