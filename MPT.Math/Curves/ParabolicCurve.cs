@@ -13,7 +13,7 @@
 // ***********************************************************************
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics.Components;
-using MPT.Math.Curves.Parametrics.ConicSectionCurves;
+using MPT.Math.Curves.Parametrics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
 using MPT.Math.Vectors;

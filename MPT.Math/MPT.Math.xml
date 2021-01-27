@@ -5200,463 +5200,424 @@
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric1stOrder">
-            <summary>
-            Represents a 1st-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric1stOrder.#ctor(MPT.Math.Curves.BezierCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric1stOrder" /> class, which represents an n = 1 parametric.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric2ndOrder">
-            <summary>
-            Represents a 2nd-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric2ndOrder.#ctor(MPT.Math.Curves.BezierCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric2ndOrder" /> class, which represents an n = 2 parametric.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric3rdOrder">
-            <summary>
-            Represents a 3rd-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric3rdOrder.#ctor(MPT.Math.Curves.BezierCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierCurveParametric3rdOrder" /> class, which represents an n = 3 parametric.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP">
             <summary>
             Represents a 1st-order Bezier curve in parametric equations defining the <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> component and differentials.
             This class tends to be used as a base from which the x- and y-components are derived.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderP.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderP.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX">
             <summary>
             Represents a 1st-order Bezier curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY">
             <summary>
             Represents a 1st-order Bezier curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP">
             <summary>
             Represents a 2nd-order Bezier curve in parametric equations defining the <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> component and differentials.
             This class tends to be used as a base from which the x- and y-components are derived.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderP.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderP.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX">
             <summary>
             Represents a 2nd-order Bezier curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY">
             <summary>
             Represents a 2nd-order Bezier curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric2ndOrderY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric2ndOrderY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP">
             <summary>
             Represents a 3rd-order Bezier curve in parametric equations defining the <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> component and differentials.
             This class tends to be used as a base from which the x- and y-components are derived.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderP.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderP.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX">
             <summary>
             Represents a 3rd-order Bezier curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY">
             <summary>
             Represents a 3rd-order Bezier curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric1stOrderX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric1stOrderX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametric3rdOrderY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametric3rdOrderY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> coordinates and the corresponding bezier curve object.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -5665,19 +5626,19 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricCartesianComponents" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricCartesianComponents" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:System.Double"/> coordinates and the corresponding bezier curve object.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -5686,17 +5647,56 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents.#ctor(MPT.Math.Curves.BezierCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents.#ctor(MPT.Math.Curves.BezierCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurves.BezierParametricDoubleComponents" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveComponents.BezierParametricDoubleComponents" /> class.
             </summary>
             <param name="parent">The parent.</param>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveParametric1stOrder">
+            <summary>
+            Represents a 1st-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveParametric1stOrder.#ctor(MPT.Math.Curves.BezierCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveParametric1stOrder" /> class, which represents an n = 1 parametric.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveParametric2ndOrder">
+            <summary>
+            Represents a 2nd-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveParametric2ndOrder.#ctor(MPT.Math.Curves.BezierCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveParametric2ndOrder" /> class, which represents an n = 2 parametric.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.BezierCurveParametric3rdOrder">
+            <summary>
+            Represents a 3rd-order Bezier curve in parametric equations defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.BezierCurveParametric3rdOrder.#ctor(MPT.Math.Curves.BezierCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.BezierCurveParametric3rdOrder" /> class, which represents an n = 3 parametric.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
         </member>
         <member name="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquation">
             <summary>
@@ -6523,7 +6523,7 @@
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametric">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametric">
             <summary>
             Represents a set of parametric equations in radial <see cref="T:System.Double"/> and rotational <see cref="T:MPT.Math.Coordinates.Angle"/> components to describe curve positions in relation to the conic focus.
             These equations can be scaled and differentiated.
@@ -6531,42 +6531,42 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.PolarParametricEquation" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametric.#ctor(MPT.Math.Curves.ConicSectionCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametric.#ctor(MPT.Math.Curves.ConicSectionCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametric"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametric"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:MPT.Math.Coordinates.Angle"/> coordinates about the conic focus and the corresponding curve object for conic sections.
             This class has the basic components of differentiating and accessing the different parametric equations.
             Also contains operators to implement scaling of the parametric equations.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.BaseByParameter(System.Double)">
             <summary>
             Bases the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>Angle.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>Angle.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
@@ -6574,35 +6574,35 @@
             <returns>Angle.</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricAngularComponents.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricAngularComponents.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:System.Double"/> coordinates about the conic focus and the corresponding curve object for conic sections.
             This class has the basic components of differentiating and accessing the different parametric equations.
             Also contains operators to implement scaling of the parametric equations.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             <a href="https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM10-6-3.php">Reference</a>
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.BaseByParameter(System.Double)">
             <summary>
             The radius measured from the focus as a function of the angle in local coordinates.
             <a href="https://web.ma.utexas.edu/users/m408s/m408d/CurrentWeb/LM10-6-3.php">Reference</a>
@@ -6610,14 +6610,14 @@
             <param name="angleRadians">The angle in radians in local coordinates.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.PrimeByParameter(System.Double)">
             <summary>
             The differential change in radius corresponding with a differential change in the angle, measured from the focus as a function of the angle in local coordinates.
             </summary>
             <param name="angleRadians">The angle in radians in local coordinates.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
@@ -6625,19 +6625,19 @@
             <returns>Angle.</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicFocusParametricDoubleComponents.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicFocusParametricDoubleComponents.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:MPT.Math.Coordinates.Angle"/> coordinates and the corresponding curve object for conic sections.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -6646,19 +6646,19 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.AngularParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents._parent">
             <summary>
             Gets the parent.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricAngularComponents"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricAngularComponents"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:System.Double"/> coordinates and the corresponding curve object for conic sections.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -6667,151 +6667,125 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents.#ctor(MPT.Math.Curves.ConicSectionCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalCurveParametric">
-            <summary>
-            Represents an elliptical about a local origin curve in parametric equations defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalCurveParametric.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalCurveParametric" /> class.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX">
             <summary>
             Represents an elliptical curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.BaseByParameter(System.Double)">
             <summary>
             Bases the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY">
             <summary>
             Represents an elliptical curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.BaseByParameter(System.Double)">
             <summary>
             Bases the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics.EllipticalParametricY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.EllipticalParametricY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicCurveParametric">
-            <summary>
-            Represents a hyperbolic curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicCurveParametric.#ctor(MPT.Math.Curves.HyperbolicCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicCurveParametric" /> class.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX">
             <summary>
             Represents a hyperbolic curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.#ctor(MPT.Math.Curves.HyperbolicCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.#ctor(MPT.Math.Curves.HyperbolicCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.BaseByParameter(System.Double)">
             <summary>
             X-coordinate on the right curve in local coordinates about the local origin that corresponds to the parametric coordinate given.
             <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
@@ -6819,47 +6793,47 @@
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.PrimeByParameter(System.Double)">
             <summary>
             X-component of the curve slope in local coordinates about the local origin that corresponds to the parametric coordinate given.
             </summary>
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.PrimeDoubleByParameter(System.Double)">
             <summary>
             X-component of the curve curvature in local coordinates about the local origin that corresponds to the parametric coordinate given.
             </summary>
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY">
             <summary>
             Represents a hyperbolic curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.#ctor(MPT.Math.Curves.HyperbolicCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.#ctor(MPT.Math.Curves.HyperbolicCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.BaseByParameter(System.Double)">
             <summary>
             Y-coordinate on the right curve in local coordinates about the local origin that corresponds to the parametric coordinate given.
             <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
@@ -6867,59 +6841,46 @@
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.PrimeByParameter(System.Double)">
             <summary>
             Y-component of the curve slope in local coordinates about the local origin that corresponds to the parametric coordinate given.
             </summary>
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.PrimeDoubleByParameter(System.Double)">
             <summary>
             Y-component of the curve curvature in local coordinates about the local origin that corresponds to the parametric coordinate given.
             </summary>
             <param name="angleRadians">Parametric coordinate in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics.HyperbolicParametricY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.HyperbolicParametricY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicCurveParametric">
-            <summary>
-            Represents a parabolic curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-            </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicCurveParametric.#ctor(MPT.Math.Curves.ParabolicCurve)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicCurveParametric" /> class.
-            </summary>
-            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
-        </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX">
             <summary>
             Represents a parabolic curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.#ctor(MPT.Math.Curves.ParabolicCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.#ctor(MPT.Math.Curves.ParabolicCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.BaseByParameter(System.Double)">
             <summary>
             X-coordinate on the curve in local coordinates that corresponds to the parametric coordinate given.
             <a href="http://amsi.org.au/ESA_Senior_Years/SeniorTopic2/2a/2a_2content_11.html">Reference</a>.
@@ -6927,46 +6888,46 @@
             <param name="t">Parametric coordinate.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="t">The t.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="t">The t.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY">
+        <member name="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY">
             <summary>
             Represents a parabolic curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ConicParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.#ctor(MPT.Math.Curves.ParabolicCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.#ctor(MPT.Math.Curves.ParabolicCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY"/> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY"/> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.BaseByParameter(System.Double)">
             <summary>
             Y-coordinate on the curve in local coordinates that corresponds to the parametric coordinate given.
             <a href="http://amsi.org.au/ESA_Senior_Years/SeniorTopic2/2a/2a_2content_11.html">Reference</a>.
@@ -6974,46 +6935,59 @@
             <param name="t">Parametric coordinate.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="t">The t.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="t">The t.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics.ParabolicParametricY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.ConicSectionCurveComponents.ParabolicParametricY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearCurveParametric">
+        <member name="T:MPT.Math.Curves.Parametrics.EllipticalCurveParametric">
             <summary>
-            Represents a linear curve in parametric equations defining x- and y-components and their respective differentials.
+            Represents an elliptical about a local origin curve in parametric equations defining x- and y-components and their respective differentials.
             Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearCurveParametric.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.EllipticalCurveParametric.#ctor(MPT.Math.Curves.ConicSectionEllipticCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearCurveParametric" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.EllipticalCurveParametric" /> class.
             </summary>
             <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.HyperbolicCurveParametric">
+            <summary>
+            Represents a hyperbolic curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.HyperbolicCurveParametric.#ctor(MPT.Math.Curves.HyperbolicCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.HyperbolicCurveParametric" /> class.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> coordinates and the corresponding linear curve object.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -7022,19 +6996,19 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:System.Double"/> coordinates and the corresponding linear curve object.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -7043,170 +7017,170 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP">
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP">
             <summary>
             Represents a linear curve in parametric equations defining the <see cref="T:MPT.Math.Coordinates.CartesianCoordinate"/> component and differentials.
             This class tends to be used as a base from which the x- and y-components are derived.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricCartesianComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricCartesianComponents" />
         </member>
-        <member name="F:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP._offset">
+        <member name="F:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP._offset">
             <summary>
             The offset between points defining the linear curve.
             </summary>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricP.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricP.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX">
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX">
             <summary>
             Represents a linear curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY">
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY">
             <summary>
             Represents a linear curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.#ctor(MPT.Math.Curves.LinearCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.BaseByParameter(System.Double)">
             <summary>
             The component as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.PrimeByParameter(System.Double)">
             <summary>
             The component first differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.PrimeDoubleByParameter(System.Double)">
             <summary>
             The component second differentical as a function of the supplied parameter.
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LinearCurves.LinearParametricY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveComponents.LinearParametricY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralCurveParametric">
+        <member name="T:MPT.Math.Curves.Parametrics.LinearCurveParametric">
             <summary>
-            Represents a logarithmic spiral curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
+            Represents a linear curve in parametric equations defining x- and y-components and their respective differentials.
             Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralCurveParametric.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LinearCurveParametric.#ctor(MPT.Math.Curves.LinearCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralCurveParametric" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LinearCurveParametric" /> class.
             </summary>
             <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents">
+        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents">
             <summary>
             Class containing the assigned components of a parametric equation in <see cref="T:System.Double"/> coordinates and the corresponding logarithmic spiral curve object.
             This class has the basic components of differentiating and accessing the different parametric equations.
@@ -7215,109 +7189,135 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.Components.Types.DoubleParametricComponents" />
         </member>
-        <member name="P:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents._parent">
+        <member name="P:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents._parent">
             <summary>
             Gets the parent object whose properties are used in the associated parametric equations.
             </summary>
             <value>The parent.</value>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX">
+        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX">
             <summary>
             Represents a logarithmic spiral curve in parametric equations defining the x-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.BaseByParameter(System.Double)">
             <summary>
             Bases the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
         </member>
-        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY">
+        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY">
             <summary>
             Represents a logarithmic spiral curve in parametric equations defining the y-component and differentials.
-            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents" />
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents" />
             </summary>
-            <seealso cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricDoubleComponents" />
+            <seealso cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricDoubleComponents" />
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricX" /> class.
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricX" /> class.
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.BaseByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.BaseByParameter(System.Double)">
             <summary>
             Bases the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.PrimeByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.PrimeByParameter(System.Double)">
             <summary>
             Primes the by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.PrimeDoubleByParameter(System.Double)">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.PrimeDoubleByParameter(System.Double)">
             <summary>
             Primes the double by angle.
             </summary>
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.Clone">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves.LogarithmicSpiralParametricY.CloneParametric">
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents.LogarithmicSpiralParametricY.CloneParametric">
             <summary>
             Clones the curve.
             </summary>
             <returns>LinearCurve.</returns>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveParametric">
+            <summary>
+            Represents a logarithmic spiral curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveParametric.#ctor(MPT.Math.Curves.LogarithmicSpiralCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveParametric" /> class.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
+        </member>
+        <member name="T:MPT.Math.Curves.Parametrics.ParabolicCurveParametric">
+            <summary>
+            Represents a parabolic curve in parametric equations about a local origin defining x- and y-components and their respective differentials.
+            Implements the <see cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+            </summary>
+            <seealso cref="T:MPT.Math.Curves.Parametrics.Components.CartesianParametricEquationXY" />
+        </member>
+        <member name="M:MPT.Math.Curves.Parametrics.ParabolicCurveParametric.#ctor(MPT.Math.Curves.ParabolicCurve)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ParabolicCurveParametric" /> class.
+            </summary>
+            <param name="parent">The parent object whose properties are used in the associated parametric equations.</param>
         </member>
         <member name="T:MPT.Math.Curves.Tools.AngleBisector">
             <summary>

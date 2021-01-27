@@ -18,7 +18,7 @@ using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
-using MPT.Math.Curves.Parametrics.ConicSectionCurves;
+using MPT.Math.Curves.Parametrics.ConicSectionCurveComponents;
 
 namespace MPT.Math.Curves
 {

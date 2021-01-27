@@ -1,7 +1,7 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Curves;
 using MPT.Math.Curves.Parametrics.Components;
-using MPT.Math.Curves.Parametrics.LinearCurves;
+using MPT.Math.Curves.Parametrics;
 using NUnit.Framework;
 
 namespace MPT.Math.UnitTests.Curves.Parametrics.Components

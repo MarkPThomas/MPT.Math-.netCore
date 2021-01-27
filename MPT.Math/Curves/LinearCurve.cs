@@ -18,7 +18,7 @@ using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
-using MPT.Math.Curves.Parametrics.LinearCurves;
+using MPT.Math.Curves.Parametrics;
 
 namespace MPT.Math.Curves
 {

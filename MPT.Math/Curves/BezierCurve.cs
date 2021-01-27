@@ -13,7 +13,7 @@
 // ***********************************************************************
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
-using MPT.Math.Curves.Parametrics.BezierCurves;
+using MPT.Math.Curves.Parametrics.BezierCurveComponents;
 using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Tools;
 using MPT.Math.Geometry;

@@ -14,7 +14,7 @@
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
 using MPT.Math.Curves.Parametrics.Components;
-using MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves;
+using MPT.Math.Curves.Parametrics.LogarithmicSpiralCurveComponents;
 using MPT.Math.Curves.Tools;
 using MPT.Math.Geometry;
 using MPT.Math.NumberTypeExtensions;
