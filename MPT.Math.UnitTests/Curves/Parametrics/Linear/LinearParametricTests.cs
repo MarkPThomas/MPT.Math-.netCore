@@ -1,7 +1,7 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Curves;
-using MPT.Math.Curves.Parametrics;
-using MPT.Math.Curves.Parametrics.Linear;
+using MPT.Math.Curves.Parametrics.Components;
+using MPT.Math.Curves.Parametrics.LinearCurves;
 using NUnit.Framework;
 using System;
 
@@ -11,13 +11,13 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
     public static class LinearParametricTests
     {
         public static LinearCurve curve;
-        public static LinearParametric parametric;
+        public static LinearCurveParametric parametric;
 
         [SetUp]
         public static void SetUp()
         {
             curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(5, 4));
-            parametric = new LinearParametric(curve);
+            parametric = new LinearCurveParametric(curve);
         }
 
         [TestCase(0, 1, 2)]
@@ -25,6 +25,24 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [TestCase(1, 5, 4)]
         public static void BaseByParameter_Value_at_Position(double position, double expectedValueX, double expectedValueY)
         {
+            double xValue = parametric.Xcomponent.ValueAt(position);
+            Assert.AreEqual(expectedValueX, xValue);
+
+            double yValue = parametric.Ycomponent.ValueAt(position);
+            Assert.AreEqual(expectedValueY, yValue);
+        }
+
+        [TestCase(0, 2, 2.5)]
+        [TestCase(0.25, 2.5, 2.75)]
+        [TestCase(0.5, 3, 3)]
+        [TestCase(0.75, 3.5, 3.25)]
+        [TestCase(1, 4, 3.5)]
+        public static void BaseByParameter_Value_at_Position_with_Custom_Limits(double position, double expectedValueX, double expectedValueY)
+        {
+            // Set custom limits
+            curve.Range.Start.SetLimitByX(2);
+            curve.Range.End.SetLimitByX(4);
+
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
 
@@ -72,7 +90,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [TestCase(1, 5, 4)]
         public static void DifferentiateBy_0_Returns_Base_Function(double position, double expectedValueX, double expectedValueY)
         {
-            LinearParametricEquation parametricDifferential = parametric.DifferentiateBy(0);
+            CartesianParametricEquationXY parametricDifferential = parametric.DifferentiateBy(0);
             double xValue = parametricDifferential.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
             double yValue = parametricDifferential.Ycomponent.ValueAt(position);
@@ -89,7 +107,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
             int differentialNumber, double position, 
             double expectedValueX, double expectedValueY)
         {
-            LinearParametricEquation parametricDifferential = parametric.DifferentiateBy(differentialNumber);
+            CartesianParametricEquationXY parametricDifferential = parametric.DifferentiateBy(differentialNumber);
             double xValue = parametricDifferential.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
             double yValue = parametricDifferential.Ycomponent.ValueAt(position);
@@ -103,7 +121,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [TestCase(1, 4, 2)]
         public static void DifferentialFirst(double position, double expectedValueX, double expectedValueY)
         {
-            LinearParametricEquation parametricPrimeFirst = parametric.DifferentialFirst();
+            CartesianParametricEquationXY parametricPrimeFirst = parametric.DifferentialFirst();
 
             double xValue = parametricPrimeFirst.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
@@ -116,7 +134,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [TestCase(1, 0, 0)]
         public static void DifferentialSecond(double position, double expectedValueX, double expectedValueY)
         {
-            LinearParametricEquation parametricPrimeSecond = parametric.DifferentialSecond();
+            CartesianParametricEquationXY parametricPrimeSecond = parametric.DifferentialSecond();
 
             double xValue = parametricPrimeSecond.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
@@ -143,7 +161,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
 
             // First differential
             Assert.IsTrue(parametric.HasDifferential());
-            LinearParametricEquation parametricPrime = parametric.Differentiate();
+            CartesianParametricEquationXY parametricPrime = parametric.Differentiate();
             double xValuePrime = parametricPrime.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedXPrime, xValuePrime);
             double yValuePrime = parametricPrime.Ycomponent.ValueAt(position);
@@ -151,7 +169,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
 
             // Second differential
             Assert.IsTrue(parametricPrime.HasDifferential());
-            LinearParametricEquation parametricPrimePrime = parametricPrime.Differentiate();
+            CartesianParametricEquationXY parametricPrimePrime = parametricPrime.Differentiate();
             double xValuePrimePrime = parametricPrimePrime.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedXPrimePrime, xValuePrimePrime);
             double yValuePrimePrime = parametricPrimePrime.Ycomponent.ValueAt(position);
@@ -170,7 +188,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [Test]
         public static void DifferentiateBy_Throws_ArgumentOutOfRangeException_if_Index_is_Less_Than_Current_Differentiation_Index()
         {
-            LinearParametricEquation parametricPrimePrime = parametric.DifferentiateBy(2);
+            CartesianParametricEquationXY parametricPrimePrime = parametric.DifferentiateBy(2);
             Assert.Throws<ArgumentOutOfRangeException>(() => parametricPrimePrime.DifferentiateBy(1));
         }
 
@@ -183,7 +201,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
         [Test]
         public static void Differentiate_Throws_ArgumentOutOfRangeException_if_Index_is_Greater_Than_Differentiations_Available()
         {
-            LinearParametricEquation parametricPrimePrime = parametric.DifferentiateBy(2);
+            CartesianParametricEquationXY parametricPrimePrime = parametric.DifferentiateBy(2);
             Assert.Throws<ArgumentOutOfRangeException>(() => parametricPrimePrime.Differentiate());
         }
 
@@ -200,7 +218,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
 
-            LinearParametricEquation linearParametric = parametric.DifferentiateBy(0) * scale;
+            CartesianParametricEquationXY linearParametric = parametric.DifferentiateBy(0) * scale;
 
             double xValueScaled = linearParametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX * scale, xValueScaled);
@@ -222,7 +240,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics.Linear
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX, xValue);
 
-            LinearParametricEquation linearParametric = parametric.DifferentiateBy(0) / scale;
+            CartesianParametricEquationXY linearParametric = parametric.DifferentiateBy(0) / scale;
 
             double xValueScaled = linearParametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(expectedValueX / scale, xValueScaled);
