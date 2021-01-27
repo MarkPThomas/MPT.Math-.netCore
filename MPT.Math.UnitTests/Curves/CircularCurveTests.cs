@@ -317,6 +317,41 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(yCoordExpected, yCoord, Tolerance);
         }
 
+
+        public static void XbyRotationAboutOrigin(double angleRadians, double expectedX)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutOrigin(double angleRadians, double expectedY)
+        {
+
+        }
+
+
+        public static void XbyRotationAboutFocusRight(double angleRadians, double expectedX)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutFocusRight(double angleRadians, double expectedY)
+        {
+
+        }
+
+
+        public static void XbyRotationAboutFocusLeft(double angleRadians, double expectedX)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutFocusLeft(double angleRadians, double expectedY)
+        {
+
+        }
         #endregion
 
         #region Methods: Query  
@@ -338,7 +373,7 @@ namespace MPT.Math.UnitTests.Curves
         }
         
         [Test]
-        public static void IsClosedCurve_Returns_False_When_Curve_Closes_to_Form_a_Shape()
+        public static void IsClosedCurve_Returns_False_When_Curve_Does_Not_Close_to_Form_a_Shape()
         {
             CircularCurve curve = new CircularCurve(3, new CartesianCoordinate(1, 2));
 
@@ -468,6 +503,19 @@ namespace MPT.Math.UnitTests.Curves
         }
         #endregion
 
+        [TestCase(0, 0)]
+        [TestCase(Numbers.PiOver4, 4.712389)]
+        [TestCase(Numbers.Pi, 18.849556)]
+        [TestCase(Numbers.TwoPi, 37.699112)]
+        [TestCase(-Numbers.Pi, -18.849556)]
+        [TestCase(-Numbers.TwoPi, -37.699112)]
+        public static void LengthBetween(double rotationRadians, double expectedLength)
+        {
+            double result = curve.LengthBetween(new AngularOffset(rotationRadians, Tolerance));
+
+            Assert.AreEqual(expectedLength, result, Tolerance);
+        }
+
         [TestCase(0)]
         [TestCase(Numbers.PiOver4)]
         [TestCase(Numbers.Pi)]
@@ -477,6 +525,24 @@ namespace MPT.Math.UnitTests.Curves
             double actualCurvature = curve.CurvatureByAngle(angleRadians);
 
             Assert.AreEqual(1 / curveRadius, actualCurvature, Tolerance);
+        }
+
+
+        public static void SlopeAtX(double x)
+        {
+
+        }
+
+
+        public static void SlopeAtY(double y)
+        {
+
+        }
+
+
+        public static void SlopeByAngle(double angleRadians)
+        {
+
         }
         #endregion
 
@@ -690,19 +756,6 @@ namespace MPT.Math.UnitTests.Curves
             Assert.AreEqual(intersectionExpectedNear, intersections.Item1);
             Assert.AreEqual(intersectionExpectedFar, intersections.Item2);
         }
-
-        [TestCase(0, 0)]
-        [TestCase(Numbers.PiOver4, 4.712389)]
-        [TestCase(Numbers.Pi, 18.849556)]
-        [TestCase(Numbers.TwoPi, 37.699112)]
-        [TestCase(-Numbers.Pi, -18.849556)]
-        [TestCase(-Numbers.TwoPi, -37.699112)]
-        public static void LengthBetween(double rotationRadians, double expectedLength)
-        {
-            double result = curve.LengthBetween(new AngularOffset(rotationRadians, Tolerance));
-
-            Assert.AreEqual(expectedLength, result, Tolerance);
-        }
         #endregion
 
         #region ICurveLimits
@@ -713,11 +766,34 @@ namespace MPT.Math.UnitTests.Curves
         }
 
 
-        public static void LengthBetween_Relative_Positions(double relativePositionStart, double relativePositionEnd)
+        public static void LengthBetween_Relative_Positions(double relativePositionStart, double relativePositionEnd, double expectedLength)
         {
 
         }
 
+
+        public static void ChordLength()
+        {
+
+        }
+
+
+        public static void ChordLengthBetween(double relativePositionStart, double relativePositionEnd, double expectedLength)
+        {
+
+        }
+
+
+        public static void Chord()
+        {
+
+        }
+
+
+        public static void ChordBetween(double relativePositionStart, double relativePositionEnd)
+        {
+
+        }
 
         public static void TangentVector_by_Relative_Position(double relativePosition)
         {
