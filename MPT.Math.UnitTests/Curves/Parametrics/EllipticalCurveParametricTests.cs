@@ -5,7 +5,7 @@ using MPT.Math.Curves.Parametrics;
 using NUnit.Framework;
 using System;
 
-namespace MPT.Math.UnitTests.Curves.Parametrics.ConicSectionCurves
+namespace MPT.Math.UnitTests.Curves.Parametrics
 {
     [TestFixture]
     public static class EllipticalCurveParametricTests

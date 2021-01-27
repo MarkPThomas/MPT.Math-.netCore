@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 
-namespace MPT.Math.UnitTests.Curves.Parametrics.Beziers
+namespace MPT.Math.UnitTests.Curves.Parametrics
 {
     [TestFixture]
-    public static class BezierCurveParametric1stOrderTests
+    public static class ConicFocusParametricTests
     {
     }
 }
