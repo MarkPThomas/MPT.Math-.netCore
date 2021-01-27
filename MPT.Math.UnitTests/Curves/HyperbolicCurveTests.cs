@@ -13,13 +13,20 @@ namespace MPT.Math.UnitTests.Curves
         public static double Tolerance = 0.00001;
 
         public static HyperbolicCurve curve;
+        public static HyperbolicCurve curveLocal;
+        public static HyperbolicCurve curveOffset;
+        public static HyperbolicCurve curveRotated;
+        public static HyperbolicCurve curveOffsetRotated;
+        public static double a = 5;
+        public static double b = 3;
+        public static double xOffset = 4;
+        public static double yOffset = 5;
+        public static double rotationRadians = Numbers.PiOver3;
 
         [SetUp]
         public static void SetUp()
         {
-            CartesianCoordinate localOrigin = new CartesianCoordinate(4, 5);
-            double a = 5;
-            double b = 3;
+            CartesianCoordinate localOrigin = new CartesianCoordinate(xOffset, yOffset);
             Angle rotation = Angle.Origin();
             curve = new HyperbolicCurve(a, b, localOrigin, rotation, Tolerance);
         }
@@ -368,12 +375,288 @@ namespace MPT.Math.UnitTests.Curves
         }
         #endregion
 
+        #region Curve Position
+
+        public static void XatY_Out_of_Range_Return_Infinity(double yCoord, double x, double y, double rotation)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double xCoord = curve.XatY(yCoord);
+
+            Assert.AreEqual(double.PositiveInfinity, xCoord);
+        }
+
+
+        public static void XatY(double yCoord, double x, double y, double rotation, double xCoordExpected)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double xCoord = curve.XatY(yCoord);
+
+            Assert.AreEqual(xCoordExpected, xCoord, Tolerance);
+        }
+
+
+        public static void YatX_Out_of_Range_Return_Infinity(double xCoord, double x, double y, double rotation)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double yCoord = curve.YatX(xCoord);
+
+            Assert.AreEqual(double.PositiveInfinity, yCoord);
+        }
+
+
+        public static void YatX(double xCoord, double x, double y, double rotation, double yCoordExpected)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double yCoord = curve.YatX(xCoord);
+
+            Assert.AreEqual(yCoordExpected, yCoord, Tolerance);
+        }
+
+        public static void XbyRotationAboutOrigin(double angleRadians)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutOrigin(double angleRadians)
+        {
+
+        }
+
+
+        public static void XbyRotationAboutFocusRight(double angleRadians)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutFocusRight(double angleRadians)
+        {
+
+        }
+
+
+        public static void XbyRotationAboutFocusLeft(double angleRadians)
+        {
+
+        }
+
+
+        public static void YbyRotationAboutFocusLeft(double angleRadians)
+        {
+
+        }
+        #endregion
+
+        #region Methods: Properties
+        #region Radius
+        #region Focus, Right
+
+        public static void RadiusAboutFocusRight(double angleRadians, double expectedRadius)
+        {
+            double actualRadius = curve.RadiusAboutFocusRight(angleRadians);
+
+            Assert.AreEqual(expectedRadius, actualRadius);
+        }
+
+
+        public static void RadiusAboutVertexMajorRight(double angleRadians, double expectedRadius)
+        {
+            double actualRadius = curve.RadiusAboutVertexMajorRight(angleRadians);
+
+            Assert.AreEqual(expectedRadius, actualRadius, Tolerance);
+        }
+        #endregion
+        #region Focus, Left
+
+        public static void RadiusAboutFocusLeft(double angleRadians, double expectedRadius)
+        {
+            double actualRadius = curve.RadiusAboutFocusLeft(angleRadians);
+
+            Assert.AreEqual(expectedRadius, actualRadius);
+        }
+
+
+        public static void RadiusAboutVertexMajorLeft(double angleRadians, double expectedRadius)
+        {
+            double actualRadius = curve.RadiusAboutVertexMajorLeft(angleRadians);
+
+            Assert.AreEqual(expectedRadius, actualRadius, Tolerance);
+        }
+        #endregion
+
+        public static void RadiusAboutOrigin(double angleRadians, double expectedRadius)
+        {
+            double actualRadius = curve.RadiusAboutOrigin(angleRadians);
+
+            Assert.AreEqual(expectedRadius, actualRadius);
+        }
+        #endregion
+
+
+        public static void CurvatureByAngle(double angleRadians, double expectedCurvature)
+        {
+            double actualCurvature = curve.CurvatureByAngle(angleRadians);
+
+            Assert.AreEqual(expectedCurvature, actualCurvature, Tolerance);
+        }
+
+
+        public static void SlopeAtX(double x)
+        {
+
+        }
+
+
+        public static void SlopeAtY(double y)
+        {
+
+        }
+
+
+        public static void SlopeByAngle(double angleRadians)
+        {
+
+        }
+        #endregion
+
         #region Methods: Public
         [Test]
         public static void ToString_Returns_String()
         {
             string toString = curve.ToString();
             Assert.AreEqual("HyperbolicCurve - Center: {X: 4, Y: 5}, Rotation: 0 rad, a: 5, b: 3, I: {X: 9, Y: 5}, J: {X: 9, Y: 5}", toString);
+        }
+        #endregion
+
+        #region ICurveLimits
+
+        public static void Length()
+        {
+
+        }
+
+
+        public static void LengthBetween_Relative_Positions(double relativePositionStart, double relativePositionEnd)
+        {
+
+        }
+
+
+        public static void ChordLength()
+        {
+
+        }
+
+
+        public static void ChordLengthBetween(double relativePositionStart, double relativePositionEnd)
+        {
+
+        }
+
+
+        public static void Chord()
+        {
+
+        }
+
+
+        public static void ChordBetween(double relativePositionStart, double relativePositionEnd)
+        {
+
+        }
+
+        public static void TangentVector_by_Relative_Position(double relativePosition)
+        {
+
+        }
+
+
+        public static void NormalVector_by_Relative_Position(double relativePosition)
+        {
+
+        }
+
+
+        public static void CoordinatePolar_by_Relative_Position(double relativePosition)
+        {
+
+        }
+        #endregion
+
+        #region ICurvePositionCartesian
+
+        public static void XsAtY_Out_of_Range_Return_Empty_Arrays(double yCoord, double x, double y, double rotation)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double[] xCoords = curve.XsAtY(yCoord);
+
+            Assert.AreEqual(0, xCoords.Length);
+        }
+
+
+        public static void XsAtY(double yCoord, double x, double y, double rotation, double x1CoordExpected, double x2CoordExpected)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double[] xCoords = curve.XsAtY(yCoord);
+
+            Assert.AreEqual(x1CoordExpected, xCoords[0], Tolerance);
+            Assert.AreEqual(x2CoordExpected, xCoords[1], Tolerance);
+        }
+
+
+        public static void YsAtX_Out_of_Range_Return_Empty_Arrays(double xCoord, double x, double y, double rotation)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double[] yCoords = curve.YsAtX(xCoord);
+
+            Assert.AreEqual(0, yCoords.Length);
+        }
+
+
+        public static void YsAtX(double xCoord, double x, double y, double rotation, double y1CoordExpected, double y2CoordExpected)
+        {
+            CartesianCoordinate center = new CartesianCoordinate(x, y);
+            HyperbolicCurve curve = new HyperbolicCurve(a, b, center, rotation, Tolerance);
+
+            double[] yCoords = curve.YsAtX(xCoord);
+
+            Assert.AreEqual(y1CoordExpected, yCoords[0], Tolerance);
+            Assert.AreEqual(y2CoordExpected, yCoords[1], Tolerance);
+        }
+
+
+        public static void IsIntersectingCoordinate(double x, double y, bool expectedIntersection)
+        {
+            CartesianCoordinate coordinate = new CartesianCoordinate(x, y, Tolerance);
+            bool isIntersecting = curve.IsIntersectingCoordinate(coordinate);
+            Assert.AreEqual(expectedIntersection, isIntersecting);
+        }
+        #endregion
+
+        #region ICurvePositionPolar
+
+        public static void RadiiAboutOrigin(double angleRadians, double expectedRadius)
+        {
+            double[] actualRadius = curve.RadiiAboutOrigin(angleRadians);
+
+            Assert.AreEqual(1, actualRadius.Length);
+            Assert.AreEqual(expectedRadius, actualRadius[0]);
+
         }
         #endregion
 
