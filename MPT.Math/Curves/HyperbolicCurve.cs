@@ -14,7 +14,7 @@
 using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics.Components;
-using MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics;
+using MPT.Math.Curves.Parametrics.ConicSectionCurves;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
 using MPT.Math.Vectors;
