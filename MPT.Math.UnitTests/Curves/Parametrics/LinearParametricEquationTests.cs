@@ -1,7 +1,7 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Curves;
 using MPT.Math.Curves.Parametrics;
-using MPT.Math.Curves.Parametrics.Linear;
+using MPT.Math.Curves.Parametrics.LinearCurves;
 using NUnit.Framework;
 
 namespace MPT.Math.UnitTests.Curves.Parametrics
@@ -16,7 +16,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double xExpected = 5;
             double yExpected = 4;
             LinearCurve curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(5, 4));
-            LinearParametricEquation parametric = new LinearParametric(curve);
+            LinearParametricEquation parametric = new LinearCurveParametric(curve);
 
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValue);
@@ -41,7 +41,7 @@ namespace MPT.Math.UnitTests.Curves.Parametrics
             double xExpected = 5;
             double yExpected = 4;
             LinearCurve curve = new LinearCurve(new CartesianCoordinate(1, 2), new CartesianCoordinate(5, 4));
-            LinearParametricEquation parametric = new LinearParametric(curve);
+            LinearParametricEquation parametric = new LinearCurveParametric(curve);
 
             double xValue = parametric.Xcomponent.ValueAt(position);
             Assert.AreEqual(xExpected, xValue);
