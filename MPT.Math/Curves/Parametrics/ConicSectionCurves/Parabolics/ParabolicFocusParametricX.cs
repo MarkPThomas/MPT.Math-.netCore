@@ -20,7 +20,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
         /// <returns></returns>
         public override double BaseByParameter(double angleRadians)
         {
-            return (_parent.DistanceFromVertexMajorToOrigin - _parent.RadiusAboutFocusRight((Coordinates.Angle)angleRadians) * TrigonometryLibrary.Cos(angleRadians));
+            return (_parent.DistanceFromVertexMajorToLocalOrigin - _parent.RadiusAboutFocusRight((Coordinates.Angle)angleRadians) * TrigonometryLibrary.Cos(angleRadians));
         }
 
 

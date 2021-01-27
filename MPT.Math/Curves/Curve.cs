@@ -26,11 +26,15 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ICurve" />
     public abstract class Curve : ICurve, ICloneable
     {
-        #region Properties        
+        #region Properties              
+        /// <summary>
+        /// The default tolerance
+        /// </summary>
+        protected const double DEFAULT_TOLERANCE = 10E-6;
         /// <summary>
         /// The tolerance.
         /// </summary>
-        protected double _tolerance = 10E-6;
+        protected double _tolerance = DEFAULT_TOLERANCE;
         /// <summary>
         /// Tolerance to use in all calculations with double types.
         /// </summary>
@@ -89,6 +93,15 @@ namespace MPT.Math.Curves
             }
         }
         #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Curve"/> class.
+        /// </summary>
+        /// <param name="tolerance">The tolerance.</param>
+        protected Curve(double tolerance = DEFAULT_TOLERANCE)
+        {
+            _tolerance = tolerance;
+        }
 
         #region Curve Position
         /// <summary>

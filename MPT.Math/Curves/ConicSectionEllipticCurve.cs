@@ -16,7 +16,7 @@ using MPT.Math.Curves.Parametrics;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
-using MPT.Math.Vectors;
+using System;
 
 namespace MPT.Math.Curves
 {
@@ -29,33 +29,46 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ICurveLimits" />
     public abstract class ConicSectionEllipticCurve : ConicSectionCurve, ICurveLimits
     {
-        #region Properties        
-        /// <summary>
-        /// Tolerance to use in all calculations with double types.
-        /// </summary>
-        /// <value>The tolerance.</value>
-        public override double Tolerance
-        {
-            get => base.Tolerance;
-            set
-            {
-                base.Tolerance = value;
-            }
-        }
-        #endregion
-
-        #region Initialization        
+        #region Initialization     
         /// <summary>
         /// Initializes a new instance of the <see cref="ConicSectionEllipticCurve" /> class.
         /// </summary>
-        /// <param name="vertexMajor">The major vertex, a.</param>
-        /// <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-        /// <param name="localOrigin">The coordinate of the local origin.</param>
+        /// <param name="vertexMajor">The major vertex, M.</param>
+        /// <param name="focus">The focus, f.</param>
+        /// <param name="distanceFromMajorVertexToLocalOrigin">Distance, a, major vertex, M, to the local origin.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
         protected ConicSectionEllipticCurve(
             CartesianCoordinate vertexMajor,
-            double distanceFromFocusToLocalOrigin,
-            CartesianCoordinate localOrigin)
-            : base(vertexMajor, distanceFromFocusToLocalOrigin, localOrigin)
+            CartesianCoordinate focus,
+            double distanceFromMajorVertexToLocalOrigin,
+            double tolerance = DEFAULT_TOLERANCE)
+            : base(vertexMajor,
+                   focus,
+                   distanceFromMajorVertexToLocalOrigin,
+                   tolerance)
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConicSectionEllipticCurve"/> class.
+        /// </summary>
+        /// <param name="vertexMajor">The vertex major.</param>
+        /// <param name="distanceFromMajorVertexToFocus">The distance from major vertex, M, to focus, f.</param>
+        /// <param name="distanceFromMajorVertexToLocalOrigin">Distance, a, major vertex, M, to the local origin.</param>
+        /// <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        protected ConicSectionEllipticCurve(
+            CartesianCoordinate vertexMajor,
+            double distanceFromMajorVertexToFocus,
+            double distanceFromMajorVertexToLocalOrigin,
+            Angle rotation,
+            double tolerance = DEFAULT_TOLERANCE)
+            : base(vertexMajor,
+                   distanceFromMajorVertexToFocus,
+                   distanceFromMajorVertexToLocalOrigin,
+                   rotation,
+                   tolerance)
         {
 
         }
@@ -185,7 +198,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public double SlopeAtX(double x)
         {
-            return -1 * (DistanceFromVertexMinorToOrigin / DistanceFromVertexMajorToOrigin) * (x / (DistanceFromVertexMajorToOrigin.Squared() - x.Squared()).Sqrt());
+            return -1 * (DistanceFromVertexMinorToMajorAxis / DistanceFromVertexMajorToLocalOrigin) * (x / (DistanceFromVertexMajorToLocalOrigin.Squared() - x.Squared()).Sqrt());
         }
 
         /// <summary>
@@ -205,7 +218,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double SlopeByAngle(double angleRadians)
         {
-            return -1 * (DistanceFromVertexMinorToOrigin / DistanceFromVertexMajorToOrigin) * TrigonometryLibrary.Cot(angleRadians);
+            return -1 * (DistanceFromVertexMinorToMajorAxis / DistanceFromVertexMajorToLocalOrigin) * TrigonometryLibrary.Cot(angleRadians);
         }
 
         /// <summary>
@@ -224,7 +237,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XatY(double y)
         {
-            return DistanceFromVertexMajorToOrigin * (1 - (y / DistanceFromVertexMinorToOrigin).Squared()).Sqrt();
+            return DistanceFromVertexMajorToLocalOrigin * (1 - (y / DistanceFromVertexMinorToMajorAxis).Squared()).Sqrt();
         }
 
         /// <summary>
@@ -234,7 +247,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YatX(double x)
         {
-            return DistanceFromVertexMinorToOrigin * (1 - (x / DistanceFromVertexMajorToOrigin).Squared()).Sqrt();
+            return DistanceFromVertexMinorToMajorAxis * (1 - (x / DistanceFromVertexMajorToLocalOrigin).Squared()).Sqrt();
         }
 
         /// <summary>
@@ -244,7 +257,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutOrigin(double angleRadians)
         {
-            return (DistanceFromVertexMajorToOrigin * TrigonometryLibrary.Cos(angleRadians));
+            return (DistanceFromVertexMajorToLocalOrigin * TrigonometryLibrary.Cos(angleRadians));
         }
 
         /// <summary>
@@ -254,7 +267,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YbyRotationAboutOrigin(double angleRadians)
         {
-            return (DistanceFromVertexMinorToOrigin * TrigonometryLibrary.Sin(angleRadians));
+            return (DistanceFromVertexMinorToMajorAxis * TrigonometryLibrary.Sin(angleRadians));
         }
 
         /// <summary>
@@ -264,7 +277,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutFocusRight(double angleRadians)
         {
-            return DistanceFromFocusToOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
+            return DistanceFromFocusToLocalOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
         }
 
         /// <summary>
@@ -274,20 +287,57 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutFocusLeft(double angleRadians)
         {
-            return -1 * DistanceFromFocusToOrigin + RadiusAboutFocusLeft(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
+            return -1 * DistanceFromFocusToLocalOrigin + RadiusAboutFocusLeft(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
         }
         #endregion
 
         #region Methods: Protected
+        /// <summary>
+        /// Gets the minor vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected override Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesMinor()
+        {
+            return getVerticesMinor(LocalOrigin);
+        }
+
+        /// <summary>
+        /// Gets the vertex major2 coordinate.
+        /// </summary>
+        /// <returns>CartesianCoordinate.</returns>
+        protected override CartesianCoordinate getVertexMajor2()
+        {
+            return _vertexMajor.OffsetCoordinate(-2 * DistanceFromVertexMajorToLocalOrigin, _rotation);
+        }
+
         /// <summary>
         /// Distance from local origin to minor Vertex, b.
         /// </summary>
         /// <param name="a">Distance from local origin to major vertex, a.</param>
         /// <param name="c">Distance from local origin to the focus, c.</param>
         /// <returns>System.Double.</returns>
-        protected override double distanceFromVertexMinorToOrigin(double a, double c)
+        protected override double distanceFromVertexMinorToMajorAxis(double a, double c)
         {
             return (a.Squared() - c.Squared()).Sqrt();
+        }
+
+        /// <summary>
+        /// Gets the directrix vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected override Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesDirectrix()
+        {
+            Angle rotation = new Angle(_rotation.Radians + Numbers.PiOver2);
+            if (DistanceFromFocusToDirectrix == double.PositiveInfinity || DistanceFromFocusToDirectrix == double.NegativeInfinity)
+            {
+                return new Tuple<CartesianCoordinate, CartesianCoordinate>(
+                    new CartesianCoordinate(DistanceFromFocusToDirectrix, 0),
+                    new CartesianCoordinate(DistanceFromFocusToDirectrix, 1));
+            }
+            CartesianCoordinate directrixIntercept = _focus.OffsetCoordinate(DistanceFromFocusToDirectrix, _rotation);
+            return new Tuple<CartesianCoordinate, CartesianCoordinate>(
+                directrixIntercept,
+                directrixIntercept.OffsetCoordinate(1, rotation));
         }
         #endregion
     }

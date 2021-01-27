@@ -25,39 +25,87 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ConicSectionEllipticCurve" />
     public class EllipticalCurve : ConicSectionEllipticCurve
     {
+        #region Properties
+        /// <summary>
+        /// Distance from local origin to the focus, c.
+        /// </summary>
+        /// <value>The distance from focus to origin.</value>
+        public override double DistanceFromFocusToLocalOrigin => DistanceFromVertexMajorToLocalOrigin - CartesianOffset.Separation(_focus, _vertexMajor);
+
+        /// <summary>
+        /// Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+        /// </summary>
+        /// <value>The p.</value>
+        public override double SemilatusRectumDistance => DistanceFromVertexMajorToLocalOrigin * (1 - Eccentricity.Squared());
+
+        /// <summary>
+        /// Gets the second focus, which lies to the right of the local origin.
+        /// </summary>
+        /// <value>The focus2.</value>
+        public CartesianCoordinate Focus2 => _focus.OffsetCoordinate(-2 * DistanceFromFocusToLocalOrigin, _rotation);
+
+        /// <summary>
+        /// Gets the second directrix, Xe, which lies to the right of the local origin.
+        /// </summary>
+        /// <value>The directrix.</value>
+        public virtual LinearCurve Directrix2
+        {
+            get
+            {
+                Tuple<CartesianCoordinate, CartesianCoordinate> directrices = getVerticesDirectrix();
+                return new LinearCurve(
+                    directrices.Item1.OffsetCoordinate(-2 * DistanceFromDirectrixToLocalOrigin, _rotation),
+                    directrices.Item2.OffsetCoordinate(-2 * DistanceFromDirectrixToLocalOrigin, _rotation), 
+                    _tolerance);
+            }
+        }
+        #endregion
+
         #region Initialization                
         /// <summary>
         /// Initializes a new instance of the <see cref="EllipticalCurve" /> class.
         /// </summary>
-        /// <param name="vertexMajor">The major vertex, a.</param>
-        /// <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-        /// <param name="localOrigin">The coordinate of the local origin.</param>
+        /// <param name="vertexMajor">The major vertex, M.</param>
+        /// <param name="b">Distance, b, from local origin to minor vertex, m.</param>
+        /// <param name="center">The coordinate of the local origin.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
         public EllipticalCurve(
-            CartesianCoordinate vertexMajor, 
-            double distanceFromFocusToLocalOrigin, 
-            CartesianCoordinate localOrigin) 
-            : base(vertexMajor, distanceFromFocusToLocalOrigin, localOrigin)
+            CartesianCoordinate vertexMajor,
+            double b,
+            CartesianCoordinate center,
+            double tolerance = DEFAULT_TOLERANCE) 
+            : base(
+                  vertexMajor,
+                  getDistanceFromMajorVertexToFocus(vertexMajor, center, b),
+                  getDistanceFromMajorVertexToLocalOrigin(vertexMajor, center),
+                  getRotation(vertexMajor, center),
+                  tolerance)
         {
-            _limitStartDefault = vertexMajor;
-            _limitEndDefault = _limitStartDefault;
+
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EllipticalCurve" /> class.
         /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
-        /// <param name="b">Distance from local origin to minor vertex, b.</param>
-        /// <param name="center">The center.</param>
-        /// <param name="rotation">The rotation.</param>
+        /// <param name="a">Distance, a, from local origin to major vertex, M.</param>
+        /// <param name="b">Distance, b, from local origin to minor vertex, m.</param>
+        /// <param name="center">The coordinate of the local origin.</param>
+        /// <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
         public EllipticalCurve(
             double a, 
             double b, 
             CartesianCoordinate center, 
-            Angle rotation) 
-            : base(center.OffsetCoordinate(a, rotation), distanceFromFocusToOrigin(a, b), center)
+            Angle rotation,
+            double tolerance = DEFAULT_TOLERANCE) 
+            : base(
+                  getMajorVertex(center, a, rotation),
+                  getDistanceFromMajorVertexToFocus(a, b), 
+                  a, 
+                  rotation,
+                  tolerance)
         {
-            _limitStartDefault = center.OffsetCoordinate(a, rotation);
-            _limitEndDefault = _limitStartDefault;
+
         }
         #endregion
 
@@ -69,7 +117,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XatY(double y)
         {
-            return DistanceFromVertexMajorToOrigin * (1 - (y / DistanceFromVertexMinorToOrigin).Squared()).Sqrt();
+            return DistanceFromVertexMajorToLocalOrigin * (1 - (y / DistanceFromVertexMinorToMajorAxis).Squared()).Sqrt();
         }
 
         /// <summary>
@@ -79,7 +127,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YatX(double x)
         {
-            return DistanceFromVertexMinorToOrigin * (1 - (x / DistanceFromVertexMajorToOrigin).Squared()).Sqrt();
+            return DistanceFromVertexMinorToMajorAxis * (1 - (x / DistanceFromVertexMajorToLocalOrigin).Squared()).Sqrt();
         }
         #endregion
 
@@ -91,7 +139,7 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public override double LengthBetween(AngularOffset rotation)
         {
-            return LengthBetween(rotation, DistanceFromVertexMajorToOrigin, DistanceFromVertexMinorToOrigin);
+            return LengthBetween(rotation, DistanceFromVertexMajorToLocalOrigin, DistanceFromVertexMinorToMajorAxis);
         }
         #endregion
 
@@ -102,12 +150,12 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString() 
-                + " - Center: " + _originLocal
-                + ", - Rotation: " + _localRotation
-                + ", a: " + DistanceFromVertexMajorToOrigin
-                + ", b: " + DistanceFromVertexMinorToOrigin
-                + ", I: " + _limitStartDefault + ", J: " + _limitEndDefault;
+            return typeof(EllipticalCurve).Name
+                + " - Center: {X: " + LocalOrigin.X + ", Y: " + LocalOrigin.Y + "}"
+                + ", Rotation: " + _rotation.Radians + " rad"
+                + ", a: " + DistanceFromVertexMajorToLocalOrigin
+                + ", b: " + DistanceFromVertexMinorToMajorAxis
+                + ", I: {X: " + _limitStartDefault.X + ", Y: " + _limitStartDefault.Y + "}, J: {X: " + _limitEndDefault.X + ", Y: " + _limitEndDefault.Y + "}";
         }
         #endregion
 
@@ -193,16 +241,6 @@ namespace MPT.Math.Curves
             double y = YatX(x);
             return new[] { y, -y };
         }
-
-        /// <summary>
-        /// Provided point lies on the curve.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region ICurvePositionPolar
@@ -244,7 +282,42 @@ namespace MPT.Math.Curves
         {
             return (a.Squared() - b.Squared()).Sqrt();
         }
+
+        /// <summary>
+        /// Gets the distance from major vertex to focus.
+        /// </summary>
+        /// <param name="vertexMajor">The vertex major.</param>
+        /// <param name="localOrigin">The local origin.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>System.Double.</returns>
+        protected static double getDistanceFromMajorVertexToFocus(CartesianCoordinate vertexMajor, CartesianCoordinate localOrigin, double b)
+        {
+            double a = getDistanceFromMajorVertexToLocalOrigin(vertexMajor, localOrigin);
+            return getDistanceFromMajorVertexToFocus(a, b);
+        }
+
+        /// <summary>
+        /// Gets the distance from major vertex to focus.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>System.Double.</returns>
+        protected static double getDistanceFromMajorVertexToFocus(double a, double b)
+        {
+            return a - distanceFromFocusToOrigin(a, b);
+        }
         #endregion
+        #endregion
+
+        #region Methods: Protected
+        /// <summary>
+        /// The coordinate of the local origin.
+        /// </summary>
+        /// <value>The local origin.</value>
+        protected override CartesianCoordinate getLocalOrigin()
+        {
+            return _focus.OffsetCoordinate(-DistanceFromFocusToLocalOrigin, _rotation);
+        }
         #endregion
 
         #region ICloneable
@@ -263,7 +336,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public EllipticalCurve CloneCurve()
         {
-            EllipticalCurve curve = new EllipticalCurve(_vertexMajorLocal, DistanceFromFocusToOrigin, _originLocal);
+            EllipticalCurve curve = new EllipticalCurve(_vertexMajor, DistanceFromVertexMinorToMajorAxis, LocalOrigin, _tolerance);
             curve._range = Range.CloneRange();
             return curve;
         }

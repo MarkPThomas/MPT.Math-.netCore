@@ -42,7 +42,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
         /// <returns>System.Double.</returns>
         public override double BaseByParameter(double t)
         {
-            return _parent.DistanceFromVertexMajorToOrigin * t.Squared();
+            return _parent.DistanceFromVertexMajorToLocalOrigin * t.Squared();
         }
 
 
@@ -53,7 +53,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
         /// <returns>System.Double.</returns>
         public override double PrimeByParameter(double t)
         {
-            return 2 * _parent.DistanceFromVertexMajorToOrigin * t;
+            return 2 * _parent.DistanceFromVertexMajorToLocalOrigin * t;
         }
 
 
@@ -64,7 +64,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
         /// <returns>System.Double.</returns>
         public override double PrimeDoubleByParameter(double t)
         {
-            return 2 * _parent.DistanceFromVertexMajorToOrigin;
+            return 2 * _parent.DistanceFromVertexMajorToLocalOrigin;
         }
         #endregion
 

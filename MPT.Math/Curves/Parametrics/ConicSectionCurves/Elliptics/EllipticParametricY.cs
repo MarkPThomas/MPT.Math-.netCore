@@ -42,7 +42,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics
         /// <returns>System.Double.</returns>
         public override double BaseByParameter(double angleRadians)
         {
-            return _parent.DistanceFromVertexMinorToOrigin * TrigonometryLibrary.Sin(angleRadians);
+            return _parent.DistanceFromVertexMinorToMajorAxis * TrigonometryLibrary.Sin(angleRadians);
         }
 
 
@@ -53,7 +53,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics
         /// <returns>System.Double.</returns>
         public override double PrimeByParameter(double angleRadians)
         {
-            return _parent.DistanceFromVertexMinorToOrigin * TrigonometryLibrary.Cos(angleRadians);
+            return _parent.DistanceFromVertexMinorToMajorAxis * TrigonometryLibrary.Cos(angleRadians);
         }
 
 
@@ -64,7 +64,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics
         /// <returns>System.Double.</returns>
         public override double PrimeDoubleByParameter(double angleRadians)
         {
-            return -1 * _parent.DistanceFromVertexMinorToOrigin * TrigonometryLibrary.Sin(angleRadians);
+            return -1 * _parent.DistanceFromVertexMinorToMajorAxis * TrigonometryLibrary.Sin(angleRadians);
         }
         #endregion
 

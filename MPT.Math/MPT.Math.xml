@@ -245,6 +245,15 @@
             <param name="point">The point.</param>
             <returns>Angle.</returns>
         </member>
+        <member name="M:MPT.Math.Coordinates.Angle.CreateFromPoints(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Creates an Angle from two points.
+            The angle is assumed to lie between the line formed by the two points, and the positive horizontal axis.
+            </summary>
+            <param name="point1">The first point.</param>
+            <param name="point2">The second point.</param>
+            <returns>Angle.</returns>
+        </member>
         <member name="M:MPT.Math.Coordinates.Angle.RadiansToDegrees(System.Double)">
             <summary>
             Converts radians to degrees.
@@ -2234,28 +2243,31 @@
             </summary>
             <value>The handle j.</value>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.Tools.CurveHandle,MPT.Math.Curves.Tools.CurveHandle,System.Int32)">
+        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Curves.Tools.CurveHandle,MPT.Math.Curves.Tools.CurveHandle,System.Int32,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurve"/> class.
             </summary>
             <param name="handleStart">The handle start.</param>
             <param name="handleEnd">The handle end.</param>
             <param name="numberOfControlPoints">The number of control points.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Int32)">
+        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Int32,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurve"/> class.
             </summary>
             <param name="pointI">The point i.</param>
             <param name="pointJ">The point j.</param>
             <param name="numberOfControlPoints">The number of control points.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
-        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(System.Double,System.Int32)">
+        <member name="M:MPT.Math.Curves.BezierCurve.#ctor(System.Double,System.Int32,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.BezierCurve"/> class.
             </summary>
             <param name="length">The length.</param>
             <param name="numberOfControlPoints">The number of control points.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.BezierCurve.getCurveHandleJ(MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
@@ -2478,6 +2490,12 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ConicSectionEllipticCurve" />
         </member>
+        <member name="P:MPT.Math.Curves.CircularCurve.DistanceFromFocusToLocalOrigin">
+            <summary>
+            Distance from local origin to the focus, c.
+            </summary>
+            <value>The distance from focus to origin.</value>
+        </member>
         <member name="P:MPT.Math.Curves.CircularCurve.Center">
             <summary>
             Gets the center control point.
@@ -2504,19 +2522,27 @@
             </summary>
             <value>The eccentricity.</value>
         </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="P:MPT.Math.Curves.CircularCurve.SemilatusRectumDistance">
+            <summary>
+            Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+            </summary>
+            <value>The p.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.CircularCurve" /> class.
             </summary>
             <param name="vertex">Any vertex on the curve.</param>
             <param name="center">The center.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
-        <member name="M:MPT.Math.Curves.CircularCurve.#ctor(System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Curves.CircularCurve.#ctor(System.Double,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.CircularCurve" /> class.
             </summary>
             <param name="radius">The radius.</param>
             <param name="center">The center.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.CircularCurve.XatY(System.Double)">
             <summary>
@@ -2769,6 +2795,12 @@
             <param name="center">The center.</param>
             <returns>CartesianCoordinate.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.CircularCurve.getLocalOrigin">
+            <summary>
+            The coordinate of the local origin.
+            </summary>
+            <value>The local origin.</value>
+        </member>
         <member name="M:MPT.Math.Curves.CircularCurve.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
@@ -2802,20 +2834,20 @@
             The parametric equation of the radius measured from the focus.
             </summary>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._localRotation">
+        <member name="F:MPT.Math.Curves.ConicSectionCurve._rotation">
             <summary>
             The rotational offset of local coordinates from global coordinates.
             </summary>
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.LocalRotation">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.Rotation">
             <summary>
             Gets the rotational offset of local coordinates from global coordinates.
             </summary>
             <value>The local off set rotation.</value>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._originLocal">
+        <member name="F:MPT.Math.Curves.ConicSectionCurve._localOrigin">
             <summary>
-            The coordinate of the local origin.
+            The local origin
             </summary>
         </member>
         <member name="P:MPT.Math.Curves.ConicSectionCurve.LocalOrigin">
@@ -2824,82 +2856,55 @@
             </summary>
             <value>The local origin.</value>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._directrixILocal">
+        <member name="F:MPT.Math.Curves.ConicSectionCurve._vertexMajor">
             <summary>
-            The I-coordinate, in local coordinates, that lies on the directrix, Xe.
-            </summary>
-        </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._directrixJLocal">
-            <summary>
-            The J-coordinate, in local coordinates, that lies on the directrix, Xe.
-            </summary>
-        </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.Directrices">
-            <summary>
-            Gets the directrices, Xe, in local coordinates.
-            </summary>
-            <value>The directrices.</value>
-        </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromDirectrixToOrigin">
-            <summary>
-            Distance from local origin to the directrix line, Xe.
-            </summary>
-            <value>The distance from directrix to origin.</value>
-        </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._vertexMajorLocal">
-            <summary>
-            The major vertex, a, in local coordinates, which is the point on a conic section that lies closest to the directrix.
+            The major vertex. This is taken to be the left apex of circles and ellpses, the right apex of hyperbolas, and the sole apex of parabolas.
             </summary>
         </member>
         <member name="P:MPT.Math.Curves.ConicSectionCurve.VerticesMajor">
             <summary>
-            Gets the major vertices, a, in local coordinates, which are the points on a conic section that lie closest to the directrices.
+            Gets the major vertices, M, which are the points on a conic section that lie closest to the directrices.
             </summary>
             <value>The vertices.</value>
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromVertexMajorToOrigin">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromVertexMajorToLocalOrigin">
             <summary>
-            Distance from local origin to major vertex, a.
+            Distance, a, from local origin to major vertex.
             </summary>
             <value>a.</value>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._vertexMinorLocal">
-            <summary>
-            The minor vertex, b, in local coordinates, which lies along a line perpendicular to a line passing through the major vertex, a.
-            </summary>
-        </member>
         <member name="P:MPT.Math.Curves.ConicSectionCurve.VerticesMinor">
             <summary>
-            Gets the minor vertices, b, in local coordinates, which lie along a line perpendicular to a line passing through the major vertex, a.
+            Gets the minor vertices, m, which lie along a line perpendicular to a line passing through the major vertex, M, and focus, f.
             </summary>
             <value>The conjugate vertices.</value>
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromVertexMinorToOrigin">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromVertexMinorToMajorAxis">
             <summary>
-            Distance from local origin to minor vertex, b.
+            Distance, b, from the major axis to minor vertex, m.
             </summary>
             <value>The b.</value>
         </member>
-        <member name="F:MPT.Math.Curves.ConicSectionCurve._focusLocal">
+        <member name="F:MPT.Math.Curves.ConicSectionCurve._focus">
             <summary>
-            The focus,c, in local coordinates.
+            The focus.
             </summary>
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.Foci">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.Focus">
             <summary>
-            Gets the foci, c, in local coordinates.
+            Gets the focus, f.
             </summary>
-            <value>The foci.</value>
+            <value>The focus.</value>
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromFocusToOrigin">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromFocusToLocalOrigin">
             <summary>
-            Distance from local origin to the focus, c.
+            Distance, c, from local origin to the focus, f.
             </summary>
             <value>The distance from focus to origin.</value>
         </member>
         <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromFocusToDirectrix">
             <summary>
-            Distance from the focus to the directrix, p.
+            Distance, Xe, from the focus to the directrix.
             </summary>
             <value>The distance from focus to directrix.</value>
         </member>
@@ -2908,16 +2913,67 @@
             The eccentricity, e.
             A measure of how much the conic section deviates from being circular.
             Distance from any point on the conic section to its focus, divided by the perpendicular distance from that point to the nearest directrix.
+            e = c / a;
             </summary>
             <value>The eccentricity.</value>
         </member>
-        <member name="M:MPT.Math.Curves.ConicSectionCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.Directrix">
+            <summary>
+            Gets the directrix, Xe.
+            </summary>
+            <value>The directrix.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.DistanceFromDirectrixToLocalOrigin">
+            <summary>
+            Distance from local origin to the directrix line, Xe.
+            </summary>
+            <value>The distance from directrix to origin.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.ConicSectionCurve.SemilatusRectumDistance">
+            <summary>
+            Distance, p, from the focus to the curve along a line perpendicular to the major axis and the focus.
+            </summary>
+            <value>The p.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.ConicSectionCurve" /> class.
             </summary>
-            <param name="vertexMajor">The major vertex, a.</param>
-            <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-            <param name="localOrigin">The coordinate of the local origin.</param>
+            <param name="vertexMajor">The major vertex, M. 
+            This is taken to be the left apex of circles and ellipses, the right apex of hyperbolas, and the sole apex of parabolas.</param>
+            <param name="focus">The focus, f.</param>
+            <param name="distanceFromLocalOriginToMajorVertex">Distance, a, from local origin to major vertex, M.</param>
+            <param name="tolerance">The tolerance.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double,MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.ConicSectionCurve"/> class.
+            </summary>
+            <param name="vertexMajor">The vertex major.</param>
+            <param name="distanceFromMajorVertexToFocus">The distance from major vertex, M, to focus, f.</param>
+            <param name="distanceFromMajorVertexToLocalOrigin">Distance, a, major vertex, M, to the local origin.</param>
+            <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+            <param name="tolerance">The tolerance.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.initialize(MPT.Math.Coordinates.CartesianCoordinate,System.Double,System.Double)">
+            <summary>
+            Initializes the specified properties.
+            </summary>
+            <param name="vertexMajor">The major vertex, M.</param>
+            <param name="distanceFromMajorVertexToLocalOrigin">The distance from the major vertex, M, to the local origin.</param>
+            <param name="tolerance">The tolerance.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.setTolerances(System.Double)">
+            <summary>
+            Sets the tolerances.
+            </summary>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.SemilatusRectum">
+            <summary>
+            The vertices, p, that lie on the curve along a line perpendicular to the major axis and the focus.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
         </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiusAboutFocusRight(MPT.Math.Coordinates.Angle)">
             <summary>
@@ -3090,12 +3146,49 @@
             <param name="angleRadians">The angle radians.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.ConicSectionCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.getLocalOrigin">
             <summary>
-            Distance from local origin to minor Vertex, b.
+            The coordinate of the local origin.
             </summary>
-            <param name="a">Distance from local origin to major vertex, a.</param>
-            <param name="c">Distance from local origin to the focus, c.</param>
+            <value>The local origin.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.getVertexMajor2">
+            <summary>
+            Gets the vertex major2 coordinate.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.getVerticesMinor">
+            <summary>
+            Gets the minor vertices.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.getVerticesMinor(MPT.Math.Coordinates.CartesianCoordinate)">
+            <summary>
+            Gets the minor vertices.
+            </summary>
+            <param name="point">The point that the minor vertices are offset from.</param>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.getVerticesDirectrix">
+            <summary>
+            Gets the directrix vertices.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.distanceFromFocusToVertexMajor">
+            <summary>
+            Distance from the focus to major vertex.
+            </summary>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionCurve.distanceFromVertexMinorToMajorAxis(System.Double,System.Double)">
+            <summary>
+            Distance, b, from local origin to minor Vertex, b.
+            </summary>
+            <param name="a">Distance, a, from local origin to major vertex, M.</param>
+            <param name="c">Distance, c, from local origin to the focus, f.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.ConicSectionCurve.RadiusAboutOrigin(System.Double)">
@@ -3233,19 +3326,14 @@
             <seealso cref="T:MPT.Math.Curves.ConicSectionCurve" />
             <seealso cref="T:MPT.Math.Curves.ICurveLimits" />
         </member>
-        <member name="P:MPT.Math.Curves.ConicSectionEllipticCurve.Tolerance">
-            <summary>
-            Tolerance to use in all calculations with double types.
-            </summary>
-            <value>The tolerance.</value>
-        </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.ConicSectionEllipticCurve" /> class.
             </summary>
             <param name="vertexMajor">The major vertex, a.</param>
             <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
             <param name="localOrigin">The coordinate of the local origin.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.createParametricEquation">
             <summary>
@@ -3392,7 +3480,19 @@
             <param name="angleRadians">Angle of rotation about the left (-X) focus, in radians.</param>
             <returns></returns>
         </member>
-        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.getVerticesMinor">
+            <summary>
+            Gets the minor vertices.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.getVertexMajor2">
+            <summary>
+            Gets the vertex major2 coordinate.
+            </summary>
+            <returns>CartesianCoordinate.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ConicSectionEllipticCurve.distanceFromVertexMinorToMajorAxis(System.Double,System.Double)">
             <summary>
             Distance from local origin to minor Vertex, b.
             </summary>
@@ -3406,6 +3506,11 @@
             Implements the <see cref="T:MPT.Math.Curves.ICurve" />
             </summary>
             <seealso cref="T:MPT.Math.Curves.ICurve" />
+        </member>
+        <member name="F:MPT.Math.Curves.Curve.DEFAULT_TOLERANCE">
+            <summary>
+            The default tolerance
+            </summary>
         </member>
         <member name="F:MPT.Math.Curves.Curve._tolerance">
             <summary>
@@ -3449,6 +3554,12 @@
             The range of max/min limits that apply to the curve.
             </summary>
             <value>The range.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.Curve.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Curve"/> class.
+            </summary>
+            <param name="tolerance">The tolerance.</param>
         </member>
         <member name="M:MPT.Math.Curves.Curve.XbyRotationAboutOrigin(System.Double)">
             <summary>
@@ -3525,22 +3636,48 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ConicSectionEllipticCurve" />
         </member>
-        <member name="M:MPT.Math.Curves.EllipticalCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="P:MPT.Math.Curves.EllipticalCurve.DistanceFromFocusToLocalOrigin">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.EllipticalCurve" /> class.
+            Distance from local origin to the focus, c.
             </summary>
-            <param name="vertexMajor">The major vertex, a.</param>
-            <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-            <param name="localOrigin">The coordinate of the local origin.</param>
+            <value>The distance from focus to origin.</value>
         </member>
-        <member name="M:MPT.Math.Curves.EllipticalCurve.#ctor(System.Double,System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle)">
+        <member name="P:MPT.Math.Curves.EllipticalCurve.SemilatusRectumDistance">
+            <summary>
+            Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+            </summary>
+            <value>The p.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.EllipticalCurve.Focus2">
+            <summary>
+            Gets the second focus, which lies to the right of the local origin.
+            </summary>
+            <value>The focus2.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.EllipticalCurve.Directrix2">
+            <summary>
+            Gets the second directrix, Xe, which lies to the right of the local origin.
+            </summary>
+            <value>The directrix.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.EllipticalCurve" /> class.
             </summary>
-            <param name="a">Distance from local origin to major vertex, a.</param>
-            <param name="b">Distance from local origin to minor vertex, b.</param>
+            <param name="vertexMajor">The major vertex, M.</param>
+            <param name="distanceFromFocusToLocalOrigin">The distance, c, from focus, f, to local origin.</param>
+            <param name="localOrigin">The coordinate of the local origin.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.#ctor(System.Double,System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.EllipticalCurve" /> class.
+            </summary>
+            <param name="a">Distance, a, from local origin to major vertex, M.</param>
+            <param name="b">Distance, b, from local origin to minor vertex, m.</param>
             <param name="center">The center.</param>
-            <param name="rotation">The rotation.</param>
+            <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.EllipticalCurve.XatY(System.Double)">
             <summary>
@@ -3656,6 +3793,12 @@
             <param name="b">The b.</param>
             <returns>System.Double.</returns>
         </member>
+        <member name="M:MPT.Math.Curves.EllipticalCurve.getLocalOrigin">
+            <summary>
+            The coordinate of the local origin.
+            </summary>
+            <value>The local origin.</value>
+        </member>
         <member name="M:MPT.Math.Curves.EllipticalCurve.Clone">
             <summary>
             Creates a new object that is a copy of the current instance.
@@ -3676,38 +3819,60 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ConicSectionCurve" />
         </member>
-        <member name="F:MPT.Math.Curves.HyperbolicCurve._vertexAsymptoteLocal">
+        <member name="P:MPT.Math.Curves.HyperbolicCurve.DistanceFromFocusToLocalOrigin">
             <summary>
-            The vertex in local coordinates that defines the asymptotes.
+            Distance from local origin to the focus, c.
             </summary>
+            <value>The distance from focus to origin.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.HyperbolicCurve.SemilatusRectumDistance">
+            <summary>
+            Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+            </summary>
+            <value>The p.</value>
         </member>
         <member name="P:MPT.Math.Curves.HyperbolicCurve.Asymptotes">
             <summary>
-            Gets the asymptotes in local coordinates.
+            Gets the asymptotes.
             </summary>
             <value>The asymptotes.</value>
         </member>
-        <member name="M:MPT.Math.Curves.HyperbolicCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="P:MPT.Math.Curves.HyperbolicCurve.Focus2">
             <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.HyperbolicCurve" /> class.
+            Gets the second focus, which lies to the left of the local origin.
             </summary>
-            <param name="vertexMajor">The major vertex, a.</param>
-            <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-            <param name="localOrigin">The coordinate of the local origin.</param>
+            <value>The focus2.</value>
         </member>
-        <member name="M:MPT.Math.Curves.HyperbolicCurve.#ctor(System.Double,System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle)">
+        <member name="P:MPT.Math.Curves.HyperbolicCurve.VerticesMinor2">
+            <summary>
+            Gets the second set of minor vertices, b which lie to the left of the local origin, along a line perpendicular to a line passing through the major vertex, a, and focus.
+            </summary>
+            <value>The conjugate vertices.</value>
+        </member>
+        <member name="P:MPT.Math.Curves.HyperbolicCurve.Directrix2">
+            <summary>
+            Gets the second directrix, Xe, which lies to the left of the local origin.
+            </summary>
+            <value>The directrix.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.#ctor(System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.HyperbolicCurve"/> class.
+            </summary>
+            <param name="a">Distance, a, from local origin to major vertex, M, which lies at the apex of the curve.</param>
+            <param name="vertexMajor">The major vertex, M, which lies at the peak of the parabola.</param>
+            <param name="focus">The focus, f.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.#ctor(System.Double,System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.EllipticalCurve" /> class.
             </summary>
-            <param name="a">Distance from local origin to major vertex, a.</param>
-            <param name="b">Distance from local origin to minor vertex, b.</param>
+            <param name="a">Distance, a, from local origin to major vertex, M, which lies at the apex of the curve.</param>
+            <param name="b">Distance, b, from local origin to minor vertex, M, which defines the asymptote that passes through the center.</param>
             <param name="center">The center.</param>
-            <param name="rotation">The rotation.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.HyperbolicCurve.initialization">
-            <summary>
-            Initializations the object,
-            </summary>
+            <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.HyperbolicCurve.createParametricEquation">
             <summary>
@@ -3852,17 +4017,29 @@
             <param name="coordinate">The coordinate.</param>
             <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.HyperbolicCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.getLocalOrigin">
             <summary>
-            Distance from local origin to minor Vertex, b.
+            The coordinate of the local origin.
             </summary>
-            <param name="a">Distance from local origin to major vertex, a.</param>
-            <param name="c">Distance from local origin to the focus, c.</param>
+            <value>The local origin.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.getVerticesMinor">
+            <summary>
+            Gets the minor vertices.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.HyperbolicCurve.distanceFromVertexMinorToMajorAxis(System.Double,System.Double)">
+            <summary>
+            Distance, b, from minor vertex, m, to the major axis, which is a line that passes through the major vertex, M, and the focus, f.
+            </summary>
+            <param name="a">Distance, a, from local origin to major vertex, M.</param>
+            <param name="c">Distance, c, from local origin to the focus, f.</param>
             <returns>System.Double.</returns>
         </member>
         <member name="M:MPT.Math.Curves.HyperbolicCurve.distanceFromFocusToOrigin(System.Double,System.Double)">
             <summary>
-            Distances from focus to origin.
+            Distance, c, from focus,f, to origin.
             </summary>
             <param name="a">a.</param>
             <param name="b">The b.</param>
@@ -4103,12 +4280,19 @@
             </summary>
             <value>The control point j.</value>
         </member>
-        <member name="M:MPT.Math.Curves.LinearCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="M:MPT.Math.Curves.LinearCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
             <summary>
-            Initializes the line segment to span between the provided points.
+            Initializes the linear curve to pass through the provided points.
             </summary>
             <param name="i">First point of the line.</param>
             <param name="j">Second point of the line.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.LinearCurve.setTolerances(System.Double)">
+            <summary>
+            Sets the tolerances.
+            </summary>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.LinearCurve.createParametricEquation">
             <summary>
@@ -4570,12 +4754,13 @@
             </summary>
             <value>The differential radius change with differential rotation, dr/dθ.</value>
         </member>
-        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.#ctor(System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.#ctor(System.Double,System.Double,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.LogarithmicSpiralCurve"/> class.
             </summary>
             <param name="radiusAtOrigin">The radius at origin.</param>
             <param name="radiusChangeWithRotation">The radius change with rotation.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.LogarithmicSpiralCurve.createParametricEquation">
             <summary>
@@ -4794,23 +4979,17 @@
             </summary>
             <seealso cref="T:MPT.Math.Curves.ConicSectionCurve" />
         </member>
-        <member name="P:MPT.Math.Curves.ParabolicCurve.Directrices">
+        <member name="P:MPT.Math.Curves.ParabolicCurve.DistanceFromFocusToLocalOrigin">
             <summary>
-            Gets the directrices, in local coordinates.
+            Distance from local origin to the focus, c.
             </summary>
-            <value>The directrices.</value>
+            <value>The distance from focus to origin.</value>
         </member>
-        <member name="P:MPT.Math.Curves.ParabolicCurve.DistanceFromDirectrixToOrigin">
+        <member name="P:MPT.Math.Curves.ParabolicCurve.DistanceFromDirectrixToLocalOrigin">
             <summary>
             Distance from local origin to the directrix line, Xe.
             </summary>
             <value>The distance from directrix to origin.</value>
-        </member>
-        <member name="P:MPT.Math.Curves.ParabolicCurve.VerticesMajor">
-            <summary>
-            Gets the major vertices, a, in local coordinates, which are the points on a conic section that lie closest to the directrices.
-            </summary>
-            <value>The vertices.</value>
         </member>
         <member name="P:MPT.Math.Curves.ParabolicCurve.DistanceFromFocusToDirectrix">
             <summary>
@@ -4826,26 +5005,28 @@
             </summary>
             <value>The eccentricity.</value>
         </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,System.Double,MPT.Math.Coordinates.CartesianCoordinate)">
+        <member name="P:MPT.Math.Curves.ParabolicCurve.SemilatusRectumDistance">
+            <summary>
+            Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+            </summary>
+            <value>The p.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.#ctor(MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.CartesianCoordinate,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MPT.Math.Curves.ParabolicCurve"/> class.
+            </summary>
+            <param name="vertexMajor">The major vertex, M, which lies at the peak of the parabola.</param>
+            <param name="focus">The focus, f.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.#ctor(System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle,System.Double)">
             <summary>
             Initializes a new instance of the <see cref="T:MPT.Math.Curves.ParabolicCurve" /> class.
             </summary>
-            <param name="vertexMajor">The major vertex, a.</param>
-            <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-            <param name="localOrigin">The coordinate of the local origin.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.#ctor(System.Double,MPT.Math.Coordinates.CartesianCoordinate,MPT.Math.Coordinates.Angle)">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.EllipticalCurve" /> class.
-            </summary>
-            <param name="a">Distance from local origin to major vertex, a.</param>
+            <param name="a">Distance, a, from major vertex, M, to the focus, f.</param>
             <param name="center">The center.</param>
-            <param name="rotation">The rotation.</param>
-        </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.initialize">
-            <summary>
-            Initializes this instance.
-            </summary>
+            <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+            <param name="tolerance">Tolerance to apply to the curve.</param>
         </member>
         <member name="M:MPT.Math.Curves.ParabolicCurve.createParametricEquation">
             <summary>
@@ -4975,7 +5156,19 @@
             <param name="coordinate">The coordinate.</param>
             <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:MPT.Math.Curves.ParabolicCurve.distanceFromVertexMinorToOrigin(System.Double,System.Double)">
+        <member name="M:MPT.Math.Curves.ParabolicCurve.getLocalOrigin">
+            <summary>
+            The coordinate of the local origin.
+            </summary>
+            <value>The local origin.</value>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.getVerticesMinor">
+            <summary>
+            Gets the minor vertices.
+            </summary>
+            <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        </member>
+        <member name="M:MPT.Math.Curves.ParabolicCurve.distanceFromVertexMinorToMajorAxis(System.Double,System.Double)">
             <summary>
             Distance from local origin to minor Vertex, b.
             </summary>
@@ -5753,15 +5946,10 @@
         </member>
         <member name="T:MPT.Math.Curves.Parametrics.ComponentsLinear.LinearParametricComponent">
             <summary>
-            Class HyperbolicParametricComponent.
+            Class LinearParametricComponent.
             Implements the <see cref="T:MPT.Math.Curves.Parametrics.ParametricEquation`1" />
             </summary>
             <seealso cref="T:MPT.Math.Curves.Parametrics.ParametricEquation`1" />
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.ComponentsLinear.LinearParametricComponent.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:MPT.Math.Curves.Parametrics.ComponentsLinear.LinearParametricComponent" /> class that only returns 0.
-            </summary>
         </member>
         <member name="M:MPT.Math.Curves.Parametrics.ComponentsLinear.LinearParametricComponent.#ctor(MPT.Math.Curves.Parametrics.ValueAtPosition{System.Double},MPT.Math.Curves.Parametrics.ComponentsLinear.LinearParametricComponent)">
             <summary>
@@ -6428,10 +6616,11 @@
             </summary>
             <param name="parent">The parent.</param>
         </member>
-        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.Differentiate">
+        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.Differentiate(System.Int32)">
             <summary>
             Returns the differential of the current parametric function.
             </summary>
+            <param name="index">The index to differentiate to, which must be greater than 0.</param>
             <returns>HyperbolicParametric.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Index must not be greater than {_components.Count - 1} in order to differentiate.</exception>
         </member>
@@ -6443,18 +6632,6 @@
             <returns>HyperbolicParametric.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Index: {index} must not be less than 0.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Index: {index} must not be greater than {_components.Count - 1} in order to differentiate.</exception>
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.DifferentialFirst">
-            <summary>
-            Returns the first differential of the parametric function.
-            </summary>
-            <returns>HyperbolicParametric.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.DifferentialSecond">
-            <summary>
-            Returns the second differential of the parametric function.
-            </summary>
-            <returns>HyperbolicParametric.</returns>
         </member>
         <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.HasDifferential">
             <summary>
@@ -6503,22 +6680,6 @@
             </summary>
             <param name="parameter">The parameter, such as relative position between 0 &amp; 1, or the angle in radians.</param>
             <returns>T1.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.op_Multiply(MPT.Math.Curves.Parametrics.CurveParametricComponents{`0,`1,`2},System.Double)">
-            <summary>
-            Implements the * operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.op_Division(MPT.Math.Curves.Parametrics.CurveParametricComponents{`0,`1,`2},System.Double)">
-            <summary>
-            Implements the / operator.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>The result of the operator.</returns>
         </member>
         <member name="M:MPT.Math.Curves.Parametrics.CurveParametricComponents`3.Clone">
             <summary>
@@ -6780,12 +6941,6 @@
             Creates a new object that is a copy of the current instance.
             </summary>
             <returns>A new object that is a copy of this instance.</returns>
-        </member>
-        <member name="M:MPT.Math.Curves.Parametrics.Linear.LinearParametricP.CloneParametric">
-            <summary>
-            Clones the curve.
-            </summary>
-            <returns>LinearCurve.</returns>
         </member>
         <member name="T:MPT.Math.Curves.Parametrics.Linear.LinearParametricX">
             <summary>

@@ -1,7 +1,4 @@
-﻿
-using MPT.Math.Coordinates;
-using MPT.Math.NumberTypeExtensions;
-using NMath = System.Math;
+﻿using MPT.Math.Coordinates;
 using NUnit.Framework;
 using System;
 using MPT.Math.Curves;
@@ -538,7 +535,7 @@ namespace MPT.Math.UnitTests.Curves
             CartesianCoordinate coordinateJ = new CartesianCoordinate(4, 3);
             LinearCurve linearCurve = new LinearCurve(coordinateI, coordinateJ);
 
-            Assert.AreEqual("MPT.Math.Curves.LinearCurve - X-Intercept: -2, Y-Intercept: 1, Slope: 0.5", linearCurve.ToString());
+            Assert.AreEqual("LinearCurve - X-Intercept: -2, Y-Intercept: 1, Slope: 0.5", linearCurve.ToString());
         }
 
         [TestCase(-5, 6, -3, -2, 1, 5, -7, 3, -4.411765, 3.647059)] // sloped perpendicular, within points

@@ -54,7 +54,8 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="radiusAtOrigin">The radius at origin.</param>
         /// <param name="radiusChangeWithRotation">The radius change with rotation.</param>
-        public LogarithmicSpiralCurve(double radiusAtOrigin, double radiusChangeWithRotation)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public LogarithmicSpiralCurve(double radiusAtOrigin, double radiusChangeWithRotation, double tolerance = DEFAULT_TOLERANCE) : base(tolerance)
         {
             RadiusAtOrigin = radiusAtOrigin;
             RadiusChangeWithRotation = radiusChangeWithRotation;

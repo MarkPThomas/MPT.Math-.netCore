@@ -12,8 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 
-
-using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
 using MPT.Math.Geometry;
 using MPT.Math.NumberTypeExtensions;
@@ -21,7 +19,6 @@ using MPT.Math.Vectors;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves;
-using MPT.Math.Trigonometry;
 
 namespace MPT.Math.Curves
 {
@@ -48,12 +45,7 @@ namespace MPT.Math.Curves
             set
             {
                 base.Tolerance = value;
-                _localRotation.Tolerance = _tolerance;
-                _directrixILocal.Tolerance = _tolerance;
-                _directrixJLocal.Tolerance = _tolerance;
-                _vertexMajorLocal.Tolerance = _tolerance;
-                _vertexMinorLocal.Tolerance = _tolerance;
-                _focusLocal.Tolerance = _tolerance;
+                setTolerances(value);
             }
         }
 
@@ -65,160 +57,216 @@ namespace MPT.Math.Curves
         /// <summary>
         /// The rotational offset of local coordinates from global coordinates.
         /// </summary>
-        protected Angle _localRotation;
+        protected Angle _rotation;
         /// <summary>
         /// Gets the rotational offset of local coordinates from global coordinates.
         /// </summary>
         /// <value>The local off set rotation.</value>
-        public Angle LocalRotation => _localRotation;
+        public Angle Rotation => _rotation;
 
-        /// <summary>
-        /// The coordinate of the local origin.
-        /// </summary>
-        protected CartesianCoordinate _originLocal;
         /// <summary>
         /// The coordinate of the local origin.
         /// </summary>
         /// <value>The local origin.</value>
-        public CartesianCoordinate LocalOrigin => _originLocal;
+        public CartesianCoordinate LocalOrigin => getLocalOrigin();
 
         /// <summary>
-        /// The I-coordinate, in local coordinates, that lies on the directrix, Xe.
+        /// The major vertex. This is taken to be the left apex of circles and ellpses, the right apex of hyperbolas, and the sole apex of parabolas.
         /// </summary>
-        protected CartesianCoordinate _directrixILocal;
+        protected CartesianCoordinate _vertexMajor;
         /// <summary>
-        /// The J-coordinate, in local coordinates, that lies on the directrix, Xe.
-        /// </summary>
-        protected CartesianCoordinate _directrixJLocal;
-        /// <summary>
-        /// Gets the directrices, Xe, in local coordinates.
-        /// </summary>
-        /// <value>The directrices.</value>
-        public virtual Tuple<LinearCurve, LinearCurve> Directrices
-        {
-            get
-            {
-                return new Tuple<LinearCurve, LinearCurve>
-                    (
-                    new LinearCurve(_directrixILocal, _directrixJLocal), 
-                    new LinearCurve(-1 * _directrixILocal, -1 * _directrixJLocal)
-                    );
-            }
-        }
-        /// <summary>
-        /// Distance from local origin to the directrix line, Xe.
-        /// </summary>
-        /// <value>The distance from directrix to origin.</value>
-        public virtual double DistanceFromDirectrixToOrigin => Eccentricity == 0 ? double.PositiveInfinity : DistanceFromVertexMajorToOrigin.Squared() / DistanceFromFocusToOrigin;
-
-        /// <summary>
-        /// The major vertex, a, in local coordinates, which is the point on a conic section that lies closest to the directrix.
-        /// </summary>
-        protected CartesianCoordinate _vertexMajorLocal;
-        /// <summary>
-        /// Gets the major vertices, a, in local coordinates, which are the points on a conic section that lie closest to the directrices.
+        /// Gets the major vertices, M, which are the points on a conic section that lie closest to the directrices.
         /// </summary>
         /// <value>The vertices.</value>
-        public virtual Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMajor 
+        public virtual Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMajor
         {
             get
-            {
-                return new Tuple<CartesianCoordinate, CartesianCoordinate>(_vertexMajorLocal, -1 * _vertexMajorLocal);
+            {  
+                return new Tuple<CartesianCoordinate, CartesianCoordinate>(_vertexMajor, getVertexMajor2());
             }
         }
         /// <summary>
-        /// Distance from local origin to major vertex, a.
+        /// Distance, a, from local origin to major vertex.
         /// </summary>
         /// <value>a.</value>
-        public double DistanceFromVertexMajorToOrigin { get; }
+        public double DistanceFromVertexMajorToLocalOrigin { get; private set; }
 
         /// <summary>
-        /// The minor vertex, b, in local coordinates, which lies along a line perpendicular to a line passing through the major vertex, a.
-        /// </summary>
-        protected CartesianCoordinate _vertexMinorLocal;
-        /// <summary>
-        /// Gets the minor vertices, b, in local coordinates, which lie along a line perpendicular to a line passing through the major vertex, a.
+        /// Gets the minor vertices, m, which lie along a line perpendicular to a line passing through the major vertex, M, and focus, f.
         /// </summary>
         /// <value>The conjugate vertices.</value>
-        public Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMinor 
+        public virtual Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMinor
         {
             get
-            {
-                return new Tuple<CartesianCoordinate, CartesianCoordinate>(_vertexMinorLocal, -1 * _vertexMinorLocal);
+            {  
+                return getVerticesMinor();
             }
         }
         /// <summary>
-        /// Distance from local origin to minor vertex, b.
+        /// Distance, b, from the major axis to minor vertex, m.
         /// </summary>
         /// <value>The b.</value>
-        public virtual double DistanceFromVertexMinorToOrigin { get; }
+        public double DistanceFromVertexMinorToMajorAxis => distanceFromVertexMinorToMajorAxis(DistanceFromVertexMajorToLocalOrigin, DistanceFromFocusToLocalOrigin);
+
 
         /// <summary>
-        /// The focus,c, in local coordinates.
+        /// The focus.
         /// </summary>
-        protected CartesianCoordinate _focusLocal;
+        protected CartesianCoordinate _focus;
         /// <summary>
-        /// Gets the foci, c, in local coordinates.
+        /// Gets the focus, f.
         /// </summary>
-        /// <value>The foci.</value>
-        public virtual Tuple<CartesianCoordinate, CartesianCoordinate> Foci
-        {
-            get
-            {
-                return new Tuple<CartesianCoordinate, CartesianCoordinate>(_focusLocal, -1 * _focusLocal);
-            }
-        }
+        /// <value>The focus.</value>
+        public CartesianCoordinate Focus => _focus;
+        //ncrunch: no coverage start
         /// <summary>
-        /// Distance from local origin to the focus, c.
+        /// Distance, c, from local origin to the focus, f.
         /// </summary>
         /// <value>The distance from focus to origin.</value>
-        public virtual double DistanceFromFocusToOrigin { get; }
+        public virtual double DistanceFromFocusToLocalOrigin { get; }
+        //ncrunch: no coverage end
 
         /// <summary>
-        /// Distance from the focus to the directrix, p.
+        /// Distance, Xe, from the focus to the directrix.
         /// </summary>
         /// <value>The distance from focus to directrix.</value>
-        public virtual double DistanceFromFocusToDirectrix => Eccentricity == 0 ? 
-            double.PositiveInfinity : 
-            DistanceFromFocusToOrigin - DistanceFromDirectrixToOrigin;
+        public virtual double DistanceFromFocusToDirectrix => Eccentricity == 0 ?
+            double.PositiveInfinity :
+            (DistanceFromFocusToLocalOrigin - DistanceFromDirectrixToLocalOrigin).Abs();
 
 
         /// <summary>
         /// The eccentricity, e.
         /// A measure of how much the conic section deviates from being circular.
         /// Distance from any point on the conic section to its focus, divided by the perpendicular distance from that point to the nearest directrix.
+        /// e = c / a;
         /// </summary>
         /// <value>The eccentricity.</value>
-        public virtual double Eccentricity => DistanceFromFocusToOrigin / DistanceFromVertexMajorToOrigin;
+        public virtual double Eccentricity => DistanceFromFocusToLocalOrigin / DistanceFromVertexMajorToLocalOrigin;
+
+
+        /// <summary>
+        /// Gets the directrix, Xe.
+        /// </summary>
+        /// <value>The directrix.</value>
+        public virtual LinearCurve Directrix
+        {
+            get
+            {
+                Tuple<CartesianCoordinate, CartesianCoordinate> directrices = getVerticesDirectrix();
+                return new LinearCurve(directrices.Item1, directrices.Item2, _tolerance); 
+            }
+        }
+        /// <summary>
+        /// Distance from local origin to the directrix line, Xe.
+        /// </summary>
+        /// <value>The distance from directrix to origin.</value>
+        public virtual double DistanceFromDirectrixToLocalOrigin => Eccentricity == 0 ? 
+            double.PositiveInfinity : 
+            DistanceFromVertexMajorToLocalOrigin.Squared() / DistanceFromFocusToLocalOrigin;
+
+        //ncrunch: no coverage start
+        /// <summary>
+        /// Distance, p, from the focus to the curve along a line perpendicular to the major axis and the focus.
+        /// </summary>
+        /// <value>The p.</value>
+        public virtual double SemilatusRectumDistance { get; }
+        //ncrunch: no coverage end
         #endregion
 
-        #region Initialization                        
+        #region Initialization           
         /// <summary>
         /// Initializes a new instance of the <see cref="ConicSectionCurve" /> class.
         /// </summary>
-        /// <param name="vertexMajor">The major vertex, a.</param>
-        /// <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-        /// <param name="localOrigin">The coordinate of the local origin.</param>
-        protected ConicSectionCurve(CartesianCoordinate vertexMajor, double distanceFromFocusToLocalOrigin, CartesianCoordinate localOrigin)
+        /// <param name="vertexMajor">The major vertex, M. 
+        /// This is taken to be the left apex of circles and ellipses, the right apex of hyperbolas, and the sole apex of parabolas.</param>
+        /// <param name="focus">The focus, f.</param>
+        /// <param name="distanceFromMajorVertexToLocalOrigin">Distance, a, major vertex, M, to the local origin.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        protected ConicSectionCurve(
+            CartesianCoordinate vertexMajor,
+            CartesianCoordinate focus,
+            double distanceFromMajorVertexToLocalOrigin,
+            double tolerance = DEFAULT_TOLERANCE)
         {
-            DistanceFromVertexMajorToOrigin = AlgebraLibrary.SRSS(vertexMajor.X - localOrigin.X, vertexMajor.Y - localOrigin.Y);
-            DistanceFromFocusToOrigin = distanceFromFocusToLocalOrigin;
-            DistanceFromVertexMinorToOrigin = distanceFromVertexMinorToOrigin(DistanceFromVertexMajorToOrigin, DistanceFromFocusToOrigin);
+            _rotation = Angle.CreateFromPoints(focus, vertexMajor);
+            if (_rotation.Radians.IsEqualTo(Numbers.Pi, tolerance))
+            {
+                _rotation = Angle.Origin();
+            }
+            _focus = focus;
 
-            LinearCurve localAxisX = new LinearCurve(localOrigin, vertexMajor);
-            _localRotation = localAxisX.TangentVector().Angle();
-            _originLocal = localOrigin;
-            _focusLocal = new CartesianCoordinate(DistanceFromFocusToOrigin, 0);
-            _vertexMajorLocal = new CartesianCoordinate(DistanceFromVertexMajorToOrigin, 0);
-            _vertexMinorLocal = new CartesianCoordinate(0, DistanceFromVertexMinorToOrigin);
-            _directrixILocal = new CartesianCoordinate(DistanceFromDirectrixToOrigin, 1);
-            _directrixJLocal = new CartesianCoordinate(DistanceFromDirectrixToOrigin, -1);
+            initialize(vertexMajor, distanceFromMajorVertexToLocalOrigin, tolerance);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConicSectionCurve"/> class.
+        /// </summary>
+        /// <param name="vertexMajor">The vertex major.</param>
+        /// <param name="distanceFromMajorVertexToFocus">The distance from major vertex, M, to focus, f.</param>
+        /// <param name="distanceFromMajorVertexToLocalOrigin">Distance, a, major vertex, M, to the local origin.</param>
+        /// <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        protected ConicSectionCurve(
+            CartesianCoordinate vertexMajor,
+            double distanceFromMajorVertexToFocus,
+            double distanceFromMajorVertexToLocalOrigin,
+            Angle rotation,
+            double tolerance = DEFAULT_TOLERANCE)
+        {
+            _rotation = rotation;
+            _focus = vertexMajor.OffsetCoordinate(-distanceFromMajorVertexToFocus, rotation);
+
+            initialize(vertexMajor, distanceFromMajorVertexToLocalOrigin, tolerance);
+        }
+
+        /// <summary>
+        /// Initializes the specified properties.
+        /// </summary>
+        /// <param name="vertexMajor">The major vertex, M.</param>
+        /// <param name="distanceFromMajorVertexToLocalOrigin">The distance from the major vertex, M, to the local origin.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        private void initialize(
+            CartesianCoordinate vertexMajor,
+            double distanceFromMajorVertexToLocalOrigin,
+            double tolerance = DEFAULT_TOLERANCE)
+        {
+            _vertexMajor = vertexMajor;
+            DistanceFromVertexMajorToLocalOrigin = distanceFromMajorVertexToLocalOrigin;
 
             _radiusFromRightFocus = new RadiusFocusParametric(this);
+
+            _limitStartDefault = _vertexMajor;
+            _limitEndDefault = _limitStartDefault;
+
+            setTolerances(tolerance);
+        }
+
+        /// <summary>
+        /// Sets the tolerances.
+        /// </summary>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        protected void setTolerances(double tolerance = DEFAULT_TOLERANCE)
+        {
+            _rotation.Tolerance = tolerance;
+            _focus.Tolerance = tolerance;
+            _vertexMajor.Tolerance = tolerance;
         }
         #endregion
 
-        #region Methods: Properties  
+        #region Methods: Properties          
+        /// <summary>
+        /// The vertices, p, that lie on the curve along a line perpendicular to the major axis and the focus.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        public Tuple<CartesianCoordinate, CartesianCoordinate> SemilatusRectum()
+        {
+            CartesianCoordinate localCoordinate1 = new CartesianCoordinate(SemilatusRectumDistance, YatX(SemilatusRectumDistance));
+            CartesianCoordinate localCoordinate2 = new CartesianCoordinate(SemilatusRectumDistance, -YatX(SemilatusRectumDistance));
+            // TODO: Handle conversion from local to global coordinates.
+            throw new NotImplementedException();
+        }
+
         #region Radius
         #region Focus, Right
         /// <summary>
@@ -454,7 +502,7 @@ namespace MPT.Math.Curves
         {
             double x = XbyRotationAboutOrigin(angleRadians);
             double y = XbyRotationAboutOrigin(angleRadians);
-            return Trig.ArcTan(y / (x - DistanceFromFocusToOrigin));
+            return Trig.ArcTan(y / (x - DistanceFromFocusToLocalOrigin));
         }
         #endregion
         #region Focus, Left
@@ -496,19 +544,110 @@ namespace MPT.Math.Curves
         {
             double x = XbyRotationAboutOrigin(angleRadians);
             double y = XbyRotationAboutOrigin(angleRadians);
-            return Trig.ArcTan(y / (x + DistanceFromFocusToOrigin));
+            return Trig.ArcTan(y / (x + DistanceFromFocusToLocalOrigin));
         }
         #endregion
         #endregion
 
-        #region Methods: Protected Abstract       
+        #region Methods: Protected   
         /// <summary>
-        /// Distance from local origin to minor Vertex, b.
+        /// The coordinate of the local origin.
         /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
-        /// <param name="c">Distance from local origin to the focus, c.</param>
+        /// <value>The local origin.</value>
+        protected abstract CartesianCoordinate getLocalOrigin();
+
+        /// <summary>
+        /// Gets the vertex major2 coordinate.
+        /// </summary>
+        /// <returns>CartesianCoordinate.</returns>
+        protected virtual CartesianCoordinate getVertexMajor2()
+        {
+            return _vertexMajor;
+        }
+
+        /// <summary>
+        /// Gets the minor vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected abstract Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesMinor();
+        /// <summary>
+        /// Gets the minor vertices.
+        /// </summary>
+        /// <param name="point">The point that the minor vertices are offset from.</param>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesMinor(CartesianCoordinate point)
+        {
+            Angle rotation = new Angle(_rotation.Radians + Numbers.PiOver2);
+            return new Tuple<CartesianCoordinate, CartesianCoordinate>(
+                point.OffsetCoordinate(DistanceFromVertexMinorToMajorAxis, rotation),
+                point.OffsetCoordinate(-DistanceFromVertexMinorToMajorAxis, rotation));
+        }
+
+        /// <summary>
+        /// Gets the directrix vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected virtual Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesDirectrix()
+        {
+            Angle rotation = new Angle(_rotation.Radians + Numbers.PiOver2);
+            CartesianCoordinate directrixIntercept = _focus.OffsetCoordinate(-DistanceFromFocusToDirectrix, _rotation);
+            return new Tuple<CartesianCoordinate, CartesianCoordinate>(
+                directrixIntercept,
+                directrixIntercept.OffsetCoordinate(1, rotation));
+        }
+
+        /// <summary>
+        /// Distance from the focus to major vertex.
+        /// </summary>
         /// <returns>System.Double.</returns>
-        protected abstract double distanceFromVertexMinorToOrigin(double a, double c);
+        protected double distanceFromFocusToVertexMajor()
+        {
+            return new CartesianOffset(_focus, _vertexMajor).Length();
+        }
+
+        /// <summary>
+        /// Distance, b, from local origin to minor Vertex, b.
+        /// </summary>
+        /// <param name="a">Distance, a, from local origin to major vertex, M.</param>
+        /// <param name="c">Distance, c, from local origin to the focus, f.</param>
+        /// <returns>System.Double.</returns>
+        protected abstract double distanceFromVertexMinorToMajorAxis(double a, double c);
+        #endregion
+
+        #region Methods: Protected Static        
+        /// <summary>
+        /// Gets the major vertex.
+        /// </summary>
+        /// <param name="localOrigin">The local origin.</param>
+        /// <param name="a">a.</param>
+        /// <param name="rotation">The rotation.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        protected static CartesianCoordinate getMajorVertex(CartesianCoordinate localOrigin, double a, Angle rotation)
+        {
+            return localOrigin.OffsetCoordinate(a, rotation);
+        }
+
+        /// <summary>
+        /// Gets the distance from major vertex to local origin.
+        /// </summary>
+        /// <param name="vertexMajor">The vertex major.</param>
+        /// <param name="localOrigin">The local origin.</param>
+        /// <returns>System.Double.</returns>
+        protected static double getDistanceFromMajorVertexToLocalOrigin(CartesianCoordinate vertexMajor, CartesianCoordinate localOrigin)
+        {
+            return CartesianOffset.Separation(vertexMajor, localOrigin);
+        }
+
+        /// <summary>
+        /// Gets the rotation.
+        /// </summary>
+        /// <param name="vertexMajor">The vertex major.</param>
+        /// <param name="localOrigin">The local origin.</param>
+        /// <returns>Angle.</returns>
+        protected static Angle getRotation(CartesianCoordinate vertexMajor, CartesianCoordinate localOrigin)
+        {
+            return Angle.CreateFromPoints(localOrigin, vertexMajor);
+        }
         #endregion
 
         #region ICurvePositionPolar   
@@ -569,7 +708,19 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        public abstract bool IsIntersectingCoordinate(CartesianCoordinate coordinate);
+        public bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
+        {
+            double tolerance = Generics.GetTolerance(coordinate, Tolerance);
+            double[] ysAtX = YsAtX(coordinate.X);
+            for (int i = 0; i < ysAtX.Length; i++)
+            {
+                if (ysAtX[i].IsEqualTo(coordinate.Y, tolerance))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
 
         #region ICurveLimits

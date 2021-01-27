@@ -139,6 +139,19 @@ namespace MPT.Math.Coordinates
         }
 
         /// <summary>
+        /// Creates an Angle from two points.
+        /// The angle is assumed to lie between the line formed by the two points, and the positive horizontal axis.
+        /// </summary>
+        /// <param name="point1">The first point.</param>
+        /// <param name="point2">The second point.</param>
+        /// <returns>Angle.</returns>
+        public static Angle CreateFromPoints(CartesianCoordinate point1, CartesianCoordinate point2)
+        {
+            Vector vector = new Vector(point1, point2);
+            return vector.Angle();
+        }
+
+        /// <summary>
         /// Converts radians to degrees.
         /// </summary>
         /// <param name="radians">The angle in radians.</param>

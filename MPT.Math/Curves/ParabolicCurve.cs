@@ -29,46 +29,24 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ConicSectionCurve" />
     public class ParabolicCurve : ConicSectionCurve
     {
-        #region Properties
+        #region Properties       
         /// <summary>
-        /// Gets the directrices, in local coordinates.
+        /// Distance from local origin to the focus, c.
         /// </summary>
-        /// <value>The directrices.</value>
-        public override Tuple<LinearCurve, LinearCurve> Directrices
-        {
-            get
-            {
-                return new Tuple<LinearCurve, LinearCurve>
-                    (
-                    new LinearCurve(_directrixILocal, _directrixJLocal),
-                    new LinearCurve(_directrixILocal, _directrixJLocal)
-                    );
-            }
-        }
+        /// <value>The distance from focus to origin.</value>
+        public override double DistanceFromFocusToLocalOrigin => distanceFromFocusToVertexMajor();
+
         /// <summary>
         /// Distance from local origin to the directrix line, Xe.
         /// </summary>
         /// <value>The distance from directrix to origin.</value>
-        public override double DistanceFromDirectrixToOrigin => -1 * DistanceFromVertexMajorToOrigin;
-
-        /// <summary>
-        /// Gets the major vertices, a, in local coordinates, which are the points on a conic section that lie closest to the directrices.
-        /// </summary>
-        /// <value>The vertices.</value>
-        public override Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMajor
-        {
-            get
-            {
-                return new Tuple<CartesianCoordinate, CartesianCoordinate>(_vertexMajorLocal, _vertexMajorLocal);
-            }
-        }
+        public override double DistanceFromDirectrixToLocalOrigin => DistanceFromFocusToLocalOrigin;
 
         /// <summary>
         /// Distance from the focus to the directrix, p.
         /// </summary>
         /// <value>The distance from focus to directrix.</value>
-        public override double DistanceFromFocusToDirectrix => 2 * DistanceFromVertexMajorToOrigin;
-
+        public override double DistanceFromFocusToDirectrix => SemilatusRectumDistance;
 
         /// <summary>
         /// The eccentricity, e.
@@ -77,42 +55,43 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <value>The eccentricity.</value>
         public override double Eccentricity => 1;
+
+        /// <summary>
+        /// Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+        /// </summary>
+        /// <value>The p.</value>
+        public override double SemilatusRectumDistance => 2 * DistanceFromFocusToLocalOrigin;
         #endregion
 
-        #region Initialization        
+        #region Initialization            
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParabolicCurve"/> class.
+        /// </summary>
+        /// <param name="vertexMajor">The major vertex, M, which lies at the peak of the parabola.</param>
+        /// <param name="focus">The focus, f.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public ParabolicCurve(
+            CartesianCoordinate vertexMajor, 
+            CartesianCoordinate focus, 
+            double tolerance = DEFAULT_TOLERANCE) : base(vertexMajor, focus, 0, tolerance)
+        {
+
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ParabolicCurve" /> class.
         /// </summary>
-        /// <param name="vertexMajor">The major vertex, a.</param>
-        /// <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-        /// <param name="localOrigin">The coordinate of the local origin.</param>
-        public ParabolicCurve(
-            CartesianCoordinate vertexMajor,
-            double distanceFromFocusToLocalOrigin,
-            CartesianCoordinate localOrigin)
-            : base(vertexMajor, distanceFromFocusToLocalOrigin, localOrigin)
-        {
-            initialize();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EllipticalCurve" /> class.
-        /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
+        /// <param name="a">Distance, a, from major vertex, M, to the focus, f.</param>
         /// <param name="center">The center.</param>
-        /// <param name="rotation">The rotation.</param>
-        public ParabolicCurve(double a, CartesianCoordinate center, Angle rotation) : base(center.OffsetCoordinate(a, rotation), a, center)
+        /// <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public ParabolicCurve(
+            double a,
+            CartesianCoordinate center,
+            Angle rotation,
+            double tolerance = DEFAULT_TOLERANCE) : base(center, a, 0, rotation, tolerance)
         {
-            initialize();
-        }
-
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        private void initialize()
-        {
-            _directrixILocal = new CartesianCoordinate(-1 * DistanceFromDirectrixToOrigin, 1);
-            _directrixJLocal = new CartesianCoordinate(-1 * DistanceFromDirectrixToOrigin, -1);
+            _focus = _vertexMajor.OffsetCoordinate(a, rotation);
         }
 
         /// <summary>
@@ -133,7 +112,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XatY(double y)
         {
-            return y.Squared() / (4 * DistanceFromVertexMajorToOrigin);
+            return y.Squared() / (4 * DistanceFromVertexMajorToLocalOrigin);
         }
 
         /// <summary>
@@ -143,7 +122,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YatX(double x)
         {
-            return 2 * (DistanceFromVertexMajorToOrigin * x).Sqrt();
+            return 2 * (DistanceFromVertexMajorToLocalOrigin * x).Sqrt();
         }
 
         /// <summary>
@@ -153,7 +132,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutFocusRight(double angleRadians)
         {
-            return DistanceFromVertexMajorToOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
+            return DistanceFromVertexMajorToLocalOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
         }
 
         /// <summary>
@@ -174,11 +153,11 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString()
-                + " - Center: " + _originLocal
-                + ", - Rotation: " + _localRotation
-                + ", a: " + DistanceFromVertexMajorToOrigin
-                +", I: " + _limitStartDefault + ", J: " + _limitEndDefault;
+            return typeof(ParabolicCurve).Name
+                + " - Center: {X: " + LocalOrigin.X + ", Y: " + LocalOrigin.Y + "}"
+                + ", Rotation: " + _rotation.Radians + " rad"
+                + ", c: " + DistanceFromFocusToLocalOrigin
+                + ", I: {X: " + _limitStartDefault.X + ", Y: " + _limitStartDefault.Y + "}, J: {X: " + _limitEndDefault.X + ", Y: " + _limitEndDefault.Y + "}";
         }
         #endregion
         
@@ -299,16 +278,6 @@ namespace MPT.Math.Curves
         {
             throw new NotImplementedException();
         }
-
-        /// <summary>
-        /// Provided point lies on the curve.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region Methods: Static
@@ -317,16 +286,34 @@ namespace MPT.Math.Curves
         #endregion
         #endregion
 
-        #region Methods: Protected        
+        #region Methods: Protected  
+        /// <summary>
+        /// The coordinate of the local origin.
+        /// </summary>
+        /// <value>The local origin.</value>
+        protected override CartesianCoordinate getLocalOrigin()
+        {
+            return _vertexMajor;
+        }
+
+        /// <summary>
+        /// Gets the minor vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected override Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesMinor()
+        {
+            return getVerticesMinor(_focus);
+        }
+
         /// <summary>
         /// Distance from local origin to minor Vertex, b.
         /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
-        /// <param name="c">Distance from local origin to the focus, c.</param>
+        /// <param name="a">Distance, a, from local origin to major vertex, M.</param>
+        /// <param name="c">Distance, c, from local origin to the focus, f.</param>
         /// <returns>System.Double.</returns>
-        protected override double distanceFromVertexMinorToOrigin(double a, double c)
+        protected override double distanceFromVertexMinorToMajorAxis(double a, double c)
         {
-            return 0;
+            return 2 * c;
         }
         #endregion
 
@@ -346,7 +333,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public ParabolicCurve CloneCurve()
         {
-            ParabolicCurve curve = new ParabolicCurve(_vertexMajorLocal, DistanceFromFocusToOrigin, _originLocal);
+            ParabolicCurve curve = new ParabolicCurve(_vertexMajor, _focus, _tolerance);
             curve._range = Range.CloneRange();
             return curve;
         }

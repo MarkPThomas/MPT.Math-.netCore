@@ -143,7 +143,7 @@ namespace MPT.Math.Coordinates
         /// <returns>System.Double.</returns>
         public Angle Delta()
         {
-            return (J - I);
+            return (J.RadiansRaw - I.RadiansRaw);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace MPT.Math.Coordinates
         /// <returns>System.Double.</returns>
         public double LengthArc(double radius = 1)
         {
-            return radius * Delta().Radians;
+            return radius * Delta().RadiansRaw;
         }
         #endregion
 

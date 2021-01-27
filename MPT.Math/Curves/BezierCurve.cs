@@ -63,7 +63,10 @@ namespace MPT.Math.Curves
         /// <param name="handleStart">The handle start.</param>
         /// <param name="handleEnd">The handle end.</param>
         /// <param name="numberOfControlPoints">The number of control points.</param>
-        public BezierCurve(CurveHandle handleStart, CurveHandle handleEnd, int numberOfControlPoints = _maxNumberOfControlPoints)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public BezierCurve(CurveHandle handleStart, CurveHandle handleEnd, 
+            int numberOfControlPoints = _maxNumberOfControlPoints, 
+            double tolerance = DEFAULT_TOLERANCE) : base(tolerance)
         {
             NumberOfControlPoints = getNumberOfControlPoints(numberOfControlPoints);
 
@@ -77,7 +80,11 @@ namespace MPT.Math.Curves
         /// <param name="pointI">The point i.</param>
         /// <param name="pointJ">The point j.</param>
         /// <param name="numberOfControlPoints">The number of control points.</param>
-        public BezierCurve(CartesianCoordinate pointI, CartesianCoordinate pointJ, int numberOfControlPoints = _maxNumberOfControlPoints)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public BezierCurve(
+            CartesianCoordinate pointI, CartesianCoordinate pointJ, 
+            int numberOfControlPoints = _maxNumberOfControlPoints, 
+            double tolerance = DEFAULT_TOLERANCE) : base(tolerance)
         {
             NumberOfControlPoints = getNumberOfControlPoints(numberOfControlPoints);
 
@@ -91,7 +98,11 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="length">The length.</param>
         /// <param name="numberOfControlPoints">The number of control points.</param>
-        public BezierCurve(double length, int numberOfControlPoints = _maxNumberOfControlPoints)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public BezierCurve(
+            double length, 
+            int numberOfControlPoints = _maxNumberOfControlPoints, 
+            double tolerance = DEFAULT_TOLERANCE) : base(tolerance)
         {
             NumberOfControlPoints = getNumberOfControlPoints(numberOfControlPoints);
 

@@ -147,6 +147,19 @@ namespace MPT.Math.Coordinates
         }
         #endregion
 
+        #region Methods: Static        
+        /// <summary>
+        /// The separation distance between the provided points.
+        /// </summary>
+        /// <param name="coord1">The coord1.</param>
+        /// <param name="coord2">The coord2.</param>
+        /// <returns>System.Double.</returns>
+        public static double Separation(CartesianCoordinate coord1, CartesianCoordinate coord2)
+        {
+            return AlgebraLibrary.SRSS((coord2.X- coord1.X), (coord2.Y - coord1.Y));
+        }
+        #endregion
+
         #region Operators & Equals
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.

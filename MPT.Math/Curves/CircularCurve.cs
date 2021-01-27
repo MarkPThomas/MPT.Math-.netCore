@@ -27,25 +27,30 @@ namespace MPT.Math.Curves
     /// <seealso cref="MPT.Math.Curves.ConicSectionEllipticCurve" />
     public class CircularCurve : ConicSectionEllipticCurve
     {
-        #region Properties        
+        #region Properties    
+        /// <summary>
+        /// Distance from local origin to the focus, c.
+        /// </summary>
+        /// <value>The distance from focus to origin.</value>
+        public override double DistanceFromFocusToLocalOrigin => 0;
+
         /// <summary>
         /// Gets the center control point.
         /// </summary>
         /// <value>The center control point</value>
-        public CartesianCoordinate Center => _focusLocal;
+        public CartesianCoordinate Center => _focus;
 
         /// <summary>
         /// Gets the radius.
         /// </summary>
         /// <value>The radius.</value>
-        public double Radius => DistanceFromVertexMajorToOrigin;
+        public double Radius => DistanceFromVertexMajorToLocalOrigin;
 
         /// <summary>
         /// Gets the curvature.
         /// </summary>
         /// <value>The curvature.</value>
         public double Curvature => 1 / Radius;
-
 
         /// <summary>
         /// The eccentricity, e.
@@ -54,6 +59,12 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <value>The eccentricity.</value>
         public override double Eccentricity => 0;
+
+        /// <summary>
+        /// Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+        /// </summary>
+        /// <value>The p.</value>
+        public override double SemilatusRectumDistance => DistanceFromVertexMajorToLocalOrigin;
         #endregion
 
         #region Initialization        
@@ -62,10 +73,18 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="vertex">Any vertex on the curve.</param>
         /// <param name="center">The center.</param>
-        public CircularCurve(CartesianCoordinate vertex, CartesianCoordinate center) : base(vertex, 0, center)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public CircularCurve(
+            CartesianCoordinate vertex, 
+            CartesianCoordinate center,
+            double tolerance = DEFAULT_TOLERANCE) 
+            : base(
+                  vertex, 
+                  center,
+                  CartesianOffset.Separation(vertex, center),
+                  tolerance)
         {
-            _limitStartDefault = vertex;
-            _limitEndDefault = _limitStartDefault;
+
         }
 
         /// <summary>
@@ -73,10 +92,18 @@ namespace MPT.Math.Curves
         /// </summary>
         /// <param name="radius">The radius.</param>
         /// <param name="center">The center.</param>
-        public CircularCurve(double radius, CartesianCoordinate center) : base(vertexMajor(radius, center), 0, center)
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public CircularCurve(
+            double radius, 
+            CartesianCoordinate center,
+            double tolerance = DEFAULT_TOLERANCE) 
+            : base(
+                  vertexMajor(radius, center),
+                  center,
+                  CartesianOffset.Separation(vertexMajor(radius, center), center),
+                  tolerance)
         {
-            _limitStartDefault = vertexMajor(radius, CartesianCoordinate.Origin()); //center);
-            _limitEndDefault = _limitStartDefault;
+
         }
         #endregion
 
@@ -88,7 +115,12 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XatY(double y)
         {
-            return XsAtY(y)[0];
+            double[] coordinates = XsAtY(y);
+            if (coordinates.Length == 0)
+            {
+                return double.PositiveInfinity;
+            }
+            return coordinates[0];
         }
 
         /// <summary>
@@ -98,30 +130,16 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YatX(double x)
         {
-            return YsAtX(x)[0];
+            double[] coordinates = YsAtX(x);
+            if (coordinates.Length == 0)
+            {
+                return double.PositiveInfinity;
+            }
+            return coordinates[0];
         }
-
         #endregion
 
-        #region Methods: Query            
-        /// <summary>
-        /// Determines whether this instance has a chord.
-        /// </summary>
-        /// <returns><c>true</c> if this instance has a chord; otherwise, <c>false</c>.</returns>
-        public bool HasChord()
-        {
-            return !IsCircle();
-        }
-
-        /// <summary>
-        /// Determines whether this instance is a circle.
-        /// </summary>
-        /// <returns><c>true</c> if this instance is a circle; otherwise, <c>false</c>.</returns>
-        public bool IsCircle()
-        {
-            return IsClosedCurve();
-        }
-
+        #region Methods: Query       
         /// <summary>
         /// Determines whether the specified curve is intersecting.
         /// </summary>
@@ -157,23 +175,14 @@ namespace MPT.Math.Curves
         }
 
         /// <summary>
-        /// The differential change in radius corresponding with a differential change in the angle, measured from the right focus (+X) as a function of the angle in local coordinates.
-        /// </summary>
-        /// <param name="angleRadians">The angle in radians in local coordinates.</param>
-        /// <returns>System.Double.</returns>
-        protected override double radiusAboutFocusRightPrime(double angleRadians)
-        {
-            return Radius;
-        }
-
-        /// <summary>
         /// The radius measured from the right (+X) major vertex as a function of the angle in local coordinates.
         /// </summary>
         /// <param name="angleRadians">The angle in radians in local coordinates.</param>
         /// <returns>System.Double.</returns>
         public override double RadiusAboutVertexMajorRight(double angleRadians)
         {
-            return base.RadiusAboutVertexMajorLeft(angleRadians);
+            double radius = base.RadiusAboutVertexMajorLeft(angleRadians);
+            return radius.IsPositiveSign(Tolerance) ? radius : 0;
         }
         #endregion
         #region Focus, Left
@@ -194,7 +203,8 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public override double RadiusAboutVertexMajorLeft(double angleRadians)
         {
-            return 2 * Radius * TrigonometryLibrary.Cos(angleRadians);
+            double radius = 2 * Radius * TrigonometryLibrary.Cos(angleRadians);
+            return radius.IsPositiveSign(Tolerance)? radius: 0;
         }
         #endregion
         /// <summary>
@@ -226,10 +236,10 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString()
-                + " - Center: " + Center
+            return typeof(CircularCurve).Name
+                + " - Center: {X: " + LocalOrigin.X + ", Y: " + LocalOrigin.Y + "}"
                 + ", Radius: " + Radius
-                + ", I: " + _limitStartDefault + ", I: " + _limitEndDefault;
+                + ", I: {X: " + _limitStartDefault.X + ", Y: " + _limitStartDefault.Y + "}, J: {X: " + _limitEndDefault.X + ", Y: " + _limitEndDefault.Y + "}";
         }
 
         /// <summary>
@@ -249,18 +259,30 @@ namespace MPT.Math.Curves
         /// <returns>CartesianCoordinate.</returns>
         public CartesianCoordinate[] IntersectionCoordinate(CircularCurve otherLine)
         {
-            return IntersectionCircularCircular.IntersectionCoordinates(otherLine, this);
+            return IntersectionCircularCircular.IntersectionCoordinates(this, otherLine);
         }
 
         /// <summary>
-        /// Coordinate of where a perpendicular projection intersects the provided coordinate.
+        /// Coordinate of the closest point where a perpendicular projection intersects the provided coordinate.
         /// Returns infinity if the point is coincident with the circular curve center.
         /// </summary>
         /// <param name="point">The point.</param>
         /// <returns>CartesianCoordinate.</returns>
-        public CartesianCoordinate[] CoordinateOfPerpendicularProjection(CartesianCoordinate point)
+        public CartesianCoordinate CoordinateOfPerpendicularProjection(CartesianCoordinate point)
         {
-            return CoordinateOfPerpendicularProjection(point, this);
+            return CoordinatesOfPerpendicularProjection(point, this).Item1;
+        }
+
+        /// <summary>
+        /// Coordinates of where a perpendicular projection intersects the provided coordinate.
+        /// The first coordinate is of the closer intersection.
+        /// Returns infinity if the point is coincident with the circular curve center.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        /// <returns>CartesianCoordinate.</returns>
+        public Tuple<CartesianCoordinate, CartesianCoordinate> CoordinatesOfPerpendicularProjection(CartesianCoordinate point)
+        {
+            return CoordinatesOfPerpendicularProjection(point, this);
         }
 
         /// <summary>
@@ -281,7 +303,8 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public override double Length()
         {
-            return 2 * Numbers.Pi * Radius;
+            throw new NotImplementedException();
+            //return 2 * Numbers.Pi * Radius;
         }
 
         /// <summary>
@@ -336,8 +359,13 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public override double[] XsAtY(double y)
         {
-            double x = (Radius.Squared() - y.Squared()).Sqrt();
-            return new[] { x, -x };
+            double innerSqrt = Radius.Squared() - (y - LocalOrigin.Y).Squared();
+            if (innerSqrt < 0)
+            {
+                return new double[0];
+            }
+            double x = innerSqrt.Sqrt();
+            return new[] { x + LocalOrigin.X, -x + LocalOrigin.X };
         }
 
         /// <summary>
@@ -347,18 +375,13 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public override double[] YsAtX(double x)
         {
-            double y = (Radius.Squared() - x.Squared()).Sqrt();
-            return new[] { y, -y };
-        }
-
-        /// <summary>
-        /// Provided point lies on the curve.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
-        {
-            throw new NotImplementedException();
+            double innerSqrt = Radius.Squared() - (x - LocalOrigin.X).Squared();
+            if (innerSqrt < 0)
+            {
+                return new double[0];
+            }
+            double y = innerSqrt.Sqrt();
+            return new[] { y + LocalOrigin.Y, -y + LocalOrigin.Y };
         }
         #endregion
 
@@ -375,37 +398,38 @@ namespace MPT.Math.Curves
         #endregion
 
         #region Methods: Static      
-        /// <summary>
-        /// The length between the provided points along a circular curve, assumed to be about the origin.
-        /// </summary>
-        /// <param name="pointI">Point i.</param>
-        /// <param name="pointJ">Point j.</param>
-        /// <returns>System.Double.</returns>
-        public static double LengthBetween(CartesianCoordinate pointI, CartesianCoordinate pointJ)
-        {
-            AngularOffset angle = AngularOffset.CreateFromPoints(pointI, CartesianCoordinate.Origin(), pointJ);
-            double radius = pointI.OffsetFrom(CartesianCoordinate.Origin()).Length();
-            return LengthBetween(angle, radius);
-        }
+        //TODO Useful? Not used yet
+        ///// <summary>
+        ///// The length between the provided points along a circular curve, assumed to be about the origin.
+        ///// </summary>
+        ///// <param name="pointI">Point i.</param>
+        ///// <param name="pointJ">Point j.</param>
+        ///// <returns>System.Double.</returns>
+        //public static double LengthBetween(CartesianCoordinate pointI, CartesianCoordinate pointJ)
+        //{
+        //    AngularOffset angle = AngularOffset.CreateFromPoints(pointI, CartesianCoordinate.Origin(), pointJ);
+        //    double radius = pointI.OffsetFrom(CartesianCoordinate.Origin()).Length();
+        //    return LengthBetween(angle, radius);
+        //}
 
-        /// <summary>
-        /// The length between the provided points along a circular curve.
-        /// </summary>
-        /// <param name="pointI">Point i.</param>
-        /// <param name="pointJ">Point j.</param>
-        /// <param name="radius">Arc radius</param>
-        /// <returns>System.Double.</returns>
-        public static double LengthBetween(CartesianCoordinate pointI, CartesianCoordinate pointJ, double radius)
-        {
-            IntersectionCircularCircular intersection = new IntersectionCircularCircular(
-                new CircularCurve(radius, pointI),
-                new CircularCurve(radius, pointJ));
+        ///// <summary>
+        ///// The length between the provided points along a circular curve.
+        ///// </summary>
+        ///// <param name="pointI">Point i.</param>
+        ///// <param name="pointJ">Point j.</param>
+        ///// <param name="radius">Arc radius</param>
+        ///// <returns>System.Double.</returns>
+        //public static double LengthBetween(CartesianCoordinate pointI, CartesianCoordinate pointJ, double radius)
+        //{
+        //    IntersectionCircularCircular intersection = new IntersectionCircularCircular(
+        //        new CircularCurve(radius, pointI),
+        //        new CircularCurve(radius, pointJ));
 
-            // Shape is symmetric, so it doesn't matter if the 1st or 2nd intersection coordinate is taken.
-            CartesianCoordinate center = intersection.IntersectionCoordinates()[0]; 
-            AngularOffset angle = AngularOffset.CreateFromPoints(pointI, center, pointJ);
-            return LengthBetween(angle, radius);
-        }
+        //    // Shape is symmetric, so it doesn't matter if the 1st or 2nd intersection coordinate is taken.
+        //    CartesianCoordinate center = intersection.IntersectionCoordinates()[0]; 
+        //    AngularOffset angle = AngularOffset.CreateFromPoints(pointI, center, pointJ);
+        //    return LengthBetween(angle, radius);
+        //}
 
         /// <summary>
         /// The length within the provided rotation along a circular curve.
@@ -415,7 +439,11 @@ namespace MPT.Math.Curves
         /// <returns>System.Double.</returns>
         public static double LengthBetween(AngularOffset rotation, double radius)
         {
-            return rotation.LengthArc(radius);
+            double length = rotation.LengthArc(radius);
+
+            return (length.IsZeroSign(rotation.Tolerance) && !rotation.Delta().Radians.IsZeroSign(rotation.Tolerance)) ?
+                Numbers.TwoPi * radius :
+                length;
         }
 
         #region Aligment        
@@ -426,7 +454,7 @@ namespace MPT.Math.Curves
         /// <param name="curve2">The curve2.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool AreTangent(CircularCurve curve1, CircularCurve curve2)
+        public static bool AreTangent(CircularCurve curve1, CircularCurve curve2)
         {
             return IntersectionCircularCircular.AreTangent(curve1, curve2);
         }
@@ -440,7 +468,7 @@ namespace MPT.Math.Curves
         /// <param name="curve2">The curve2.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool AreIntersecting(CircularCurve curve1, CircularCurve curve2)
+        public static bool AreIntersecting(CircularCurve curve1, CircularCurve curve2)
         {
             return IntersectionCircularCircular.AreIntersecting(curve1, curve2);
         }
@@ -448,26 +476,33 @@ namespace MPT.Math.Curves
 
         #region Projection
         /// <summary>
-        /// Coordinate of where a perpendicular projection intersects the provided coordinate.
+        /// Coordinates of where a perpendicular projection intersects the provided coordinate.
+        /// The first coordinate is of the closer intersection.
         /// Returns infinity if the point is coincident with the circular curve center.
         /// </summary>
         /// <param name="point">The point.</param>
         /// <param name="referenceArc">The line to which a perpendicular projection is drawn.</param>
         /// <returns>CartesianCoordinate.</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public static CartesianCoordinate[] CoordinateOfPerpendicularProjection(CartesianCoordinate point, CircularCurve referenceArc)
+        public static Tuple<CartesianCoordinate, CartesianCoordinate> CoordinatesOfPerpendicularProjection(CartesianCoordinate point, CircularCurve referenceArc)
         {
             if (point == referenceArc.Center)
             {
-                return new CartesianCoordinate[]
-                    {
+                return new Tuple<CartesianCoordinate, CartesianCoordinate>(
                     new CartesianCoordinate(double.PositiveInfinity, double.PositiveInfinity),
-                    new CartesianCoordinate(double.NegativeInfinity, double.NegativeInfinity)
-                    };
+                    new CartesianCoordinate(double.PositiveInfinity, double.PositiveInfinity)
+                    );
             }
 
             LinearCurve ray = new LinearCurve(referenceArc.Center, point);
-            return referenceArc.IntersectionCoordinate(ray);
+            CartesianCoordinate[] intersectionCoordinates = referenceArc.IntersectionCoordinate(ray);
+            
+            double distance1 = CartesianOffset.Separation(point, intersectionCoordinates[0]);
+            double distance2 = CartesianOffset.Separation(point, intersectionCoordinates[1]);
+            CartesianCoordinate intersectionClose = (distance1 < distance2) ? intersectionCoordinates[0] : intersectionCoordinates[1];
+            CartesianCoordinate intersectionFar = (distance1 < distance2) ? intersectionCoordinates[1] : intersectionCoordinates[0];
+
+            return new Tuple<CartesianCoordinate, CartesianCoordinate>(intersectionClose, intersectionFar);
         }
         #endregion
 
@@ -483,6 +518,17 @@ namespace MPT.Math.Curves
             return new CartesianCoordinate(center.X + radius, center.Y);
         }
         #endregion
+        #endregion
+
+        #region Methods: Protected
+        /// <summary>
+        /// The coordinate of the local origin.
+        /// </summary>
+        /// <value>The local origin.</value>
+        protected override CartesianCoordinate getLocalOrigin()
+        {
+            return _focus;
+        }
         #endregion
 
         #region ICloneable
@@ -501,7 +547,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public CircularCurve CloneCurve()
         {
-            CircularCurve curve = new CircularCurve(_vertexMajorLocal, _focusLocal);
+            CircularCurve curve = new CircularCurve(_vertexMajor, _focus, _tolerance);
             curve._range = Range.CloneRange();
             return curve;
         }

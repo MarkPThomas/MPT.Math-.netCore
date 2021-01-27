@@ -149,9 +149,19 @@ namespace MPT.Math.Coordinates
         /// <returns>CartesianCoordinate.</returns>
         public static CartesianCoordinate OffsetCoordinate(CartesianCoordinate center, double distance, Angle rotation)
         {
+            double x = center.X + distance * Trig.Cos(rotation.Radians);
+            if (x.IsZeroSign(center.Tolerance))
+            {
+                x = 0;
+            }
+            double y = center.Y + distance * Trig.Sin(rotation.Radians);
+            if (y.IsZeroSign(center.Tolerance))
+            {
+                y = 0;
+            }
             return new CartesianCoordinate(
-                center.X + distance * Trig.Cos(rotation.Radians), 
-                center.Y + distance * Trig.Sin(rotation.Radians), 
+                x, 
+                y, 
                 center.Tolerance);
         }
         #endregion

@@ -43,8 +43,7 @@ namespace MPT.Math.Curves
             set
             {
                 base.Tolerance = value;
-                _controlPointI.Tolerance = _tolerance;
-                _controlPointJ.Tolerance = _tolerance;
+                setTolerances(value);
             }
         }
 
@@ -71,18 +70,29 @@ namespace MPT.Math.Curves
 
         #region Initialization
         /// <summary>
-        /// Initializes the line segment to span between the provided points.
+        /// Initializes the linear curve to pass through the provided points.
         /// </summary>
         /// <param name="i">First point of the line.</param>
         /// <param name="j">Second point of the line.</param>
-        public LinearCurve(CartesianCoordinate i, CartesianCoordinate j) 
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        public LinearCurve(CartesianCoordinate i, CartesianCoordinate j, double tolerance = DEFAULT_TOLERANCE) : base(tolerance)
         {
-            i.Tolerance = _tolerance;
-            j.Tolerance = _tolerance;
             _controlPointI = i;
             _controlPointJ = j;
             _limitStartDefault = _controlPointI;
             _limitEndDefault = _controlPointJ;
+
+            setTolerances(tolerance);
+        }
+
+        /// <summary>
+        /// Sets the tolerances.
+        /// </summary>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
+        protected void setTolerances(double tolerance = DEFAULT_TOLERANCE)
+        {
+            _controlPointI.Tolerance = tolerance;
+            _controlPointJ.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -444,7 +454,7 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString() + " - X-Intercept: " + InterceptX() + ", Y-Intercept: " + InterceptY() + ", Slope: " + Slope();
+            return typeof(LinearCurve).Name + " - X-Intercept: " + InterceptX() + ", Y-Intercept: " + InterceptY() + ", Slope: " + Slope();
         }
 
         /// <summary>

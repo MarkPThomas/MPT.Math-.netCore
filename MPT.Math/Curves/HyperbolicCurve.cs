@@ -32,65 +32,117 @@ namespace MPT.Math.Curves
     {
         #region Properties        
         /// <summary>
-        /// The vertex in local coordinates that defines the asymptotes.
+        /// Distance from local origin to the focus, c.
         /// </summary>
-        private CartesianCoordinate _vertexAsymptoteLocal;
+        /// <value>The distance from focus to origin.</value>
+        public override double DistanceFromFocusToLocalOrigin => distanceFromFocusToVertexMajor() + DistanceFromVertexMajorToLocalOrigin;
+
         /// <summary>
-        /// Gets the asymptotes in local coordinates.
+        /// Distance from the focus to the curve along a line perpendicular to the major axis and the focus, p.
+        /// </summary>
+        /// <value>The p.</value>
+        public override double SemilatusRectumDistance => DistanceFromVertexMajorToLocalOrigin * (Eccentricity.Squared() - 1);
+
+        /// <summary>
+        /// Gets the asymptotes.
         /// </summary>
         /// <value>The asymptotes.</value>
         public Tuple<LinearCurve, LinearCurve> Asymptotes
         {
             get
             {
+                Tuple<CartesianCoordinate, CartesianCoordinate> minorVertices = getVerticesMinor();
                 return new Tuple<LinearCurve, LinearCurve>
                     (
-                        new LinearCurve(CartesianCoordinate.Origin(), _vertexAsymptoteLocal),
-                        new LinearCurve(CartesianCoordinate.Origin(), -1 * _vertexAsymptoteLocal)
+                        new LinearCurve(LocalOrigin, minorVertices.Item1, Tolerance),
+                        new LinearCurve(LocalOrigin, minorVertices.Item2, Tolerance)
                     );
+            }
+        }
+
+        /// <summary>
+        /// Gets the second focus, which lies to the left of the local origin.
+        /// </summary>
+        /// <value>The focus2.</value>
+        public CartesianCoordinate Focus2 => CartesianCoordinate.OffsetCoordinate(_focus, -2 * DistanceFromFocusToLocalOrigin, _rotation);
+
+        /// <summary>
+        /// Gets the second set of minor vertices, b which lie to the left of the local origin, along a line perpendicular to a line passing through the major vertex, a, and focus.
+        /// </summary>
+        /// <value>The conjugate vertices.</value>
+        public virtual Tuple<CartesianCoordinate, CartesianCoordinate> VerticesMinor2
+        {
+            get
+            {
+                Tuple<CartesianCoordinate, CartesianCoordinate> minorVertices = getVerticesMinor();
+                return new Tuple < CartesianCoordinate, CartesianCoordinate >(
+                    CartesianCoordinate.OffsetCoordinate(minorVertices.Item1, -2 * DistanceFromVertexMajorToLocalOrigin, _rotation),
+                    CartesianCoordinate.OffsetCoordinate(minorVertices.Item2, -2 * DistanceFromVertexMajorToLocalOrigin, _rotation));
+            }
+        }
+
+        /// <summary>
+        /// Gets the second directrix, Xe, which lies to the left of the local origin.
+        /// </summary>
+        /// <value>The directrix.</value>
+        public virtual LinearCurve Directrix2
+        {
+            get
+            {
+                Tuple<CartesianCoordinate, CartesianCoordinate> directrices = getVerticesDirectrix();
+                return new LinearCurve(
+                    directrices.Item1.OffsetCoordinate(-2 * DistanceFromDirectrixToLocalOrigin, _rotation),
+                    directrices.Item2.OffsetCoordinate(-2 * DistanceFromDirectrixToLocalOrigin, _rotation),
+                    _tolerance);
             }
         }
         #endregion
 
-        #region Initialization                
+        #region Initialization                  
         /// <summary>
-        /// Initializes a new instance of the <see cref="HyperbolicCurve" /> class.
+        /// Initializes a new instance of the <see cref="HyperbolicCurve"/> class.
         /// </summary>
-        /// <param name="vertexMajor">The major vertex, a.</param>
-        /// <param name="distanceFromFocusToLocalOrigin">The distance from focus, c, to local origin.</param>
-        /// <param name="localOrigin">The coordinate of the local origin.</param>
+        /// <param name="a">Distance, a, from local origin to major vertex, M, which lies at the apex of the curve.</param>
+        /// <param name="vertexMajor">The major vertex, M, which lies at the peak of the parabola.</param>
+        /// <param name="focus">The focus, f.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
         public HyperbolicCurve(
+            double a,
             CartesianCoordinate vertexMajor,
-            double distanceFromFocusToLocalOrigin,
-            CartesianCoordinate localOrigin)
-            : base(vertexMajor, distanceFromFocusToLocalOrigin, localOrigin)
+            CartesianCoordinate focus,
+            double tolerance = DEFAULT_TOLERANCE) 
+            : base(
+                  vertexMajor, 
+                  focus, 
+                  a, 
+                  tolerance)
         {
-            initialization();
+
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EllipticalCurve" /> class.
         /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
-        /// <param name="b">Distance from local origin to minor vertex, b.</param>
+        /// <param name="a">Distance, a, from local origin to major vertex, M, which lies at the apex of the curve.</param>
+        /// <param name="b">Distance, b, from local origin to minor vertex, M, which defines the asymptote that passes through the center.</param>
         /// <param name="center">The center.</param>
-        /// <param name="rotation">The rotation.</param>
+        /// <param name="rotation">The rotation offset from the horizontal x-axis.</param>
+        /// <param name="tolerance">Tolerance to apply to the curve.</param>
         public HyperbolicCurve(
-            double a, 
-            double b, 
-            CartesianCoordinate center, 
-            Angle rotation) 
-            : base(center.OffsetCoordinate(a, rotation), distanceFromFocusToOrigin(a, b), center)
+            double a,
+            double b,
+            CartesianCoordinate center,
+            Angle rotation,
+            double tolerance = DEFAULT_TOLERANCE)
+            : base(
+                  center.OffsetCoordinate(a, rotation), 
+                  distanceFromFocusToOrigin(a, b) - a, 
+                  a,    
+                  rotation, 
+                  tolerance)
         {
-            initialization();
-        }
-
-        /// <summary>
-        /// Initializations the object,
-        /// </summary>
-        private void initialization()
-        {
-            _vertexAsymptoteLocal = new CartesianCoordinate(DistanceFromVertexMajorToOrigin, DistanceFromVertexMinorToOrigin);
+            _focus = center.OffsetCoordinate(DistanceFromFocusToLocalOrigin, rotation);
+            _focus.Tolerance = tolerance;
         }
 
         /// <summary>
@@ -111,7 +163,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XatY(double y)
         {
-            return DistanceFromVertexMajorToOrigin * (1 + (y / DistanceFromVertexMinorToOrigin).Squared()).Sqrt();
+            return DistanceFromVertexMajorToLocalOrigin * (1 + (y / DistanceFromVertexMinorToMajorAxis).Squared()).Sqrt();
         }
 
         /// <summary>
@@ -121,7 +173,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double YatX(double x)
         {
-            return DistanceFromVertexMinorToOrigin * ((x / DistanceFromVertexMajorToOrigin).Squared() - 1).Sqrt();
+            return DistanceFromVertexMinorToMajorAxis * ((x / DistanceFromVertexMajorToLocalOrigin).Squared() - 1).Sqrt();
         }
 
         /// <summary>
@@ -154,7 +206,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutFocusRight(double angleRadians)
         {
-            return DistanceFromFocusToOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
+            return DistanceFromFocusToLocalOrigin + RadiusAboutFocusRight(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
         }
 
         /// <summary>
@@ -164,7 +216,7 @@ namespace MPT.Math.Curves
         /// <returns></returns>
         public override double XbyRotationAboutFocusLeft(double angleRadians)
         {
-            return -1 * DistanceFromFocusToOrigin + RadiusAboutFocusLeft(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
+            return -1 * DistanceFromFocusToLocalOrigin + RadiusAboutFocusLeft(angleRadians) * TrigonometryLibrary.Cos(angleRadians);
         }
         #endregion
 
@@ -175,12 +227,12 @@ namespace MPT.Math.Curves
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return base.ToString()
-                + " - Center: " + _originLocal
-                + ", - Rotation: " + _localRotation
-                + ", a: " + DistanceFromVertexMajorToOrigin
-                + ", b: " + DistanceFromVertexMinorToOrigin
-                + ", I: " + _limitStartDefault + ", J: " + _limitEndDefault;
+            return typeof(HyperbolicCurve).Name
+                + " - Center: {X: " + LocalOrigin.X + ", Y: " + LocalOrigin.Y + "}"
+                + ", Rotation: " + _rotation.Radians + " rad"
+                + ", a: " + DistanceFromVertexMajorToLocalOrigin
+                + ", b: " + DistanceFromVertexMinorToMajorAxis
+                + ", I: {X: " + _limitStartDefault.X + ", Y: " + _limitStartDefault.Y + "}, J: {X: " + _limitEndDefault.X + ", Y: " + _limitEndDefault.Y + "}";
         }
         #endregion
 
@@ -299,37 +351,53 @@ namespace MPT.Math.Curves
         {
             throw new NotImplementedException();
         }
-
-        /// <summary>
-        /// Provided point lies on the curve.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if [is intersecting coordinate] [the specified coordinate]; otherwise, <c>false</c>.</returns>
-        public override bool IsIntersectingCoordinate(CartesianCoordinate coordinate)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region Methods: Protected
         /// <summary>
-        /// Distance from local origin to minor Vertex, b.
+        /// The coordinate of the local origin.
         /// </summary>
-        /// <param name="a">Distance from local origin to major vertex, a.</param>
-        /// <param name="c">Distance from local origin to the focus, c.</param>
+        /// <value>The local origin.</value>
+        protected override CartesianCoordinate getLocalOrigin()
+        {
+            return _vertexMajor.OffsetCoordinate(-DistanceFromVertexMajorToLocalOrigin, _rotation);
+        }
+
+
+        /// <summary>
+        /// Gets the vertex major2 coordinate.
+        /// </summary>
+        /// <returns>CartesianCoordinate.</returns>
+        protected override CartesianCoordinate getVertexMajor2()
+        {
+            return _vertexMajor.OffsetCoordinate(-2 * DistanceFromVertexMajorToLocalOrigin, _rotation);
+        }
+
+        /// <summary>
+        /// Gets the minor vertices.
+        /// </summary>
+        /// <returns>Tuple&lt;CartesianCoordinate, CartesianCoordinate&gt;.</returns>
+        protected override Tuple<CartesianCoordinate, CartesianCoordinate> getVerticesMinor()
+        {
+            return getVerticesMinor(_vertexMajor);
+        }
+
+        /// <summary>
+        /// Distance, b, from minor vertex, m, to the major axis, which is a line that passes through the major vertex, M, and the focus, f.
+        /// </summary>
+        /// <param name="a">Distance, a, from local origin to major vertex, M.</param>
+        /// <param name="c">Distance, c, from local origin to the focus, f.</param>
         /// <returns>System.Double.</returns>
-        protected override double distanceFromVertexMinorToOrigin(double a, double c)
+        protected override double distanceFromVertexMinorToMajorAxis(double a, double c)
         {
             return (c.Squared() - a.Squared()).Sqrt();
         }
-
-        
         #endregion
 
         #region Methods: Static
         #region Protected
         /// <summary>
-        /// Distances from focus to origin.
+        /// Distance, c, from focus,f, to origin.
         /// </summary>
         /// <param name="a">a.</param>
         /// <param name="b">The b.</param>
@@ -357,7 +425,7 @@ namespace MPT.Math.Curves
         /// <returns>LinearCurve.</returns>
         public HyperbolicCurve CloneCurve()
         {
-            HyperbolicCurve curve = new HyperbolicCurve(_vertexMajorLocal, DistanceFromFocusToOrigin, _originLocal);
+            HyperbolicCurve curve = new HyperbolicCurve(DistanceFromVertexMajorToLocalOrigin, _vertexMajor, _focus, _tolerance);
             curve._range = Range.CloneRange();
             return curve;
         }

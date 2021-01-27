@@ -42,7 +42,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics
         /// <returns>System.Double.</returns>
         public override double BaseByParameter(double angleRadians)
         {
-            return (_parent.DistanceFromVertexMajorToOrigin * TrigonometryLibrary.CosH(angleRadians));
+            return (_parent.DistanceFromVertexMajorToLocalOrigin * TrigonometryLibrary.CosH(angleRadians));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics
         /// <returns>System.Double.</returns>
         public override double PrimeByParameter(double angleRadians)
         {
-            return (_parent.DistanceFromVertexMajorToOrigin * -1 * TrigonometryLibrary.Sin(angleRadians));
+            return (_parent.DistanceFromVertexMajorToLocalOrigin * -1 * TrigonometryLibrary.Sin(angleRadians));
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics
         /// <returns>System.Double.</returns>
         public override double PrimeDoubleByParameter(double angleRadians)
         {
-            return (_parent.DistanceFromVertexMajorToOrigin * -1 * TrigonometryLibrary.Cos(angleRadians));
+            return (_parent.DistanceFromVertexMajorToLocalOrigin * -1 * TrigonometryLibrary.Cos(angleRadians));
         }
         #endregion
 
