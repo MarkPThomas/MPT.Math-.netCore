@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Coordinates;
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
@@ -77,9 +77,9 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
-            return new EllipticParametric(this);
+            return new EllipticalCurveParametric(this);
         }
         #endregion
 

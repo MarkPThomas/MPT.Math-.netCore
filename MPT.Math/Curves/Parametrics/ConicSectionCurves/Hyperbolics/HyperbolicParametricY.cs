@@ -1,14 +1,33 @@
-﻿using MPT.Math.Trigonometry;
+﻿// ***********************************************************************
+// Assembly         : MPT.Math
+// Author           : Mark P Thomas
+// Created          : 11-19-2020
+//
+// Last Modified By : Mark P Thomas
+// Last Modified On : 01-27-2021
+// ***********************************************************************
+// <copyright file="HyperbolicParametricY.cs" company="Mark P Thomas, Inc.">
+//     Copyright (c) 2020. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using MPT.Math.Trigonometry;
 
 
 namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics
 {
-    internal class HyperbolicParametricY : ConicLinearParametricBase
+    /// <summary>
+    /// Represents a hyperbolic curve in parametric equations defining the y-component and differentials.
+    /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+    /// <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
+    /// </summary>
+    /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+    internal class HyperbolicParametricY : ConicParametricDoubleComponents
     {
-        protected override Curve _parentCurve => base._parentCurve as HyperbolicCurve;
-
-        protected HyperbolicCurve _parent2 { get; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HyperbolicParametricY"/> class.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
         public HyperbolicParametricY(HyperbolicCurve parent) : base(parent)
         {
         }

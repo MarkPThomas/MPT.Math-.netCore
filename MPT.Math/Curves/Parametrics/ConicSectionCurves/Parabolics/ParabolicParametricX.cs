@@ -17,11 +17,11 @@ using MPT.Math.NumberTypeExtensions;
 namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
 {
     /// <summary>
-    /// Class ParabolicParametricX.
-    /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicLinearParametricBase" />
+    /// Represents a parabolic curve in parametric equations defining the x-component and differentials.
+    /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
     /// </summary>
-    /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicLinearParametricBase" />
-    internal class ParabolicParametricX : ConicLinearParametricBase
+    /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+    internal class ParabolicParametricX : ConicParametricDoubleComponents
     {
 
         /// <summary>

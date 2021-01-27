@@ -13,7 +13,8 @@
 // ***********************************************************************
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
-using MPT.Math.Curves.Parametrics.Beziers;
+using MPT.Math.Curves.Parametrics.BezierCurves;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Tools;
 using MPT.Math.Geometry;
 using MPT.Math.Vectors;
@@ -149,18 +150,18 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
             switch (NumberOfControlPoints)
             {
                 case 1:
-                    return new BezierParametric1(this);
+                    return new BezierCurveParametric1stOrder(this);
                 case 2:
-                    return new BezierParametric2(this);
+                    return new BezierCurveParametric2ndOrder(this);
                 case 3:
-                    return new BezierParametric3(this);
+                    return new BezierCurveParametric3rdOrder(this);
                 default:
-                    return new BezierParametric3(this);
+                    return new BezierCurveParametric3rdOrder(this);
             }
         }
         #endregion

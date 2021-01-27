@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Coordinates;
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Tools;
 using MPT.Math.Vectors;
 using System;
@@ -192,7 +192,7 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected abstract LinearParametricEquation createParametricEquation();
+        protected abstract CartesianParametricEquationXY createParametricEquation();
         #endregion
 
         #region ICloneable

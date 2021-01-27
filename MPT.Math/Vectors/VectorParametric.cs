@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using System;
 
 namespace MPT.Math.Vectors
@@ -38,12 +38,12 @@ namespace MPT.Math.Vectors
         /// <summary>
         /// The associated parametric function.
         /// </summary>
-        protected LinearParametricEquation _curveParametric;
+        protected CartesianParametricEquationXY _curveParametric;
         /// <summary>
         /// The associated parametric function.
         /// </summary>
         /// <value>The curve parametric.</value>
-        public LinearParametricEquation CurveParametric => _curveParametric;
+        public CartesianParametricEquationXY CurveParametric => _curveParametric;
         #endregion
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace MPT.Math.Vectors
         /// </summary>
         /// <param name="parametricCartesian">The parametric function.</param>
         /// <param name="tolerance">The tolerance.</param>
-        public VectorParametric(LinearParametricEquation parametricCartesian, double tolerance = Numbers.ZeroTolerance)
+        public VectorParametric(CartesianParametricEquationXY parametricCartesian, double tolerance = Numbers.ZeroTolerance)
         {
             _curveParametric = parametricCartesian;
 
@@ -69,7 +69,7 @@ namespace MPT.Math.Vectors
         /// <returns>VectorParametric.</returns>
         public VectorParametric Differentiate()
         {
-            LinearParametricEquation differential = _curveParametric.Differentiate() as LinearParametricEquation;
+            CartesianParametricEquationXY differential = _curveParametric.Differentiate() as CartesianParametricEquationXY;
             return new VectorParametric(differential, Tolerance);
         }
 

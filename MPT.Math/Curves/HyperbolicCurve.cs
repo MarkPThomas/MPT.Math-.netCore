@@ -13,7 +13,7 @@
 // ***********************************************************************
 using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
@@ -149,9 +149,9 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
-            return new HyperbolicParametric(this);
+            return new HyperbolicCurveParametric(this);
         }
         #endregion
 

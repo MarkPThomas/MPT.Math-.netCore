@@ -6,66 +6,64 @@
 // Last Modified By : Mark P Thomas
 // Last Modified On : 11-19-2020
 // ***********************************************************************
-// <copyright file="ParabolicParametricY.cs" company="MarkPThomas Inc.">
+// <copyright file="EllipticParametricX.cs" company="MarkPThomas Inc.">
 //     Copyright (c) MarkPThomas Inc.. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Trigonometry;
-using System;
 
-
-namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
+namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Elliptics
 {
     /// <summary>
-    /// Represents a parabolic curve in parametric equations defining the y-component and differentials.
+    /// Represents an elliptical curve in parametric equations defining the x-component and differentials.
     /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
     /// </summary>
     /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
-    internal class ParabolicParametricY : ConicParametricDoubleComponents
+    internal class EllipticalParametricX : ConicParametricDoubleComponents
     {
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParabolicParametricY"/> class.
+        /// Initializes a new instance of the <see cref="EllipticalParametricX" /> class.
         /// </summary>
         /// <param name="parent">The parent.</param>
-        public ParabolicParametricY(ParabolicCurve parent) : base(parent)
+        public EllipticalParametricX(ConicSectionEllipticCurve parent) : base(parent)
         {
         }
 
         #region Methods: Parametric Equations and Differentials
 
+
         /// <summary>
-        /// Y-coordinate on the curve in local coordinates that corresponds to the parametric coordinate given.
-        /// <a href="http://amsi.org.au/ESA_Senior_Years/SeniorTopic2/2a/2a_2content_11.html">Reference</a>.
+        /// Bases the by angle.
         /// </summary>
-        /// <param name="t">Parametric coordinate.</param>
+        /// <param name="angleRadians">The angle radians.</param>
         /// <returns>System.Double.</returns>
-        public override double BaseByParameter(double t)
+        public override double BaseByParameter(double angleRadians)
         {
-            return 2 * _parent.DistanceFromVertexMajorToLocalOrigin * t;
+            return _parent.DistanceFromVertexMajorToLocalOrigin * TrigonometryLibrary.Cos(angleRadians);
         }
 
 
         /// <summary>
         /// Primes the by angle.
         /// </summary>
-        /// <param name="t">The t.</param>
+        /// <param name="angleRadians">The angle radians.</param>
         /// <returns>System.Double.</returns>
-        public override double PrimeByParameter(double t)
+        public override double PrimeByParameter(double angleRadians)
         {
-            return 2 * _parent.DistanceFromVertexMajorToLocalOrigin;
+            return -1 * _parent.DistanceFromVertexMajorToLocalOrigin * TrigonometryLibrary.Sin(angleRadians);
         }
 
 
         /// <summary>
         /// Primes the double by angle.
         /// </summary>
-        /// <param name="t">The t.</param>
+        /// <param name="angleRadians">The angle radians.</param>
         /// <returns>System.Double.</returns>
-        public override double PrimeDoubleByParameter(double t)
+        public override double PrimeDoubleByParameter(double angleRadians)
         {
-            return 0;
+            return -1 * _parent.DistanceFromVertexMajorToLocalOrigin * TrigonometryLibrary.Cos(angleRadians);
         }
         #endregion
 
@@ -83,9 +81,9 @@ namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
         /// Clones the curve.
         /// </summary>
         /// <returns>LinearCurve.</returns>
-        public ParabolicParametricY CloneParametric()
+        public EllipticalParametricX CloneParametric()
         {
-            ParabolicParametricY parametric = new ParabolicParametricY(_parent as ParabolicCurve);
+            EllipticalParametricX parametric = new EllipticalParametricX(_parent as EllipticalCurve);
             return parametric;
         }
         #endregion

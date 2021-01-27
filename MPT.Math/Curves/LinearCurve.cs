@@ -13,12 +13,12 @@
 // ***********************************************************************
 using MPT.Math.Algebra;
 using MPT.Math.Coordinates;
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Vectors;
 using Trig = MPT.Math.Trigonometry.TrigonometryLibrary;
 using System;
-using MPT.Math.Curves.Parametrics.Linear;
+using MPT.Math.Curves.Parametrics.LinearCurves;
 
 namespace MPT.Math.Curves
 {
@@ -99,9 +99,9 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
-            return new LinearParametric(this);
+            return new LinearCurveParametric(this);
         }
 
         /// <summary>

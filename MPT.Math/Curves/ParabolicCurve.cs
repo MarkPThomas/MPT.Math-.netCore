@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using MPT.Math.Coordinates;
-using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics;
 using MPT.Math.NumberTypeExtensions;
 using MPT.Math.Trigonometry;
@@ -98,9 +98,9 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
-            return new ParabolicParametric(this);
+            return new ParabolicCurveParametric(this);
         }
         #endregion
 
@@ -218,7 +218,6 @@ namespace MPT.Math.Curves
         /// <param name="relativePositionStart">Relative position along the path at which the linear curve is started.</param>
         /// <param name="relativePositionEnd">Relative position along the path at which the linear curve is ended.</param>
         /// <returns>LinearCurve.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public override LinearCurve ChordBetween(double relativePositionStart, double relativePositionEnd)
         {
             throw new NotImplementedException();

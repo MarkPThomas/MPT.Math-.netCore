@@ -13,7 +13,8 @@
 // ***********************************************************************
 using MPT.Math.Coordinates;
 using MPT.Math.Curves.Parametrics;
-using MPT.Math.Curves.Parametrics.LogarithmicSpirals;
+using MPT.Math.Curves.Parametrics.Components;
+using MPT.Math.Curves.Parametrics.LogarithmicSpiralCurves;
 using MPT.Math.Curves.Tools;
 using MPT.Math.Geometry;
 using MPT.Math.NumberTypeExtensions;
@@ -65,9 +66,9 @@ namespace MPT.Math.Curves
         /// Creates the parametric vector.
         /// </summary>
         /// <returns>VectorParametric.</returns>
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
-            return new LogarithmicSpiralParametric(this);
+            return new LogarithmicSpiralCurveParametric(this);
         }
         #endregion
 

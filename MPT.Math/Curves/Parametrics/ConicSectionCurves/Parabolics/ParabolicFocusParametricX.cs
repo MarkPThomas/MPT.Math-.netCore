@@ -4,7 +4,7 @@ using System;
 
 namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Parabolics
 {
-    internal class ParabolicFocusParametricX : ConicLinearParametricBase
+    internal class ParabolicFocusParametricX : ConicParametricDoubleComponents
     {
 
         public ParabolicFocusParametricX(ParabolicCurve parent) : base(parent)

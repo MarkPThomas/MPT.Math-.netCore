@@ -52,7 +52,7 @@ namespace MPT.Math.Curves
         /// <summary>
         /// The parametric equation of the radius measured from the focus.
         /// </summary>
-        protected RadiusFocusParametric _radiusFromRightFocus;
+        protected ConicFocusParametric _radiusFromRightFocus;
 
         /// <summary>
         /// The rotational offset of local coordinates from global coordinates.
@@ -234,7 +234,7 @@ namespace MPT.Math.Curves
             _vertexMajor = vertexMajor;
             DistanceFromVertexMajorToLocalOrigin = distanceFromMajorVertexToLocalOrigin;
 
-            _radiusFromRightFocus = new RadiusFocusParametric(this);
+            _radiusFromRightFocus = new ConicFocusParametric(this);
 
             _limitStartDefault = _vertexMajor;
             _limitEndDefault = _limitStartDefault;

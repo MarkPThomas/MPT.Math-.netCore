@@ -17,12 +17,12 @@ using MPT.Math.Trigonometry;
 namespace MPT.Math.Curves.Parametrics.ConicSectionCurves.Hyperbolics
 {
     /// <summary>
-    /// Class HyperbolicParametricX.
-    /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicLinearParametricBase" />
+    /// Represents a hyperbolic curve in parametric equations defining the x-component and differentials.
+    /// Implements the <see cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
     /// <a href="https://www.ck12.org/book/ck-12-calculus-concepts/section/10.3/">Reference</a>.
     /// </summary>
-    /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicLinearParametricBase" />
-    internal class HyperbolicParametricX : ConicLinearParametricBase
+    /// <seealso cref="MPT.Math.Curves.Parametrics.ConicSectionCurves.ConicParametricDoubleComponents" />
+    internal class HyperbolicParametricX : ConicParametricDoubleComponents
     {
 
         /// <summary>
