@@ -1,6 +1,7 @@
 ﻿using MPT.Math.Coordinates;
 using MPT.Math.Curves;
 using MPT.Math.Curves.Parametrics;
+using MPT.Math.Curves.Parametrics.Components;
 using MPT.Math.Curves.Tools;
 using NUnit.Framework;
 using System;
@@ -224,7 +225,7 @@ namespace MPT.Math.UnitTests.Tools
             throw new NotImplementedException();
         }
 
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
             throw new NotImplementedException();
         }
@@ -242,7 +243,7 @@ namespace MPT.Math.UnitTests.Tools
             throw new NotImplementedException();
         }
 
-        protected override LinearParametricEquation createParametricEquation()
+        protected override CartesianParametricEquationXY createParametricEquation()
         {
             throw new NotImplementedException();
         }
